@@ -229,6 +229,95 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 
 }
 
+## 3.7. 查询LTV报表数据
+
+### 3.7.1. 请求URL
+
+<https://openapi.uparpu.com/v1/ltvreport>
+
+### 3.7.2. 请求方式
+
+POST
+### 3.7.3. 请求参数
+
+| 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                       |
+| ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
+| startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
+| enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
+| app_id      | String    | N        | Up开发者后台的App ID，单选                                     | a5c41a9ed1679c                                   |
+| metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
+| order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |["date_time", “asc”, “app_id”, “desc”]                             |
+| group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
+| start    | Int    | N        |     偏移数，代表从第几条数据开始，默认为0                                 |                                    0|
+| limit    | Int    | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]                                   | 1000                                 |
+
+### 3.7.4. 返回参数
+
+| 字段             | 类型    | 备注                                                         |
+| ---------------- | ------ | ------------------------------------------------------------ |
+| count            | Int           | 总条数                                                       |
+| records             | array       | 记录                   |
+
+**records元素结构如下：**
+| 字段名           | 类型   | 备注                     |     |
+| ---------------- | ------ | ------------------------ | --- |
+| date             | string | 默认返回                 |     |
+| app.id           | string    | 默认返回                 |     |
+| app.name         | string | 默认返回                 |     |
+| new_user         | string | 默认返回                 |     |
+| dau              | string | 默认返回                 |     |
+| revenue          | string | group by channel时不返回 |     |
+| arpu             | string | 跟随revenue指标          |     |
+| ltv_day_1        | string | 默认返回                 |     |
+| ltv_day_2        | string |                          |     |
+| ltv_day_3        | string |                          |     |
+| ltv_day_4        | string |                          |     |
+| ltv_day_5        | string |                          |     |
+| ltv_day_6        | string |                          |     |
+| ltv_day_7        | string | 默认返回                 |     |
+| ltv_day_14       | string |                          |     |
+| ltv_day_30       | string |                          |     |
+| ltv_day_60       | string |                          |     |
+| retention_day_2  | string | 默认返回                 |     |
+| retention_day_3  | string |                          |     |
+| retention_day_4  | string |                          |     |
+| retention_day_5  | string |                          |     |
+| retention_day_6  | string |                          |     |
+| retention_day_7  | string |                          |     |
+| retention_day_14 | string | 默认返回                 |     |
+| retention_day_30 | string |                          |     |
+| retention_day_60 | string |                          |     |
+
+> 备注
+> 1. 只能查询今天往前推2天的数据
+> 2. ltv_day_N和retention_day_N指标若返回值为“－”，表示这一天该指标不存在，请开发者注意区分
+
+### 3.7.4. 样例
+
+``` javascript
+{
+    "count": 5,
+    "records": [
+        {
+            "date": "20190823",
+            "app": {
+                "id": "122",
+                "name": "我要翘课",
+                "platform": "2"
+            },
+            "new_user": "15202",
+            "dau": "0",
+            "revenue": "5880.77",
+            "ltv_day_1": "0.2334",
+            "ltv_day_7": "-",
+            "retention_day_2": "0.269",
+            "retention_day_7": "-"
+        }
+    ]
+}
+
+```
+
 # **4.** **注意事项**
 
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵

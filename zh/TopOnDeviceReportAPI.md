@@ -1,4 +1,4 @@
-UpArpu平台报表查询API对接文档
+# TopOn平台DeviceReportAPI对接文档
 
 
 
@@ -8,21 +8,21 @@ UpArpu平台报表查询API对接文档
 
 | 文档版本 | 发布时间      | 修订说明             |
 | -------- | ------------- | -------------------- |
-| v 1.0    | 2019年7月17日 | 支持查询综合报表数据 |
+| v 1.0    | 2019年8月29日 | 支持Device Report数据查询 |
 
  
 
-# **1.** **关于文档**
+## 1. 关于文档
 
 为提高合作伙伴的变现效率，UpArpu平台专门提供了报表查询的API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
-# **2.** **申请开通权限**
+## 2. 申请开通权限
 
 在使用UpArpu平台的批量创建 API 前，合作伙伴需向UpArpu申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
-# **3.** **接口相关**
+## 3. 接口相关
 
-## 3.1. 接口请求流程说明
+### 3.1. 接口请求流程说明
 
 l 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
 
@@ -34,7 +34,7 @@ l 服务端在接到请求后会重复如上的第一、二步工作，并在服
 
 l 服务端用期望的数字签名和请求端发送过来的数字签名做比对，如果完全一致则认为该请求通过安全验证，否则直接拒绝该请求。
 
-## 3.2. Header公共请求参数
+### 3.2. Header公共请求参数
 
 | 参数           | 说明                                                         | 样例                                       |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------ |
@@ -44,7 +44,7 @@ l 服务端用期望的数字签名和请求端发送过来的数字签名做比
 
  
 
-## 3.3. 签名字段
+### 3.3. 签名字段
 
 | 字段         | 说明                                                   | 样例                                                         |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
@@ -56,7 +56,7 @@ l 服务端用期望的数字签名和请求端发送过来的数字签名做比
 
  
 
-## 3.4. 签名方式
+### 3.4. 签名方式
 
  参与签名计算的字符串：
 
@@ -102,7 +102,7 @@ Headers：
 
  
 
-## 3.5. Http状态码和业务状态码
+### 3.5. Http状态码和业务状态码
 
 | 状态码 | 返回信息                 | 含义               |
 | ------ | ------------------------ | ------------------ |
@@ -118,118 +118,51 @@ Headers：
 
  
 
-## 3.6. 查询综合报表数据
+### 3.6. DeviceReportAPI说明
 
-### 3.6.1. 请求URL
+#### 3.6.1. 请求URL
 
-<https://openapi.uparpu.com/v1/fullreport>
+<https://openapi.toponad.com/v1/devicereport>
 
-### 3.6.2. 请求方式
+#### 3.6.2. 请求方式
 
-POST
+GET
 
-### 3.6.3. 请求参数
+#### 3.6.3. 请求参数
 
 | 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                       |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
-| startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
-| enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id       | String | N        | Up开发者后台的App ID，单选                                   | xxxxx                                      |
-| placement_id | String | N        | Up开发者后台的Placement ID，单选                             | xxxxx                                      |
-| group_by     | Array  | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
-| metric       | Array  | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
-| start        | Int    | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
-| limit        | Int    | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]             | 1000                                       |
+| day    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
+| app_id       | String | N        | Up开发者后台的App ID，单选                                   | xxxxx                                                                            |
 
- 
+注：数据支持的时间从TopOn运营开通权限后开始支持生成，返回的内容以文件形式提供
 
-l 默认返回的指标：
+#### 3.6.4. 返回参数
 
-dau，arpu，request，fillrate，impression，click，ecpm，revenue，impression_api，click_api，ecpm_api
+此接口返回报表数据的下载链接，开发者获取此链接后，可直接在浏览器中下载报表数据。链接格式如下：<br>
+https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publisher_id%3D22/app_id%3Da5d147334b3685/000000_0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA35FGARBHLHHS7TWB%2F20190828%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190828T095315Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=6aaf947f9b2cf02f3acb49d64a3daf719cb0b57a3d5221b0121a006e58b04b10 <br>
 
- 
+文件以csv形式提供，用","作为分隔符，具体参数内容如下：
 
-### 3.6.4. 返回参数
+| 字段             | 类型   | 备注                                                         |
+| ---------------- | ------  | ------------------------------------------------------------ |
+| placement_id            | String      | 广告位id                                                      |
+| placement_name             | String      | 广告位名称                  |
+| placement_format          | String     | 格式 0: native,1: rewarded_video,2: banner,3: interstitial,4: splash                                        |
+| unit_id         | String      | TopOn平台生成的第三方adsource id                                                      |
+| unit_network     | String       | TopOn平台生成的第三方adsource对应的network名称                                                |
+| unit_token     | String       | TopOn存储的第三方adsource的具体信息                                   |
+| android_id   | String     | 设备id，androidid                                                |
+| gaid         | String      | google的广告设备id |
+| idfa             | String        | ios的设备id                                |
+| area          | String       | 国家|
+| impression | String       | 展示数                                        |
+| click   | String      | 点击数 |
+| revenue              | decimal(18,6)       | 收益                                     |
+| ecpm             | decimal(18,6)       | 千次展示收益                                           |
 
-| 字段             | 类型   | 是否必传 | 备注                                                         |
-| ---------------- | ------ | -------- | ------------------------------------------------------------ |
-| count            | Int    | Y        | 总条数                                                       |
-| date             | String | Y        | 日期，格式：YYYYmmdd。group_by有选才有返回                   |
-| app.id           | String | Y        | Up开发者后台的App ID                                         |
-| app.name         | String | N        | App名称                                                      |
-| app.platform     | String | N        | App的系统平台                                                |
-| placement.id     | String | N        | Up开发者后台的Placement ID                                   |
-| placement.name   | String | N        | Placement名称                                                |
-| adformat         | String | N        | rewarded_video/interstitial/banner/native/splash。group_by有选才有返回 |
-| area             | String | N        | 国家码。group_by有选才有返回                                 |
-| network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……。group_by有选才有返回 |
-| adsource.network | String | N        | 三方unit的network名称                                        |
-| adsource.token   | String | N        | 三方unit的token信息，请求广告的appid，slotid等。group_by有选才有返回 |
-| dau              | String | N        | 根据group_by条件才有返回                                     |
-| arpu             | String | N        | 有dau才有该项返回                                            |
-| request          | String | N        | 请求数                                                       |
-| fillrate         | String | N        | 填充率                                                       |
-| impression       | String | N        | 展示数                                                       |
-| click            | String | N        | 点击数                                                       |
-| ctr              | String | N        | 点击率                                                       |
-| ecpm             | String | N        | ecpm                                                         |
-| revenue          | String | N        | 收益                                                         |
-| request_api      | String | N        | 三方广告平台的请求数                                         |
-| fillrate_api     | String | N        | 三方广告平台的填充率                                         |
-| impression_api   | String | N        | 三方广告平台的展示数                                         |
-| ecpm_api         | String | N        | 三方广告平台的点击数                                         |
-| click_api        | String | N        | 三方广告平台的点击率                                         |
-| ecpm_api         | String | N        | 三方广告平台的ecpm                                           |
 
-### 3.6.5. 样例
-
-请求样例：
-
-{
-
-​    "startdate": 20190706,
-
-​    "enddate": 201907010,
-
-​     "limit":120,  
-
-​    "group_by":["adsource"],
-
-​    "metric":["all"],
-
-​    "start":0,
-
-​    "app_id":"a5c41a9ed1679c",
-
-​    "placement_id":""
-
-}
-
- 
-
-返回样例：
-
-{
-
-​	"count": 64,
-
-​	"records": [{
-
-​		"adsource": {
-
-​			"network": "TouTiao",
-
-​			"token": "{\"app_id\":\"5008225\",\"slot_id\":\"908225577\",\"is_video\":\"1\"}"
-
-​		},
-
-​		"revenue": "12995.80"
-
-​	}]
-
-}
-
-# **4.** **注意事项**
+## 4. 注意事项
 
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵
 
@@ -239,7 +172,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 
 • 每天请求 10000 次
 
-# **5.** **附录1：go语言示例代码**
+## 5. 附录1：go语言示例代码
 
 package main
 

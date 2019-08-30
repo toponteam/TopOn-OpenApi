@@ -1,4 +1,4 @@
-UpArpu平台报表查询API对接文档
+TopOn平台报表查询API对接文档
 
 
 
@@ -9,16 +9,17 @@ UpArpu平台报表查询API对接文档
 | 文档版本 | 发布时间      | 修订说明             |
 | -------- | ------------- | -------------------- |
 | v 1.0    | 2019年7月17日 | 支持查询综合报表数据 |
+| v 2.0    | 2019年8月30日 | 支持ltv报表数据 |
 
  
 
 # **1.** **关于文档**
 
-为提高合作伙伴的变现效率，UpArpu平台专门提供了报表查询的API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
+为提高合作伙伴的变现效率，TopOn平台专门提供了报表查询的API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
 # **2.** **申请开通权限**
 
-在使用UpArpu平台的批量创建 API 前，合作伙伴需向UpArpu申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
+在使用TopOn平台的批量创建 API 前，合作伙伴需向TopOn申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 # **3.** **接口相关**
 
@@ -122,7 +123,7 @@ Headers：
 
 ### 3.6.1. 请求URL
 
-<https://openapi.uparpu.com/v1/fullreport>
+<https://openapi.toponad.com/v1/fullreport>
 
 ### 3.6.2. 请求方式
 
@@ -233,7 +234,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 
 ### 3.7.1. 请求URL
 
-<https://openapi.uparpu.com/v1/ltvreport>
+<https://openapi.toponad.com/v1/ltvreport>
 
 ### 3.7.2. 请求方式
 
@@ -259,6 +260,7 @@ POST
 | records             | array       | 记录                   |
 
 **records元素结构如下：**
+
 | 字段名           | 类型   | 备注                     |     |
 | ---------------- | ------ | ------------------------ | --- |
 | date             | string | 默认返回                 |     |
@@ -268,29 +270,29 @@ POST
 | dau              | string | 默认返回                 |     |
 | revenue          | string | group by channel时不返回 |     |
 | arpu             | string | 跟随revenue指标          |     |
-| ltv_day_1        | string | 默认返回                 |     |
-| ltv_day_2        | string |                          |     |
-| ltv_day_3        | string |                          |     |
-| ltv_day_4        | string |                          |     |
-| ltv_day_5        | string |                          |     |
-| ltv_day_6        | string |                          |     |
-| ltv_day_7        | string | 默认返回                 |     |
-| ltv_day_14       | string |                          |     |
-| ltv_day_30       | string |                          |     |
-| ltv_day_60       | string |                          |     |
-| retention_day_2  | string | 默认返回                 |     |
-| retention_day_3  | string |                          |     |
-| retention_day_4  | string |                          |     |
-| retention_day_5  | string |                          |     |
-| retention_day_6  | string |                          |     |
-| retention_day_7  | string |                          |     |
-| retention_day_14 | string | 默认返回                 |     |
-| retention_day_30 | string |                          |     |
-| retention_day_60 | string |                          |     |
+| ltv\_day\_1        | string | 默认返回                 |     |
+| ltv\_day\_2        | string |                          |     |
+| ltv\_day\_3        | string |                          |     |
+| ltv\_day\_4        | string |                          |     |
+| ltv\_day\_5        | string |                          |     |
+| ltv\_day\_6        | string |                          |     |
+| ltv\_day\_7        | string | 默认返回                 |     |
+| ltv\_day\_14       | string |                          |     |
+| ltv\_day\_30       | string |                          |     |
+| ltv\_day\_60       | string |                          |     |
+| retention\_day\_2  | string | 默认返回                 |     |
+| retention\_day\_3  | string |                          |     |
+| retention\_day\_4  | string |                          |     |
+| retention\_day\_5  | string |                          |     |
+| retention\_day\_6  | string |                          |     |
+| retention\_day\_7  | string |                          |     |
+| retention\_day\_14 | string | 默认返回                 |     |
+| retention\_day\_30 | string |                          |     |
+| retention\_day\_60 | string |                          |     |
 
 > 备注
 > 1. 只能查询今天往前推2天的数据
-> 2. ltv_day_N和retention_day_N指标若返回值为“－”，表示这一天该指标不存在，请开发者注意区分
+> 2. ltv\_day\_N和retention\_day\_N指标若返回值为“－”，表示这一天该指标不存在，请开发者注意区分
 
 ### 3.7.4. 样例
 

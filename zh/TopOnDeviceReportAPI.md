@@ -158,8 +158,8 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | area          | String       | 国家|
 | impression | String       | 展示数                                        |
 | click   | String      | 点击数 |
-| revenue              | decimal(18,6)       | 收益                                     |
-| ecpm             | decimal(18,6)       | 千次展示收益                                           |
+| revenue              | decimal(18,6)       | 收益，货币单位同开发者后台配置一致                                     |
+| ecpm             | decimal(18,6)       | 千次展示收益，货币单位同开发者后台配置一致                                          |
 
 
 ## 4. 注意事项

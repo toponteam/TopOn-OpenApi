@@ -3,9 +3,10 @@
 修订历史
 
 
-| 文档版本 | 发布时间      | 修订说明                       |
-| -------- | ------------- | ------------------------------ |
-| v 1.0    | 2019年7月17日 | 支持批量创建和查询应用、广告位 |
+| 文档版本 | 发布时间      | 修订说明                         |
+| -------- | ------------- | -------------------------------- |
+| v 1.0    | 2019年7月17日 | 支持批量创建和查询应用、广告位   |
+| v 2.0    | 2019年11月4日 | 支持waterfall 相关配置（草稿版） |
 
  
 
@@ -59,43 +60,43 @@ l 服务端用期望的数字签名和请求端发送过来的数字签名做比
 
  参与签名计算的字符串：
 
-​     SignString = HTTPMethod + "\n" 
-
-​                        \+ Content-MD5 + "\n" 
-
-​                        \+ Content-Type + "\n" 
-
-​                        \+ Headers + "\n"
-
-​                        \+ Resource 
-
-​    如果无body，如下：
-
-​     SignString = HTTPMethod + "\n" 
-
-​                         \+ "\n" 
-
-​                         \+ "\n" 
-
-​                        \+ Headers + "\n"
-
-​                        \+ Resource 
+     SignString = HTTPMethod + "\n" 
+    
+                        \+ Content-MD5 + "\n" 
+    
+                        \+ Content-Type + "\n" 
+    
+                        \+ Headers + "\n"
+    
+                        \+ Resource 
+    
+    如果无body，如下：
+    
+     SignString = HTTPMethod + "\n" 
+    
+                         \+ "\n" 
+    
+                         \+ "\n" 
+    
+                        \+ Headers + "\n"
+    
+                        \+ Resource 
 
 Resource:
 
-​    如请求包含查询字符串（QueryString），则在 Resource 字符串尾部添加 ? 和查询字符串
+    如请求包含查询字符串（QueryString），则在 Resource 字符串尾部添加 ? 和查询字符串
 
    QueryString是 URL 中请求参数按字典序排序后的字符串，其中参数名和值之间用 = 相隔组成字符串，并对参数名-值对按照字典序升序排序，然后以 & 符号连接构成字符串。
 
-​    Key1 + "=" + Value1 + "&" + Key2 + "=" + Value2        
+    Key1 + "=" + Value1 + "&" + Key2 + "=" + Value2        
 
 Headers：
 
-​     X-Up-Key + X-Up-Timestamp 按字典序升序
-
-​     X-Up-Signature不参与签名计算
-
-​    Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2           Sign = MD5(HTTPMethod + Content-MD5+ Content-Type + Header + Resource)
+     X-Up-Key + X-Up-Timestamp 按字典序升序
+    
+     X-Up-Signature不参与签名计算
+    
+    Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2           Sign = MD5(HTTPMethod + Content-MD5+ Content-Type + Header + Resource)
 
 服务端会比对计算Sign和X-Up-Signature
 
@@ -158,21 +159,21 @@ POST
 
 {
 
-​    "count": 1,
-
-​    "apps": [
-
-​        {
-
-​            "app_name": "111",
-
-​            "platform": 1,
-
-​            "market_url": ""
-
-​        }
-
-​    ]
+    "count": 1,
+    
+    "apps": [
+    
+        {
+    
+            "app_name": "111",
+    
+            "platform": 1,
+    
+            "market_url": ""
+    
+        }
+    
+    ]
 
 }
 
@@ -182,13 +183,13 @@ POST
 
 [
 
-​    {
-
-​        "app_name": "111",
-
-​        "errors": "app package name is required"
-
-​    }
+    {
+    
+        "app_name": "111",
+    
+        "errors": "app package name is required"
+    
+    }
 
 ]
 
@@ -234,7 +235,7 @@ POST
 
 {
 
-​	"limit":1
+	"limit":1
 
 }
 
@@ -244,21 +245,21 @@ POST
 
 [
 
-​    {
-
-​        "app_name": "topontest",
-
-​        "app_id": "a5bc9921f7fdb4",
-
-​        "platform": 2,
-
-​        "market_url": "https://itunes.apple.com/cn/app/%E7%A5%9E%E5%9B%9E%E9%81%BF/id1435756371?mt=8",
-
-​        "category": "Game",
-
-​        "sub_category": "Action"
-
-​    }
+    {
+    
+        "app_name": "topontest",
+    
+        "app_id": "a5bc9921f7fdb4",
+    
+        "platform": 2,
+    
+        "market_url": "https://itunes.apple.com/cn/app/%E7%A5%9E%E5%9B%9E%E9%81%BF/id1435756371?mt=8",
+    
+        "category": "Game",
+    
+        "sub_category": "Action"
+    
+    }
 
 ]
 
@@ -276,23 +277,34 @@ POST
 
 ### 3.8.3. 请求参数
 
-| 字段                       | 类型   | 是否必传 | 备注                                                         |
-| -------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| count                      | Int    | Y        | 本次创建的Placement数量                                      |
-| app_id                     | String | Y        | 创建广告位的应用id                                           |
-| placements. placement_name | String | Y        | 广告位名称，30个汉字或字符以内                               |
-| placements. adformat       | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| 字段                                  | 类型   | 是否必传 | 备注                                                         |
+| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| count                                 | Int    | Y        | 本次创建的Placement数量                                      |
+| app_id                                | String | Y        | 创建广告位的应用id                                           |
+| placements. placement_name            | String | Y        | 广告位名称，30个汉字或字符以内                               |
+| placements. adformat                  | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | No       | template为原生开屏时：倒计时时间                             |
+| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过                             |
+| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭                           |
+| placements.template.auto_refresh_time | Int    | No       | -1表示不启动<br />0-n表示刷新时间                            |
 
  
 
 ### 3.8.4. 返回参数
 
-| 字段           | 类型   | 是否必传 | 备注                                                         |
-| -------------- | ------ | -------- | ------------------------------------------------------------ |
-| app_id         | String | Y        | Up开发者后台的App ID                                         |
-| placement_name | String | Y        | Placement名称                                                |
-| placement_id   | String | Y        | Up开发者后台的Placement ID                                   |
-| adformat       | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| 字段                                  | 类型   | 是否必传 | 备注                                                         |
+| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+|                                       |        |          |                                                              |
+| app_id                                | String | Y        | Up开发者后台的App ID                                         |
+| placement_name                        | String | Y        | Placement名称                                                |
+| placement_id                          | String | Y        | Up开发者后台的Placement ID                                   |
+| adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | No       | template为原生开屏时：倒计时时间                             |
+| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过<br />0：表示No<br />1：表示Yes |
+| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭<br />0：表示No<br />1：表示Yes |
+| placements.template.auto_refresh_time | Int    | No       | -1表示不启动<br />0-n表示刷新时间                            |
 
  
 
@@ -302,21 +314,21 @@ POST
 
 {
 
-​    "count": 1,
-
-​    "app_id": "a5bc9921f7fdb4",
-
-​    "placements": [
-
-​        {
-
-​            "placement_name": "xxx",
-
-​            "adformat": "native"
-
-​        }
-
-​    ]
+    "count": 1,
+    
+    "app_id": "a5bc9921f7fdb4",
+    
+    "placements": [
+    
+        {
+    
+            "placement_name": "xxx",
+    
+            "adformat": "native"
+    
+        }
+    
+    ]
 
 }
 
@@ -326,19 +338,19 @@ POST
 
 [
 
-​    {
-
-​        "app_name": "",
-
-​        "app_id": "a5bc9921f7fdb4",
-
-​        "platform": 0,
-
-​        "placement_name": "xxx",
-
-​        "adformat": "native"
-
-​    }
+    {
+    
+        "app_name": "",
+    
+        "app_id": "a5bc9921f7fdb4",
+    
+        "platform": 0,
+    
+        "placement_name": "xxx",
+    
+        "adformat": "native"
+    
+    }
 
 ]
 
@@ -385,7 +397,7 @@ POST
 
 {
 
-​	"placement_ids":["b5bc9bc2951216"]
+	"placement_ids":["b5bc9bc2951216"]
 
 }
 
@@ -395,25 +407,650 @@ POST
 
 [
 
-​    {
-
-​        "app_name": "topontest",
-
-​        "app_id": "a5bc9921f7fdb4",
-
-​        "platform": 2,
-
-​        "placement_id": "b5bc9bc2951216",
-
-​        "placement_name": "topontest_rewardvideo",
-
-​        "adformat": "rewarded_video"
-
-​    }
+    {
+    
+        "app_name": "topontest",
+    
+        "app_id": "a5bc9921f7fdb4",
+    
+        "platform": 2,
+    
+        "placement_id": "b5bc9bc2951216",
+    
+        "placement_name": "topontest_rewardvideo",
+    
+        "adformat": "rewarded_video"
+    
+    }
 
 ]
 
  
+
+## 3.10. 添加和修改segment
+
+### 3.10.1. 请求URL
+
+<https://openapi.toponad.com/v1/deal_segment>
+
+### 3.10.2. 请求方式 
+
+POST
+
+### 3.10.3. 请求参数
+
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| name          | String | Y        | segment的名字                                                |
+| segment_id    | String | N        | segment修改的时候必传segment_id                              |
+| rules         | Array  | Y        | segment的规则                                                |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| rules.content | string | Y        | 规则string                                                   |
+
+ 
+
+### 3.10.4. 返回参数
+
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| name          | String | Y        | segment的名字                                                |
+| segment_id    | String | Y        | segment_id                                                   |
+| rules         | Array  | Y        | segment的规则                                                |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| rules.content | string | Y        | 规则string                                                   |
+
+
+
+### 3.10.5. 样例
+
+请求样例：
+
+{
+    "name": "segment1",
+    "rules": [
+        {
+            "type": 1,
+            "rule": 1,
+            "content": "sdsd"
+        }
+    ]
+}
+
+ 
+
+返回样例：
+
+{
+    "name": "segment1",
+    "segment_id": "asasdsdsd",
+    "rules": [
+        {
+            "type": 1,
+            "rule": 1,
+            "content": "sdsd"
+        }
+    ]
+}
+
+
+
+## 3.11. segment获取列表
+
+### 3.11.1. 请求URL
+
+<https://openapi.toponad.com/v1/segment_list>
+
+### 3.11.2. 请求方式 
+
+POST
+
+### 3.11.3. 请求参数
+
+| 字段        | 类型   | 是否必传 | 备注                                                         |
+| ----------- | ------ | -------- | ------------------------------------------------------------ |
+| segment_ids | Object | N        | 默认传object，多个segment_id是数组                           |
+| start       | Int    | N        | Default 0。当segment_ids都指定时不需要填写                   |
+| limit       | Int    | N        | Default 100 最大一次性获取100。当segment_ids都指定时不需要填写 |
+
+ 
+
+### 3.11.4. 返回参数
+
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| name          | String | Y        | segment的名字                                                |
+| segment_id    | String | Y        | segment_id                                                   |
+| rules         | Array  | Y        | segment的规则                                                |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| rules.content | string | Y        | 规则string                                                   |
+
+
+
+### 3.11.5. 样例
+
+请求样例：
+
+{
+   "segment_ids":{"uuid1","uuid2"}
+}
+
+ 
+
+返回样例：
+
+[
+    {
+        "name": "segment1",
+        "segment_id": "asasdsdsd",
+        "rules": [
+            {
+                "type": 1,
+                "rule": 1,
+                "content": "sdsd"
+            }
+        ]
+    },
+    {
+        "name": "segment2",
+        "segment_id": "uuid2",
+        "rules": [
+            {
+                "type": 1,
+                "rule": 1,
+                "content": "sdsd"
+            }
+        ]
+    }
+]
+
+
+
+## 3.12. 删除segment
+
+### 3.12.1. 请求URL
+
+<https://openapi.toponad.com/v1/del_segment>
+
+### 3.12.2. 请求方式 
+
+POST
+
+### 3.12.3. 请求参数
+
+| 字段        | 类型   | 是否必传 | 备注                            |
+| ----------- | ------ | -------- | ------------------------------- |
+| segment_ids | Object | Y        | 默认传object，多个segment是数组 |
+
+ 
+
+### 3.12.4. 返回参数
+
+成功无返回参数，失败则又返回数据
+
+ 
+
+### 3.12.5. 样例
+
+请求样例：
+
+{
+   "segment_ids":{"uuid1","uuid2"}
+}
+
+ 
+
+返回样例：成功无返回，失败有返回
+
+
+
+## 3.13. 查询placement下面绑定的segment
+
+### 3.13.1. 请求URL
+
+<https://openapi.toponad.com/v1/waterfall/segment>
+
+### 3.13.2. 请求方式 
+
+POST
+
+### 3.13.3. 请求参数
+
+| 字段         | 类型   | 是否必传 | 备注                              |
+| ------------ | ------ | -------- | --------------------------------- |
+| placement_id | String | Y        | Placement Id String               |
+| is_abtest    | Int    | Y        | 0 表示默认 <br />1 表示abtest分组 |
+
+ 
+
+### 3.13.4. 返回参数
+
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| priority      | Int    | Y        | 优先级参数                                                   |
+| name          | String | Y        | segment的名字                                                |
+| segment_id    | String | Y        | segment_id                                                   |
+| rules         | Array  | Y        | segment的规则                                                |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| rules.content | string | Y        | 规则string                                                   |
+
+ 
+
+### 3.13.5. 样例
+
+请求样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1
+}
+
+ 
+
+返回样例：
+
+[
+    {
+        "name": "segment1",
+        "segment_id": "segment_id1",
+        "priority": 1,
+        "rules": [
+            {
+                "type": 1,
+                "rule": 1,
+                "content": "sdsd"
+            }
+        ]
+    },
+    {
+        "name": "segment2",
+        "segment_id": "segment_id2",
+        "priority": 2,
+        "rules": [
+            {
+                "type": 1,
+                "rule": 1,
+                "content": "sdsd"
+            }
+        ]
+    }
+]
+
+
+
+## 3.14. 设置placement下面segment
+
+### 3.14.1. 请求URL
+
+<https://openapi.toponad.com/v1/waterfall/set_segment>
+
+### 3.14.2. 请求方式 
+
+POST
+
+### 3.14.3. 请求参数
+
+| 字段                | 类型   | 是否必传 | 备注                         |
+| ------------------- | ------ | -------- | ---------------------------- |
+| placement_id        | String | Y        | Placement Id String          |
+| is_abtest           | Int    | Y        | 0 表示默认  1 表示abtest分组 |
+| segments            | Array  | Y        | segment 排序的列表           |
+| segments.priority   | Int    | Y        | segment 优先级               |
+| segments.segment_id | String | Y        | segment id                   |
+
+ 
+
+### 3.14.4. 返回参数
+
+| 字段                   | 类型   | 是否必传 | 备注                                                         |
+| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id           | String | Y        | Placement Id String                                          |
+| is_abtest              | Int    | Y        | 0 表示默认  <br />1 表示abtest分组                           |
+| segments.priority      | Int    | Y        | 优先级参数                                                   |
+| segments.name          | String | Y        | segment的名字                                                |
+| segments.segment_id    | String | Y        | segment_id                                                   |
+| segments.rules         | Array  | Y        | segment的规则                                                |
+| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| segments.rules.content | string | Y        | 规则string                                                   |
+
+ 
+
+### 3.14.5. 样例
+
+请求样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segments": [
+        {
+            "priority": 1,
+            "segment_id": "segment_id1"
+        },
+        {
+            "priority": 2,
+            "segment_id": "segment_id2"
+        }
+    ]
+}
+
+ 
+
+返回样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segments": [
+        {
+            "priority": 1,
+            "segment_id": "segment_id1",
+            "name": "name1",
+            "rules": [
+                {
+                    "type": 1,
+                    "rule": 1,
+                    "content": ""
+                }
+            ]
+        },
+        {
+            "priority": 2,
+            "segment_id": "segment_id2",
+            "name": "name2",
+            "rules": [
+                {
+                    "type": 1,
+                    "rule": 1,
+                    "content": ""
+                }
+            ]
+        }
+    ]
+}
+
+
+
+## 3.15. 删除placement下面segment
+
+### 3.15.1. 请求URL
+
+<https://openapi.toponad.com/v1/waterfall/del_segment>
+
+### 3.15.2. 请求方式 
+
+POST
+
+### 3.15.3. 请求参数
+
+| 字段         | 类型   | 是否必传 | 备注                         |
+| ------------ | ------ | -------- | ---------------------------- |
+| placement_id | String | Y        | Placement Id String          |
+| is_abtest    | Int    | Y        | 0 表示默认  1 表示abtest分组 |
+| segment_ids  | Array  | Y        | segment的删除的列表          |
+
+ 
+
+### 3.15.4. 返回参数
+
+| 字段                   | 类型   | 是否必传 | 备注                                                         |
+| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id           | String | Y        | Placement Id String                                          |
+| is_abtest              | Int    | Y        | 0 表示默认   <br />1 表示abtest分组                          |
+| segments.priority      | Int    | Y        | 优先级参数                                                   |
+| segments.name          | String | Y        | segment的名字                                                |
+| segments.segment_id    | String | Y        | segment_id                                                   |
+| segments.rules         | Array  | Y        | segment的规则                                                |
+| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| segments.rules.content | string | Y        | 规则string                                                   |
+
+ 
+
+### 3.15.5. 样例
+
+请求样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segment_ids": [
+        "segment_id1",
+        "segment_id2"
+    ]
+}
+
+ 
+
+返回样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segments": [
+        {
+            "priority": 1,
+            "segment_id": "segment_id1",
+            "name": "name1",
+            "rules": [
+                {
+                    "type": 1,
+                    "rule": 1,
+                    "content": ""
+                }
+            ]
+        },
+        {
+            "priority": 2,
+            "segment_id": "segment_id2",
+            "name": "name2",
+            "rules": [
+                {
+                    "type": 1,
+                    "rule": 1,
+                    "content": ""
+                }
+            ]
+        }
+    ]
+}
+
+
+
+## 3.16. waterfall的unit的查询
+
+### 3.16.1. 请求URL
+
+<https://openapi.toponad.com/v1/waterfall/units>
+
+### 3.16.2. 请求方式 
+
+POST
+
+### 3.16.3. 请求参数
+
+| 字段         | 类型   | 是否必传 | 备注            |
+| ------------ | ------ | -------- | --------------- |
+| placement_id | String | Y        | placement id    |
+| segment_id   | String | Y        | segment id      |
+| is_abtest    | Int    | Y        | 默认是0 1表示是 |
+
+ 
+
+### 3.16.4. 返回参数
+
+| 字段                                | 类型    | 是否必传 | 备注                                                         |
+| ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
+| placement_id                        | String  | Y        | placement id                                                 |
+| segment_id                          | String  | Y        | segment id                                                   |
+| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
+| ad_source_list                      | Array   | Y        | 如果这里填入为空的情况下就是查询， 如果不填入为空则是设置waterfall的设置 |
+| ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
+| ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
+| ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
+| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
+
+ 
+
+### 3.16.5. 样例
+
+请求样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segment_id": "segment_id1"
+}
+
+ 
+
+返回样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segment_id": "segment_id1",
+    "ad_source_list": [
+        {
+            "priority": 1,
+            "ad_source_id": "ad_source_id1",
+            "ecpm": "ecpm1",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        },
+        {
+            "priority": 2,
+            "ad_source_id": "ad_source_id2",
+            "ecpm": "ecpm2",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        }
+    ]
+}
+
+
+
+## 3.17. waterfall的unit设置
+
+### 3.17.1. 请求URL
+
+<https://openapi.toponad.com/v1/waterfall/set_units>
+
+### 3.17.2. 请求方式 
+
+POST
+
+### 3.17.3. 请求参数
+
+| 字段                                | 类型    | 是否必传 | 备注                                                         |
+| ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
+| placement_id                        | String  | Y        | placement id                                                 |
+| segment_id                          | String  | Y        | segment id                                                   |
+| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
+| ad_source_list                      | Array   | N        | 如果这里填入为空的情况下就是查询，<br />如果不填入为空则是设置waterfall的设置 |
+| ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
+| ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
+| ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
+| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
+
+ 
+
+### 3.17.4. 返回参数
+
+| 字段                                | 类型    | 是否必传 | 备注                                                         |
+| ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
+| placement_id                        | String  | Y        | placement id                                                 |
+| segment_id                          | String  | Y        | segment id                                                   |
+| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
+| ad_source_list                      | Array   | Y        | 如果这里填入为空的情况下就是查询， 如果不填入为空则是设置waterfall的设置 |
+| ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
+| ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
+| ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
+| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
+
+ 
+
+### 3.17.5. 样例
+
+请求样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segment_id": "segment_id1",
+    "ad_source_list": [
+        {
+            "priority": 1,
+            "ad_source_id": "ad_source_id1",
+            "ecpm": "ecpm1",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        },
+        {
+            "priority": 2,
+            "ad_source_id": "ad_source_id2",
+            "ecpm": "ecpm2",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        }
+    ]
+}
+
+ 
+
+返回样例：
+
+{
+    "placement_id": "placementid1",
+    "is_abtest": 1,
+    "segment_id": "segment_id1",
+    "ad_source_list": [
+        {
+            "priority": 1,
+            "ad_source_id": "ad_source_id1",
+            "ecpm": "ecpm1",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        },
+        {
+            "priority": 2,
+            "ad_source_id": "ad_source_id2",
+            "ecpm": "ecpm2",
+            "header_bidding_witch": 0,
+            "day_cap": -1,
+            "hour_cap": -1,
+            "pacing": -1
+        }
+    ]
+}
+
+
 
 # **4.** **注意事项**
 
@@ -433,27 +1070,27 @@ package main
 
 import (
 
-​	"bytes"
-
-​	"crypto/md5"
-
-​	"encoding/hex"
-
-​	"fmt"
-
-​	"io/ioutil"
-
-​	"net/http"
-
-​	"net/url"
-
-​	"sort"
-
-​	"strconv"
-
-​	"strings"
-
-​	"time"
+	"bytes"
+	
+	"crypto/md5"
+	
+	"encoding/hex"
+	
+	"fmt"
+	
+	"io/ioutil"
+	
+	"net/http"
+	
+	"net/url"
+	
+	"sort"
+	
+	"strconv"
+	
+	"strings"
+	
+	"time"
 
 )
 
@@ -461,127 +1098,157 @@ import (
 
 func main() {
 
-​	//openapi的地址
-
-​	demoUrl := "请求URL"
-
-​	//提交的body数据
-
-​	body := "{}"
-
-​	//您申请的publisherKey
-
-​	publisherKey := "请填写您的publisherKey"
-
-​	//请求方式
-
-​	httpMethod := "POST"
-
-​	contentType := "application/json"
-
-​	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-
-​	headers := map[string]string{
-
-​		"X-Up-Timestamp": publisherTimestamp,
-
-​		"X-Up-Key":       publisherKey,
-
-​	}
-
-​	//处理queryPath
-
-​	urlParsed, err := url.Parse(demoUrl)
-
-​	if err != nil {
-
-​		fmt.Println(err)
-
-​		return
-
-​	}
-
-​	//处理resource
-
-​	resource := urlParsed.Path
-
-​	m, err := url.ParseQuery(urlParsed.RawQuery)
-
-​	if err != nil {
-
-​		fmt.Println(err)
-
-​		return
-
-​	}
-
-​	queryString := m.Encode()
-
-​	if queryString != "" {
-
-​		resource += "?" + queryString
-
-​	}
-
- 
-
-​	//处理body
-
-​	h := md5.New()
-
-​	h.Write([]byte(body))
-
-​	contentMD5 := hex.EncodeToString(h.Sum(nil))
-
-​	contentMD5 = strings.ToUpper(contentMD5)
+	//openapi的地址
+	
+	demoUrl := "请求URL"
+	
+	//提交的body数据
+	
+	body := "{}"
+	
+	//您申请的publisherKey
+	
+	publisherKey := "请填写您的publisherKey"
+	
+	//请求方式
+	
+	httpMethod := "POST"
+	
+	contentType := "application/json"
+	
+	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
+	
+	headers := map[string]string{
+	
+		"X-Up-Timestamp": publisherTimestamp,
+	
+		"X-Up-Key":       publisherKey,
+	
+	}
+	
+	//处理queryPath
+	
+	urlParsed, err := url.Parse(demoUrl)
+	
+	if err != nil {
+	
+		fmt.Println(err)
+	
+		return
+	
+	}
+	
+	//处理resource
+	
+	resource := urlParsed.Path
+	
+	m, err := url.ParseQuery(urlParsed.RawQuery)
+	
+	if err != nil {
+	
+		fmt.Println(err)
+	
+		return
+	
+	}
+	
+	queryString := m.Encode()
+	
+	if queryString != "" {
+	
+		resource += "?" + queryString
+	
+	}
 
  
 
-​	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
+
+
+
+
+
+
+	//处理body
+	
+	h := md5.New()
+	
+	h.Write([]byte(body))
+	
+	contentMD5 := hex.EncodeToString(h.Sum(nil))
+	
+	contentMD5 = strings.ToUpper(contentMD5)
 
  
 
-​	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
 
-​	if err != nil {
 
-​		fmt.Println("Fatal error", err.Error())
 
-​		return
 
-​	}
 
-​	client := &http.Client{}
 
-​	request.Header.Set("Content-Type", contentType)
-
-​	request.Header.Set("X-Up-Key", publisherKey)
-
-​	request.Header.Set("X-Up-Signature", publisherSignature)
-
-​	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
-
-​	resp, err := client.Do(request)
-
-​	defer resp.Body.Close()
-
-​	content, err := ioutil.ReadAll(resp.Body)
-
-​	if err != nil {
-
-​		fmt.Println("Fatal error", err.Error())
-
-​		return
-
-​	}
+	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
  
 
-​	//返回数据
 
-​	fmt.Println(string(content))
+
+
+
+
+
+	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
+	
+	if err != nil {
+	
+		fmt.Println("Fatal error", err.Error())
+	
+		return
+	
+	}
+	
+	client := &http.Client{}
+	
+	request.Header.Set("Content-Type", contentType)
+	
+	request.Header.Set("X-Up-Key", publisherKey)
+	
+	request.Header.Set("X-Up-Signature", publisherSignature)
+	
+	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
+	
+	resp, err := client.Do(request)
+	
+	defer resp.Body.Close()
+	
+	content, err := ioutil.ReadAll(resp.Body)
+	
+	if err != nil {
+	
+		fmt.Println("Fatal error", err.Error())
+	
+		return
+	
+	}
 
  
+
+
+
+
+
+
+
+	//返回数据
+	
+	fmt.Println(string(content))
+
+ 
+
+
+
+
+
+
 
 }
 
@@ -589,27 +1256,27 @@ func main() {
 
 func headerJoin(headers map[string]string) string {
 
-​	headerKeys := []string{
-
-​		"X-Up-Timestamp",
-
-​		"X-Up-Key",
-
-​	}
-
-​	sort.Strings(headerKeys)
-
-​	ret := make([]string, 0)
-
-​	for _, k := range headerKeys {
-
-​		v := headers[k]
-
-​		ret = append(ret, k+":"+v)
-
-​	}
-
-​	return strings.Join(ret, "\n")
+	headerKeys := []string{
+	
+		"X-Up-Timestamp",
+	
+		"X-Up-Key",
+	
+	}
+	
+	sort.Strings(headerKeys)
+	
+	ret := make([]string, 0)
+	
+	for _, k := range headerKeys {
+	
+		v := headers[k]
+	
+		ret = append(ret, k+":"+v)
+	
+	}
+	
+	return strings.Join(ret, "\n")
 
 }
 
@@ -617,33 +1284,39 @@ func headerJoin(headers map[string]string) string {
 
 func signature(httpMethod, contentMD5, contentType, headerString, resource string) string {
 
-​	stringSection := []string{
-
-​		httpMethod,
-
-​		contentMD5,
-
-​		contentType,
-
-​		headerString,
-
-​		resource,
-
-​	}
-
-​	stringToSign := strings.Join(stringSection, "\n")
+	stringSection := []string{
+	
+		httpMethod,
+	
+		contentMD5,
+	
+		contentType,
+	
+		headerString,
+	
+		resource,
+	
+	}
+	
+	stringToSign := strings.Join(stringSection, "\n")
 
  
 
-​	h := md5.New()
 
-​	h.Write([]byte(stringToSign))
 
-​	resultMD5 := hex.EncodeToString(h.Sum(nil))
 
-​	fmt.Println(stringToSign)
 
-​	return strings.ToUpper(resultMD5)
+
+
+	h := md5.New()
+	
+	h.Write([]byte(stringToSign))
+	
+	resultMD5 := hex.EncodeToString(h.Sum(nil))
+	
+	fmt.Println(stringToSign)
+	
+	return strings.ToUpper(resultMD5)
 
 }
 

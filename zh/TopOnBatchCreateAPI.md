@@ -446,7 +446,7 @@ POST
 | rules         | Array  | Y        | segment的规则                                                |
 | rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string                                                   |
+| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
 
  
 
@@ -459,7 +459,7 @@ POST
 | rules         | Array  | Y        | segment的规则                                                |
 | rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string                                                   |
+| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
 
 
 
@@ -525,7 +525,7 @@ POST
 | rules         | Array  | Y        | segment的规则                                                |
 | rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string                                                   |
+| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
 
 
 
@@ -635,7 +635,7 @@ POST
 | rules         | Array  | Y        | segment的规则                                                |
 | rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string                                                   |
+| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
 
  
 
@@ -715,7 +715,7 @@ POST
 | segments.rules         | Array  | Y        | segment的规则                                                |
 | segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则string                                                   |
+| segments.rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
 
  
 
@@ -1168,6 +1168,7 @@ func main() {
 
 
 
+
 	//处理body
 	
 	h := md5.New()
@@ -1186,9 +1187,11 @@ func main() {
 
 
 
+
 	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
  
+
 
 
 
@@ -1238,11 +1241,13 @@ func main() {
 
 
 
+
 	//返回数据
 	
 	fmt.Println(string(content))
 
  
+
 
 
 
@@ -1301,6 +1306,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 	stringToSign := strings.Join(stringSection, "\n")
 
  
+
 
 
 
@@ -1430,3 +1436,17 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS     | App      | Weather                 |
 
  
+
+rule_content 数据格式
+
+| rule | 描述                 | 示例                                 |
+| :--- | :------------------- | :----------------------------------- |
+| 0    | 包含（集合）         | 一维数组JSON ["CN", "US"]            |
+| 1    | 不包含（集合）       | 一维数组JSON [1,2,3]                 |
+| 2    | 大于等于（值）       | 整形或浮点 124                       |
+| 3    | 小于等于（值）       | 整形或浮点 222.36                    |
+| 4    | 区间内（区间）       | 二维数组JSON [[122,456],[888,12322]] |
+| 5    | 区间外（区间）       | 二维数组JSON [[122,456],[888,12322]] |
+| 6    | 自定义规则（custom） | bb=1&c!=3&p=3                        |
+| 7    | 大于（值）           | 整形、浮点或字符串 124               |
+| 8    | 小于（值）           | 整形、浮点或字符串 222.36            |

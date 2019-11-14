@@ -17,7 +17,7 @@ import (
 func main() {
 	//openapi的address
 	demoUrl := "https://openapi.toponad.com/v1/fullreport"
-	//提交的body数据
+	//request body
 	body := "{}"
 	//your publisherKey
 	publisherKey := "xxxx"

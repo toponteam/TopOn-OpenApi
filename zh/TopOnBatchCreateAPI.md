@@ -282,6 +282,7 @@ POST
 | app_id                     | String | Y        | 创建广告位的应用id                                           |
 | placements. placement_name | String | Y        | 广告位名称，30个汉字或字符以内                               |
 | placements. adformat       | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| placements. remark         | String | N        | 备注                                                         |
 
  
 
@@ -293,6 +294,7 @@ POST
 | placement_name | String | Y        | Placement名称                                                |
 | placement_id   | String | Y        | Up开发者后台的Placement ID                                   |
 | adformat       | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| remark         | String | N        | 备注                                                         |
 
  
 
@@ -376,6 +378,7 @@ POST
 | placement_id   | String | N        | -                                |
 | placement_name | String | N        | -                                |
 | adformat       | String | N        | -                                |
+| remark         | String | N        | 备注                             |
 
  
 

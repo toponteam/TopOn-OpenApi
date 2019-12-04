@@ -869,7 +869,7 @@ POST
 
 ### 3.16.2. 请求方式 
 
-POST
+GET
 
 ### 3.16.3. 请求参数
 
@@ -962,7 +962,6 @@ POST
 | ad_source_list                      | Array   | N        | 如果这里填入为空的情况下就是查询，<br />如果不填入为空则是设置waterfall的设置 |
 | ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
 | ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
-| ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
 | ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
@@ -1169,6 +1168,7 @@ func main() {
 
 
 
+
 	//处理body
 	
 	h := md5.New()
@@ -1188,9 +1188,11 @@ func main() {
 
 
 
+
 	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
  
+
 
 
 
@@ -1242,11 +1244,13 @@ func main() {
 
 
 
+
 	//返回数据
 	
 	fmt.Println(string(content))
 
  
+
 
 
 
@@ -1306,6 +1310,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 	stringToSign := strings.Join(stringSection, "\n")
 
  
+
 
 
 

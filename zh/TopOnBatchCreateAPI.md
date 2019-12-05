@@ -6,7 +6,7 @@
 | 文档版本 | 发布时间      | 修订说明                         |
 | -------- | ------------- | -------------------------------- |
 | v 1.0    | 2019年7月17日 | 支持批量创建和查询应用、广告位   |
-| v 2.0    | 2019年11月4日 | 支持waterfall 相关配置（草稿版） |
+| v 2.0    | 2019年11月4日 | 支持Waterfall、流量分组等相关配置 |
 
  
 
@@ -446,7 +446,7 @@ POST
 | rules         | Array  | Y        | segment的规则                                                |
 | rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
+| rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                       |
 
  
 
@@ -457,9 +457,9 @@ POST
 | name          | String | Y        | segment的名字                                                |
 | segment_id    | String | Y        | segment_id                                                   |
 | rules         | Array  | Y        | segment的规则                                                |
-| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
+| rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                       |
 
 
 
@@ -512,7 +512,7 @@ POST
 
 | 字段        | 类型   | 是否必传 | 备注                                                         |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
-| segment_ids | Object | N        | 默认传object，多个segment_id是数组                           |
+| segment_ids | Array | N        | 默认传Array，多个segment_id是数组                           |
 | start       | Int    | N        | Default 0。当segment_ids都指定时不需要填写                   |
 | limit       | Int    | N        | Default 100 最大一次性获取100。当segment_ids都指定时不需要填写 |
 
@@ -525,9 +525,9 @@ POST
 | name          | String | Y        | segment的名字                                                |
 | segment_id    | String | Y        | segment_id                                                   |
 | rules         | Array  | Y        | segment的规则                                                |
-| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
+| rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                       |
 
 
 
@@ -537,7 +537,7 @@ POST
 
 ```
 {
-   "segment_ids":{"uuid1","uuid2"}
+   "segment_ids":["uuid1","uuid2"]
 }
 ```
 
@@ -586,13 +586,13 @@ POST
 
 | 字段        | 类型   | 是否必传 | 备注                            |
 | ----------- | ------ | -------- | ------------------------------- |
-| segment_ids | Object | Y        | 默认传object，多个segment是数组 |
+| segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
 
  
 
 ### 3.12.4. 返回参数
 
-成功无返回参数，失败则又返回数据
+成功只返回状态码200，失败则返回数据
 
  
 
@@ -602,11 +602,13 @@ POST
 
 ```
 {
-   "segment_ids":{"uuid1","uuid2"}
+   "segment_ids":["uuid1","uuid2"]
 }
 ```
 
-返回样例：成功无返回，失败有返回
+返回样例：
+
+成功只返回状态码200，失败则返回数据
 
 
 
@@ -625,7 +627,7 @@ POST
 | 字段         | 类型   | 是否必传 | 备注                              |
 | ------------ | ------ | -------- | --------------------------------- |
 | placement_id | String | Y        | Placement Id String               |
-| is_abtest    | Int    | Y        | 0 表示默认 <br />1 表示abtest分组 |
+| is_abtest    | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
 
  
 
@@ -637,9 +639,9 @@ POST
 | name          | String | Y        | segment的名字                                                |
 | segment_id    | String | Y        | segment_id                                                   |
 | rules         | Array  | Y        | segment的规则                                                |
-| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
+| rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                       |
 
  
 
@@ -702,7 +704,7 @@ POST
 | 字段                | 类型   | 是否必传 | 备注                         |
 | ------------------- | ------ | -------- | ---------------------------- |
 | placement_id        | String | Y        | Placement Id String          |
-| is_abtest           | Int    | Y        | 0 表示默认  1 表示abtest分组 |
+| is_abtest           | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
 | segments            | Array  | Y        | segment 排序的列表           |
 | segments.priority   | Int    | Y        | segment 优先级               |
 | segments.segment_id | String | Y        | segment id                   |
@@ -714,14 +716,14 @@ POST
 | 字段                   | 类型   | 是否必传 | 备注                                                         |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id           | String | Y        | Placement Id String                                          |
-| is_abtest              | Int    | Y        | 0 表示默认  <br />1 表示abtest分组                           |
+| is_abtest              | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                          |
 | segments.priority      | Int    | Y        | 优先级参数                                                   |
 | segments.name          | String | Y        | segment的名字                                                |
 | segments.segment_id    | String | Y        | segment_id                                                   |
 | segments.rules         | Array  | Y        | segment的规则                                                |
-| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则string，详见：rule_content数据格式                       |
+| segments.rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                       |
 
  
 
@@ -761,7 +763,7 @@ POST
                 {
                     "type": 1,
                     "rule": 1,
-                    "content": ""
+                    "content": "sdsd"
                 }
             ]
         },
@@ -773,7 +775,7 @@ POST
                 {
                     "type": 1,
                     "rule": 1,
-                    "content": ""
+                    "content": "sdsd"
                 }
             ]
         }
@@ -798,8 +800,8 @@ POST
 | 字段         | 类型   | 是否必传 | 备注                         |
 | ------------ | ------ | -------- | ---------------------------- |
 | placement_id | String | Y        | Placement Id String          |
-| is_abtest    | Int    | Y        | 0 表示默认  1 表示abtest分组 |
-| segment_ids  | Array  | Y        | segment的删除的列表          |
+| is_abtest    | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
+| segment_ids  | Array  | Y        | 要删除的segment列表          |
 
  
 
@@ -808,14 +810,14 @@ POST
 | 字段                   | 类型   | 是否必传 | 备注                                                         |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id           | String | Y        | Placement Id String                                          |
-| is_abtest              | Int    | Y        | 0 表示默认   <br />1 表示abtest分组                          |
+| is_abtest              | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                          |
 | segments.priority      | Int    | Y        | 优先级参数                                                   |
 | segments.name          | String | Y        | segment的名字                                                |
 | segments.segment_id    | String | Y        | segment_id                                                   |
 | segments.rules         | Array  | Y        | segment的规则                                                |
-| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.type    | Int    | Y        | default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则string                                                   |
+| segments.rules.content | string | Y        | 规则string，详见附录3：rule_content数据格式                                              |
 
  
 
@@ -849,7 +851,7 @@ POST
                 {
                     "type": 1,
                     "rule": 1,
-                    "content": ""
+                    "content": "sdsd"
                 }
             ]
         },
@@ -861,7 +863,7 @@ POST
                 {
                     "type": 1,
                     "rule": 1,
-                    "content": ""
+                    "content": "sdsd"
                 }
             ]
         }
@@ -869,7 +871,7 @@ POST
 }
 ```
 
-## 3.16. waterfall的unit的查询
+## 3.16. waterfall中正在启用的广告源查询
 
 ### 3.16.1. 请求URL
 
@@ -885,7 +887,7 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement id    |
 | segment_id   | String | Y        | segment id      |
-| is_abtest    | Int    | Y        | 默认是0 1表示是 |
+| is_abtest    | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
 
  
 
@@ -895,12 +897,12 @@ GET
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement id                                                 |
 | segment_id                          | String  | Y        | segment id                                                   |
-| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
-| ad_source_list                      | Array   | Y        | 如果这里填入为空的情况下就是查询， 如果不填入为空则是设置waterfall的设置 |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                          |
+| ad_source_list                      | Array   | Y        | 如果为空，则当前没有启用广告源 |
 | ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
 | ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
 | ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
-| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
+| ad_source_list.header_bidding_witch | Int     | N        | 是否支持header bidding<br />0：表示不支持，<br />1：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
@@ -952,9 +954,9 @@ GET
 
 
 
-## 3.17. waterfall的unit设置
+## 3.17. 为waterfall绑定广告源
 
-### 3.17.1. 请求URL（只能对未绑定的重新绑定关系，不能重复绑定）
+### 3.17.1. 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
 
@@ -968,12 +970,12 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement id                                                 |
 | segment_id                          | String  | Y        | segment id                                                   |
-| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
-| ad_source_list                      | Array   | N        | 如果这里填入为空的情况下就是查询，<br />如果不填入为空则是设置waterfall的设置 |
-| ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
-| ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
-| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                          |
+| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息 |
+| ad_source_list.ad_source_id         | Int     | Y        | adsource_id                                                  |
+| ad_source_list.ecpm                 | float64 | Y        | ecpm                                                         |
+| ad_source_list.header_bidding_witch | Int     | N        | 是否支持header bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
@@ -986,13 +988,13 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement id                                                 |
 | segment_id                          | String  | Y        | segment id                                                   |
-| is_abtest                           | Int     | Y        | 0 表示默认   <br />1 表示abtest分组                          |
-| ad_source_list                      | Array   | Y        | 如果这里填入为空的情况下就是查询， 如果不填入为空则是设置waterfall的设置 |
-| ad_source_list.ad_source_id         | Int     | N        | adsource_id                                                  |
-| ad_source_list.ecpm                 | float64 | N        | ecpm                                                         |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                         |
+| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息 |
+| ad_source_list.ad_source_id         | Int     | Y        | adsource_id                                                  |
+| ad_source_list.ecpm                 | float64 | Y        | ecpm                                                         |
 | ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
-| ad_source_list.header_bidding_witch | Int     | N        | adsource是否支持header bidding<br />0：表示默认，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.header_bidding_witch | Int     | N        | 是否支持header bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
@@ -1010,7 +1012,7 @@ POST
     "segment_id": "segment_id1",
     "ad_source_list": [
         {
-            "priority": 1,
+            "auto_switch": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
             "header_bidding_witch": 0,
@@ -1019,7 +1021,7 @@ POST
             "pacing": -1
         },
         {
-            "priority": 2,
+            "auto_switch": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
             "header_bidding_witch": 0,
@@ -1044,6 +1046,7 @@ POST
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
             "header_bidding_witch": 0,
+			"auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1053,6 +1056,7 @@ POST
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
             "header_bidding_witch": 0,
+			"auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1465,8 +1469,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS     | App      | Weather                 |
 
  
-
-rule_content 数据格式
+# **7.** **附录****3****：rule_content 数据格式**
 
 | rule | 描述                 | 示例                                 |
 | :--- | :------------------- | :----------------------------------- |

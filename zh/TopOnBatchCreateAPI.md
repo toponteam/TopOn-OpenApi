@@ -944,7 +944,7 @@ GET
 
 ## 3.17. waterfall的unit设置
 
-### 3.17.1. 请求URL
+### 3.17.1. 请求URL（只能对未绑定的重新绑定关系，不能重复绑定）
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
 
@@ -1169,6 +1169,7 @@ func main() {
 
 
 
+
 	//处理body
 	
 	h := md5.New()
@@ -1189,9 +1190,11 @@ func main() {
 
 
 
+
 	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
  
+
 
 
 
@@ -1245,11 +1248,13 @@ func main() {
 
 
 
+
 	//返回数据
 	
 	fmt.Println(string(content))
 
  
+
 
 
 
@@ -1310,6 +1315,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 	stringToSign := strings.Join(stringSection, "\n")
 
  
+
 
 
 

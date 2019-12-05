@@ -467,6 +467,7 @@ POST
 
 请求样例：
 
+```
 {
     "name": "segment1",
     "rules": [
@@ -477,11 +478,13 @@ POST
         }
     ]
 }
+```
 
  
 
 返回样例：
 
+```
 {
     "name": "segment1",
     "segment_id": "asasdsdsd",
@@ -493,8 +496,7 @@ POST
         }
     ]
 }
-
-
+```
 
 ## 3.11. segment获取列表
 
@@ -533,14 +535,15 @@ POST
 
 请求样例：
 
+```
 {
    "segment_ids":{"uuid1","uuid2"}
 }
-
- 
+```
 
 返回样例：
 
+```
 [
     {
         "name": "segment1",
@@ -565,6 +568,7 @@ POST
         ]
     }
 ]
+```
 
 
 
@@ -596,11 +600,11 @@ POST
 
 请求样例：
 
+```
 {
    "segment_ids":{"uuid1","uuid2"}
 }
-
- 
+```
 
 返回样例：成功无返回，失败有返回
 
@@ -643,15 +647,16 @@ POST
 
 请求样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1
 }
-
- 
+```
 
 返回样例：
 
+```
 [
     {
         "name": "segment1",
@@ -678,6 +683,7 @@ POST
         ]
     }
 ]
+```
 
 
 
@@ -723,6 +729,7 @@ POST
 
 请求样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -737,11 +744,11 @@ POST
         }
     ]
 }
-
- 
+```
 
 返回样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -772,6 +779,7 @@ POST
         }
     ]
 }
+```
 
 
 
@@ -815,6 +823,7 @@ POST
 
 请求样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -823,11 +832,11 @@ POST
         "segment_id2"
     ]
 }
-
- 
+```
 
 返回样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -858,8 +867,7 @@ POST
         }
     ]
 }
-
-
+```
 
 ## 3.16. waterfall的unit的查询
 
@@ -904,16 +912,17 @@ GET
 
 请求样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
     "segment_id": "segment_id1"
 }
-
- 
+```
 
 返回样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -939,6 +948,7 @@ GET
         }
     ]
 }
+```
 
 
 
@@ -993,6 +1003,7 @@ POST
 
 请求样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -1018,11 +1029,11 @@ POST
         }
     ]
 }
-
- 
+```
 
 返回样例：
 
+```
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
@@ -1048,6 +1059,7 @@ POST
         }
     ]
 }
+```
 
 
 
@@ -1170,6 +1182,7 @@ func main() {
 
 
 
+
 	//处理body
 	
 	h := md5.New()
@@ -1191,9 +1204,11 @@ func main() {
 
 
 
+
 	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
  
+
 
 
 
@@ -1249,11 +1264,13 @@ func main() {
 
 
 
+
 	//返回数据
 	
 	fmt.Println(string(content))
 
  
+
 
 
 
@@ -1315,6 +1332,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 	stringToSign := strings.Join(stringSection, "\n")
 
  
+
 
 
 

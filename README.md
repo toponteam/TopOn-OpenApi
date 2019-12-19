@@ -7,6 +7,6 @@
 
 ## 3. 支持接口列表
 目前TopOn平台对外API接口包括：</br>
-3.1 [批量创建API](/zh/TopOnBatchCreateAPI.md)</br>
-3.2 [报表数据查询API](/zh/TopOnReportAPI.md)</br>
-3.3 [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)</br>
+- [批量创建API](/zh/TopOnBatchCreateAPI.md)</br>
+- [报表数据查询API](/zh/TopOnReportAPI.md)</br>
+- [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)</br>

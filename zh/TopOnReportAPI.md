@@ -141,7 +141,7 @@ POST
 
  
 
-l 默认返回的指标：
+- 默认返回的指标：
 
 dau，arpu，request，fillrate，impression，click，ecpm，revenue，impression_api，click_api，ecpm_api
 

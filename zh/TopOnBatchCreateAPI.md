@@ -277,7 +277,6 @@ POST
 
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-|                                       |        |          |                                                              |
 | app_id                                | String | Y        | Up开发者后台的App ID                                         |
 | placement_name                        | String | Y        | Placement名称                                                |
 | placement_id                          | String | Y        | Up开发者后台的Placement ID                                   |

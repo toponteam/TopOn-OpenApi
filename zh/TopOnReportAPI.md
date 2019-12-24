@@ -81,11 +81,7 @@
 
 Resource:
 
-   如请求包含查询字符串（QueryString），则在 Resource 字符串尾部添加 ? 和查询字符串
-
-   QueryString是 URL 中请求参数按字典序排序后的字符串，其中参数名和值之间用 = 相隔组成字符串，并对参数名-值对按照字典序升序排序，然后以 & 符号连接构成字符串。
-
-    Key1 + "=" + Value1 + "&" + Key2 + "=" + Value2        
+    URL的Path         
 
 Headers：
 
@@ -319,217 +315,192 @@ package main
 
 import (
 
-​	"bytes"
-
-​	"crypto/md5"
-
-​	"encoding/hex"
-
-​	"fmt"
-
-​	"io/ioutil"
-
-​	"net/http"
-
-​	"net/url"
-
-​	"sort"
-
-​	"strconv"
-
-​	"strings"
-
-​	"time"
+	"bytes"
+	
+	"crypto/md5"
+	
+	"encoding/hex"
+	
+	"fmt"
+	
+	"io/ioutil"
+	
+	"net/http"
+	
+	"net/url"
+	
+	"sort"
+	
+	"strconv"
+	
+	"strings"
+	
+	"time"
 
 )
 
- 
-
 func main() {
 
-​	//openapi的地址
+	//openapi的地址
+	
+	demoUrl := "请求URL"
+	
+	//提交的body数据
+	
+	body := "{}"
+	
+	//您申请的publisherKey
+	
+	publisherKey := "请填写您的publisherKey"
+	
+	//请求方式
+	
+	httpMethod := "POST"
+	
+	contentType := "application/json"
+	
+	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
+	
+	headers := map[string]string{
+	
+		"X-Up-Timestamp": publisherTimestamp,
+	
+		"X-Up-Key":       publisherKey,
+	
+	}
+	
+	//处理queryPath
+	
+	urlParsed, err := url.Parse(demoUrl)
+	
+	if err != nil {
+	
+		fmt.Println(err)
+	
+		return
+	
+	}
+	
+	//处理resource
+	
+	resource := urlParsed.Path
+	
+	_, err = url.ParseQuery(urlParsed.RawQuery)
+	
+	if err != nil {
+	
+		fmt.Println(err)
+	
+		return
+	
+	}
 
-​	demoUrl := "请求URL"
+	//处理body
+	
+	h := md5.New()
+	
+	h.Write([]byte(body))
+	
+	contentMD5 := hex.EncodeToString(h.Sum(nil))
+	
+	contentMD5 = strings.ToUpper(contentMD5)
 
-​	//提交的body数据
+	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
 
-​	body := "{}"
+	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
+	
+	if err != nil {
+	
+		fmt.Println("Fatal error", err.Error())
+	
+		return
+	
+	}
+	
+	client := &http.Client{}
+	
+	request.Header.Set("Content-Type", contentType)
+	
+	request.Header.Set("X-Up-Key", publisherKey)
+	
+	request.Header.Set("X-Up-Signature", publisherSignature)
+	
+	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
+	
+	resp, err := client.Do(request)
+	
+	defer resp.Body.Close()
+	
+	content, err := ioutil.ReadAll(resp.Body)
+	
+	if err != nil {
+	
+		fmt.Println("Fatal error", err.Error())
+	
+		return
+	
+	}
 
-​	//您申请的publisherKey
-
-​	publisherKey := "请填写您的publisherKey"
-
-​	//请求方式
-
-​	httpMethod := "POST"
-
-​	contentType := "application/json"
-
-​	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-
-​	headers := map[string]string{
-
-​		"X-Up-Timestamp": publisherTimestamp,
-
-​		"X-Up-Key":       publisherKey,
-
-​	}
-
-​	//处理queryPath
-
-​	urlParsed, err := url.Parse(demoUrl)
-
-​	if err != nil {
-
-​		fmt.Println(err)
-
-​		return
-
-​	}
-
-​	//处理resource
-
-​	resource := urlParsed.Path
-
-​	m, err := url.ParseQuery(urlParsed.RawQuery)
-
-​	if err != nil {
-
-​		fmt.Println(err)
-
-​		return
-
-​	}
-
-​	queryString := m.Encode()
-
-​	if queryString != "" {
-
-​		resource += "?" + queryString
-
-​	}
-
- 
-
-​	//处理body
-
-​	h := md5.New()
-
-​	h.Write([]byte(body))
-
-​	contentMD5 := hex.EncodeToString(h.Sum(nil))
-
-​	contentMD5 = strings.ToUpper(contentMD5)
-
- 
-
-​	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
-
- 
-
-​	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
-
-​	if err != nil {
-
-​		fmt.Println("Fatal error", err.Error())
-
-​		return
-
-​	}
-
-​	client := &http.Client{}
-
-​	request.Header.Set("Content-Type", contentType)
-
-​	request.Header.Set("X-Up-Key", publisherKey)
-
-​	request.Header.Set("X-Up-Signature", publisherSignature)
-
-​	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
-
-​	resp, err := client.Do(request)
-
-​	defer resp.Body.Close()
-
-​	content, err := ioutil.ReadAll(resp.Body)
-
-​	if err != nil {
-
-​		fmt.Println("Fatal error", err.Error())
-
-​		return
-
-​	}
-
- 
-
-​	//返回数据
-
-​	fmt.Println(string(content))
-
- 
+	//返回数据
+	
+	fmt.Println(string(content))
 
 }
-
- 
 
 func headerJoin(headers map[string]string) string {
 
-​	headerKeys := []string{
-
-​		"X-Up-Timestamp",
-
-​		"X-Up-Key",
-
-​	}
-
-​	sort.Strings(headerKeys)
-
-​	ret := make([]string, 0)
-
-​	for _, k := range headerKeys {
-
-​		v := headers[k]
-
-​		ret = append(ret, k+":"+v)
-
-​	}
-
-​	return strings.Join(ret, "\n")
+	headerKeys := []string{
+	
+		"X-Up-Timestamp",
+	
+		"X-Up-Key",
+	
+	}
+	
+	sort.Strings(headerKeys)
+	
+	ret := make([]string, 0)
+	
+	for _, k := range headerKeys {
+	
+		v := headers[k]
+	
+		ret = append(ret, k+":"+v)
+	
+	}
+	
+	return strings.Join(ret, "\n")
 
 }
 
- 
 
 func signature(httpMethod, contentMD5, contentType, headerString, resource string) string {
 
-​	stringSection := []string{
+	stringSection := []string{
+	
+		httpMethod,
+	
+		contentMD5,
+	
+		contentType,
+	
+		headerString,
+	
+		resource,
+	
+	}
+	
+	stringToSign := strings.Join(stringSection, "\n")
 
-​		httpMethod,
-
-​		contentMD5,
-
-​		contentType,
-
-​		headerString,
-
-​		resource,
-
-​	}
-
-​	stringToSign := strings.Join(stringSection, "\n")
-
- 
-
-​	h := md5.New()
-
-​	h.Write([]byte(stringToSign))
-
-​	resultMD5 := hex.EncodeToString(h.Sum(nil))
-
-​	fmt.Println(stringToSign)
-
-​	return strings.ToUpper(resultMD5)
+	h := md5.New()
+	
+	h.Write([]byte(stringToSign))
+	
+	resultMD5 := hex.EncodeToString(h.Sum(nil))
+	
+	fmt.Println(stringToSign)
+	
+	return strings.ToUpper(resultMD5)
 
 }
 ```

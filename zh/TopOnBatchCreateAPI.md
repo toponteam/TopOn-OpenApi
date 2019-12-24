@@ -86,7 +86,8 @@
                         \+ Resource 
 
 Resource:
-    url的path      
+
+    URL的Path      
 
 Headers：
 

@@ -86,12 +86,7 @@
                         \+ Resource 
 
 Resource:
-
-   如请求包含查询字符串（QueryString），则在 Resource 字符串尾部添加 ? 和查询字符串
-
-   QueryString是 URL 中请求参数按字典序排序后的字符串，其中参数名和值之间用 = 相隔组成字符串，并对参数名-值对按照字典序升序排序，然后以 & 符号连接构成字符串。
-
-    Key1 + "=" + Value1 + "&" + Key2 + "=" + Value2        
+    url的path      
 
 Headers：
 
@@ -1108,21 +1103,13 @@ func main() {
 	
 	resource := urlParsed.Path
 	
-	m, err := url.ParseQuery(urlParsed.RawQuery)
+	_, err = url.ParseQuery(urlParsed.RawQuery)
 	
 	if err != nil {
 	
 		fmt.Println(err)
 	
 		return
-	
-	}
-	
-	queryString := m.Encode()
-	
-	if queryString != "" {
-	
-		resource += "?" + queryString
 	
 	}
 

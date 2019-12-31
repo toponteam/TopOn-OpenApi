@@ -237,34 +237,34 @@ POST
 
 **records元素结构如下：**
 
-| 字段名           | 类型   | 备注                     |     |
-| ---------------- | ------ | ------------------------ | --- |
-| date             | string | 默认返回                 |     |
-| app.id           | string    | 默认返回                 |     |
-| app.name         | string | 默认返回                 |     |
-| new_user         | string | 默认返回                 |     |
-| dau              | string | 默认返回                 |     |
-| revenue          | string | group by channel时不返回 |     |
-| arpu             | string | 跟随revenue指标          |     |
-| ltv\_day\_1        | string | 默认返回                 |     |
-| ltv\_day\_2        | string |                          |     |
-| ltv\_day\_3        | string |                          |     |
-| ltv\_day\_4        | string |                          |     |
-| ltv\_day\_5        | string |                          |     |
-| ltv\_day\_6        | string |                          |     |
-| ltv\_day\_7        | string | 默认返回                 |     |
-| ltv\_day\_14       | string |                          |     |
-| ltv\_day\_30       | string |                          |     |
-| ltv\_day\_60       | string |                          |     |
-| retention\_day\_2  | string | 默认返回                 |     |
-| retention\_day\_3  | string |                          |     |
-| retention\_day\_4  | string |                          |     |
-| retention\_day\_5  | string |                          |     |
-| retention\_day\_6  | string |                          |     |
-| retention\_day\_7  | string |                          |     |
-| retention\_day\_14 | string | 默认返回                 |     |
-| retention\_day\_30 | string |                          |     |
-| retention\_day\_60 | string |                          |     |
+| 字段名           | 类型   | 备注                     |
+| ---------------- | ------ | ------------------------ |
+| date             | string | 默认返回                 |
+| app.id           | string    | 默认返回                 |
+| app.name         | string | 默认返回                 |
+| new_user         | string | 默认返回                 |
+| dau              | string | 默认返回                 |
+| revenue          | string | group by channel时不返回 |
+| arpu             | string | 跟随revenue指标          |
+| ltv\_day\_1        | string | 默认返回                 |
+| ltv\_day\_2        | string |                          |
+| ltv\_day\_3        | string |                          |
+| ltv\_day\_4        | string |                          |
+| ltv\_day\_5        | string |                          |
+| ltv\_day\_6        | string |                          |
+| ltv\_day\_7        | string | 默认返回                 |
+| ltv\_day\_14       | string |                          |
+| ltv\_day\_30       | string |                          |
+| ltv\_day\_60       | string |                          |
+| retention\_day\_2  | string | 默认返回                 |
+| retention\_day\_3  | string |                          |
+| retention\_day\_4  | string |                          |
+| retention\_day\_5  | string |                          |
+| retention\_day\_6  | string |                          |
+| retention\_day\_7  | string |                          |
+| retention\_day\_14 | string | 默认返回                 |
+| retention\_day\_30 | string |                          |
+| retention\_day\_60 | string |                          |
 
 > 备注
 > 1. 只能查询今天往前推2天的数据

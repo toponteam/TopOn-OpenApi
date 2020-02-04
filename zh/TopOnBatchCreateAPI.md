@@ -558,7 +558,7 @@ POST
 
 <h2 id='聚合管理基本操作API'>7. 聚合管理基本操作API</h2>
 
-### 7.1 查询广告位已绑定的流量分组
+### 7.1 查询广告位已启用的流量分组列表
 
 #### 7.1.1 请求URL
 
@@ -629,7 +629,7 @@ GET
 ]
 ```
 
-### 7.2 为广告位绑定新流量分组或调整流量分组优先级
+### 7.2 为广告位启用新流量分组或调整流量分组优先级
 
 #### 7.2.1 请求URL
 
@@ -719,7 +719,7 @@ POST
 }
 ```
 
-### 7.3 为广告位移除流量分组
+### 7.3 为广告位批量移除流量分组
 
 #### 7.3.1 请求URL
 
@@ -801,7 +801,7 @@ POST
 }
 ```
 
-### 7.4 查询Waterfall已启用的广告源
+### 7.4 查询Waterfall已启用的广告源列表
 
 #### 7.4.1 请求URL
 
@@ -878,7 +878,7 @@ GET
 }
 ```
 
-### 7.5 为waterfall启用广告源
+### 7.5 为Waterfall批量启用广告源
 
 #### 7.5.1 请求URL
 
@@ -892,31 +892,31 @@ POST
 
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
-| placement_id                        | String  | Y        | placement id                                                 |
-| segment_id                          | String  | Y        | segment id                                                   |
-| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                          |
-| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息 |
-| ad_source_list.ad_source_id         | Int     | Y        | adsource_id                                                  |
-| ad_source_list.ecpm                 | float64 | Y        | ecpm                                                         |
-| ad_source_list.header_bidding_witch | Int     | N        | 是否支持header bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
-| ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
-| ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
-| ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
+| placement_id                        | String  | Y        | 广告位ID                                                     |
+| segment_id                          | String  | Y        | Segment ID                                                   |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                |
+| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                        |
+| ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
+| ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |
+| ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化              |
+| ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
 
 #### 7.5.4 返回参数
 
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
-| placement_id                        | String  | Y        | placement id                                                 |
-| segment_id                          | String  | Y        | segment id                                                   |
-| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                         |
-| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息 |
-| ad_source_list.ad_source_id         | Int     | Y        | adsource_id                                                  |
-| ad_source_list.ecpm                 | float64 | Y        | ecpm                                                         |
-| ad_source_list.pirority             | Int     | N        | adsource优先级                                               |
-| ad_source_list.header_bidding_witch | Int     | N        | 是否支持header bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| placement_id                        | String  | Y        | 广告位ID                                                     |
+| segment_id                          | String  | Y        | Segment ID                                                   |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                |
+| ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                        |
+| ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
+| ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
+| ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
+| ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
+| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化              |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |

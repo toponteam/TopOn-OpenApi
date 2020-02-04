@@ -183,7 +183,7 @@ POST
 ```
  
 
-### 4.2 批量读取应用列表
+### 4.2 获取应用列表
 
 #### 4.2.1 请求URL
 
@@ -277,11 +277,11 @@ POST
 | placement_name                        | String | Y        | 广告位名称                                                   |
 | placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
 | adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
-| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | No       | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过                             |
-| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭                           |
-| placements.template.auto_refresh_time | Int    | No       | template为原生Banner时：是否自动刷新                         |
+| placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
+| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
+| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
+| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 
  
 
@@ -316,7 +316,7 @@ POST
 ```
  
 
-### 5.2 批量读取广告位列表
+### 5.2 获取广告位列表
 
 #### 5.2.1 请求URL
 
@@ -330,10 +330,10 @@ POST
 
 | 字段          | 类型   | 是否必传 | 备注                                                         |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
-| app_ids       | Object | N        | 默认传object，多个app_id是数组                               |
-| placement_ids | Object | N        | 默认传object，多个placement_id是数组 默认可以为空            |
-| start         | Int    | N        | Default 0。当App和Placement都指定时不需要填写                |
-| limit         | Int    | N        | Default 100 最大一次性获取100。当App和Placement都指定时不需要填写 |
+| app_ids       | Object | N        | 默认传Object，多个应用ID是数组                               |
+| placement_ids | Object | N        | 默认传Object，多个广告位ID是数组 默认可以为空                 |
+| start         | Int    | N        | Default 0。当应用和广告位都指定时不需要填写                   |
+| limit         | Int    | N        | Default 100 最大一次性获取100。当应用和广告位都指定时不需要填写 |
 
  
 
@@ -341,9 +341,9 @@ POST
 
 | 字段           | 类型   | 是否必传 | 备注                             |
 | -------------- | ------ | -------- | -------------------------------- |
-| app_id         | String | Y        | Up开发者后台的App ID             |
-| app_name       | String | Y        | App名称                          |
-| platform       | Int    | Y        | 1或者2  (1:安卓平台，2是ios平台) |
+| app_id         | String | Y        | 开发者后台的应用ID               |
+| app_name       | String | Y        | 应用名称                         |
+| platform       | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 | placements     | String | Y        | -                                |
 | placement_id   | String | N        | -                                |
 | placement_name | String | N        | -                                |
@@ -377,7 +377,7 @@ POST
 
 <h2 id='流量分组API'>6. 流量分组API</h2>
 
-### 6.1 添加和修改流量分组
+### 6.1 创建和修改流量分组
 
 #### 6.1.1 请求URL
 

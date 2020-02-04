@@ -134,11 +134,11 @@ POST
 
 | 字段              | 类型   | 是否必传 | 备注                             |
 | ----------------- | ------ | -------- | -------------------------------- |
-| count             | Int    | Y        | 创建app的数量                    |
-| apps.app_name     | String | Y        | App名称                          |
-| apps.platform     | Int    | Y        | 1或者2  (1:安卓平台，2是ios平台) |
-| apps.market_url   | String | N        | 需符合Market URL规范             |
-| apps.package_name | String | N        | 需符合包名规范                   |
+| count             | Int    | Y        | 创建应用的数量                   |
+| apps.app_name     | String | Y        | 应用名称                         |
+| apps.platform     | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
+| apps.market_url   | String | N        | 需符合商店链接规范               |
+| apps.package_name | String | N        | 需符合包名规范，示例：com.xxx    |
 | apps.category     | String | N        | 一级分类，需符合附录2规范        |
 | apps.sub_category | String | N        | 二级分类，需符合附录2规范        |
 
@@ -148,10 +148,10 @@ POST
 
 | 字段     | 类型   | 是否必传 | 备注                             |
 | -------- | ------ | -------- | -------------------------------- |
-| app_id   | String | Y        | Up开发者后台的App ID             |
-| app_name | String | Y        | App名称                          |
+| app_id   | String | Y        | 开发者后台的应用ID               |
+| app_name | String | Y        | 应用名称                          |
 | errors   | String | N        | 错误信息（错误时返回）           |
-| platform | Int    | Y        | 1或者2  (1:安卓平台，2是ios平台) |
+| platform | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 
  
 
@@ -197,7 +197,7 @@ POST
 
 | 字段    | 类型   | 是否必传 | 备注                           |
 | ------- | ------ | -------- | ------------------------------ |
-| app_ids | String | N        | 默认传object，多个app_id是数组 |
+| app_ids | String | N        | 默认传Object，多个应用ID是数组 |
 | start   | Int    | N        | Default 0                      |
 | limit   | Int    | N        | Default 100 最大一次性获取100  |
 
@@ -207,9 +207,9 @@ POST
 
 | 字段         | 类型   | 是否必传 | 备注                             |
 | ------------ | ------ | -------- | -------------------------------- |
-| app_id       | String | Y        | Up开发者后台的App ID             |
-| app_name     | String | Y        | App名称                          |
-| platform     | Int    | Y        | 1或者2  (1:安卓平台，2是ios平台) |
+| app_id       | String | Y        | 开发者后台的应用ID               |
+| app_name     | String | Y        | 应用名称                         |
+| platform     | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 | market_url   | String | N        | -                                |
 | package_name | String | N        | -                                |
 | category     | String | N        | -                                |
@@ -258,14 +258,14 @@ POST
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
 | count                                 | Int    | Y        | 本次创建的Placement数量                                      |
-| app_id                                | String | Y        | 创建广告位的应用id                                           |
-| placements. placement_name            | String | Y        | 广告位名称，30个汉字或字符以内                               |
-| placements. adformat                  | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
-| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | No       | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过                             |
-| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭                           |
-| placements.template.auto_refresh_time | Int    | No       | -1表示不启动<br />0-n表示刷新时间                            |
+| app_id                                | String | Y        | 创建广告位的App ID                                           |
+| placements.placement_name             | String | Y        | 广告位名称，30个汉字或字符以内                               |
+| placements.adformat                   | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
+| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
+| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
+| placements.template.auto_refresh_time | Int    | N        | -1表示不启动<br />0-n表示刷新时间                            |
 
  
 

@@ -149,7 +149,7 @@ POST
 | 字段     | 类型   | 是否必传 | 备注                             |
 | -------- | ------ | -------- | -------------------------------- |
 | app_id   | String | Y        | 开发者后台的应用ID               |
-| app_name | String | Y        | 应用名称                          |
+| app_name | String | Y        | 应用名称                         |
 | errors   | String | N        | 错误信息（错误时返回）           |
 | platform | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 
@@ -257,15 +257,15 @@ POST
 
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| count                                 | Int    | Y        | 本次创建的Placement数量                                      |
-| app_id                                | String | Y        | 创建广告位的App ID                                           |
+| count                                 | Int    | Y        | 创建的广告位数量                                             |
+| app_id                                | String | Y        | 创建广告位的应用ID                                           |
 | placements.placement_name             | String | Y        | 广告位名称，30个汉字或字符以内                               |
 | placements.adformat                   | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
-| placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
-| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
-| placements.template.auto_refresh_time | Int    | N        | -1表示不启动<br />0-n表示刷新时间                            |
+| placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间，默认5秒                    |
+| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可跳过，默认可跳过<br />0：表示No<br />1：表示Yes    |
+| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭，默认自动关闭<br />0：表示No<br />1：表示Yes  |
+| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
 
  
 
@@ -273,15 +273,15 @@ POST
 
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| app_id                                | String | Y        | Up开发者后台的App ID                                         |
-| placement_name                        | String | Y        | Placement名称                                                |
-| placement_id                          | String | Y        | Up开发者后台的Placement ID                                   |
+| app_id                                | String | Y        | 开发者后台的应用ID                                           |
+| placement_name                        | String | Y        | 广告位名称                                                   |
+| placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
 | adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
-| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生banner<br />2：原生开屏 |
+| placements.template                   | Int    | No       | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
 | placements.template.cdt               | Int    | No       | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过<br />0：表示No<br />1：表示Yes |
-| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭<br />0：表示No<br />1：表示Yes |
-| placements.template.auto_refresh_time | Int    | No       | -1表示不启动<br />0-n表示刷新时间                            |
+| placements.template.ski_swt           | Int    | No       | template为原生开屏时：是否可调过                             |
+| placements.template.aut_swt           | Int    | No       | template为原生开屏时：是否自动关闭                           |
+| placements.template.auto_refresh_time | Int    | No       | template为原生Banner时：是否自动刷新                         |
 
  
 

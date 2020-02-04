@@ -139,8 +139,8 @@ POST
 | apps.platform     | Int    | Y        | 1或者2  (1:安卓平台，2是ios平台) |
 | apps.market_url   | String | N        | 需符合Market URL规范             |
 | apps.package_name | String | N        | 需符合包名规范                   |
-| apps.category     | String | N        | 需符合附录2规范                   |
-| apps.sub_category | String | N        | 需符合附录2规范                   |
+| apps.category     | String | N        | 一级分类，需符合附录2规范        |
+| apps.sub_category | String | N        | 二级分类，需符合附录2规范        |
 
  
 

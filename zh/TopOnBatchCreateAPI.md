@@ -657,7 +657,7 @@ POST
 | ------------------- | ------ | -------- | ---------------------------- |
 | placement_id        | String | Y        | 广告位ID                     |
 | is_abtest           | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
-| segments            | Array  | Y        | Segment排序的列表           |
+| segments            | Array  | Y        | Segment排序的完整列表           |
 | segments.priority   | Int    | Y        | Segment优先级               |
 | segments.segment_id | String | Y        | Segment ID                   |
 

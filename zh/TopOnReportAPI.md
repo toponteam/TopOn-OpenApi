@@ -128,8 +128,8 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
 | enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id       | String | N        | Up开发者后台的App ID，单选                                   | xxxxx                                      |
-| placement_id | String | N        | Up开发者后台的Placement ID，单选                             | xxxxx                                      |
+| app_id       | String | N        | 开发者后台的App ID，单选                                   | xxxxx                                      |
+| placement_id | String | N        | 开发者后台的Placement ID，单选                             | xxxxx                                      |
 | group_by     | Array  | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
 | metric       | Array  | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
 | start        | Int    | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |

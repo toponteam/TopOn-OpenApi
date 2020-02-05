@@ -128,8 +128,8 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
 | enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id       | String | N        | 开发者后台的App ID，单选                                   | xxxxx                                      |
-| placement_id | String | N        | 开发者后台的Placement ID，单选                             | xxxxx                                      |
+| app_id       | String | N        | 开发者后台的应用ID，单选                                     | xxxxx                                      |
+| placement_id | String | N        | 开发者后台的广告位ID，单选                                   | xxxxx                                      |
 | group_by     | Array  | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
 | metric       | Array  | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
 | start        | Int    | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
@@ -149,16 +149,16 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | ---------------- | ------ | -------- | ------------------------------------------------------------ |
 | count            | Int    | Y        | 总条数                                                       |
 | date             | String | Y        | 日期，格式：YYYYmmdd。group_by有选才有返回                   |
-| app.id           | String | Y        | Up开发者后台的App ID                                         |
-| app.name         | String | N        | App名称                                                      |
-| app.platform     | String | N        | App的系统平台                                                |
-| placement.id     | String | N        | Up开发者后台的Placement ID                                   |
-| placement.name   | String | N        | Placement名称                                                |
+| app.id           | String | Y        | 开发者后台的应用ID                                         |
+| app.name         | String | N        | 应用名称                                                      |
+| app.platform     | String | N        | 应用的系统平台                                                |
+| placement.id     | String | N        | 开发者后台的广告位ID                                   |
+| placement.name   | String | N        | 广告位名称                                                |
 | adformat         | String | N        | rewarded_video/interstitial/banner/native/splash。group_by有选才有返回 |
 | area             | String | N        | 国家码。group_by有选才有返回                                 |
 | network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……。group_by有选才有返回 |
-| adsource.network | String | N        | 三方unit的network名称                                        |
-| adsource.token   | String | N        | 三方unit的token信息，请求广告的appid，slotid等。group_by有选才有返回 |
+| adsource.network | String | N        | 广告源所属的广告平台名称                                        |
+| adsource.token   | String | N        | 广告源的三方ID信息，请求广告的appid，slotid等。group_by有选才有返回 |
 | dau              | String | N        | 根据group_by条件才有返回                                     |
 | arpu             | String | N        | 有dau才有该项返回                                            |
 | request          | String | N        | 请求数                                                       |
@@ -166,14 +166,14 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | impression       | String | N        | 展示数                                                       |
 | click            | String | N        | 点击数                                                       |
 | ctr              | String | N        | 点击率                                                       |
-| ecpm             | String | N        | ecpm                                                         |
+| ecpm             | String | N        | eCPM                                                         |
 | revenue          | String | N        | 收益                                                         |
 | request_api      | String | N        | 三方广告平台的请求数                                         |
 | fillrate_api     | String | N        | 三方广告平台的填充率                                         |
 | impression_api   | String | N        | 三方广告平台的展示数                                         |
 | ecpm_api         | String | N        | 三方广告平台的点击数                                         |
 | click_api        | String | N        | 三方广告平台的点击率                                         |
-| ecpm_api         | String | N        | 三方广告平台的ecpm                                           |
+| ecpm_api         | String | N        | 三方广告平台的eCPM                                          |
 
 ### 4.5 样例
 
@@ -221,7 +221,7 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
 | enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id      | String    | N        | Up开发者后台的App ID，单选                                     | a5c41a9ed1679c                                   |
+| app_id      | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
 | order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |["date_time", “asc”, “app_id”, “desc”]                             |
 | group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
@@ -244,7 +244,7 @@ POST
 | app.name         | string | 默认返回                 |
 | new_user         | string | 默认返回                 |
 | dau              | string | 默认返回                 |
-| revenue          | string | group by channel时不返回 |
+| revenue          | string | group_by channel时不返回 |
 | arpu             | string | 跟随revenue指标          |
 | ltv\_day\_1        | string | 默认返回                 |
 | ltv\_day\_2        | string |                          |

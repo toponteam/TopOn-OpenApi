@@ -125,7 +125,7 @@ GET
 | 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                       |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | day    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501，仅支持2天前的日期                                   |
-| app_id       | String | N        | Up开发者后台的App ID，单选                                   | xxxxx                                                                            |
+| app_id       | String | N        | 开发者后台的应用ID，单选                                   | xxxxx                                                                            |
 
 注：数据支持的时间从TopOn运营开通权限后开始支持生成(仅支持2天前的日期)，返回的内容以文件形式提供
 
@@ -138,15 +138,15 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 
 | 字段             | 类型   | 备注                                                         |
 | ---------------- | ------  | ------------------------------------------------------------ |
-| placement_id            | String      | 广告位id                                                      |
+| placement_id            | String      | 广告位ID                                                      |
 | placement_name             | String      | 广告位名称                  |
 | placement_format          | String     | 格式 0: native,1: rewarded_video,2: banner,3: interstitial,4: splash                                        |
-| unit_id         | String      | TopOn平台生成的第三方adsource id                                                      |
-| unit_network     | String       | TopOn平台生成的第三方adsource对应的network名称                                                |
-| unit_token     | String       | TopOn存储的第三方adsource的具体信息                                   |
-| android_id   | String     | 设备id，androidid                                                |
-| gaid         | String      | google的广告设备id |
-| idfa             | String        | ios的设备id                                |
+| unit_id         | String      | TopOn平台生成的广告源id                                                      |
+| unit_network     | String       | 广告源所属的广告平台名称                                                |
+| unit_token     | String       | 广告源三方ID信息                                   |
+| android_id   | String     | 设备ID，androidid                                                |
+| gaid         | String      | Google的广告设备ID |
+| idfa             | String        | iOS的设备ID                                |
 | area          | String       | 国家|
 | impression | String       | 展示数                                        |
 | click   | String      | 点击数 |

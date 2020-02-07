@@ -47,7 +47,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
-<h2 id='Authentication check'>3. Authentication check</h2>
+<h2 id='Authentication_check'>3. Authentication check</h2>
 
 ### 3.1 The process description of API request
 
@@ -131,9 +131,9 @@ Server will create sign and campare the sign with X-Up-Signature
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
-<h2 id='APP API'>4. APP API</h2>
+<h2 id='APP_API'>4. APP API</h2>
 
-<h3 id='Batch create APPs'>4.1 Batch create APPs</h3>
+<h3 id='Batch_create_APPs'>4.1 Batch create APPs</h3>
 
 #### 4.1.1 Request URL
 
@@ -195,7 +195,7 @@ return sample：
 ]
 ```
 
-<h3 id='Get APP list'>4.2 Get APP list</h3>
+<h3 id='Get_APP_list'>4.2 Get APP list</h3>
 
 #### 4.2.1 Request URL
 
@@ -253,9 +253,9 @@ return sample：
 ]
 ```
 
-<h2 id='Placement API'>5. Placement API</h2>
+<h2 id='Placement_API'>5. Placement API</h2>
 
-<h3 id='Batch create placements'>5.1 Batch create placements</h3>
+<h3 id='Batch_create_placements'>5.1 Batch create placements</h3>
 
 #### 5.1.1 Request URL
 
@@ -327,7 +327,7 @@ return sample：
 ]
 ```
 
-<h3 id='Get placement list'>5.2 Get placement list</h3>
+<h3 id='Get_placement_list'>5.2 Get placement list</h3>
 
 #### 5.2.1 Request URL
 
@@ -386,9 +386,9 @@ return sample：
 ]
 ```
 
-<h2 id='Segment API'>6. Segment API</h2>
+<h2 id='Segment_API'>6. Segment API</h2>
 
-<h3 id='Create and update segments'>6.1 Create and update segments</h3>
+<h3 id='Create_and_update_segments'>6.1 Create and update segments</h3>
 
 #### 6.1.1 Request URL
 
@@ -457,7 +457,7 @@ return sample：
 }
 ```
 
-<h3 id='Get segment list'>6.2 Get segment list</h3>
+<h3 id='Get_segment_list'>6.2 Get segment list</h3>
 
 #### 6.2.1 Request URL
 
@@ -529,7 +529,7 @@ return sample：
 ]
 ```
 
-<h3 id='Batch delete segments'>6.3 Batch delete segments</h3>
+<h3 id='Batch_delete_segments'>6.3 Batch delete segments</h3>
 
 #### 6.3.1 Request URL
 
@@ -565,9 +565,9 @@ return sample：
 
 HTTP code 200
 
-<h2 id='Waterfall API'>7. Waterfall API</h2>
+<h2 id='Waterfall_API'>7. Waterfall API</h2>
 
-<h3 id='Get placement's segment list'>7.1 Get placement's segment list</h3>
+<h3 id='Get_placement's_segment_list'>7.1 Get placement's segment list</h3>
 
 #### 7.1.1 Request URL
 
@@ -638,7 +638,7 @@ return sample：
 ]
 ```
 
-<h3 id='Set priorities or create segments for placements'>7.2 Set priorities or create segments for placements</h3>
+<h3 id='Set_priorities_or_create_segments_for_placements'>7.2 Set priorities or create segments for placements</h3>
 
 #### 7.2.1 Request URL
 
@@ -728,7 +728,7 @@ return sample：
 }
 ```
 
-<h3 id='Batch delete placement's segments'>7.3 Batch delete placement's segments</h3>
+<h3 id='Batch_delete_placement's_segments'>7.3 Batch delete placement's segments</h3>
 
 #### 7.3.1 Request URL
 
@@ -810,7 +810,7 @@ return sample：
 }
 ```
 
-<h3 id='Get waterfall's adsources'>7.4 Get waterfall's adsources</h3>
+<h3 id='Get_waterfall's_adsources'>7.4 Get waterfall's adsources</h3>
 
 #### 7.4.1 Request URL
 
@@ -887,7 +887,7 @@ return sample：
 }
 ```
 
-<h3 id='Set waterfall's adsources'>7.5 Set waterfall's adsources</h3>
+<h3 id='Set_waterfall's_adsources'>7.5 Set waterfall's adsources</h3>
 
 #### 7.5.1 Request URL
 
@@ -1002,7 +1002,7 @@ Please control the frequency of requests:
 
 •  10000 per day
 
-<h2 id='Appendix1：golang demo'>9. Appendix1：golang demo</h2>
+<h2 id='Appendix1：golang_demo'>9. Appendix1：golang demo</h2>
 
  Java,PHP,Python demos are in the Git path /demo
 
@@ -1200,7 +1200,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 }
 ```
-<h2 id='Appendix2：APP category and sub category enum'>10. Appendix2：APP category and sub category enum</h2>
+<h2 id='Appendix2：APP_category_and_sub_category_enum'>10. Appendix2：APP category and sub category enum</h2>
 
 | Platform | ategory | Sub Category            |
 | -------- | ------- | ----------------------- |
@@ -1307,7 +1307,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS      | App     | Utilities               |
 | iOS      | App     | Weather                 |
 
-<h2 id='Appendix3：segment rule enum'>11. Appendix3：segment rule enum</h2>
+<h2 id='Appendix3：segment_rule_enum'>11. Appendix3：segment rule enum</h2>
 
 | rule | type                           | sample                                     |
 | :--- | :----------------------------- | :----------------------------------------- |

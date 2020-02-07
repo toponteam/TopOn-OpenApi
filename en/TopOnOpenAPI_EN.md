@@ -152,8 +152,8 @@ POST
 | apps.platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS)                          |
 | apps.market_url   | String | N        | Need to be in compliance with requirements of app store links |
 | apps.package_name | String | N        | Need to be in compliance with requirements of APP package name.  com.xxx |
-| apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub category_enum) |
-| apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub category_enum) |
+| apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum) |
+| apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum) |
 
  
 

@@ -152,8 +152,8 @@ POST
 | apps.platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS)                          |
 | apps.market_url   | String | N        | Need to be in compliance with requirements of app store links |
 | apps.package_name | String | N        | Need to be in compliance with requirements of APP package name.  com.xxx |
-| apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP category and sub category enum) |
-| apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP category and sub category enum) |
+| apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub category_enum) |
+| apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub category_enum) |
 
  
 
@@ -407,7 +407,7 @@ POST
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 #### 6.1.4 Return data
 
@@ -418,7 +418,7 @@ POST
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 
 
@@ -486,7 +486,7 @@ POST
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 
 
@@ -594,7 +594,7 @@ GET
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 #### 7.1.5 Sample
 
@@ -670,7 +670,7 @@ POST
 | segments.rules         | Array  | Y        | Segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 #### 7.2.5 Sample
 
@@ -758,7 +758,7 @@ POST
 | segments.rules         | Array  | Y        | Segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
+| segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 #### 7.3.5 Sample
 

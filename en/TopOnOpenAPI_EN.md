@@ -28,11 +28,11 @@
 - [6.3 Batch delete segments](#Batch_delete_segments)</br>
 
 [7. Waterfall API](#Waterfall_API)</br>
-- [7.1 Get placements segment list](#Get_placement's_segment_list)</br>  
+- [7.1 Get placement's segment list](#Get_placements_segment_list)</br>  
 - [7.2 Set priorities or create segments for placements](#Set_priorities_or_create_segments_for_placements)</br>
-- [7.3 Batch delete placements segments](#Batch_delete_placement's_segments)</br>
-- [7.4 Get waterfalls adsources](#Get_waterfall's_adsources)</br>  
-- [7.5 Set waterfalls adsources](#Set_waterfall's_adsources)</br>
+- [7.3 Batch delete placement's segments](#Batch_delete_placements_segments)</br>
+- [7.4 Get waterfall's adsources](#Get_waterfalls_adsources)</br>  
+- [7.5 Set waterfall's adsources](#Set_waterfalls_adsources)</br>
 
 [8. Notices](#Notices)</br>
 [9. Appendix1：golang demo](#Appendix1：golang_demo)</br>

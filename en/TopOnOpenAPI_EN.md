@@ -11,9 +11,9 @@
 
 ## Contents
 
-[1. Introduction](#Introduction)
-[2. Authentication acquisition](#Authentication_acquisition)
-[3. Authentication check](#Authentication check)
+[1. Introduction](#Introduction)</br> 
+[2. Authentication acquisition](#Authentication acquisition)</br> 
+[3. Authentication check](#Authentication check)</br> 
 [4. APP API](#APP API)</br> 
 - [4.1 Batch create APPs](#Batch create APPs)</br>  
 - [4.2 Get APP list](#Get APP list)</br>

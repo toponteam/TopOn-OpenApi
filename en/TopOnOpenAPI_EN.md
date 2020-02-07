@@ -12,32 +12,32 @@
 ## Contents
 
 [1. Introduction](#Introduction)</br> 
-[2. Authentication acquisition](#Authentication acquisition)</br> 
-[3. Authentication check](#Authentication check)</br> 
-[4. APP API](#APP API)</br> 
-- [4.1 Batch create APPs](#Batch create APPs)</br>  
-- [4.2 Get APP list](#Get APP list)</br>
+[2. Authentication acquisition](#Authentication_acquisition)</br> 
+[3. Authentication check](#Authentication_check)</br> 
+[4. APP API](#APP_API)</br> 
+- [4.1 Batch create APPs](#Batch_create_APPs)</br>  
+- [4.2 Get APP list](#Get_APP_list)</br>
 
-[5. Placement API](#Placement API)</br>
-- [5.1 Batch create placements](#Batch create placements)</br>  
-- [5.2 Get placement list](#Get placement list)</br>  
+[5. Placement API](#Placement_API)</br>
+- [5.1 Batch create placements](#Batch_create_placements)</br>  
+- [5.2 Get placement list](#Get_placement_list)</br>  
 
-[6. Segment API](#Segment API)</br>
-- [6.1 Create and update segments](#Create and update segments)</br>
-- [6.2 Get segment list](#Get segment list)</br>
-- [6.3 Batch delete segments](#Batch delete segments)</br>
+[6. Segment API](#Segment_API)</br>
+- [6.1 Create and update segments](#Create_and_update_segments)</br>
+- [6.2 Get segment list](#Get_segment_list)</br>
+- [6.3 Batch delete segments](#Batch_delete_segments)</br>
 
-[7. Waterfall API](#Waterfall API)</br>
-- [7.1 Get placement's segment list](#Get placement's segment list)</br>  
-- [7.2 Set priorities or create segments for placements](#Set priorities or create segments for placements)</br>
-- [7.3 Batch delete placement's segments](#Batch delete placement's segments)</br>
-- [7.4 Get waterfall's adsources](#Get waterfall's adsources)</br>  
-- [7.5 Set waterfall's adsources](#Set waterfall's adsources)</br>
+[7. Waterfall API](#Waterfall_API)</br>
+- [7.1 Get placement's segment list](#Get_placement's_segment_list)</br>  
+- [7.2 Set priorities or create segments for placements](#Set_priorities_or_create_segments_for_placements)</br>
+- [7.3 Batch delete placement's segments](#Batch_delete_placement's_segments)</br>
+- [7.4 Get waterfall's adsources](#Get_waterfall's_adsources)</br>  
+- [7.5 Set waterfall's adsources](#Set_waterfall's_adsources)</br>
 
 [8. Notices](#Notices)</br>
-[9. Appendix1：golang demo](#Appendix1：golang demo)</br>
-[10. Appendix2：APP category and sub category enum](#Appendix2：APP category and sub category enum)</br>
-[11. Appendix3：segment rule enum](#Appendix3：segment rule enum)
+[9. Appendix1：golang demo](#Appendix1：golang_demo)</br>
+[10. Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum)</br>
+[11. Appendix3：segment rule enum](#Appendix3：segment_rule_enum)
 
 <h2 id='Introduction'>1. Introduction</h2>
 

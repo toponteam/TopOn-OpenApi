@@ -20,7 +20,7 @@
 
 In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
-<h2 id='Authentication acquisition'>2. Authentication acquisition</h2>
+<h2 id='Authentication_acquisition'>2. Authentication acquisition</h2>
 
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
@@ -159,7 +159,7 @@ Please control the frequency of requests:
 
 •  10000 per day
 
-<h2 id='Appendix1：golang demo'>6. Appendix1：golang_demo</h2>
+<h2 id='Appendix1：golang_demo'>6. Appendix1：golang_demo</h2>
 
 • Java,PHP,Python demos are in the Git path /demo
 

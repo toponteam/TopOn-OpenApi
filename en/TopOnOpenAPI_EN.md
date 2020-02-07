@@ -11,9 +11,9 @@
 
 ## Contents
 
-[1. Introduction](#Introduction)</br>
-[2. Authentication acquisition](#Authentication acquisition)</br>
-[3. Authentication check](#Authentication check)</br>
+[1. Introduction](#Introduction)
+[2. Authentication acquisition](#Authentication_acquisition)
+[3. Authentication check](#Authentication check)
 [4. APP API](#APP API)</br> 
 - [4.1 Batch create APPs](#Batch create APPs)</br>  
 - [4.2 Get APP list](#Get APP list)</br>
@@ -43,7 +43,7 @@
 
 In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
-<h2 id='Authentication acquisition'>2. Authentication acquisition</h2>
+<h2 id='Authentication_acquisition'>2. Authentication acquisition</h2>
 
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 

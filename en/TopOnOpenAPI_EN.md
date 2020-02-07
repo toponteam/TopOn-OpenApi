@@ -15,23 +15,19 @@
 [2. Authentication acquisition](#Authentication acquisition)</br>
 [3. Authentication check](#Authentication check)</br>
 [4. APP API](#APP API)</br> 
-
 - [4.1 Batch create APPs](#Batch create APPs)</br>  
 - [4.2 Get APP list](#Get APP list)</br>
 
 [5. Placement API](#Placement API)</br>
-
 - [5.1 Batch create placements](#Batch create placements)</br>  
 - [5.2 Get placement list](#Get placement list)</br>  
 
 [6. Segment API](#Segment API)</br>
-
 - [6.1 Create and update segments](#Create and update segments)</br>
 - [6.2 Get segment list](#Get segment list)</br>
 - [6.3 Batch delete segments](#Batch delete segments)</br>
 
 [7. Waterfall API](#Waterfall API)</br>
-
 - [7.1 Get placement's segment list](#Get placement's segment list)</br>  
 - [7.2 Set priorities or create segments for placements](#Set priorities or create segments for placements)</br>
 - [7.3 Batch delete placement's segments](#Batch delete placement's segments)</br>

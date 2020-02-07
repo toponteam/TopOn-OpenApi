@@ -10,22 +10,22 @@
 ## Contents
 
 [1. Introduction](#Introduction)</br>
-[2. Authentication acquisition](#Authentication acquisition)</br>
-[3. Authentication check](#Authentication check)</br>
-[4. Full reporting](#Full reporting)</br>
-[5. LTV & retention reporting](#LTV & retention reporting)</br>
+[2. Authentication acquisition](#Authentication_acquisition)</br>
+[3. Authentication check](#Authentication_check)</br>
+[4. Full reporting](#Full_reporting)</br>
+[5. LTV & retention reporting](#LTV_&_retention_reporting)</br>
 [6. Notices](#Notices)</br>
-[7. Appendix1：golang demo](#Appendix1：golang demo)</br>
+[7. Appendix1：golang demo](#Appendix1：golang_demo)</br>
 
 <h2 id='Introduction'>1. Introduction</h2>
 
 In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
-<h2 id='Authentication acquisition'>2. Authentication acquisition</h2>
+<h2 id='Authentication_acquisition'>2. Authentication acquisition</h2>
 
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
-<h2 id='Authentication check'>3. Authentication check</h2>
+<h2 id='Authentication_check'>3. Authentication check</h2>
 
 ### 3.1 The process description of API request
 
@@ -54,8 +54,6 @@ Before using the batch creation API of TopOn, publishers shall apply  for publis
 | Headers      | Headers except X-Up-Signature              | X-Up-Timestamp:1562813567000 X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2 |
 | HTTPMethod   | HTTP method(upper letters)                 | PUT、GET、POST                                               |
 | Resource     | strings from HTTP path and query params    | /v1/fullreport?key1=val1&key2=val2                           |
-
- 
 
 ### 3.4 Create signature
 
@@ -108,7 +106,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
-<h2 id='Full reporting'>4. Full reporting</h2>
+<h2 id='Full_reporting'>4. Full reporting</h2>
 
 ### 4.1 Request URL
 
@@ -201,7 +199,7 @@ return data sample：
 }
 ```
 
-<h2 id='LTV & retention reporting'>5. LTV & retention reporting</h2>
+<h2 id='LTV_&_retention_reporting'>5. LTV & retention reporting</h2>
 
 ### 5.1 Request URL
 
@@ -299,7 +297,7 @@ Please control the frequency of requests:
 
 •  10000 per day
 
-<h2 id='Appendix1：golang demo'>7. Appendix1：golang demo</h2>
+<h2 id='Appendix1：golang_demo'>7. Appendix1：golang demo</h2>
 
 • Java,PHP,Python demos are in the Git path /demo
 

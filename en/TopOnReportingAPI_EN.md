@@ -12,8 +12,8 @@
 [1. Introduction](#Introduction)</br>
 [2. Authentication acquisition](#Authentication_acquisition)</br>
 [3. Authentication check](#Authentication_check)</br>
-[4. Full reporting](#Full_reporting)</br>
-[5. LTV & retention reporting](#LTV_&_retention_reporting)</br>
+[4. Full report](#Full_report)</br>
+[5. LTV & retention report](#LTV_&_retention_report)</br>
 [6. Notices](#Notices)</br>
 [7. Appendix1：golang demo](#Appendix1：golang_demo)</br>
 
@@ -106,7 +106,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
-<h2 id='Full_reporting'>4. Full reporting</h2>
+<h2 id='Full_report'>4. Full report</h2>
 
 ### 4.1 Request URL
 
@@ -199,7 +199,7 @@ return data sample：
 }
 ```
 
-<h2 id='LTV_&_retention_reporting'>5. LTV & retention reporting</h2>
+<h2 id='LTV_&_retention_report'>5. LTV & retention report</h2>
 
 ### 5.1 Request URL
 

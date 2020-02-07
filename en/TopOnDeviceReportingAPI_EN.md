@@ -10,11 +10,11 @@
 ## Contents
 
 [1. Introduction](#Introduction)</br>
-[2. Authentication acquisition](#Authentication acquisition)</br>
-[3. Authentication check](#Authentication check)</br>
-[4. Device reporting](#Device reporting)</br>
+[2. Authentication acquisition](#Authentication_acquisition)</br>
+[3. Authentication check](#Authentication_check)</br>
+[4. Device report](#Device_report)</br>
 [5. Notices](#Notices)</br>
-[6. Appendix1：golang demo](#Appendix1：golang demo)</br>
+[6. Appendix1：golang demo](#Appendix1：golang_demo)</br>
 
 <h2 id='Introduction'>1. Introduction</h2>
 
@@ -24,7 +24,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
-<h2 id='Authentication check'>3. Authentication check</h2>
+<h2 id='Authentication_check'>3. Authentication check</h2>
 
 ### 3.1 The process description of API request
 
@@ -106,7 +106,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
-<h2 id='Device reporting'>4. Device reporting</h2>
+<h2 id='Device_report'>4. Device report</h2>
 
 ### 4.1 Request URL
 
@@ -159,7 +159,7 @@ Please control the frequency of requests:
 
 •  10000 per day
 
-<h2 id='Appendix1：golang demo'>6. Appendix1：golang demo</h2>
+<h2 id='Appendix1：golang demo'>6. Appendix1：golang_demo</h2>
 
 • Java,PHP,Python demos are in the Git path /demo
 

@@ -21,6 +21,6 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 ## 3. API List
-- [Operation Open API](/en/TopOnOpenAPI_EN.md)</br>
+- [Operation API](/en/TopOnOpenAPI_EN.md)</br>
 - [Reporting API](/en/TopOnReportingAPI_EN.md)</br>
 - [Device Reporting API](/en/TopOnDeviceReportingAPI_EN.md)</br>

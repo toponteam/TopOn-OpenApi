@@ -16,25 +16,25 @@
 [3. Authentication check](#Authentication check)</br>
 [4. APP API](#APP API)</br> 
 
-- [4.1 Batch create APP](#Batch create APP)</br>  
+- [4.1 Batch create APPs](#Batch create APPs)</br>  
 - [4.2 Get APP list](#Get APP list)</br>
 
 [5. Placement API](#Placement API)</br>
 
-- [5.1 Batch create placement](#Batch create placement)</br>  
+- [5.1 Batch create placements](#Batch create placements)</br>  
 - [5.2 Get placement list](#Get placement list)</br>  
 
 [6. Segment API](#Segment API)</br>
 
-- [6.1 Create and update segment](#Create and update segment)</br>
+- [6.1 Create and update segments](#Create and update segments)</br>
 - [6.2 Get segment list](#Get segment list)</br>
 - [6.3 Batch delete segments](#Batch delete segments)</br>
 
 [7. Waterfall API](#Waterfall API)</br>
 
 - [7.1 Get placement's segment list](#Get placement's segment list)</br>  
-- [7.2 Set priority or create segment for placement](#Set priority or create segment for placement)</br>
-- [7.3 Batch delete placement's segment](#Batch delete placement's segment)</br>
+- [7.2 Set priorities or create segments for placements](#Set priorities or create segments for placements)</br>
+- [7.3 Batch delete placement's segments](#Batch delete placement's segments)</br>
 - [7.4 Get waterfall's adsources](#Get waterfall's adsources)</br>  
 - [7.5 Set waterfall's adsources](#Set waterfall's adsources)</br>
 
@@ -45,11 +45,11 @@
 
 <h2 id='Introduction'>1. Introduction</h2>
 
-In order to improve the realization efficiency of publishers, TopOn provides reporting API. This document is the instroction of  API. If you need help, please feel free to reach us, thank you!
+In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
 <h2 id='Authentication acquisition'>2. Authentication acquisition</h2>
 
-Before using the batch creation API of TopOn,publisher shall apply to TopOn for publisher_key that can identify the request from the publisher. For more detail to apply the authority , please consult the business manager contacted with you.
+Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication check'>3. Authentication check</h2>
 
@@ -58,8 +58,8 @@ Before using the batch creation API of TopOn,publisher shall apply to TopOn for 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
 - The client uses MD5 to sign on the key that generated in the first step.
 - The client sends the API request content along with the signed key to the server.
-- After receiving the request, the server repeats the above first and second steps and calculates the expected sign at the server.
-- The server compares the expected sign with the sign key that sent by the client, and if it is identical, the request can passe the security verification, otherwise  reject.
+- After receiving the request, the server repeats the above first and second steps and calculates the expected signature at the server.
+- The server compares the expected signature with the signed key that sent by the client.If they are entirely consistent with eachother, the request can pass the security verification.Otherwise, it will be rejected.
 
 ### 3.2 Header general request params
 
@@ -67,11 +67,11 @@ Before using the batch creation API of TopOn,publisher shall apply to TopOn for 
 | -------------- | ------------------------------------------------------------ | ------------------------------------------ |
 | X-Up-Key       | publisher_key                                                | X-Up-Key: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql |
 | X-Up-Timestamp | Unix timestamp(ms), the millisecond from 1970/1/1. Valid duration is 15 minutes. | 1562813567000                              |
-| X-Up-Signature | sign                                                         |                                            |
+| X-Up-Signature | signature string                                             |                                            |
 
  
 
-### 3.3 Params to create sign
+### 3.3 Params to create signature
 
 | params       | notes                                      | sample                                                       |
 | ------------ | ------------------------------------------ | ------------------------------------------------------------ |
@@ -83,9 +83,9 @@ Before using the batch creation API of TopOn,publisher shall apply to TopOn for 
 
  
 
-### 3.4 Create sign
+### 3.4 Create signature
 
-Create sign string：
+Create signature string：
 
      SignString = HTTPMethod + "\n" 
                         \+ Content-MD5 + "\n" 
@@ -131,13 +131,13 @@ Server will create sign and campare the sign with X-Up-Signature
 | 601       | StatusSign               | Sign error                  |
 | 602       | StatusParam              | params error                |
 | 603       | StatusPublisherRestrict  | no authentication           |
-| 604       | StatusAppLengthError     | App error                   |
+| 604       | StatusAppLengthError     | App creation error          |
 | 605       | StatusRpcParamError      | base Server error           |
-| 606       | StatusRequestRepeatError | too much requests           |
+| 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='APP API'>4. APP API</h2>
 
-<h3 id='Batch create APP'>4.1 Batch create APP</h3>
+<h3 id='Batch create APPs'>4.1 Batch create APPs</h3>
 
 #### 4.1.1 Request URL
 
@@ -151,11 +151,11 @@ POST
 
 | params            | type   | required | notes                                                        |
 | ----------------- | ------ | -------- | ------------------------------------------------------------ |
-| count             | Int    | Y        | create APPs count                                            |
+| count             | Int    | Y        | Quantity of created APPs                                     |
 | apps.app_name     | String | Y        | APP name                                                     |
 | apps.platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS)                          |
-| apps.market_url   | String | N        | APP market link                                              |
-| apps.package_name | String | N        | APP package name.eg：com.xxx                                 |
+| apps.market_url   | String | N        | Need to be in compliance with requirements of app store links |
+| apps.package_name | String | N        | Need to be in compliance with requirements of APP package name.  com.xxx |
 | apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP category and sub category enum) |
 | apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP category and sub category enum) |
 
@@ -213,7 +213,7 @@ POST
 
 | params  | type        | required | notes                  |
 | ------- | ----------- | -------- | ---------------------- |
-| app_ids | string List | N        | eg: ["abc", "acc"]     |
+| app_ids | string List | N        | ["abc", "acc"]         |
 | start   | Int         | N        | Default 0              |
 | limit   | Int         | N        | Default 100 , [0, 100] |
 
@@ -259,7 +259,7 @@ return sample：
 
 <h2 id='Placement API'>5. Placement API</h2>
 
-<h3 id='Batch create placement'>5.1 Batch create placement</h3>
+<h3 id='Batch create placements'>5.1 Batch create placements</h3>
 
 #### 5.1.1 Request URL
 
@@ -273,15 +273,15 @@ POST
 
 | params                                | type   | required | notes                                                        |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| count                                 | Int    | Y        | create placements count                                      |
-| app_id                                | String | Y        | APP ID which create placements                               |
+| count                                 | Int    | Y        | Quantity of created placements                               |
+| app_id                                | String | Y        | APP ID of created placements                                 |
 | placements.placement_name             | String | Y        | placement name. max length 30                                |
-| placements.adformat                   | String | Y        | native、banner、rewarded_video、interstitial、splash         |
-| placements.template                   | Int    | N        | for native:   0：standard<br />1：Native Banner<br />2：Native Splash |
+| placements.adformat                   | String | Y        | native,banner,rewarded_video,interstitial,splash             |
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard<br/>1：Native Banner<br/>2：Native Splash |
 | placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | templateis Native Splash：if can skip, default 1 can skip<br />0：No<br />1：Yes |
-| placements.template.aut_swt           | Int    | N        | templateis Native Splash：if auto close,default 1 auto close<br />0：No<br />1：Yes |
-| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：if auto refresh, default no<br />-1  no auto refresh<br />0-n auto refresh time (s) |
+| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
 
  
 
@@ -292,12 +292,12 @@ POST
 | app_id                                | String | Y        | APP ID                                                       |
 | placement_name                        | String | Y        | placement name                                               |
 | placement_id                          | String | Y        | placement ID                                                 |
-| adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash         |
-| placements.template                   | Int    | N        | for native:   0：standard<br />1：Native Banner<br />2：Native Splash |
+| adformat                              | String | Y        | Native, banner, rewarded video, interstitial, splash         |
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
 | placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | templateis Native Splash：if can skip, default 1 can skip<br />0：No<br />1：Yes |
-| placements.template.aut_swt           | Int    | N        | templateis Native Splash：if auto close,default 1 auto close<br />0：No<br />1：Yes |
-| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：if auto refresh, default no<br />-1  no auto refresh<br />0-n auto refresh time (s) |
+| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
 
  
 
@@ -392,7 +392,7 @@ return sample：
 
 <h2 id='Segment API'>6. Segment API</h2>
 
-<h3 id='Create and update segment'>6.1 Create and update segment</h3>
+<h3 id='Create and update segments'>6.1 Create and update segments</h3>
 
 #### 6.1.1 Request URL
 
@@ -407,7 +407,7 @@ POST
 | params        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | name          | String | Y        | Segment name                                                 |
-| segment_id    | String | N        | Segment ID for updating segment                              |
+| segment_id    | String | N        | Must reture Segment ID when updating Segment                 |
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -419,7 +419,7 @@ POST
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | name          | String | Y        | Segment name                                                 |
 | segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment rule                                                 |
+| rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
 | rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
@@ -487,7 +487,7 @@ POST
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | name          | String | Y        | Segment name                                                 |
 | segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment rule                                                 |
+| rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
 | rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
@@ -553,7 +553,7 @@ POST
 
 #### 6.3.4 Return data
 
-If success return HTTP code 200. If failed return segments data.You will delete failed, the segment using in waterfall setting, and all the segments in this request will delete failed.
+It will return HTTP code 200 when success Otherwise, it will return segments data. It could not be deleted if the segment has been used in the waterfall setting and all the segment list in this request will failed to be deleted.
 
 #### 6.3.5 Sample
 
@@ -586,7 +586,7 @@ GET
 | params   | type | required | notes                           |
 | ------------ | ------ | -------- | --------------------------------- |
 | placement_id | String | Y        | placement ID                |
-| is_abtest    | Int    | Y        | 0 : control group, or not abtest <br />1 test group |
+| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
 
 #### 7.1.4 Return data
 
@@ -595,7 +595,7 @@ GET
 | priority      | Int    | Y        | priority                                                     |
 | name          | String | Y        | Segment name                                                 |
 | segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment rule                                                 |
+| rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
 | rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
@@ -642,7 +642,7 @@ return sample：
 ]
 ```
 
-<h3 id='Set priority or create segment for placement'>7.2 Set priority or create segment for placement</h3>
+<h3 id='Set priorities or create segments for placements'>7.2 Set priorities or create segments for placements</h3>
 
 #### 7.2.1 Request URL
 
@@ -657,7 +657,7 @@ POST
 |                 | type | required | notes                      |
 | ------------------- | ------ | -------- | ---------------------------- |
 | placement_id        | String | Y        | placement ID           |
-| is_abtest           | Int    | Y        | 0 : control group, or not abtest <br />1 test group |
+| is_abtest           | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
 | segments            | Array  | Y        | Segment priority List |
 | segments.priority   | Int    | Y        | Segment priority     |
 | segments.segment_id | String | Y        | Segment ID                   |
@@ -667,11 +667,11 @@ POST
 | fields                 | type   | required | notes                                                        |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id           | String | Y        | placement ID                                                 |
-| is_abtest              | Int    | Y        | 0 : control group, or not abtest <br />1 test group          |
+| is_abtest              | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
 | segments.priority      | Int    | Y        | priority                                                     |
 | segments.name          | String | Y        | Segment name                                                 |
 | segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment rule                                                 |
+| segments.rules         | Array  | Y        | Segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
 | segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
@@ -732,7 +732,7 @@ return sample：
 }
 ```
 
-<h3 id='Batch delete placement's segment'>7.3 Batch delete placement's segment</h3>
+<h3 id='Batch delete placement's segments'>7.3 Batch delete placement's segments</h3>
 
 #### 7.3.1 Request URL
 
@@ -747,7 +747,7 @@ POST
 | params   | type | required | notes                      |
 | ------------ | ------ | -------- | ---------------------------- |
 | placement_id | String | Y        | placement ID           |
-| is_abtest    | Int    | Y        | 0 : control group, or not abtest <br />1 test group |
+| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
 | segment_ids  | string List | Y        | delete Segment List |
 
 #### 7.3.4 Return data
@@ -755,11 +755,11 @@ POST
 |                        | type   | required | notes                                                        |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id           | String | Y        | placement ID                                                 |
-| is_abtest              | Int    | Y        | 0 : control group, or not abtest <br />1 test group          |
+| is_abtest              | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
 | segments.priority      | Int    | Y        | priority                                                     |
 | segments.name          | String | Y        | Segment name                                                 |
 | segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment rule                                                 |
+| segments.rules         | Array  | Y        | Segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
 | segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment rule enum) |
@@ -830,7 +830,7 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement ID |
 | segment_id   | String | Y        | Segment ID      |
-| is_abtest    | Int    | Y        | 0 : control group, or not abtest <br />1 test group |
+| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
 
 #### 7.4.4 Return data
 
@@ -838,7 +838,7 @@ GET
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not abtest <br />1 test group          |
+| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
 | ad_source_list                      | Array   | Y        | empty means has no adsource                                  |
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | N        | eCPM                                                         |
@@ -907,7 +907,7 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not abtest <br />1 test group          |
+| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
@@ -923,7 +923,7 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not abtest <br />1 test group          |
+| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |

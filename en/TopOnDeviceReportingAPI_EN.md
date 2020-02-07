@@ -18,21 +18,21 @@
 
 <h2 id='Introduction'>1. Introduction</h2>
 
-In order to improve the realization efficiency of publishers, TopOn provides reporting API. This document is the instroction of  API. If you need help, please feel free to reach us, thank you!
+In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
 <h2 id='Authentication acquisition'>2. Authentication acquisition</h2>
 
-Before using the batch creation API of TopOn,publisher shall apply to TopOn for publisher_key that can identify the request from the publisher. For more detail to apply the authority , please consult the business manager contacted with you.
+Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication check'>3. Authentication check</h2>
 
-### 3.1  The process description of API request
+### 3.1 The process description of API request
 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
 - The client uses MD5 to sign on the key that generated in the first step.
 - The client sends the API request content along with the signed key to the server.
-- After receiving the request, the server repeats the above first and second steps and calculates the expected sign at the server.
-- The server compares the expected sign with the sign key that sent by the client, and if it is identical, the request can passe the security verification, otherwise  reject.
+- After receiving the request, the server repeats the above first and second steps and calculates the expected signature at the server.
+- The server compares the expected signature with the signed key that sent by the client.If they are entirely consistent with eachother, the request can pass the security verification.Otherwise, it will be rejected.
 
 ### 3.2 Header general request params
 
@@ -40,10 +40,10 @@ Before using the batch creation API of TopOn,publisher shall apply to TopOn for 
 | -------------- | ------------------------------------------------------------ | ------------------------------------------ |
 | X-Up-Key       | publisher_key                                                | X-Up-Key: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql |
 | X-Up-Timestamp | Unix timestamp(ms), the millisecond from 1970/1/1. Valid duration is 15 minutes. | 1562813567000                              |
-| X-Up-Signature | sign                                                         |                                            |
+| X-Up-Signature | signature string                                             |                                            |
 
 
-### 3.3 Params to create sign
+### 3.3 Params to create signature
 
 | params       | notes                                      | sample                                                       |
 | ------------ | ------------------------------------------ | ------------------------------------------------------------ |
@@ -54,9 +54,9 @@ Before using the batch creation API of TopOn,publisher shall apply to TopOn for 
 | Resource     | strings from HTTP path and query params    | /v1/fullreport?key1=val1&key2=val2                           |
 
 
-### 3.4 Create sign
+### 3.4 Create signature
 
-Create sign string：
+Create signature string：
 
      SignString = HTTPMethod + "\n" 
                         \+ Content-MD5 + "\n" 
@@ -102,9 +102,9 @@ Server will create sign and campare the sign with X-Up-Signature
 | 601       | StatusSign               | Sign error                  |
 | 602       | StatusParam              | params error                |
 | 603       | StatusPublisherRestrict  | no authentication           |
-| 604       | StatusAppLengthError     | App error                   |
+| 604       | StatusAppLengthError     | App creation error          |
 | 605       | StatusRpcParamError      | base Server error           |
-| 606       | StatusRequestRepeatError | too much requests           |
+| 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='Device reporting'>4. Device reporting</h2>
 
@@ -127,7 +127,7 @@ notes: Your device reporting data will create in the date which open authenticat
 
 ### 4.4 Return data
 
-API will return the download url, you can get data from the url. eg：<br>
+API will return the download url, you can get data from the url. <br>
 https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publisher_id%3D22/app_id%3Da5d147334b3685/000000_0?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA35FGARBHLHHS7TWB%2F20190828%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190828T095315Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=6aaf947f9b2cf02f3acb49d64a3daf719cb0b57a3d5221b0121a006e58b04b10 <br>
 
 The data file is CSV, explode by ',' .

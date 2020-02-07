@@ -10,3 +10,17 @@
 - [开发者后台操作API](/zh/TopOnBatchCreateAPI.md)</br>
 - [报表数据查询API](/zh/TopOnReportAPI.md)</br>
 - [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)</br>
+
+===========================================================================================================================================
+
+# TopOn Open API
+## 1. Introduction
+In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
+
+## 2. Authentication acquisition
+Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
+
+## 3. API List
+- [Operation Open API](/en/TopOnOpenAPI_EN.md)</br>
+- [Reporting API](/en/TopOnReportingAPI_EN.md)</br>
+- [Device Reporting API](/en/TopOnDeviceReportingAPI_EN.md)</br>

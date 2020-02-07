@@ -28,11 +28,11 @@
 - [6.3 Batch delete segments](#Batch_delete_segments)</br>
 
 [7. Waterfall API](#Waterfall_API)</br>
-- [7.1 Get placement's segment list](#Get_placement's_segment_list)</br>  
+- [7.1 Get placements segment list](#Get_placement's_segment_list)</br>  
 - [7.2 Set priorities or create segments for placements](#Set_priorities_or_create_segments_for_placements)</br>
-- [7.3 Batch delete placement's segments](#Batch_delete_placement's_segments)</br>
-- [7.4 Get waterfall's adsources](#Get_waterfall's_adsources)</br>  
-- [7.5 Set waterfall's adsources](#Set_waterfall's_adsources)</br>
+- [7.3 Batch delete placements segments](#Batch_delete_placement's_segments)</br>
+- [7.4 Get waterfalls adsources](#Get_waterfall's_adsources)</br>  
+- [7.5 Set waterfalls adsources](#Set_waterfall's_adsources)</br>
 
 [8. Notices](#Notices)</br>
 [9. Appendix1：golang demo](#Appendix1：golang_demo)</br>
@@ -567,7 +567,7 @@ HTTP code 200
 
 <h2 id='Waterfall_API'>7. Waterfall API</h2>
 
-<h3 id='Get_placement's_segment_list'>7.1 Get placement's segment list</h3>
+<h3 id='Get_placements_segment_list'>7.1 Get placement's segment list</h3>
 
 #### 7.1.1 Request URL
 
@@ -728,7 +728,7 @@ return sample：
 }
 ```
 
-<h3 id='Batch_delete_placement's_segments'>7.3 Batch delete placement's segments</h3>
+<h3 id='Batch_delete_placements_segments'>7.3 Batch delete placement's segments</h3>
 
 #### 7.3.1 Request URL
 
@@ -810,7 +810,7 @@ return sample：
 }
 ```
 
-<h3 id='Get_waterfall's_adsources'>7.4 Get waterfall's adsources</h3>
+<h3 id='Get_waterfalls_adsources'>7.4 Get waterfall's adsources</h3>
 
 #### 7.4.1 Request URL
 
@@ -887,7 +887,7 @@ return sample：
 }
 ```
 
-<h3 id='Set_waterfall's_adsources'>7.5 Set waterfall's adsources</h3>
+<h3 id='Set_waterfalls_adsources'>7.5 Set waterfall's adsources</h3>
 
 #### 7.5.1 Request URL
 

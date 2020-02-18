@@ -9,7 +9,7 @@
 目前TopOn平台对外API接口包括：</br>
 - [开发者后台操作API](/zh/TopOnBatchCreateAPI.md)</br>
 - [报表数据查询API](/zh/TopOnReportAPI.md)</br>
-- [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)</br>
+- [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)（需另外申请权限）</br>
 
 ===============================================================================
 

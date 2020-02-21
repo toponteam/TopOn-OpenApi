@@ -261,8 +261,8 @@ POST
 | retention\_day\_4  | string |                          |
 | retention\_day\_5  | string |                          |
 | retention\_day\_6  | string |                          |
-| retention\_day\_7  | string |                          |
-| retention\_day\_14 | string | 默认返回                 |
+| retention\_day\_7  | string | 默认返回                 |
+| retention\_day\_14 | string |                          |
 | retention\_day\_30 | string |                          |
 | retention\_day\_60 | string |                          |
 

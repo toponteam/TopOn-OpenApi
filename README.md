@@ -23,4 +23,4 @@ Before using the batch creation API of TopOn, publishers shall apply  for publis
 ## 3. API List
 - [Operation API](/en/TopOnOperationAPI_EN.md)</br>
 - [Reporting API](/en/TopOnReportingAPI_EN.md)</br>
-- [Device Reporting API](/en/TopOnDeviceReportingAPI_EN.md)(additional permission is required)</br>
+- [Device Reporting API](/en/TopOnDeviceReportingAPI_EN.md) (additional permission is required)</br>

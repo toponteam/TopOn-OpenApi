@@ -8,7 +8,7 @@
 | v 1.0    | 2019年7月17日 | 支持批量创建和查询应用、广告位   |
 | v 2.0    | 2019年11月4日 | 支持Waterfall、流量分组等相关配置 |
 
- 
+
 ## 目录
 
 [1. 关于文档](#关于文档)</br>
@@ -17,6 +17,7 @@
 [4. 应用管理](#应用管理)</br> 
 - [4.1 批量创建应用](#批量创建应用)</br>  
 - [4.2 获取应用列表](#获取应用列表)</br>
+- 4.3批量删除应用</br>
 
 [5. 广告位管理](#广告位管理)</br>
 - [5.1 批量创建广告位](#批量创建广告位)</br>  
@@ -40,15 +41,12 @@
 [11. 附录3：流量分组规则数据格式](#附录3：流量分组规则数据格式)
 
 <h2 id='关于文档'>1. 关于文档</h2>
-
 为提高合作伙伴的变现效率，TopOn平台专门提供了批量创建及查询API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
 <h2 id='申请开通权限'>2. 申请开通权限</h2>
-
 在使用TopOn平台的批量创建API前，合作伙伴需向TopOn申请publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
-
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -92,7 +90,7 @@
                         \+ Content-Type + "\n"  
                         \+ Headers + "\n"
                         \+ Resource 
-    
+
 如果无body，如下：
     
     SignString = HTTPMethod + "\n" 
@@ -133,14 +131,11 @@ Headers：
 | 605    | StatusRpcParamError      | 中间服务异常       |
 | 606    | StatusRequestRepeatError | 重复请求           |
 
- 
 <h2 id='应用管理'>4. 应用管理</h2>
-
-<h3 id='批量创建应用'>4.1 批量创建应用</h3>
-
+<h3 id='批量创建应用'>4.1 批量创建和修改应用</h3>
 #### 4.1.1 请求URL
 
-<https://openapi.toponad.com/v1/create_app>
+<https://openapi.toponad.com/v1/deal_app>
 
 #### 4.1.2 请求方式 
 
@@ -148,26 +143,29 @@ POST
 
 #### 4.1.3 请求参数
 
-| 字段              | 类型   | 是否必传 | 备注                             |
-| ----------------- | ------ | -------- | -------------------------------- |
-| count             | Int    | Y        | 创建应用的数量                   |
-| apps.app_name     | String | Y        | 应用名称                         |
-| apps.platform     | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
-| apps.market_url   | String | N        | 需符合商店链接规范               |
-| apps.package_name | String | N        | 需符合包名规范，示例：com.xxx    |
-| apps.category     | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)       |
-| apps.sub_category | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)       |
+| 字段                    | 类型   | 是否必传 | 备注                                                        |
+| ----------------------- | ------ | -------- | ----------------------------------------------------------- |
+| count                   | Int    | Y        | 创建应用的数量                                              |
+| apps.app_name           | String | Y        | 应用名称                                                    |
+| apps.platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)                            |
+| apps.market_url         | String | N        | 需符合商店链接规范                                          |
+| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏,<br />3：所有                         |
+| apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx                               |
+| apps.category           | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表) |
+| apps.sub_category       | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表) |
+| apps.screen_orientation | Int    | Y        | 1:竖屏<br />2:横屏<br />3：所有                             |
 
  
 
 #### 4.1.4 返回参数
 
-| 字段     | 类型   | 是否必传 | 备注                             |
-| -------- | ------ | -------- | -------------------------------- |
-| app_id   | String | Y        | 开发者后台的应用ID               |
-| app_name | String | Y        | 应用名称                         |
-| errors   | String | N        | 错误信息（错误时返回）           |
-| platform | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
+| 字段               | 类型   | 是否必传 | 备注                             |
+| ------------------ | ------ | -------- | -------------------------------- |
+| app_id             | String | Y        | 开发者后台的应用ID               |
+| app_name           | String | Y        | 应用名称                         |
+| errors             | String | N        | 错误信息（错误时返回）           |
+| platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
+| screen_orientation | Int    | Y        | 1:竖屏<br />2:横屏<br />3：所有  |
 
  
 
@@ -179,27 +177,30 @@ POST
     "count": 1,
     "apps": [
         {
-            "app_name": "111",
+            "app_name": "oddman华为",
             "platform": 1,
-            "market_url": ""
+            "screen_orientation":1,
+            "market_url": "https://play.google.com/store/apps/details?id=com.hunantv.imgo.activity.inter"
         }
     ]
 }
 ```
- 
+
 
 返回样例：
 ```
 [
     {
-        "app_name": "111",
-        "errors": "app package name is required"  
+        "app_name": "oddman华为",
+        "app_id": "",
+        "platform": 1,
+        "screen_orientation": 1,
+        "errors": "repeat app name error"
     }
 ]
 ```
 
 <h3 id='获取应用列表'>4.2 获取应用列表</h3>
-
 #### 4.2.1 请求URL
 
 <https://openapi.toponad.com/v1/apps>
@@ -220,15 +221,16 @@ POST
 
 #### 4.2.4 返回参数
 
-| 字段         | 类型   | 是否必传 | 备注                             |
-| ------------ | ------ | -------- | -------------------------------- |
-| app_id       | String | Y        | 开发者后台的应用ID               |
-| app_name     | String | Y        | 应用名称                         |
-| platform     | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
-| market_url   | String | N        | -                                |
-| package_name | String | N        | -                                |
-| category     | String | N        | -                                |
-| sub-category | String | N        | -                                |
+| 字段                    | 类型   | 是否必传 | 备注                                |
+| ----------------------- | ------ | -------- | ----------------------------------- |
+| app_id                  | String | Y        | 开发者后台的应用ID                  |
+| app_name                | String | Y        | 应用名称                            |
+| platform                | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)    |
+| market_url              | String | N        | -                                   |
+| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏,<br />3：所有 |
+| package_name            | String | N        | -                                   |
+| category                | String | N        | -                                   |
+| sub-category            | String | N        | -                                   |
 
  
 
@@ -240,26 +242,61 @@ POST
 	"limit":1
 }
 ```
- 
+
 
 返回样例：
 ```
 [
     {
-        "app_name": "topontest",
+        "app_name": "uparputest",
         "app_id": "a5bc9921f7fdb4",
         "platform": 2,
         "market_url": "https://itunes.apple.com/cn/app/%E7%A5%9E%E5%9B%9E%E9%81%BF/id1435756371?mt=8",
         "category": "Game",
-        "sub_category": "Action"
+        "sub_category": "Action",
+        "screen_orientation": 3
     }
 ]
 ```
 
+<h3 id='获取应用列表'>4.3 批量删除应用</h3>
+#### 4.3.1 请求URL
+
+<https://openapi.toponad.com/v1/del_apps>
+
+#### 4.3.2 请求方式 
+
+POST
+
+#### 4.3.3 请求参数
+
+| 字段    | 类型   | 是否必传 | 备注                           |
+| ------- | ------ | -------- | ------------------------------ |
+| app_ids | String | N        | 默认传Object，多个应用ID是数组 |
+
+ 
+
+#### 4.3.4 返回参数
+
+ 无，如果是错误会返回errors
+
+#### 4.3.5 样例
+
+请求样例：
+```
+{
+	"app_ids": ["a1bu2thutsq3mn"]
+}
+```
+
+
+返回样例：
+
+返回状态码或者错误码
+
+
 <h2 id='广告位管理'>5. 广告位管理</h2>
-
 <h3 id='批量创建广告位'>5.1 批量创建广告位</h3>
-
 #### 5.1.1 请求URL
 
 <https://openapi.toponad.com/v1/create_placement>
@@ -315,7 +352,7 @@ POST
     ]
 }
 ```
- 
+
 
 返回样例：
 ```
@@ -331,7 +368,6 @@ POST
 ```
 
 <h3 id='获取广告位列表'>5.2 获取广告位列表</h3>
-
 #### 5.2.1 请求URL
 
 <https://openapi.toponad.com/v1/placements>
@@ -353,15 +389,17 @@ POST
 
 #### 5.2.4 返回参数
 
-| 字段           | 类型   | 是否必传 | 备注                             |
-| -------------- | ------ | -------- | -------------------------------- |
-| app_id         | String | Y        | 开发者后台的应用ID               |
-| app_name       | String | Y        | 应用名称                         |
-| platform       | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
-| placements     | String | Y        | -                                |
-| placement_id   | String | N        | -                                |
-| placement_name | String | N        | -                                |
-| adformat       | String | N        | -                                |
+| 字段                                  | 类型   | 是否必传 | 备注                                                         |
+| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| app_id                                | String | Y        | 开发者后台的应用ID                                           |
+| placement_name                        | String | Y        | 广告位名称                                                   |
+| placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
+| adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
+| placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
+| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
+| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
+| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
+| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 
  
 
@@ -373,7 +411,7 @@ POST
 	"placement_ids":["b5bc9bc2951216"]
 }
 ```
- 
+
 
 返回样例：
 ```
@@ -390,9 +428,7 @@ POST
 ```
 
 <h2 id='流量分组管理'>6. 流量分组管理</h2>
-
 <h3 id='创建和修改流量分组'>6.1 创建和修改流量分组</h3>
-
 #### 6.1.1 请求URL
 
 <https://openapi.toponad.com/v1/deal_segment>
@@ -461,7 +497,6 @@ POST
 ```
 
 <h3 id='获取流量分组列表'>6.2 获取流量分组列表</h3>
-
 #### 6.2.1 请求URL
 
 <https://openapi.toponad.com/v1/segment_list>
@@ -533,7 +568,6 @@ POST
 ```
 
 <h3 id='批量删除流量分组'>6.3 批量删除流量分组</h3>
-
 #### 6.3.1 请求URL
 
 <https://openapi.toponad.com/v1/del_segment>
@@ -569,9 +603,7 @@ POST
 成功只返回状态码200，失败则返回数据
 
 <h2 id='聚合管理基本操作'>7. 聚合管理基本操作</h2>
-
 <h3 id='查询广告位已启用的流量分组列表'>7.1 查询广告位已启用的流量分组列表</h3>
-
 #### 7.1.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/segment>
@@ -642,7 +674,6 @@ GET
 ```
 
 <h3 id='为广告位启用新流量分组或调整流量分组优先级'>7.2 为广告位启用新流量分组或调整流量分组优先级</h3>
-
 #### 7.2.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/set_segment>
@@ -732,7 +763,6 @@ POST
 ```
 
 <h3 id='为广告位批量移除流量分组'>7.3 为广告位批量移除流量分组</h3>
-
 #### 7.3.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/del_segment>
@@ -814,7 +844,6 @@ POST
 ```
 
 <h3 id='查询Waterfall已启用的广告源列表'>7.4 查询Waterfall已启用的广告源列表</h3>
-
 #### 7.4.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/units>
@@ -891,7 +920,6 @@ GET
 ```
 
 <h3 id='为Waterfall批量启用广告源'>7.5 为Waterfall批量启用广告源</h3>
-
 #### 7.5.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
@@ -998,7 +1026,6 @@ POST
 ```
 
 <h2 id='注意事项'>8. 注意事项</h2>
-
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵守。
 
 • 每小时最多请求 1000 次
@@ -1006,7 +1033,6 @@ POST
 • 每天请求 10000 次
 
 <h2 id='附录1：go语言示例代码'>9. 附录1：go语言示例代码</h2>
-
 • java、php、python等语言示例代码请参考demo目录
 
 ```
@@ -1204,7 +1230,6 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 }
 ```
 <h2 id='附录2：应用一级和二级分类列表'>10. 附录2：应用一级和二级分类列表</h2>
-
 | 应用    | 一级分类 | 二级分类                |
 | ------- | -------- | ----------------------- |
 | Android | App      | Daydream                |
@@ -1311,7 +1336,6 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS     | App      | Weather                 |
 
 <h2 id='附录3：流量分组规则数据格式'>11. 附录3：流量分组规则数据格式</h2>
-
 | rule | 描述                 | 示例                                 |
 | :--- | :------------------- | :----------------------------------- |
 | 0    | 包含（集合）         | 一维数组JSON ["CN", "US"]            |

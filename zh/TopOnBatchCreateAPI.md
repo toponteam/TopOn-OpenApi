@@ -21,7 +21,7 @@
 - [4.3 批量删除应用](#批量删除应用)</br>
 
 [5. 广告位管理](#广告位管理)</br>
-- [5.1 批量创建广告位](#批量创建广告位)</br>  
+- [5.1 批量创建和修改广告位](#批量创建和修改广告位)</br>  
 - [5.2 获取广告位列表](#获取广告位列表)</br>
 
 [6. 流量分组管理](#流量分组管理)</br>
@@ -292,7 +292,8 @@ POST
 
 
 <h2 id='广告位管理'>5. 广告位管理</h2>
-<h3 id='批量创建广告位'>5.1 批量创建广告位</h3>
+<h3 id='批量创建和修改广告位'>5.1 批量创建和修改广告位</h3>
+
 #### 5.1.1 请求URL
 
 <https://openapi.toponad.com/v1/deal_placement>
@@ -314,7 +315,7 @@ POST
 | placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可跳过，默认可跳过<br />0：表示No<br />1：表示Yes    |
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭，默认自动关闭<br />0：表示No<br />1：表示Yes  |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
-
+| remark                                 | String    | N        | 备注                                             |
  
 
 #### 5.1.4 返回参数
@@ -330,7 +331,7 @@ POST
 | placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
-
+| remark                                 | String    | N        | 备注                                             |
  
 
 #### 5.1.5 样例
@@ -381,6 +382,7 @@ POST
 ```
 
 <h3 id='获取广告位列表'>5.2 获取广告位列表</h3>
+
 #### 5.2.1 请求URL
 
 <https://openapi.toponad.com/v1/placements>
@@ -413,6 +415,7 @@ POST
 | placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
+| remark                                 | String    | N        | 备注                                             |
 
  
 
@@ -441,6 +444,7 @@ POST
 ```
 
 <h3 id='获取广告位列表'>5.3 删除广告位</h3>
+
 #### 5.3.1 请求URL
 
 <https://openapi.toponad.com/v1/del_placements>

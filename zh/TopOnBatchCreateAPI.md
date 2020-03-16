@@ -49,6 +49,7 @@
 在使用TopOn平台的批量创建API前，合作伙伴需向TopOn申请publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
+
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -69,8 +70,6 @@
 | X-Up-Timestamp | API 调用者传递时间戳，值为当前时间的毫秒数，也就是从1970年1月1日起至今的时间转换为毫秒，时间戳有效时间为15分钟。 |                                            |
 | X-Up-Signature | 签名字符串                                                   |                                            |
 
- 
-
 ### 3.3 签名字段
 
 | 字段         | 说明                                                   | 样例                                                         |
@@ -80,8 +79,6 @@
 | Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp:1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
 | HTTPMethod   | HTTP 请求的方法名称，全部大写                          | PUT、GET、POST 等                                            |
 | Resource     | 由 HTTP 请求资源构造的字符串(如果有querystring要加上） | /v1/fullreport?key1=val1&key2=val2                           |
-
- 
 
 ### 3.4 签名方式
 
@@ -117,8 +114,6 @@ Headers：
 
 服务端会比对计算Sign和X-Up-Signature
 
- 
-
 ### 3.5 Http状态码和业务状态码
 
 | 状态码 | 返回信息                 | 含义               |
@@ -135,6 +130,7 @@ Headers：
 
 <h2 id='应用管理'>4. 应用管理</h2>
 <h3 id='批量创建和修改应用'>4.1 批量创建和修改应用</h3>
+
 #### 4.1.1 请求URL
 
 <https://openapi.toponad.com/v1/deal_app>
@@ -151,11 +147,11 @@ POST
 | apps.app_name           | String | Y        | 应用名称                                                    |
 | apps.platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)                            |
 | apps.market_url         | String | N        | 需符合商店链接规范                                          |
-| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏,<br />3：所有                         |
-| apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx                               |
-| apps.category           | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表) |
-| apps.sub_category       | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表) |
-| apps.screen_orientation | Int    | Y        | 1:竖屏<br />2:横屏<br />3：所有                             |
+| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏 <br />3：所有                         |
+| apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx，创建时必传                   |
+| apps.category           | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
+| apps.sub_category       | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
+| apps.screen_orientation | Int    | Y        | 1：竖屏<br />2：横屏<br />3：所有                             |
 
  
 
@@ -167,7 +163,7 @@ POST
 | app_name           | String | Y        | 应用名称                         |
 | errors             | String | N        | 错误信息（错误时返回）           |
 | platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
-| screen_orientation | Int    | Y        | 1:竖屏<br />2:横屏<br />3：所有  |
+| screen_orientation | Int    | Y        | 1：竖屏<br />2：横屏<br />3：所有  |
 
  
 
@@ -203,6 +199,7 @@ POST
 ```
 
 <h3 id='获取应用列表'>4.2 获取应用列表</h3>
+
 #### 4.2.1 请求URL
 
 <https://openapi.toponad.com/v1/apps>
@@ -229,7 +226,7 @@ POST
 | app_name                | String | Y        | 应用名称                            |
 | platform                | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)    |
 | market_url              | String | N        | -                                   |
-| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏,<br />3：所有 |
+| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏<br />3：所有 |
 | package_name            | String | N        | -                                   |
 | category                | String | N        | -                                   |
 | sub-category            | String | N        | -                                   |
@@ -262,6 +259,7 @@ POST
 ```
 
 <h3 id='批量删除应用'>4.3 批量删除应用</h3>
+
 #### 4.3.1 请求URL
 
 <https://openapi.toponad.com/v1/del_apps>
@@ -274,7 +272,7 @@ POST
 
 | 字段    | 类型   | 是否必传 | 备注                           |
 | ------- | ------ | -------- | ------------------------------ |
-| app_ids | String | N        | 默认传Object，多个应用ID是数组 |
+| app_ids | String | Y        | 默认传Object，多个应用ID是数组 |
 
 
 #### 4.3.4 返回参数
@@ -289,7 +287,6 @@ POST
 	"app_ids": ["a1bu2thutsq3mn"]
 }
 ```
-
 
 返回样例：
 

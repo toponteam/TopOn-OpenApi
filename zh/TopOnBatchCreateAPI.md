@@ -37,6 +37,10 @@
 - [7.4 查询Waterfall的广告源列表](#查询Waterfall的广告源列表)</br>  
 - [7.5 批量修改广告源在Waterfall的属性](#批量修改广告源在Waterfall的属性)</br>
 
+[8. 广告平台管理](#广告平台管理</br>
+- [8.1 创建和修改广告平台Publisher、App维度参数](#创建和修改广告平台Publisher、App维度参数)</br>  
+- [8.2 获取广告平台Publisher、App维度参数](#获取广告平台Publisher、App维度参数)</br>
+
 [11. 注意事项](#注意事项)</br>
 [12. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
 [13. 附录2：应用一级和二级分类列表](#附录2：应用一级和二级分类列表)</br>
@@ -1168,8 +1172,9 @@ POST
 
 
 
-<h2 id='厂商参数配置'>8. 厂商参数配置</h2>
-<h3 id='单个创建厂商数据配置'>8.1 单个创建厂商数据配置</h3>
+<h2 id='广告平台管理'>8. 广告平台管理</h2>
+<h3 id='创建和修改广告平台Publisher、App维度参数'>8.1 创建和修改广告平台Publisher、App维度参数</h3>
+
 #### 8.1.1 请求URL
 
 <https://openapi.toponad.com/v1/set_networks>
@@ -1182,29 +1187,28 @@ POST
 
 | 字段                              | 类型   | 是否必传 | 备注                |
 | --------------------------------- | ------ | -------- | ------------------- |
-| network_name                      | String | Y        | 厂商账号名称        |
-| firm_id                           | Int    | Y        | 厂商Id              |
-| network_id                        | Int    | N        | 厂商账号id          |
-| is_open_report                    | Int    | N        | 是否开通report_api  |
-| auth_content                      | Object | N        | 厂商维度配置参数    |
-| network_app_info                  | Array  | N        | 厂商app维度数据     |
-| network_app_info.app_id           | String | N        | app_id              |
-| network_app_info.app_auth_content | Object | N        | 厂商对应app维度参数 |
+| network_name                      | String | N        | 广告平台账号名称，开通多账号时必传        |
+| firm_id                           | Int    | Y        | 广告平台ID              |
+| network_id                        | Int    | N        | 广告平台账号ID          |
+| is_open_report                    | Int    | N        | 是否开通Report API  |
+| auth_content                      | Object | N        | 广告平台Publisher维度参数    |
+| network_app_info                  | Array  | N        | -     |
+| network_app_info.app_id           | String | N        | TopOn的应用ID              |
+| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数，详见[附录4规范](#附录4：广告平台Publisher、App维度参数)  |
 
  
-
 #### 8.1.4 返回参数
 
 | 字段                              | 类型   | 是否必传 | 备注                            |
 | --------------------------------- | ------ | -------- | ------------------------------- |
-| network_name                      | String | Y        | 厂商账号名称                    |
-| nw_firm_id                        | Int    | Y        | 厂商Id                          |
-| network_id                        | Int    | N        | 厂商账号id                      |
-| is_open_report                    | Int    | N        | 是否开通report_api              |
-| auth_content                      | Object | N        | 厂商维度配置参数（详见附录）    |
-| network_app_info                  | Array  | N        | 厂商app维度数据                 |
-| network_app_info.app_id           | String | N        | app_id                          |
-| network_app_info.app_auth_content | Object | N        | 厂商对应app维度参数（详见附录） |
+| network_name                      | String | Y        | 广告平台账号名称                    |
+| nw_firm_id                        | Int    | Y        | 广告平台ID                          |
+| network_id                        | Int    | N        | 广告平台账号ID                      |
+| is_open_report                    | Int    | N        | 是否开通Report API              |
+| auth_content                      | Object | N        | 广告平台Publisher维度参数    |
+| network_app_info                  | Array  | N        | -                |
+| network_app_info.app_id           | String | N        | TopOn的应用ID                         |
+| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数 |
 
 ****
 
@@ -1257,35 +1261,36 @@ POST
 }
 ```
 
-<h3 id='获取广告位列表'>5.2 获取厂商和厂商app维度信息列表</h3>
-#### 9.2.1 请求URL
+<h3 id='获取广告平台Publisher、App维度参数'>8.2 获取广告平台Publisher、App维度参数</h3>
+
+#### 8.2.1 请求URL
 
 <https://openapi.toponad.com/v1/networks>
 
-#### 9.2.2 请求方式 
+#### 8.2.2 请求方式 
 
 POST
 
-#### 9.2.3 请求参数
+#### 8.2.3 请求参数
 
 无 
 
-#### 9.2.4 返回参数
+#### 8.2.4 返回参数
 
 | 字段                              | 类型   | 是否必传 | 备注                |
 | --------------------------------- | ------ | -------- | ------------------- |
-| network_name                      | String | Y        | 厂商账号名称        |
-| firm_id                           | Int    | Y        | 厂商Id              |
-| network_id                        | Int    | N        | 厂商账号id          |
-| is_open_report                    | Int    | N        | 是否开通report_api  |
-| auth_content                      | Object | N        | 厂商维度配置参数    |
-| network_app_info                  | Array  | N        | 厂商app维度数据     |
-| network_app_info.app_id           | String | N        | app_id              |
-| network_app_info.app_auth_content | Object | N        | 厂商对应app维度参数 |
+| network_name                      | String | N        | 广告平台账号名称，开通多账号时必传        |
+| firm_id                           | Int    | Y        | 广告平台ID              |
+| network_id                        | Int    | N        | 广告平台账号ID          |
+| is_open_report                    | Int    | N        | 是否开通Report API  |
+| auth_content                      | Object | N        | 广告平台Publisher维度参数    |
+| network_app_info                  | Array  | N        | -     |
+| network_app_info.app_id           | String | N        | TopOn的应用ID              |
+| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数 |
 
  
 
-#### 9.2.5 样例
+#### 8.2.5 样例
 
 
 返回样例：
@@ -1870,4 +1875,4 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 7    | 大于（值）           | 整形、浮点或字符串 124               |
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
-<h2 id='附录3：厂商network维度，app维度，广告位维度配置信息'>12. 附录3：厂商network维度，app维度，广告位维度配置信息</h2>
+<h2 id='附录4：广告平台Publisher、App维度参数'>12. 附录4：广告平台Publisher、App维度参数</h2>

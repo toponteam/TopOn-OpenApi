@@ -37,7 +37,7 @@
 - [7.4 查询Waterfall的广告源列表](#查询Waterfall的广告源列表)</br>  
 - [7.5 批量修改广告源在Waterfall的属性](#批量修改广告源在Waterfall的属性)</br>
 
-[8. 广告平台管理](#广告平台管理</br>
+[8. 广告平台管理](#广告平台管理)</br>
 - [8.1 创建和修改广告平台Publisher、App维度参数](#创建和修改广告平台Publisher、App维度参数)</br>  
 - [8.2 获取广告平台Publisher、App维度参数](#获取广告平台Publisher、App维度参数)</br>
 

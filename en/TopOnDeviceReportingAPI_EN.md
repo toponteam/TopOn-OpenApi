@@ -17,15 +17,12 @@
 [6. Appendix1：golang demo](#Appendix1：golang_demo)</br>
 
 <h2 id='Introduction'>1. Introduction</h2>
-
 In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
 <h2 id='Authentication_acquisition'>2. Authentication acquisition</h2>
-
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication_check'>3. Authentication check</h2>
-
 ### 3.1 The process description of API request
 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
@@ -82,8 +79,9 @@ Headers：
     // X-Up-Key + X-Up-Timestamp (sort by first letter)
     // except X-Up-Signature 
     Headers = Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2   
-    
-    
+
+
+​    
     Sign = MD5(SignString)
 
 
@@ -107,7 +105,6 @@ Server will create sign and campare the sign with X-Up-Signature
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='Device_report'>4. Device report</h2>
-
 ### 4.1 Request URL
 
 <https://openapi.toponad.com/v1/devicereport>
@@ -122,6 +119,7 @@ GET
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | day    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501,Earliest date is the day before yesterday |
 | app_id       | String | N        | APP ID(single)                        | xxxxx                                                                            |
+| timezone | Int | N | Time Zone | -8 or 8 or 0, default 8 |
 
 notes: Your device reporting data will create in the date which open authentication 
 
@@ -152,7 +150,6 @@ Fields detail:
 | ecpm             | decimal(18,6)       | ecpm                                      |
 
 <h2 id='Notices'>5. Notices</h2>
-
 Please control the frequency of requests:
 
 •  1000 per hour
@@ -160,7 +157,6 @@ Please control the frequency of requests:
 •  10000 per day
 
 <h2 id='Appendix1：golang_demo'>6. Appendix1：golang_demo</h2>
-
 • Java,PHP,Python demos are in the Git path /demo
 
 ```

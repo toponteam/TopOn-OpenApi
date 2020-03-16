@@ -41,10 +41,11 @@
 - [8.1 创建和修改广告平台Publisher、App维度参数](#创建和修改广告平台Publisher、App维度参数)</br>  
 - [8.2 获取广告平台Publisher、App维度参数](#获取广告平台Publisher、App维度参数)</br>
 
-[11. 注意事项](#注意事项)</br>
-[12. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
-[13. 附录2：应用一级和二级分类列表](#附录2：应用一级和二级分类列表)</br>
-[14. 附录3：流量分组规则数据格式](#附录3：流量分组规则数据格式)
+[10. 注意事项](#注意事项)</br>
+[11. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
+[12. 附录2：应用一级和二级分类列表](#附录2：应用一级和二级分类列表)</br>
+[13. 附录3：流量分组规则数据格式](#附录3：流量分组规则数据格式)
+[14. 附录4：广告平台Publisher、App维度参数](#附录4：广告平台Publisher、App维度参数)
 
 <h2 id='关于文档'>1. 关于文档</h2>
 为提高合作伙伴的变现效率，TopOn平台专门提供了批量创建及查询API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
@@ -1210,7 +1211,6 @@ POST
 | network_app_info.app_id           | String | N        | TopOn的应用ID                         |
 | network_app_info.app_auth_content | Object | N        | 广告平台App维度参数 |
 
-****
 
 #### 8.1.5 样例
 
@@ -1332,6 +1332,7 @@ POST
 
 <h2 id='AdSource 配置管理'>10. AdSource 配置管理</h2>
 <h3 id='获取adSource列表'>10.1 获取adSource列表</h3>
+
 #### 10.1.1 请求URL
 
 <https://openapi.toponad.com/v1/units
@@ -1550,14 +1551,14 @@ POST
 
 
 
-<h2 id='注意事项'>11. 注意事项</h2>
+<h2 id='注意事项'>10. 注意事项</h2>
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵守。
 
 • 每小时最多请求 1000 次
 
 • 每天请求 10000 次
 
-<h2 id='附录1：go语言示例代码'>12. 附录1：go语言示例代码</h2>
+<h2 id='附录1：go语言示例代码'>11. 附录1：go语言示例代码</h2>
 • java、php、python等语言示例代码请参考demo目录
 
 ```
@@ -1754,7 +1755,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 }
 ```
-<h2 id='附录2：应用一级和二级分类列表'>13. 附录2：应用一级和二级分类列表</h2>
+<h2 id='附录12：应用一级和二级分类列表'>12. 附录2：应用一级和二级分类列表</h2>
 
 | 应用    | 一级分类 | 二级分类                |
 | ------- | -------- | ----------------------- |
@@ -1861,7 +1862,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS     | App      | Utilities               |
 | iOS     | App      | Weather                 |
 
-<h2 id='附录3：流量分组规则数据格式'>14. 附录3：流量分组规则数据格式</h2>
+<h2 id='附录3：流量分组规则数据格式'>13. 附录3：流量分组规则数据格式</h2>
 
 | rule | 描述                 | 示例                                 |
 | :--- | :------------------- | :----------------------------------- |
@@ -1875,4 +1876,4 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 7    | 大于（值）           | 整形、浮点或字符串 124               |
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
-<h2 id='附录4：广告平台Publisher、App维度参数'>12. 附录4：广告平台Publisher、App维度参数</h2>
+<h2 id='附录4：广告平台Publisher、App维度参数'>14. 附录4：广告平台Publisher、App维度参数</h2>

@@ -18,15 +18,12 @@
 [7. Appendix1：golang demo](#Appendix1：golang_demo)</br>
 
 <h2 id='Introduction'>1. Introduction</h2>
-
 In order to improve the monetization efficiency of publishers, TopOn provides the reporting API. This document is the detailed instruction of API. If you need any assistance, please feel free to reach us. Thank you!
 
 <h2 id='Authentication_acquisition'>2. Authentication acquisition</h2>
-
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication_check'>3. Authentication check</h2>
-
 ### 3.1 The process description of API request
 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
@@ -82,8 +79,9 @@ Headers：
     // X-Up-Key + X-Up-Timestamp (sort by first letter)
     // except X-Up-Signature 
     Headers = Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2   
-    
-    
+
+
+​    
     Sign = MD5(SignString)
 
 
@@ -107,7 +105,6 @@ Server will create sign and campare the sign with X-Up-Signature
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='Full_report'>4. Full report</h2>
-
 ### 4.1 Request URL
 
 <https://openapi.toponad.com/v1/fullreport>
@@ -118,16 +115,22 @@ POST
 
 ### 4.3 Request params
 
-| params       | type   | required | notes                                                        | sample                                     |
-| ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
-| startdate    | Int    | Y        | start date，format：YYYYmmdd                                 | 20190501                                   |
-| enddate      | Int    | Y        | end date，format：YYYYmmdd                                   | 20190506                                   |
-| app_id       | String | N        | APP ID(single)                                               | xxxxx                                      |
-| placement_id | String | N        | Placement ID(single)                                         | xxxxx                                      |
-| group_by     | Array  | N        | maximum three：date（default），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
-| metric       | Array  | N        | return metrics. default（default values），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
-| start        | Int    | N        | offset                                                       | 0                                          |
-| limit        | Int    | N        | limit row number. default 1000.  [1,1000]                    | 1000                                       |
+| params       | type                | required | notes                                                        | sample                                     |
+| ------------ | ------------------- | -------- | ------------------------------------------------------------ | ------------------------------------------ |
+| startdate    | Int                 | Y        | start date，format：YYYYmmdd                                 | 20190501                                   |
+| enddate      | Int                 | Y        | end date，format：YYYYmmdd                                   | 20190506                                   |
+| app_id_list          | Array[String] | N        | 开发者后台的应用ID，多选                                     | ['xxxxx']                                  |
+| placement_id_list    | Array[String] | N        | 开发者后台的广告位ID，多选                                   | ['xxxxx']                                  |
+| time_zone            | String        | N        | 时区                                                         | UTC-8,UTC+8,UTC+0                          |
+| network_firm_id_list | Array[int32]  | N        | 厂商Id列表                                                   |                                            |
+| adsource_id_list     | Array[int32]  | N        | adsource_id列表                                              | [121]                                      |
+| area_list            | Array[String] | N        | 国家列表                                                     | ['xxxxx']                                  |
+| scenario_id_list     | Array[String] | N        | 场景列表                                                     | ['xxxxx']                                  |
+| placement_id | String              | N        | Placement ID(single)                                         | xxxxx                                      |
+| group_by     | Array               | N        | maximum three：date（default），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
+| metric       | Array               | N        | return metrics. default（default values），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
+| start        | Int                 | N        | offset                                                       | 0                                          |
+| limit        | Int                 | N        | limit row number. default 1000.  [1,1000]                    | 1000                                       |
 
  
 
@@ -153,6 +156,18 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……        Return if in param 'group_by' |
 | adsource.network | String | N        | adsource network name                                        |
 | adsource.token   | String | N        | adsource token.adsource's appid,slotid and so on.Return if in param 'group_by' |
+| time_zone        | String | N        | 枚举值：UTC+8、UTC+0、UTC-8                                  |
+| currency         | String | N        | 开发者账号币种，该字段与revenue字段组成的收益需与开发者后台报表的收益一致 |
+| scenario.id      | String | N        | 场景ID，group_by scenario时返回                              |
+| scenario.name    | String | N        | 场景名称，group_by scenario时返回                            |
+| new_users        | String | N        | 新增用户                                                     |
+| new_user_rate    | String | N        | 新增用户占比                                                 |
+| day2_retention   | String | N        | 次日留存                                                     |
+| deu              | String | N        | DEU                                                          |
+| engaged_rate     | String | N        | 渗透率                                                       |
+| imp_dau          | String | N        | 展示 / DAU                                                   |
+| imp_deu          | String | N        | 展示 / DEU                                                   |
+| impression_rate  | String | N        | 展示率                                                       |
 | dau              | String | N        | Return if in param 'group_by'                                |
 | arpu             | String | N        | need dau                                                     |
 | request          | String | N        | request numbers                                              |
@@ -200,7 +215,6 @@ return data sample：
 ```
 
 <h2 id='LTV_&_retention_report'>5. LTV & retention report</h2>
-
 ### 5.1 Request URL
 
 <https://openapi.toponad.com/v1/ltvreport>
@@ -214,7 +228,10 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | startdate    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501                                   |
 | enddate      | Int    | Y        | end date, format：YYYYmmdd                     | 20190506                                   |
-| app_id      | String    | N        | APP ID                                   | a5c41a9ed1679c                                   |
+| area_list | Array[String] | N | 国家列表：["xxx"] |  |
+| channel_list | Array[String] | N | channel列表：["xxx"] |  |
+| appid_list | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
+| time_zone | String |  | 枚举值：UTC+8、UTC+0、UTC-8 |  |
 | metric      | array    | N        | default：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] all: all metrics | [“ltv_day_1”， “retention_day_2”]                                   |
 | order_by      | array    | N        | order by. default：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”] |["date_time", “asc”, “app_id”, “desc”]                             |
 | group_by    | array    | N        | defaults：["app_id”, "date_time", "area", "channel"]                             | ["area", "channel"]                                   |
@@ -258,6 +275,9 @@ POST
 | retention\_day\_14 | string |                          |
 | retention\_day\_30 | string |                          |
 | retention\_day\_60 | string |                          |
+| time_zone | string | |
+| arpu | string | |
+| currency | string | |
 
 > notes:
 > 1. Earliest date is the day before yesterday
@@ -290,7 +310,6 @@ POST
 ```
 
 <h2 id='Notices'>6. Notices</h2>
-
 Please control the frequency of requests:
 
 •  1000 per hour
@@ -298,7 +317,6 @@ Please control the frequency of requests:
 •  10000 per day
 
 <h2 id='Appendix1：golang_demo'>7. Appendix1：golang demo</h2>
-
 • Java,PHP,Python demos are in the Git path /demo
 
 ```

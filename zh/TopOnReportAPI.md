@@ -18,15 +18,12 @@
 [7. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
 
 <h2 id='关于文档'>1. 关于文档</h2>
-
 为提高合作伙伴的变现效率，TopOn平台专门提供了报表查询的API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
 <h2 id='申请开通权限'>2. 申请开通权限</h2>
-
 在使用TopOn平台的批量创建 API 前，合作伙伴需向TopOn申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
-
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -70,7 +67,7 @@
                         \+ Content-Type + "\n"  
                         \+ Headers + "\n"
                         \+ Resource 
-    
+
 如果无body，如下：
     
     SignString = HTTPMethod + "\n" 
@@ -111,12 +108,11 @@ Headers：
 | 605    | StatusRpcParamError      | 中间服务异常       |
 | 606    | StatusRequestRepeatError | 重复请求           |
 
- 
-<h2 id='综合报表'>4. 综合报表</h2>
 
+<h2 id='综合报表'>4. 综合报表</h2>
 ### 4.1 请求URL
 
-<https://openapi.toponad.com/v1/fullreport>
+<https://openapi.toponad.com/v2/fullreport>
 
 ### 4.2 请求方式
 
@@ -124,16 +120,21 @@ POST
 
 ### 4.3 请求参数
 
-| 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                       |
-| ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
-| startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
-| enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id       | String | N        | 开发者后台的应用ID，单选                                     | xxxxx                                      |
-| placement_id | String | N        | 开发者后台的广告位ID，单选                                   | xxxxx                                      |
-| group_by     | Array  | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
-| metric       | Array  | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
-| start        | Int    | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
-| limit        | Int    | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]             | 1000                                       |
+| 字段                 | 类型          | 是否必传 | 备注                                                         | 样例                                       |
+| -------------------- | ------------- | -------- | ------------------------------------------------------------ | ------------------------------------------ |
+| startdate            | Int           | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
+| enddate              | Int           | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
+| app_id_list          | Array[String] | N        | 开发者后台的应用ID，多选                                     | ['xxxxx']                                  |
+| placement_id_list    | Array[String] | N        | 开发者后台的广告位ID，多选                                   | ['xxxxx']                                  |
+| time_zone            | String        | N        | 时区                                                         | UTC-8,UTC+8,UTC+0                          |
+| network_firm_id_list | Array[int32]  | N        | 厂商Id列表                                                   |                                            |
+| adsource_id_list     | Array[int32]  | N        | adsource_id列表                                              | [121]                                      |
+| area_list            | Array[String] | N        | 国家列表                                                     | ['xxxxx']                                  |
+| scenario_id_list     | Array[String] | N        | 场景列表                                                     | ['xxxxx']                                  |
+| group_by             | Array         | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
+| metric               | Array         | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
+| start                | Int           | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
+| limit                | Int           | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]             | 1000                                       |
 
  
 
@@ -149,16 +150,28 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | ---------------- | ------ | -------- | ------------------------------------------------------------ |
 | count            | Int    | Y        | 总条数                                                       |
 | date             | String | Y        | 日期，格式：YYYYmmdd。group_by有选才有返回                   |
-| app.id           | String | Y        | 开发者后台的应用ID                                         |
-| app.name         | String | N        | 应用名称                                                      |
-| app.platform     | String | N        | 应用的系统平台                                                |
-| placement.id     | String | N        | 开发者后台的广告位ID                                   |
-| placement.name   | String | N        | 广告位名称                                                |
+| app.id           | String | Y        | 开发者后台的应用ID                                           |
+| app.name         | String | N        | 应用名称                                                     |
+| app.platform     | String | N        | 应用的系统平台                                               |
+| placement.id     | String | N        | 开发者后台的广告位ID                                         |
+| placement.name   | String | N        | 广告位名称                                                   |
 | adformat         | String | N        | rewarded_video/interstitial/banner/native/splash。group_by有选才有返回 |
 | area             | String | N        | 国家码。group_by有选才有返回                                 |
 | network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……。group_by有选才有返回 |
-| adsource.network | String | N        | 广告源所属的广告平台名称                                        |
+| adsource.network | String | N        | 广告源所属的广告平台名称                                     |
 | adsource.token   | String | N        | 广告源的三方ID信息，请求广告的appid，slotid等。group_by有选才有返回 |
+| time_zone        | String | N        | 枚举值：UTC+8、UTC+0、UTC-8                                  |
+| currency         | String | N        | 开发者账号币种，该字段与revenue字段组成的收益需与开发者后台报表的收益一致 |
+| scenario.id      | String | N        | 场景ID，group_by scenario时返回                              |
+| scenario.name    | String | N        | 场景名称，group_by scenario时返回                            |
+| new_users        | String | N        | 新增用户                                                     |
+| new_user_rate    | String | N        | 新增用户占比                                                 |
+| day2_retention   | String | N        | 次日留存                                                     |
+| deu              | String | N        | DEU                                                          |
+| engaged_rate     | String | N        | 渗透率                                                       |
+| imp_dau          | String | N        | 展示 / DAU                                                   |
+| imp_deu          | String | N        | 展示 / DEU                                                   |
+| impression_rate  | String | N        | 展示率                                                       |
 | dau              | String | N        | 根据group_by条件才有返回                                     |
 | arpu             | String | N        | 有dau才有该项返回                                            |
 | request          | String | N        | 请求数                                                       |
@@ -173,7 +186,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | impression_api   | String | N        | 三方广告平台的展示数                                         |
 | ecpm_api         | String | N        | 三方广告平台的点击数                                         |
 | click_api        | String | N        | 三方广告平台的点击率                                         |
-| ecpm_api         | String | N        | 三方广告平台的eCPM                                          |
+| ecpm_api         | String | N        | 三方广告平台的eCPM                                           |
 
 ### 4.5 样例
 
@@ -190,7 +203,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 ​    "placement_id":""
 }
 ```
- 
+
 
 返回样例：
 ```
@@ -207,7 +220,6 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 ```
 
 <h2 id='用户价值&留存报表'>5. 用户价值&留存报表</h2>
-
 ### 5.1 请求URL
 
 <https://openapi.toponad.com/v1/ltvreport>
@@ -221,7 +233,10 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
 | enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
-| app_id      | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
+| area_list | Array[String] | N | 国家列表：["xxx"] |  |
+| channel_list | Array[String] | N | channel列表：["xxx"] |  |
+| appid_list | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
+| time_zone | String |  | 枚举值：UTC+8、UTC+0、UTC-8 |  |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
 | order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |["date_time", “asc”, “app_id”, “desc”]                             |
 | group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
@@ -265,6 +280,9 @@ POST
 | retention\_day\_14 | string |                          |
 | retention\_day\_30 | string |                          |
 | retention\_day\_60 | string |                          |
+| time_zone | string | |
+| arpu | string | |
+| currency | string | |
 
 > 备注
 > 1. 只能查询今天往前推2天的数据
@@ -297,7 +315,6 @@ POST
 ```
 
 <h2 id='注意事项'>6. 注意事项</h2>
-
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵
 
 守。
@@ -307,7 +324,6 @@ POST
 • 每天请求 10000 次
 
 <h2 id='附录1：go语言示例代码'>7. 附录1：go语言示例代码</h2>
-
 • java、php、python等语言示例代码请参考demo目录
 
 ```

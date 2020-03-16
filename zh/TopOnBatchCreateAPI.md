@@ -151,7 +151,6 @@ POST
 | apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx，创建时必传                   |
 | apps.category           | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
 | apps.sub_category       | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
-| apps.screen_orientation | Int    | Y        | 1：竖屏<br />2：横屏<br />3：所有                             |
 
  
 
@@ -227,10 +226,9 @@ POST
 | platform                | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)    |
 | market_url              | String | N        | -                                   |
 | apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏<br />3：所有 |
-| package_name            | String | N        | -                                   |
-| category                | String | N        | -                                   |
-| sub-category            | String | N        | -                                   |
-
+| apps.package_name       | String | N        | -                                   |
+| apps.category           | String | N        | -                                   |
+| apps.sub-category       | String | N        | -                                   |
  
 
 #### 4.2.5 样例

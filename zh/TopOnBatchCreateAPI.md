@@ -35,8 +35,8 @@
 - [7.1 查询广告位已启用的流量分组列表](#查询广告位已启用的流量分组列表)</br>  
 - [7.2 为广告位启用新流量分组或调整流量分组优先级](#为广告位启用新流量分组或调整流量分组优先级)</br>
 - [7.3 为广告位批量移除流量分组](#为广告位批量移除流量分组)</br>
-- [7.4 查询Waterfall已启用的广告源列表](#查询Waterfall已启用的广告源列表)</br>  
-- [7.5 为Waterfall批量启用广告源](#为Waterfall批量启用广告源)</br>
+- [7.4 查询Waterfall的广告源列表](#查询Waterfall的广告源列表)</br>  
+- [7.5 批量修改广告源在Waterfall的属性](#批量修改广告源在Waterfall的属性)</br>
 
 [8. 注意事项](#注意事项)</br>
 [9. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
@@ -317,6 +317,7 @@ POST
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭，默认自动关闭<br />0：表示No<br />1：表示Yes  |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
 | remark                                 | String    | N        | 备注                                             |
+| status                                 | Int   | N        | 广告位状态                                             |
  
 
 #### 5.1.4 返回参数
@@ -333,7 +334,7 @@ POST
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 | remark                                 | String    | N        | 备注                                             |
- 
+| status                                 | Int   | N        | 广告位状态                                             |
 
 #### 5.1.5 样例
 
@@ -417,9 +418,9 @@ POST
 | placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
 | placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 | remark                                 | String    | N        | 备注                                             |
+| status                                 | Int   | N        | 广告位状态                                             |
 
  
-
 #### 5.2.5 样例
 
 请求样例：
@@ -503,7 +504,7 @@ POST
 | 字段                   | 类型   | 是否必传 | 备注                                                         |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
 | count                  | Int    | Y        | 请求条数                                                     |
-| segments               | Array  | Y        | 请求的大的segment array                                      |
+| segments               | Array  | Y        | -                                      |
 | segments.name          | String | Y        | Segment名称                                                  |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
@@ -895,6 +896,7 @@ POST
 ```
 
 <h3 id='为广告位批量移除流量分组'>7.3 为广告位批量移除流量分组</h3>
+
 #### 7.3.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/del_segment>
@@ -976,6 +978,7 @@ POST
 ```
 
 <h3 id='查询Waterfall的广告源列表'>7.4 查询Waterfall的广告源列表</h3>
+
 #### 7.4.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/units>
@@ -1001,6 +1004,7 @@ GET
 | ad_source_list                      | Array   | Y        | 如果为空，则当前没有启用广告源                               |
 | ad_source_list.ad_source_id         | Int     | N        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | N        | eCPM价格                                                     |
+| ad_source_list.auto_ecpm            | float64 | N        | 自动eCPM价格                                                     |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
 | ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
@@ -1008,7 +1012,7 @@ GET
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
 | free_ad_source_list                 | Array   | N        | 未使用adsource_list（其他参数参照ad_source_list）            |
-| offer_list                          | Array   | N        | offer列表                                                    |
+| offer_list                          | Array   | N        | 正在使用的交叉推广列表                                        |
 | offer_list.offer_id                 | String  | N        | offer_id                                                     |
 | offer_list.offer_name               | String  | N        | offer名称                                                    |
 
@@ -1054,7 +1058,8 @@ GET
 }
 ```
 
-<h3 id='为Waterfall批量启用广告源'>7.5 为Waterfall批量启用广告源</h3>
+<h3 id='批量修改广告源在Waterfall的属性'>7.5 批量修改广告源在Waterfall的属性</h3>
+
 #### 7.5.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
@@ -1071,8 +1076,8 @@ POST
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组               |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
-| offer_switch                        | Int     | N        | offer开关                                                    |
-| unbind_adsource_list                | Array   | N        | 取消绑定的adsource                                           |
+| offer_switch                        | Int     | N        | 交叉推广开关                                                    |
+| unbind_adsource_list                | Array   | N        | 取消绑定的广告源，只传广告源ID                                           |
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |

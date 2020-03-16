@@ -49,7 +49,6 @@
 在使用TopOn平台的批量创建API前，合作伙伴需向TopOn申请publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
-
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -136,7 +135,6 @@ Headers：
 
 <h2 id='应用管理'>4. 应用管理</h2>
 <h3 id='批量创建和修改应用'>4.1 批量创建和修改应用</h3>
-
 #### 4.1.1 请求URL
 
 <https://openapi.toponad.com/v1/deal_app>
@@ -205,7 +203,6 @@ POST
 ```
 
 <h3 id='获取应用列表'>4.2 获取应用列表</h3>
-
 #### 4.2.1 请求URL
 
 <https://openapi.toponad.com/v1/apps>
@@ -265,7 +262,6 @@ POST
 ```
 
 <h3 id='批量删除应用'>4.3 批量删除应用</h3>
-
 #### 4.3.1 请求URL
 
 <https://openapi.toponad.com/v1/del_apps>
@@ -974,7 +970,8 @@ POST
 }
 ```
 
-<h3 id='查询Waterfall已启用的广告源列表'>7.4 查询Waterfall已启用的广告源列表</h3>
+<h3 id='查询Waterfall的广告源列表'>7.4 查询Waterfall的广告源列表</h3>
+
 #### 7.4.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/units>
@@ -989,7 +986,6 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | 广告位ID        |
 | segment_id   | String | Y        | Segment ID      |
-| is_abtest    | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组 |
 
 #### 7.4.4 返回参数
 
@@ -997,8 +993,8 @@ GET
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | 广告位ID                                                     |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                |
-| ad_source_list                      | Array   | Y        | 如果为空，则当前没有启用广告源                                |
+| is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组               |
+| ad_source_list                      | Array   | Y        | 如果为空，则当前没有启用广告源                               |
 | ad_source_list.ad_source_id         | Int     | N        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | N        | eCPM价格                                                     |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
@@ -1007,6 +1003,10 @@ GET
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
+| free_ad_source_list                 | Array   | N        | 未使用adsource_list（其他参数参照ad_source_list）            |
+| offer_list                          | Array   | N        | offer列表                                                    |
+| offer_list.offer_id                 | String  | N        | offer_id                                                     |
+| offer_list.offer_name               | String  | N        | offer名称                                                    |
 
 #### 7.4.5 样例
 
@@ -1086,7 +1086,7 @@ POST
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组               |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
-| offer_switch                        | Int     | N        | offer开关                                                    |
+| offer_switch                        | Int     | N        | offer开关<br />1：关<br />2：开                              |
 | unbind_adsource_list                | Array   | N        | 取消绑定的adsource                                           |
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |

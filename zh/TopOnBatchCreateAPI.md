@@ -971,7 +971,6 @@ POST
 ```
 
 <h3 id='查询Waterfall的广告源列表'>7.4 查询Waterfall的广告源列表</h3>
-
 #### 7.4.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/units>
@@ -1356,22 +1355,22 @@ POST
 | adsouce_token                          | Object | N        | adsouce维度配置参数 |
 | app_id                                 | String | N        | 厂商app维度数据     |
 | app_name                               | String | N        | app_name            |
-| platform                               | Int    | N        |                     |
+| platform                               | Int    | N        | 平台 |
 | placement_id                           | String | N        | app_id              |
 | placement_name                         | Object | N        | 厂商对应app维度参数 |
-| placement_format                       |        |          |                     |
-| waterfall_list                         |        |          |                     |
-| waterfall_list.ecpm                    |        |          |                     |
-| waterfall_list.auto_ecpm               |        |          |                     |
-| waterfall_list.header_bidding_witch    |        |          |                     |
-| waterfall_list.auto_switch             |        |          |                     |
-| waterfall_list.day_cap                 |        |          |                     |
-| waterfall_list.hour_cap                |        |          |                     |
-| waterfall_list.pacing                  |        |          |                     |
-| waterfall_list.name                    |        |          |                     |
-| waterfall_list.segment_id              |        |          |                     |
-| waterfall_list.priority                |        |          |                     |
-| waterfall_list.parallel_request_number |        |          |                     |
+| placement_format                       | String | N        |   广告位广告形式                  |
+| waterfall_list                         |  Array |   N      |    waterfall关联的数据                 |
+| waterfall_list.ecpm                    |   String     |      N    |  waterfall关联的ecpm                   |
+| waterfall_list.auto_ecpm               |   String     |     N     |   waterfall自动优化的ecpm                    |
+| waterfall_list.header_bidding_witch    |   Int     |     N     |     是否支持headerbidding                |
+| waterfall_list.auto_switch             |    Int    |      N    |  是否开启了自动优化                   |
+| waterfall_list.day_cap                 |   Int     |      N    |  daycap                   |
+| waterfall_list.hour_cap                |  Int      |     N     |   hour cap                  |
+| waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
+| waterfall_list.name                    |      String  |   N       |   adsource名字                  |
+| waterfall_list.segment_id              |  String      |   N       |   关联的segment_id                  |
+| waterfall_list.priority                |   Int     |     N     |  关联的segment优先排序                   |
+| waterfall_list.parallel_request_number |   Int     |     N     |    关联的segment的并发请求数                 |
 
 ****
 
@@ -1487,7 +1486,7 @@ POST
 | count               | Int32  | Y        | 总数                             |
 | units               | Array  | Y        | unit总数                         |
 | units.network_id    | Int    | N        | 厂商账号id                       |
-| units.adsource_id   | Int    | N        | 是否开通report_api               |
+| units.adsource_id   | Int    | N        | adsource_id|
 | units.adsource_name | String | Y        | 厂商维度配置参数                 |
 | units.adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
 | units.placement_id  | String | Y        | placement_id                     |
@@ -1498,7 +1497,7 @@ POST
 | 字段          | 类型   | 是否必传 | 备注                             |
 | ------------- | ------ | -------- | -------------------------------- |
 | network_id    | Int    | N        | 厂商账号id                       |
-| adsource_id   | Int    | N        | 是否开通report_api               |
+| adsource_id   | Int    | N        | adsource_id               |
 | adsource_name | String | Y        | 厂商维度配置参数                 |
 | adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
 | placement_id  | String | Y        | placement_id                     |

@@ -1162,7 +1162,6 @@ POST
 
 <h2 id='厂商参数配置'>8. 厂商参数配置</h2>
 <h3 id='单个创建厂商数据配置'>8.1 单个创建厂商数据配置</h3>
-
 #### 8.1.1 请求URL
 
 <https://openapi.toponad.com/v1/set_networks>
@@ -1188,16 +1187,16 @@ POST
 
 #### 8.1.4 返回参数
 
-| 字段                              | 类型   | 是否必传 | 备注                |
-| --------------------------------- | ------ | -------- | ------------------- |
-| network_name                      | String | Y        | 厂商账号名称        |
-| nw_firm_id                        | Int    | Y        | 厂商Id              |
-| network_id                        | Int    | N        | 厂商账号id          |
-| is_open_report                    | Int    | N        | 是否开通report_api  |
-| auth_content                      | Object | N        | 厂商维度配置参数    |
-| network_app_info                  | Array  | N        | 厂商app维度数据     |
-| network_app_info.app_id           | String | N        | app_id              |
-| network_app_info.app_auth_content | Object | N        | 厂商对应app维度参数 |
+| 字段                              | 类型   | 是否必传 | 备注                            |
+| --------------------------------- | ------ | -------- | ------------------------------- |
+| network_name                      | String | Y        | 厂商账号名称                    |
+| nw_firm_id                        | Int    | Y        | 厂商Id                          |
+| network_id                        | Int    | N        | 厂商账号id                      |
+| is_open_report                    | Int    | N        | 是否开通report_api              |
+| auth_content                      | Object | N        | 厂商维度配置参数（详见附录）    |
+| network_app_info                  | Array  | N        | 厂商app维度数据                 |
+| network_app_info.app_id           | String | N        | app_id                          |
+| network_app_info.app_auth_content | Object | N        | 厂商对应app维度参数（详见附录） |
 
 ****
 
@@ -1251,7 +1250,6 @@ POST
 ```
 
 <h3 id='获取广告位列表'>5.2 获取厂商和厂商app维度信息列表</h3>
-
 #### 9.2.1 请求URL
 
 <https://openapi.toponad.com/v1/networks>
@@ -1321,7 +1319,6 @@ POST
 
 <h2 id='AdSource 配置管理'>10. AdSource 配置管理</h2>
 <h3 id='获取adSource列表'>10.1 获取adSource列表</h3>
-
 #### 10.1.1 请求URL
 
 <https://openapi.toponad.com/v1/units
@@ -1439,7 +1436,6 @@ POST
 
 
 <h3 id='批量删除ad_source'>10.3 批量删除ad_source</h3>
-
 #### 10.2.1 请求URL
 
 <https://openapi.toponad.com/v1/del_units>
@@ -1472,7 +1468,6 @@ POST
 ```
 
 <h3 id='新增ad_source'>10.2 批量新增和修改ad_source</h3>
-
 #### 10.2.1 请求URL
 
 <https://openapi.toponad.com/v1/set_units>
@@ -1483,27 +1478,27 @@ POST
 
 #### 10.2.3 请求参数
 
-| 字段                | 类型   | 是否必传 | 备注               |
-| ------------------- | ------ | -------- | ------------------ |
-| count               | Int32  | Y        | 总数               |
-| units               | Array  | Y        | unit总数           |
-| units.network_id    | Int    | N        | 厂商账号id         |
-| units.adsource_id   | Int    | N        | 是否开通report_api |
-| units.adsource_name | String | Y        | 厂商维度配置参数   |
-| units.adsouce_token | Object | Y        | 厂商app维度数据map |
-| units.placement_id  | String | Y        | placement_id       |
-| units.default_ecpm  | String | Y        | ecpm               |
+| 字段                | 类型   | 是否必传 | 备注                             |
+| ------------------- | ------ | -------- | -------------------------------- |
+| count               | Int32  | Y        | 总数                             |
+| units               | Array  | Y        | unit总数                         |
+| units.network_id    | Int    | N        | 厂商账号id                       |
+| units.adsource_id   | Int    | N        | 是否开通report_api               |
+| units.adsource_name | String | Y        | 厂商维度配置参数                 |
+| units.adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
+| units.placement_id  | String | Y        | placement_id                     |
+| units.default_ecpm  | String | Y        | ecpm                             |
 
 #### 10.2.4 返回参数
 
-| 字段          | 类型   | 是否必传 | 备注               |
-| ------------- | ------ | -------- | ------------------ |
-| network_id    | Int    | N        | 厂商账号id         |
-| adsource_id   | Int    | N        | 是否开通report_api |
-| adsource_name | String | Y        | 厂商维度配置参数   |
-| adsouce_token | Object | Y        | 厂商app维度数据map |
-| placement_id  | String | Y        | placement_id       |
-| default_ecpm  | String | Y        | ecpm               |
+| 字段          | 类型   | 是否必传 | 备注                             |
+| ------------- | ------ | -------- | -------------------------------- |
+| network_id    | Int    | N        | 厂商账号id                       |
+| adsource_id   | Int    | N        | 是否开通report_api               |
+| adsource_name | String | Y        | 厂商维度配置参数                 |
+| adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
+| placement_id  | String | Y        | placement_id                     |
+| default_ecpm  | String | Y        | ecpm                             |
 
 #### 10.2.5 样例
 
@@ -1543,7 +1538,6 @@ POST
 
 
 <h2 id='注意事项'>8. 注意事项</h2>
-
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵守。
 
 • 每小时最多请求 1000 次
@@ -1865,3 +1859,5 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 6    | 自定义规则（custom） | bb=1&c!=3&p=3                        |
 | 7    | 大于（值）           | 整形、浮点或字符串 124               |
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
+
+<h2 id='附录3：厂商network维度，app维度，广告位维度配置信息'>12. 附录3：厂商network维度，app维度，广告位维度配置信息</h2>

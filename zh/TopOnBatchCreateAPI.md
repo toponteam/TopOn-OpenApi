@@ -226,10 +226,10 @@ POST
 | app_name                | String | Y        | 应用名称                            |
 | platform                | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)    |
 | market_url              | String | N        | -                                   |
-| apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏<br />3：所有 |
-| apps.package_name       | String | N        | -                                   |
-| apps.category           | String | N        | -                                   |
-| apps.sub-category       | String | N        | -                                   |
+| screen_orientation      | Int    | Y        | 1：竖屏 <br />2：横屏<br />3：所有 |
+| package_name            | String | N        | -                                   |
+| category                | String | N        | -                                   |
+| sub-category            | String | N        | -                                   |
  
 
 #### 4.2.5 样例
@@ -271,7 +271,7 @@ POST
 
 | 字段    | 类型   | 是否必传 | 备注                           |
 | ------- | ------ | -------- | ------------------------------ |
-| app_ids | String | Y        | 默认传Object，多个应用ID是数组 |
+| app_ids | Array[String] | Y        | 多个应用ID是数组 |
 
 
 #### 4.3.4 返回参数
@@ -396,8 +396,8 @@ POST
 
 | 字段          | 类型   | 是否必传 | 备注                                                         |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
-| app_ids       | Object | N        | 默认传Object，多个应用ID是数组                               |
-| placement_ids | Object | N        | 默认传Object，多个广告位ID是数组 默认可以为空                 |
+| app_ids       | Array[String] | N        | 多个应用ID是数组                               |
+| placement_ids | Array[String] | N        | 多个广告位ID是数组 默认可以为空                 |
 | start         | Int    | N        | Default 0。当应用和广告位都指定时不需要填写                   |
 | limit         | Int    | N        | Default 100 最大一次性获取100。当应用和广告位都指定时不需要填写 |
 
@@ -462,14 +462,14 @@ POST
 
  
 
-#### 5.2.4 返回参数
+#### 5.3.4 返回参数
 
 | 字段          | 类型   | 是否必传 | 备注                                                         |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | msg | String | N        | 默认返回String         |
 
 
-#### 5.2.5 样例
+#### 5.3.5 样例
 
 请求样例：
 ```

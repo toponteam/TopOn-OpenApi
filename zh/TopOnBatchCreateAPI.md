@@ -1443,7 +1443,7 @@ POST
 | placement_id                           | String | N        | TopOn的广告位ID              |
 | placement_name                         | Object | N        | TopOn的广告位名称 |
 | placement_format                       | String | N        |   广告位广告形式                  |
-| waterfall_list                         |  Array |   N      |    当前正在使用该广告源的Waterfall信息                 |
+| waterfall_list                         |  Array |   N      |    当前正在使用该广告源的waterfall信息                 |
 | waterfall_list.ecpm                    |   String     |      N    |  waterfall关联的ecpm                   |
 | waterfall_list.auto_ecpm               |   String     |     N     |   waterfall自动优化的ecpm                    |
 | waterfall_list.header_bidding_witch    |   Int     |     N     |     是否支持headerbidding                |
@@ -1881,3 +1881,6 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
+| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |
+| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- |
+| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial   | unit_id,app_id |

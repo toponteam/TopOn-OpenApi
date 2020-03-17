@@ -1884,7 +1884,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
 
 | 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  备注  |
-| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- | ------ |
+| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- | ---------------------------- |
 | 1          | Facebook    | -                     | app_id,app_token          | native   | unit_id |   app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/>           |
 | 1          | Facebook    | -                     | app_id,app_token          | rewarded_video | unit_id |    app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/>      |
 | 1          | Facebook    | -                     | app_id,app_token          | interstitial | unit_id |  app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/>          |

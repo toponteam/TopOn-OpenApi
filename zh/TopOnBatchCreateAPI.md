@@ -41,11 +41,16 @@
 - [8.1 创建和修改广告平台Publisher、App维度参数](#创建和修改广告平台Publisher、App维度参数)</br>  
 - [8.2 获取广告平台Publisher、App维度参数](#获取广告平台Publisher、App维度参数)</br>
 
+[9. 广告源管理](#广告源管理)</br>
+- [9.1 批量创建和修改广告源](#批量创建和修改广告源)</br>  
+- [9.2 获取广告源列表](#获取广告源列表)</br>
+- [9.3 批量删除广告源](#批量删除广告源)</br>
+
 [10. 注意事项](#注意事项)</br>
 [11. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
 [12. 附录2：应用一级和二级分类列表](#附录2：应用一级和二级分类列表)</br>
 [13. 附录3：流量分组规则数据格式](#附录3：流量分组规则数据格式)</br>
-[14. 附录4：广告平台Publisher、App维度参数](#附录4：广告平台Publisher、App维度参数)
+[14. 附录4：广告平台详细参数](#附录4：广告平台详细参数)
 
 <h2 id='关于文档'>1. 关于文档</h2>
 为提高合作伙伴的变现效率，TopOn平台专门提供了批量创建及查询API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
@@ -1195,7 +1200,7 @@ POST
 | auth_content                      | Object | N        | 广告平台Publisher维度参数    |
 | network_app_info                  | Array  | N        | -     |
 | network_app_info.app_id           | String | N        | TopOn的应用ID              |
-| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数，详见[附录4规范](#附录4：广告平台Publisher、App维度参数)  |
+| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数，详见[附录4规范](#附录4：广告平台详细参数)  |
 
  
 #### 8.1.4 返回参数
@@ -1330,18 +1335,86 @@ POST
 ]
 ```
 
-<h2 id='AdSource 配置管理'>10. AdSource 配置管理</h2>
-<h3 id='获取adSource列表'>10.1 获取adSource列表</h3>
+<h2 id='广告源管理'>9. 广告源管理</h2>
+<h3 id='批量创建和修改广告源'>9.1 批量创建和修改广告源</h3>
 
-#### 10.1.1 请求URL
+#### 9.1.1 请求URL
 
-<https://openapi.toponad.com/v1/units
+<https://openapi.toponad.com/v1/set_units>
 
-#### 10.1.2 请求方式
+#### 9.1.2 请求方式 
 
 POST
 
-#### 10.1.3 请求参数
+#### 9.1.3 请求参数
+
+| 字段                | 类型   | 是否必传 | 备注                             |
+| ------------------- | ------ | -------- | -------------------------------- |
+| count               | Int32  | Y        | 总数                             |
+| units               | Array  | Y        | 广告源总数                         |
+| units.network_id    | Int    | N        | 广告平台账号ID                       |
+| units.adsource_id   | Int    | N        | 广告源ID，修改时必传|
+| units.adsource_name | String | Y        | 广告源名称                 |
+| units.adsouce_token | Object | Y        | 广告平台Unit维度参数，详见[附录4规范](#附录4：广告平台详细参数) |
+| units.placement_id  | String | Y        | TopOn的广告位ID                     |
+| units.default_ecpm  | String | Y        | 广告源默认价格                             |
+
+#### 9.1.4 返回参数
+
+| 字段          | 类型   | 是否必传 | 备注                             |
+| ------------- | ------ | -------- | -------------------------------- |
+| network_id    | Int    | N        | 广告平台账号ID                       |
+| adsource_id   | Int    | N        | 广告源ID               |
+| adsource_name | String | Y        | 广告源名称                 |
+| adsouce_token | Object | Y        | 广告平台Unit维度参数 |
+| placement_id  | String | Y        | TopOn的广告位ID                    |
+| default_ecpm  | String | Y        | 广告源默认价格                       |
+
+#### 9.1.5 样例
+
+
+返回样例：
+
+```
+[
+    {
+        "network_id": 307,
+        "adsource_id": 19743,
+        "adsource_name": "23423423423",
+        "adsouce_token": {
+            "size": "sdsd",
+            "unit_id": "xcxc"
+        },
+        "placement_id": "12312312",
+        "default_ecpm": "",
+        "errors": "adsource_id error"
+    },
+    {
+        "network_id": 307,
+        "adsource_name": "asfdasdasd",
+        "adsouce_token": {
+            "size": "asfasd",
+            "unit_id": "asdasdafsdddd"
+        },
+        "placement_id": "123123123",
+        "default_ecpm": "",
+        "errors": "ad_source_name repeated"
+    }
+]
+```
+
+
+<h3 id='获取广告源列表'>9.2 获取广告源列表</h3>
+
+#### 9.2.1 请求URL
+
+<https://openapi.toponad.com/v1/units>
+
+#### 9.2.2 请求方式
+
+POST
+
+#### 9.2.3 请求参数
 
 | 字段             | 类型          | 是否必传 | 备注                                             |
 | ---------------- | ------------- | -------- | ------------------------------------------------ |
@@ -1353,24 +1426,24 @@ POST
 | limit            | int32         | N        | 默认值：100，最大一次性获取100                   |
 | metrics          | Array[String] | N        | 从ad_source_list中指定返回的字段，不传则全部返回 |
 
- 
 
-#### 10.1.4 返回参数
+#### 9.2.4 返回参数
 
 | 字段                                   | 类型   | 是否必传 | 备注                |
 | -------------------------------------- | ------ | -------- | ------------------- |
-| network_name                           | String | N        | 厂商账号名称        |
-| nw_firm_id                             | Int    | N        | 厂商Id              |
-| adsource_id                            | Int    | N        | adsource_id         |
-| adsource_name                          | Int    | N        | adsource_name       |
-| adsouce_token                          | Object | N        | adsouce维度配置参数 |
-| app_id                                 | String | N        | 厂商app维度数据     |
-| app_name                               | String | N        | app_name            |
+| network_id                             | String | N        | 广告平台账号ID        |
+| network_name                           | String | N        | 广告平台账号名称        |
+| nw_firm_id                             | Int    | N        | 广告平台ID              |
+| adsource_id                            | Int    | N        | 广告源ID         |
+| adsource_name                          | Int    | N        | 广告源名称       |
+| adsouce_token                          | Object | N        | 广告源配置参数 |
+| app_id                                 | String | N        | TopOn的应用ID     |
+| app_name                               | String | N        | TopOn的应用名称   |
 | platform                               | Int    | N        | 平台 |
-| placement_id                           | String | N        | app_id              |
-| placement_name                         | Object | N        | 厂商对应app维度参数 |
+| placement_id                           | String | N        | TopOn的广告位ID              |
+| placement_name                         | Object | N        | TopOn的广告位名称 |
 | placement_format                       | String | N        |   广告位广告形式                  |
-| waterfall_list                         |  Array |   N      |    waterfall关联的数据                 |
+| waterfall_list                         |  Array |   N      |    当前正在使用该广告源的Waterfall信息                 |
 | waterfall_list.ecpm                    |   String     |      N    |  waterfall关联的ecpm                   |
 | waterfall_list.auto_ecpm               |   String     |     N     |   waterfall自动优化的ecpm                    |
 | waterfall_list.header_bidding_witch    |   Int     |     N     |     是否支持headerbidding                |
@@ -1378,14 +1451,13 @@ POST
 | waterfall_list.day_cap                 |   Int     |      N    |  daycap                   |
 | waterfall_list.hour_cap                |  Int      |     N     |   hour cap                  |
 | waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
-| waterfall_list.name                    |      String  |   N       |   adsource名字                  |
+| waterfall_list.segment_name            |  String  |   N       |   segment名称                  |
 | waterfall_list.segment_id              |  String      |   N       |   关联的segment_id                  |
-| waterfall_list.priority                |   Int     |     N     |  关联的segment优先排序                   |
+| waterfall_list.priority                |   Int     |     N     |  关联的segment优先级排序                   |
 | waterfall_list.parallel_request_number |   Int     |     N     |    关联的segment的并发请求数                 |
 
-****
 
-#### 10.1.5 样例
+#### 9.2.5 样例
 
 请求样例：
 
@@ -1449,28 +1521,29 @@ POST
 
 
 
-<h3 id='批量删除ad_source'>10.3 批量删除ad_source</h3>
-#### 10.2.1 请求URL
+<h3 id='批量删除广告源'>9.3 批量删除广告源</h3>
+
+#### 9.3.1 请求URL
 
 <https://openapi.toponad.com/v1/del_units>
 
-#### 10.2.2 请求方式 
+#### 9.3.2 请求方式 
 
 POST
 
-#### 10.2.3 请求参数
+#### 9.3.3 请求参数
 
 | 字段         | 类型         | 是否必传 | 备注            |
 | ------------ | ------------ | -------- | --------------- |
 | adsource_ids | Array[Int32] | Y        | adsource_id列表 |
 
-#### 10.2.4 返回参数
+#### 9.3.4 返回参数
 
 | 字段 | 类型   | 是否必传 | 备注     |
 | ---- | ------ | -------- | -------- |
 | msg  | String | N        | 处理信息 |
 
-#### 10.2.5 样例
+#### 9.3.5 样例
 
 
 返回样例：
@@ -1480,75 +1553,6 @@ POST
     "msg": "suc"
 }
 ```
-
-<h3 id='新增ad_source'>10.2 批量新增和修改ad_source</h3>
-#### 10.2.1 请求URL
-
-<https://openapi.toponad.com/v1/set_units>
-
-#### 10.2.2 请求方式 
-
-POST
-
-#### 10.2.3 请求参数
-
-| 字段                | 类型   | 是否必传 | 备注                             |
-| ------------------- | ------ | -------- | -------------------------------- |
-| count               | Int32  | Y        | 总数                             |
-| units               | Array  | Y        | unit总数                         |
-| units.network_id    | Int    | N        | 厂商账号id                       |
-| units.adsource_id   | Int    | N        | adsource_id|
-| units.adsource_name | String | Y        | 厂商维度配置参数                 |
-| units.adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
-| units.placement_id  | String | Y        | placement_id                     |
-| units.default_ecpm  | String | Y        | ecpm                             |
-
-#### 10.2.4 返回参数
-
-| 字段          | 类型   | 是否必传 | 备注                             |
-| ------------- | ------ | -------- | -------------------------------- |
-| network_id    | Int    | N        | 厂商账号id                       |
-| adsource_id   | Int    | N        | adsource_id               |
-| adsource_name | String | Y        | 厂商维度配置参数                 |
-| adsouce_token | Object | Y        | 厂商adsource维度数据（详见附录） |
-| placement_id  | String | Y        | placement_id                     |
-| default_ecpm  | String | Y        | ecpm                             |
-
-#### 10.2.5 样例
-
-
-返回样例：
-
-```
-[
-    {
-        "network_id": 307,
-        "adsource_id": 19743,
-        "adsource_name": "23423423423",
-        "adsouce_token": {
-            "size": "sdsd",
-            "unit_id": "xcxc"
-        },
-        "placement_id": "12312312",
-        "default_ecpm": "",
-        "errors": "adsource_id error"
-    },
-    {
-        "network_id": 307,
-        "adsource_name": "asfdasdasd",
-        "adsouce_token": {
-            "size": "asfasd",
-            "unit_id": "asdasdafsdddd"
-        },
-        "placement_id": "123123123",
-        "default_ecpm": "",
-        "errors": "ad_source_name repeated"
-    }
-]
-```
-
-
-
 
 
 <h2 id='注意事项'>10. 注意事项</h2>
@@ -1876,4 +1880,4 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 7    | 大于（值）           | 整形、浮点或字符串 124               |
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
-<h2 id='附录4：广告平台Publisher、App维度参数'>14. 附录4：广告平台Publisher、App维度参数</h2>
+<h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>

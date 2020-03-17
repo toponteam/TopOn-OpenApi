@@ -1890,16 +1890,6 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 1          | Facebook    | -                     | app_id,app_token          | interstitial | unit_id |  app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/>          |
 | 1          | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size |    app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/> unit_id：AD Source Size <br/>       |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |      app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/>          |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   account_id：admobPublisherID
-oauth_key：admobAccessToken
-app_id：admobAppID
-unit_id：admobUnitID    |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |      account_id：admobPublisherID
-oauth_key：admobAccessToken
-app_id：admobAppID
-unit_id：admobUnitID    |           
-| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    account_id：admobPublisherID
-oauth_key：admobAccessToken
-app_id：admobAppID
-unit_id：admobUnitID
-size：AD Source Size       |          
+| 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID    |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |      account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/>unit_id：admobUnitID    |           
+| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size       |          

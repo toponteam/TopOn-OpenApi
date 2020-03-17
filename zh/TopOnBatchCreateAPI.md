@@ -1892,34 +1892,32 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 2          | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |     account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size   |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   -    |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |     -    |           
-| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          |3          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    username：inmobiEmailID </br> app_id：Account ID </br> password：inmobiPassword </br> apikey：API Key </br> unit_id：Placement ID </br> size：AD Source Size </br>       |  
-| 4          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name </br> size：AD Source Size </br>       |  
-| 5          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   sdkkey：SDK Key </br> apikey：Report Key </br> zone_id：Zone ID </br> size：AD Source Size </br>      |  
-|6          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    appkey：App Key </br> skey：Skey </br> secret：mtgSecret </br> appid：mtgAppID </br> unitid：mtgUnitID </br> is_video：Unit Type </br> size：AD Source Size </br>       |  
-|7          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID </br> size：AD Source Size </br>       |  
-| 8          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    qq：gdtQQ </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：gdtAppID </br> unit_id：gdtUnitID </br> unit_version：Unit Version </br> unit_type：Unit Type </br> size：AD Source Size </br> video_muted：videoMuted </br> video_autoplay：videoAutoplay </br> video_duration_switch：videoDuration </br> video_duration：availableTime </br> is_fullscreen：gdtIsFullScreen </br>       |  
-| 9          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_id：chartboostUserID </br> user_signature：chartboostUserSignature </br> app_id：chartboostUserAppID </br> app_signature：chartboostAppSignature </br> location：chartboostLocation </br>       |  
-| 10          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：tapjoyAPIKey </br> sdk_key：tapjoySDKKey </br> placement_name：tapjoyPlacementName      |  
-| 11          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID </br>       |  
-| 12          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID </br>       |  
-|13          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_id：chartboostUserID </br> user_signature：chartboostUserSignature </br> app_id：chartboostUserAppID </br> app_signature：chartboostAppSignature </br> location：chartboostLocation </br>       |  
-| 14         | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 15          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 16          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 17          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 18          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 19          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 20         | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 21          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 22          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 23          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 24          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 25          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 26          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 27          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 28          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 29          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 30          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 31          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 32          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 36          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          |3          | Inmobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    username：inmobiEmailID </br> app_id：Account ID </br> password：inmobiPassword </br> apikey：API Key </br> unit_id：Placement ID </br> size：AD Source Size </br>       |  
+| 4          | Flurry       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name </br> size：AD Source Size </br>       |  
+| 5          | Applovin       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   sdkkey：SDK Key </br> apikey：Report Key </br> zone_id：Zone ID </br> size：AD Source Size </br>      |  
+|6          | Mintegral       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    appkey：App Key </br> skey：Skey </br> secret：mtgSecret </br> appid：mtgAppID </br> unitid：mtgUnitID </br> is_video：Unit Type </br> size：AD Source Size </br>       |  
+|7          | Mopub       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID </br> size：AD Source Size </br>       |  
+| 8          | 广点通       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    qq：gdtQQ </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：gdtAppID </br> unit_id：gdtUnitID </br> unit_version：Unit Version </br> unit_type：Unit Type </br> size：AD Source Size </br> video_muted：videoMuted </br> video_autoplay：videoAutoplay </br> video_duration_switch：videoDuration </br> video_duration：availableTime </br> is_fullscreen：gdtIsFullScreen </br>       |  
+| 9          | Chartboost       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_id：chartboostUserID </br> user_signature：chartboostUserSignature </br> app_id：chartboostUserAppID </br> app_signature：chartboostAppSignature </br> location：chartboostLocation </br>       |  
+| 10          | Tapjoy       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：tapjoyAPIKey </br> sdk_key：tapjoySDKKey </br> placement_name：tapjoyPlacementName      |  
+| 11          | Ironsource       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID </br>       |  
+| 12          | UnityAds       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID </br>       |  
+|13          | Vungle       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_id：chartboostUserID </br> user_signature：chartboostUserSignature </br> app_id：chartboostUserAppID </br> app_signature：chartboostAppSignature </br> location：chartboostLocation </br>       |  
+| 14         | AdColony       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 15          | 穿山甲       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 16          | 玩转互联       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 17          | OneWay       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 18          | MobPower       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 19          | 金山云       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 20         | YeahMobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 21          | AppNext       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 22          | Baidu       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 23          | Nend       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 24          | Maio       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 25          | StartAPP       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 26          | SuperAwesome       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 27          | luomi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 28          | 快手       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 29          | Sigmob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 30          | Smaato       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 36          | Ogury       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  

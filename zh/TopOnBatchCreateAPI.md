@@ -1189,7 +1189,7 @@ POST
 | 字段                              | 类型   | 是否必传 | 备注                |
 | --------------------------------- | ------ | -------- | ------------------- |
 | network_name                      | String | N        | 广告平台账号名称，开通多账号时必传        |
-| firm_id                           | Int    | Y        | 广告平台ID              |
+| nw_firm_id                           | Int    | Y        | 广告平台ID              |
 | network_id                        | Int    | N        | 广告平台账号ID          |
 | is_open_report                    | Int    | N        | 是否开通Report API  |
 | auth_content                      | Object | N        | 广告平台Publisher维度参数    |
@@ -1219,7 +1219,7 @@ POST
 ```
    {
         "network_name": "Default",
-        "firm_id": 2,
+        "nw_firm_id": 2,
         "network_id": 226,
         "is_open_report": 2,
         "auth_content": {
@@ -1243,7 +1243,7 @@ POST
 ```
 {
     "network_name": "Default",
-    "firm_id": 2,
+    "nw_firm_id": 2,
     "network_id": 226,
     "is_open_report": 2,
     "auth_content": {
@@ -1280,7 +1280,7 @@ POST
 | 字段                              | 类型   | 是否必传 | 备注                |
 | --------------------------------- | ------ | -------- | ------------------- |
 | network_name                      | String | N        | 广告平台账号名称，开通多账号时必传        |
-| firm_id                           | Int    | Y        | 广告平台ID              |
+| nw_firm_id                        | Int    | Y        | 广告平台ID              |
 | network_id                        | Int    | N        | 广告平台账号ID          |
 | is_open_report                    | Int    | N        | 是否开通Report API  |
 | auth_content                      | Object | N        | 广告平台Publisher维度参数    |
@@ -1299,7 +1299,7 @@ POST
 [
     {
         "network_name": "Default",
-        "firm_id": 1,
+        "nw_firm_id": 1,
         "network_id": 307,
         "is_open_report": 2,
         "network_app_info": [
@@ -1314,7 +1314,7 @@ POST
     },
     {
         "network_name": "24523423",
-        "firm_id": 1,
+        "nw_firm_id": 1,
         "network_id": 1418,
         "is_open_report": 2,
         "network_app_info": [

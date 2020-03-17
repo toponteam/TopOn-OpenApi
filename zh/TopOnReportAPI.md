@@ -6,6 +6,7 @@
 | :--------: | ------------- | -------------------- |
 | v 1.0    | 2019年7月17日 | 支持综合报表数据查询 |
 | v 2.0    | 2019年8月30日 | 支持用户价值&留存报表数据查询 |
+| v 2.1    | 2020年3月17日 | 综合报表支持新增用户、渗透率等指标查询 |
 
 ## 目录
 
@@ -24,6 +25,7 @@
 在使用TopOn平台的批量创建 API 前，合作伙伴需向TopOn申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
+
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -110,6 +112,7 @@ Headers：
 
 
 <h2 id='综合报表'>4. 综合报表</h2>
+
 ### 4.1 请求URL
 
 <https://openapi.toponad.com/v2/fullreport>
@@ -220,6 +223,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 ```
 
 <h2 id='用户价值&留存报表'>5. 用户价值&留存报表</h2>
+
 ### 5.1 请求URL
 
 <https://openapi.toponad.com/v1/ltvreport>
@@ -236,7 +240,7 @@ POST
 | area_list | Array[String] | N | 国家列表：["xxx"] |  |
 | channel_list | Array[String] | N | channel列表：["xxx"] |  |
 | appid_list | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
-| time_zone | String |  | 枚举值：UTC+8、UTC+0、UTC-8 |  |
+| time_zone | String | N | 枚举值：UTC+8、UTC+0、UTC-8 |  |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
 | order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |["date_time", “asc”, “app_id”, “desc”]                             |
 | group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
@@ -254,11 +258,15 @@ POST
 
 | 字段名           | 类型   | 备注                     |
 | ---------------- | ------ | ------------------------ |
+| time_zone        | string | 枚举值：UTC+8、UTC+0、UTC-8  |
 | date             | string | 默认返回                 |
-| app.id           | string    | 默认返回                 |
+| channel          | string | group_by channel时返回   |
+| area             | string | group_by area时返回      |
+| app.id           | string | 默认返回                 |
 | app.name         | string | 默认返回                 |
 | new_user         | string | 默认返回                 |
 | dau              | string | 默认返回                 |
+| currency         | string | 开发者账号币种           |
 | revenue          | string | group_by channel时不返回 |
 | arpu             | string | 跟随revenue指标          |
 | ltv\_day\_1        | string | 默认返回                 |

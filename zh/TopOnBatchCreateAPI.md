@@ -1881,6 +1881,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
+
 | 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |
 | ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- |
-| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial   | unit_id,app_id |
+| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial  | unit_id,app_id |

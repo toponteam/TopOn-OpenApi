@@ -1902,7 +1902,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 10          | Tapjoy       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：tapjoyAPIKey </br> sdk_key：tapjoySDKKey </br> placement_name：tapjoyPlacementName      |  
 | 11          | Ironsource       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID </br>       |  
 | 12          | UnityAds       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID </br>       |  
-|13          | Vungle       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_id：chartboostUserID </br> user_signature：chartboostUserSignature </br> app_id：chartboostUserAppID </br> app_signature：chartboostAppSignature </br> location：chartboostLocation </br>       |  
+|13          | Vungle       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   apikey：Reporting API Key </br> app_id：App ID </br> placement_id：vunglePlacementID </br>      |  
 | 14         | AdColony       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
 | 15          | 穿山甲       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
 | 16          | 玩转互联       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  

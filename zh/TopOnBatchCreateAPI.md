@@ -1903,21 +1903,21 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 11          | Ironsource       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID </br>       |  
 | 12          | UnityAds       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID </br>       |  
 |13          | Vungle       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   apikey：Reporting API Key </br> app_id：App ID </br> placement_id：vunglePlacementID </br>      |  
-| 14         | AdColony       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 15          | 穿山甲       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 16          | 玩转互联       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 17          | OneWay       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 18          | MobPower       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 19          | 金山云       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 20         | YeahMobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 21          | AppNext       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 22          | Baidu       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 23          | Nend       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 24          | Maio       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 25          | StartAPP       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 26          | SuperAwesome       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 14         | AdColony       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    user_credentials：Read-Only API key </br> app_id：App ID </br> zone_id：Zone ID </br>       |  
+| 15          | 穿山甲       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   user_id：ttUserID </br> secure_key：Secure Key </br> app_id：ttAppID </br> slot_id：ttSlotID </br> is_video：Unit Type </br> personalized_template：ttPersonalizedTemplate </br> media_size：Media Size </br> size：AD Source Size </br>       |  
+| 16          | 玩转互联       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   app_id：App ID </br> size：AD Source Size </br>      |  
+| 17          | OneWay       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID </br>       |  
+| 18          | MobPower       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID </br> size：AD Source Size </br>       |  
+| 19          | 金山云       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    media_id：Media ID </br> slot_id：Slot ID </br>      |  
+| 20         | YeahMobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    token：Token </br> slot_id：Slot ID </br>       |  
+| 21          | AppNext       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID </br> size：AD Source Size </br>       |  
+| 22          | Baidu       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    access_key：Access Key </br> app_id：baiduAppID </br> ad_place_id：baiduADPlaceID </br> size：AD Source Size </br>       |  
+| 23          | Nend       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：APIKey </br> spot_id：spotID </br> is_video：Native Type </br> size：AD Source Size </br>       |  
+| 24          | Maio       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID </br>       |  
+| 25          | StartAPP       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag </br>     |  
+| 26          | SuperAwesome       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    property_id：Property ID </br> placement_id：Placement ID </br>      |  
 | 27          | luomi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 28          | 快手       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 29          | Sigmob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 30          | Smaato       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
-| 36          | Ogury       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 28          | 快手       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   access_key：Access Key </br> security_key：Security Key </br> app_id：kuaishouAppID </br> app_name：kuaishouAppName </br> position_id：kuaishouPosID </br> orientation：Orientation </br> unit_type：kuaishouUnitType </br> is_video：kuaishouMaterialType </br> video_sound：kuaishouVideoSound </br>       |  
+| 29          | Sigmob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    public_key：Public Key </br> secret_key：Secret Key </br> app_id：sigmobAppID </br> app_key：App Key </br> placement_id：sigmobPlacementID </br>       |  
+| 30          | Smaato       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    public_key：Public Key </br> secret_key：Secret Key </br> app_id：sigmobAppID </br> token：Token </br> adspace_id：Adspace ID </br> size：AD Source Size </br> is_video：Interstitial Type </br>       |  
+| 36          | Ogury       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：API KEY </br> api_secret：API SECRET </br> key：KEY </br> unit_id：AD Unit ID </br>       |  

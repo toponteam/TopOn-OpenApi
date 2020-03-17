@@ -23,6 +23,7 @@
 在使用TopOn平台的批量创建API前，合作伙伴需向TopOn申请publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
 <h2 id='接口校验'>3. 接口校验</h2>
+
 ### 3.1 接口请求流程说明
 
 - 请求端根据 API 请求内容（包括 HTTP Header 和 Body）生成签名字符串。
@@ -108,6 +109,7 @@ Headers：
  
 
 <h2 id='设备维度数据报告'>4. 设备维度数据报告</h2>
+
 ### 4.1 请求URL
 
 <https://openapi.toponad.com/v1/devicereport>
@@ -150,6 +152,7 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | revenue              | decimal(18,6)       | 收益，货币单位同开发者后台配置一致                                     |
 | ecpm             | decimal(18,6)       | 千次展示收益，货币单位同开发者后台配置一致                                          |
 | timezone | String | 时区（8，-8，0）仅支持这几种 |
+| currency | String | 开发者账号币种 |
 
 <h2 id='注意事项'>5. 注意事项</h2>
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵

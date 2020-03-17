@@ -1882,9 +1882,13 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
 
-| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |
-| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- |
-| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial  | app_id,unit_id |
-| 1          | Facebook    | -                     | app_id,app_token          | bannner  | app_id,unit_id,size |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | native/rewarded_video/interstitial  | app_id,unit_id |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |
+| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  备注  |
+| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- | ------ |
+| 1          | Facebook    | -                     | app_id,app_token          | native   | app_id,unit_id |                |
+| 1          | Facebook    | -                     | app_id,app_token          | rewarded_video | app_id,unit_id |          |
+| 1          | Facebook    | -                     | app_id,app_token          | interstitial | app_id,unit_id |            |
+| 1          | Facebook    | -                     | app_id,app_token          | bannner  | app_id,unit_id,size |           |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | native   | app_id,unit_id |                |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |          |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |            |           
+| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |           |          

@@ -322,10 +322,10 @@ POST
 | placements.placement_name             | String | Y        | 广告位名称，30个汉字或字符以内                               |
 | placements.adformat                   | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
 | placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间，默认5秒                    |
-| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可跳过，默认可跳过<br />0：表示No<br />1：表示Yes    |
-| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭，默认自动关闭<br />0：表示No<br />1：表示Yes  |
-| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
+| placements.template_extra.cdt               | Int    | N        | template为原生开屏时：倒计时时间，默认5秒                    |
+| placements.template_extra.ski_swt           | Int    | N        | template为原生开屏时：是否可跳过，默认可跳过<br />0：表示No<br />1：表示Yes    |
+| placements.template_extra.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭，默认自动关闭<br />0：表示No<br />1：表示Yes  |
+| placements.template_extra.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
 | remark                                 | String    | N        | 备注                                             |
 | status                                 | Int   | N        | 广告位状态                                             |
  
@@ -339,10 +339,10 @@ POST
 | placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
 | adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
 | placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
-| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
-| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
+| placements.template_extra.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
+| placements.template_extra.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
+| placements.template_extra.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
+| placements.template_extra.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 | remark                                 | String    | N        | 备注                                             |
 | status                                 | Int   | N        | 广告位状态                                             |
 
@@ -423,10 +423,10 @@ POST
 | placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
 | adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
 | placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
-| placements.template.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
-| placements.template.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
-| placements.template.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
-| placements.template.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
+| placements.template_extra.cdt               | Int    | N        | template为原生开屏时：倒计时时间                             |
+| placements.template_extra.ski_swt           | Int    | N        | template为原生开屏时：是否可调过                             |
+| placements.template_extra.aut_swt           | Int    | N        | template为原生开屏时：是否自动关闭                           |
+| placements.template_extra.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新                         |
 | remark                                 | String    | N        | 备注                                             |
 | status                                 | Int   | N        | 广告位状态                                             |
 
@@ -1892,4 +1892,24 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 2          | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |     account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size   |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   -    |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |     -    |           
-| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          
+| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          |3          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 4          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 5          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+|6          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+|7          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 8          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 9          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 10          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 11          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 12          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+|13          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 14         | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 15          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 16          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 17          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 18          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 19          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 20         | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 21          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 22          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  
+| 23          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |  

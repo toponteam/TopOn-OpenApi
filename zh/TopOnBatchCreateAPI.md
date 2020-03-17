@@ -1884,4 +1884,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 | 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |
 | ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- |
-| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial  | unit_id,app_id |
+| 1          | Facebook    | -                     | app_id,app_token          | native/rewarded_video/interstitial  | app_id,unit_id |
+| 1          | Facebook    | -                     | app_id,app_token          | bannner  | app_id,unit_id,size |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | native/rewarded_video/interstitial  | app_id,unit_id |
+| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |

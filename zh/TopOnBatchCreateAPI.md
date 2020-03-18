@@ -1044,7 +1044,6 @@ GET
     "segment_id": "segment_id1",
     "ad_source_list": [
         {
-            "priority": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
             "header_bidding_witch": 0,
@@ -1053,7 +1052,6 @@ GET
             "pacing": -1
         },
         {
-            "priority": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
             "header_bidding_witch": 0,

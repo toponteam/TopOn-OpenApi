@@ -1351,7 +1351,7 @@ POST
 | ------------------- | ------ | -------- | -------------------------------- |
 | count               | Int32  | Y        | 总数                             |
 | units               | Array  | Y        | 广告源总数                         |
-| units.network_id    | Int    | N        | 广告平台账号ID                       |
+| units.network_id    | Int    | Y        | 广告平台账号ID                       |
 | units.adsource_id   | Int    | N        | 广告源ID，修改时必传|
 | units.adsource_name | String | Y        | 广告源名称                 |
 | units.adsouce_token | Object | Y        | 广告平台Unit维度参数，详见[附录4规范](#附录4：广告平台详细参数) |

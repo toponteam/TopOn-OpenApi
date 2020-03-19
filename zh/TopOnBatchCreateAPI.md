@@ -1013,7 +1013,7 @@ GET
 | ad_source_list.ecpm                 | float64 | N        | eCPM价格                                                     |
 | ad_source_list.auto_ecpm            | float64 | N        | 自动eCPM价格                                                     |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
-| ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
+| ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
@@ -1046,7 +1046,7 @@ GET
         {
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1054,7 +1054,7 @@ GET
         {
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1085,7 +1085,7 @@ POST
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |
-| ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
+| ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
@@ -1105,7 +1105,7 @@ POST
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
-| ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
+| ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
@@ -1125,7 +1125,7 @@ POST
             "auto_switch": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1134,7 +1134,7 @@ POST
             "auto_switch": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1155,8 +1155,8 @@ POST
             "priority": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
-            "header_bidding_witch": 0,
-            "auto_switch": 0,
+            "header_bidding_switch": 1,
+            "auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1165,8 +1165,8 @@ POST
             "priority": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
-            "header_bidding_witch": 0,
-            "auto_switch": 0,
+            "header_bidding_switch": 1,
+            "auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1481,7 +1481,7 @@ POST
 | waterfall_list                         |  Array |   N      |    当前正在使用该广告源的waterfall信息                 |
 | waterfall_list.ecpm                    |   String     |      N    |  waterfall关联的ecpm                   |
 | waterfall_list.auto_ecpm               |   String     |     N     |   waterfall自动优化的ecpm                    |
-| waterfall_list.header_bidding_witch    |   Int     |     N     |     是否支持headerbidding                |
+| waterfall_list.header_bidding_switch    |   Int     |     N     |     是否支持headerbidding                |
 | waterfall_list.auto_switch             |    Int    |      N    |  是否开启了自动优化                   |
 | waterfall_list.day_cap                 |   Int     |      N    |  daycap                   |
 | waterfall_list.hour_cap                |  Int      |     N     |   hour cap                  |
@@ -1526,7 +1526,7 @@ POST
             {
                 "ecpm": "1",
                 "auto_ecpm": "",
-                "header_bidding_witch": 0,
+                "header_bidding_switch": 1,
                 "auto_switch": 1,
                 "day_cap": 0,
                 "hour_cap": 0,
@@ -1539,7 +1539,7 @@ POST
             {
                 "ecpm": "2",
                 "auto_ecpm": "",
-                "header_bidding_witch": 0,
+                "header_bidding_switch": 1,
                 "auto_switch": 1,
                 "day_cap": -1,
                 "hour_cap": -1,
@@ -1952,9 +1952,8 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | banner | slot_id<br>layout_type<br>size | layout_type枚举值：1 </br> size枚举值：640x100,600x90,600x150,600x500,600x400,600x300,600x260,690x388 |  
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | interstitial | slot_id<br>is_video<br>layout_type<br>size<br>personalized_template | is_video为0时，以下两个参数必填<br>layout_type枚举值：1 <br> size枚举值：1:1,3:2,2:3 </br> is_video为1时，以下参数必填<br>personalized_template枚举值：0,1 | 
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template枚举值：0,1 | 
-| 16        | 聚量传媒     | - | - | rewarded_video | app_id | app_id：App ID |  
+| 16        | 聚量传媒     | - | - | rewarded_video<br>interstitial | app_id | app_id：App ID |  
 | 16        | 聚量传媒     | - | - | banner | app_id<br>size | size枚举值：320x50,480x75,640x100,960x150,728x90 |
-| 16        | 聚量传媒     | - | - | interstitial | app_id | - |
 | 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |  
 | 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |  
 | 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size枚举值：320x50 |  

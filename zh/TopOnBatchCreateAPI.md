@@ -1960,10 +1960,14 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 19        | 金山云       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |  
 | 21        | AppNext     | email<br>password<br>key  | - | native<br>rewarded_video<br>interstitial | placement_id | email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID |  
 | 21        | AppNext     | email<br>password<br>key  | - | banner | placement_id<br>size | size枚举值：320x50,320x100,300x250 | 
-| 22          | Baidu       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    access_key：Access Key </br> app_id：baiduAppID </br> ad_place_id：baiduADPlaceID </br> size：AD Source Size </br>       |  
-| 23          | Nend       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：APIKey </br> spot_id：spotID </br> is_video：Native Type </br> size：AD Source Size </br>       |  
-| 24          | Maio       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID </br>       |  
-| 25          | StartAPP       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag </br>     |  
+| 22        | Baidu       | access_key | app_id | native<br>rewarded_video<br>interstitial<br>splash | ad_place_id | access_key：Access Key </br> app_id：AppID </br> ad_place_id：ADPlaceID |  
+| 22        | Baidu       | access_key | app_id | banner | ad_place_id<br>size | size枚举值：375x56,200x30,375x250,200x133,375x160,200x85,375x187,200x100 | 
+| 23        | Nend        | api_key | - | naitve | spot_id<br>api_key<br>is_video | api_key：APIKey </br> spot_id：spotID </br> is_video枚举值：0,1 |  
+| 23        | Nend        | api_key | - | rewarded_video | spot_id<br>api_key | - | 
+| 23        | Nend        | api_key | - | banner | spot_id<br>api_key<br>size | size枚举值：320x50,320x100,300x100,300x250,728x90 | 
+| 23        | Nend        | api_key | - | interstitial | spot_id<br>api_key<br>is_video | is_video枚举值：0,1,2 | 
+| 24        | Maio        | api_id<br>api_key | media_id | rewarded_video<br>interstitial | zone_id | api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID |  
+| 25        | StartAPP    | partner_id<br>token  | app_id | rewarded_video<br>interstitial | ad_tag | partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag |  
 | 26          | SuperAwesome       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    property_id：Property ID </br> placement_id：Placement ID </br>      |  
 | 27          | luomi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    app_key：AppKey </br> size：Image Size </br>       |  
 | 28          | 快手       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   access_key：Access Key </br> security_key：Security Key </br> app_id：kuaishouAppID </br> app_name：kuaishouAppName </br> position_id：kuaishouPosID </br> orientation：Orientation </br> unit_type：kuaishouUnitType </br> is_video：kuaishouMaterialType </br> video_sound：kuaishouVideoSound </br>       |  

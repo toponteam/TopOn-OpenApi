@@ -1916,19 +1916,21 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
 
-| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  key-value对应值  |
-| --------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------  | ------ |
-| 1         | Facebook    | -                     | app_id<br>app_token          | native,rewarded_video,interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID         |
-| 1         | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size | size：AD Source Size <br/>枚举值：320x50,320x90,320x250     |
-| 2         | Admob       | account_id,oauth_key  | app_id                    | native,rewarded_video,interstitial | unit_id |     account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID     |          
-| 2         | Admob       | account_id,oauth_key  | app_id                    | bannner  | unit_id,size | size：AD Source Size<br/>枚举值：320x50,320x100,320x250,468x60,728x90 |
-| 3         | Inmobi      | username,password,apikey,app_id | -    | native,rewarded_video,interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID      | 
-| 3         | Inmobi      | username,password,apikey,app_id | -    | bannner  | unit_id,size | size：AD Source Size </br>枚举值：320x50 |  
-| 4         | Flurry      | token  | sdk_key | native,rewarded_video,interstitial | ad_space |    token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |  
-| 4         | Flurry      | token  | sdk_key | banner | ad_space,size | size：AD Source Size </br>枚举值：320x50  |  
-| 5         | Applovin    | sdkkey,apikey  | -  | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
-| 5         | Applovin    | sdkkey,apikey  | -  | rewarded_video,interstitial | zone_id | zone_id：Zone ID |  
-| 5         | Applovin    | sdkkey,apikey  | -  | banner | zone_id,size | size：AD Source Size </br>枚举值：320x50,300x250  | 
+所有的Key和Value数据类型均为String
+
+| 广告平台ID | 广告平台名称 | auth_content | app_auth_content | 广告样式 | adsouce_token |  key-value对应值  |
+| --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
+| 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
+| 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size：AD Source Size <br/> size枚举值：320x50,320x90,320x250 |
+| 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |          
+| 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size：AD Source Size<br/> size枚举值：320x50,320x100,320x250,468x60,728x90 |
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID | 
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size：AD Source Size </br> size枚举值：320x50 |  
+| 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |  
+| 4         | Flurry      | token | sdk_key | banner | ad_space<br>size | size：AD Source Size </br> size枚举值：320x50 |  
+| 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
+| 5         | Applovin    | sdkkey<br>apikey | -  | rewarded_video<br>interstitial | zone_id | zone_id：Zone ID |  
+| 5         | Applovin    | sdkkey<br>apikey | -  | banner | zone_id<br>size | size：AD Source Size </br> size枚举值：320x50,300x250  | 
 | 6         | Mintegral   | skey,secret,appkey  | app_id | native,rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID | 
 | 6         | Mintegral   | skey,secret,appkey  | app_id | bannner | unit_id,size | size：AD Source Size </br>枚举值：320x50,300x250,320x90,smart  | 
 | 6         | Mintegral   | skey,secret,appkey  | app_id | interstitial  | unit_id,is_video | is_video：Unit Type </br> 枚举值：0,1 | 

@@ -1918,7 +1918,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 | 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  key-value对应值  |
 | --------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------  | ------ |
-| 1         | Facebook    | -                     | app_id<br/>app_token          | native,rewarded_video,interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID         |
+| 1         | Facebook    | -                     | app_id<br>app_token          | native,rewarded_video,interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID         |
 | 1         | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size | size：AD Source Size <br/>枚举值：320x50,320x90,320x250     |
 | 2         | Admob       | account_id,oauth_key  | app_id                    | native,rewarded_video,interstitial | unit_id |     account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID     |          
 | 2         | Admob       | account_id,oauth_key  | app_id                    | bannner  | unit_id,size | size：AD Source Size<br/>枚举值：320x50,320x100,320x250,468x60,728x90 |

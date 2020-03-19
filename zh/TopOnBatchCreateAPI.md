@@ -1014,7 +1014,7 @@ GET
 | ad_source_list.auto_ecpm            | float64 | N        | 自动eCPM价格                                                     |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
 | ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | N        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
@@ -1086,7 +1086,7 @@ POST
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |
 | ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.auto_switch          | Int     | Y        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
@@ -1106,7 +1106,7 @@ POST
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.pirority             | Int     | N        | 广告源优先级                                                 |
 | ad_source_list.header_bidding_witch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />0：表示不支持，<br />1：表示支持 |
-| ad_source_list.auto_switch          | Int     | Y        | 0：表示不开启自动优化，<br />1：表示开启自动优化             |
+| ad_source_list.auto_switch          | Int     | Y        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |

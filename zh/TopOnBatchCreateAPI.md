@@ -1371,6 +1371,41 @@ POST
 
 #### 9.1.5 样例
 
+请求样例：
+```
+{
+    "count": 2,
+    "units": [
+        {
+            "network_id": 307,
+            "adsource_name": "5234",
+            "adsouce_token": {
+                "unit_id": "fasfasf",
+                "is_video": "0",
+                "personalized_template": "1",
+                "size": "320x50",
+                "layout_type": "1"
+            },
+            "placement_id": "b5bc993ab0966a",
+            "default_ecpm": "69"
+        },
+        {
+            "network_id": 225,
+            "adsource_name": "5234",
+            "adsource_id": 19759,
+            "adsouce_token": {
+                "slot_id": "fasfasf",
+                "is_video": "0",
+                "personalized_template": "1",
+                "size": "640x100",
+                "layout_type": "1"
+            },
+            "placement_id": "b5bc993ab0966a",
+            "default_ecpm": "69"
+        }
+    ]
+}
+```
 
 返回样例：
 

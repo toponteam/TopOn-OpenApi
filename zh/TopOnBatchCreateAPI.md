@@ -1926,7 +1926,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |          
 | 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size枚举值：320x50,320x100,320x250,468x60,728x90 |
 | 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID | 
-| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size：AD Source Size </br> size枚举值：320x50 |  
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size枚举值：320x50 |  
 | 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |  
 | 4         | Flurry      | token | sdk_key | banner | ad_space<br>size | size枚举值：320x50 |  
 | 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
@@ -1940,7 +1940,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | native | unit_id<br>unit_version<br>unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：媒体ID </br> unit_id：UnitID</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | rewarded_video,splash | unit_id | - |
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | unit_version枚举值：2</br> size枚举值：320x50 | 
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version枚举值：2</br> video_muted：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version枚举值：2</br> video_muted枚举值：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
 | 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |  
 | 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |  
 | 11        | Ironsource  | username<br>secret_key | app_key | rewarded_video<br>interstitial | instance_id |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID |  
@@ -1952,12 +1952,15 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | banner | slot_id<br>layout_type<br>size | layout_type枚举值：1 </br> size枚举值：640x100,600x90,600x150,600x500,600x400,600x300,600x260,690x388 |  
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | interstitial | slot_id<br>is_video<br>layout_type<br>size<br>personalized_template | is_video为0时，以下两个参数必填<br>layout_type枚举值：1 <br> size枚举值：1:1,3:2,2:3 </br> is_video为1时，以下参数必填<br>personalized_template枚举值：0,1 | 
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template枚举值：0,1 | 
-| 16          | 玩转互联       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   app_id：App ID </br> size：AD Source Size </br>      |  
-| 17          | OneWay       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID </br>       |  
-| 18          | MobPower       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID </br> size：AD Source Size </br>       |  
-| 19          | 金山云       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    media_id：Media ID </br> slot_id：Slot ID </br>      |  
-| 20         | YeahMobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    token：Token </br> slot_id：Slot ID </br>       |  
-| 21          | AppNext       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID </br> size：AD Source Size </br>       |  
+| 16        | 聚量传媒     | - | - | rewarded_video | app_id | app_id：App ID |  
+| 16        | 聚量传媒     | - | - | banner | app_id<br>size | size枚举值：320x50,480x75,640x100,960x150,728x90 |
+| 16        | 聚量传媒     | - | - | interstitial | app_id | - |
+| 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |  
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |  
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size枚举值：320x50 |  
+| 19        | 金山云       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |  
+| 21        | AppNext     | email<br>password<br>key  | - | native<br>rewarded_video<br>interstitial | placement_id | email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID |  
+| 21        | AppNext     | email<br>password<br>key  | - | banner | placement_id<br>size | size枚举值：320x50,320x100,300x250 | 
 | 22          | Baidu       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    access_key：Access Key </br> app_id：baiduAppID </br> ad_place_id：baiduADPlaceID </br> size：AD Source Size </br>       |  
 | 23          | Nend       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_key：APIKey </br> spot_id：spotID </br> is_video：Native Type </br> size：AD Source Size </br>       |  
 | 24          | Maio       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID </br>       |  

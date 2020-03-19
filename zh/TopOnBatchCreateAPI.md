@@ -1931,17 +1931,17 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
 | 5         | Applovin    | sdkkey<br>apikey | -  | rewarded_video<br>interstitial | zone_id | zone_id：Zone ID |  
 | 5         | Applovin    | sdkkey<br>apikey | -  | banner | zone_id<br>size | size：AD Source Size </br> size枚举值：320x50,300x250  | 
-| 6         | Mintegral   | skey,secret,appkey  | app_id | native,rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID | 
-| 6         | Mintegral   | skey,secret,appkey  | app_id | bannner | unit_id,size | size：AD Source Size </br>枚举值：320x50,300x250,320x90,smart  | 
-| 6         | Mintegral   | skey,secret,appkey  | app_id | interstitial  | unit_id,is_video | is_video：Unit Type </br> 枚举值：0,1 | 
-| 7         | Mopub       | repkey,apikey | -  | native,rewarded_video,interstitial | unit_id | repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID  |
-| 7         | Mopub       | repkey,apikey | -  | bannner | unit_id,size | size：AD Source Size </br> 枚举值：320x50,300x250,728x90  | 
-| 8         | 腾讯广告     | agid,publisher_id,app_key,qq  | app_id | native | unit_id,unit_version,unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：媒体ID </br> unit_id：UnitID </br> unit_version：Unit Version </br> unit_type：Unit Type</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
-| 8         | 腾讯广告     | agid,publisher_id,app_key,qq  | app_id | rewarded_video,splash | unit_id | - |
-| 8         | 腾讯广告     | agid,publisher_id,app_key,qq  | app_id | bannner | unit_id,unit_version,size | size：AD Source Size </br> unit_version枚举值：2</br> size枚举值：320x50 | 
-| 8         | 腾讯广告     | agid,publisher_id,app_key,qq  | app_id | interstitial | unit_id,unit_version,video_muted,video_autoplay,video_duration,is_fullscreen | video_muted：videoMuted </br> video_autoplay：videoAutoplay </br> video_duration_switch：videoDuration </br> video_duration：availableTime </br> is_fullscreen：gdtIsFullScreen </br>unit_version枚举值：2</br> video_muted：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen：0，1  |
-| 9         | Chartboost  | user_id,user_signature  | app_id,app_signature | rewarded_video,interstitial  | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |  
-| 10        | Tapjoy      | apikey  | sdk_key | rewarded_video,interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |  
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | native<br>rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID | 
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | bannner | unit_id<br>size | size：AD Source Size </br> size枚举值：320x50,300x250,320x90,smart  | 
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | interstitial | unit_id<br>is_video | is_video：Unit Type </br> is_video枚举值：0,1 | 
+| 7         | Mopub       | repkey<br>apikey | - | native<br>rewarded_video<br>interstitial | unit_id | repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID  |
+| 7         | Mopub       | repkey<br>apikey | -  | bannner | unit_id<br>size | size：AD Source Size </br> size枚举值：320x50,300x250,728x90  | 
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | native | unit_id<br>unit_version<br>unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：媒体ID </br> unit_id：UnitID </br> unit_version：Unit Version </br> unit_type：Unit Type</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | rewarded_video,splash | unit_id | - |
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | size：AD Source Size </br> unit_version枚举值：2</br> size枚举值：320x50 | 
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id,unit_version,video_muted,video_autoplay,video_duration,is_fullscreen | video_muted：videoMuted </br> video_autoplay：videoAutoplay </br> video_duration_switch：videoDuration </br> video_duration：availableTime </br> is_fullscreen：gdtIsFullScreen </br>unit_version枚举值：2</br> video_muted：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
+| 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |  
+| 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |  
 | 11          | Ironsource       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID </br>       |  
 | 12          | UnityAds       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID </br>       |  
 |13          | Vungle       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   apikey：Reporting API Key </br> app_id：App ID </br> placement_id：vunglePlacementID </br>      |  

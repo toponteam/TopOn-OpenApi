@@ -1882,12 +1882,10 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
 
 | 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  备注  |
-| ---------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------- | ---------------------------- |
-| 1          | Facebook    | -                     | app_id,app_token          | native   | unit_id |   app_id：fbAppID <br/> app_token：fbAccessToken <br/> unit_id：fbPlacementID <br/> unit_id：AD Source Size <br/>           |
-| 1          | Facebook    | -                     | app_id,app_token          | rewarded_video | unit_id |   -      |
-| 1          | Facebook    | -                     | app_id,app_token          | interstitial | unit_id |  -          |
-| 1          | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size |           |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |     account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size   |
+| --------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------  | ------ |
+| 1         | Facebook    | -                     | app_id,app_token          | native、rewarded_video、interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID <br/> unit_id：AD Source Size <br/>         |
+| 1         | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size | 枚举值：320x50、320x90、320x250     |
+| 2         | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |     account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size   |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   -    |
 | 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |     -    |           
 | 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          |3          | Inmobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    username：inmobiEmailID </br> app_id：Account ID </br> password：inmobiPassword </br> apikey：API Key </br> unit_id：Placement ID </br> size：AD Source Size </br>       |  

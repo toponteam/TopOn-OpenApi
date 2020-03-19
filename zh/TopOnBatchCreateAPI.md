@@ -1354,7 +1354,7 @@ POST
 | units.network_id    | Int    | Y        | 广告平台账号ID                       |
 | units.adsource_id   | Int    | N        | 广告源ID，修改时必传|
 | units.adsource_name | String | Y        | 广告源名称                 |
-| units.adsouce_token | Object | Y        | 广告平台Unit维度参数，详见[附录4规范](#附录4：广告平台详细参数) |
+| units.adsource_token | Object | Y        | 广告平台Unit维度参数，详见[附录4规范](#附录4：广告平台详细参数) |
 | units.placement_id  | String | Y        | TopOn的广告位ID                     |
 | units.default_ecpm  | String | Y        | 广告源默认价格                             |
 | units.header_bidding_switch  | String | Y        | 1：表示不支持<br>2：表示支持 |
@@ -1366,7 +1366,7 @@ POST
 | network_id    | Int    | N        | 广告平台账号ID                       |
 | adsource_id   | Int    | N        | 广告源ID               |
 | adsource_name | String | Y        | 广告源名称                 |
-| adsouce_token | Object | Y        | 广告平台Unit维度参数 |
+| adsource_token | Object | Y        | 广告平台Unit维度参数 |
 | placement_id  | String | Y        | TopOn的广告位ID                    |
 | default_ecpm  | String | Y        | 广告源默认价格                       |
 
@@ -1380,7 +1380,7 @@ POST
         {
             "network_id": 307,
             "adsource_name": "5234",
-            "adsouce_token": {
+            "adsource_token": {
                 "unit_id": "fasfasf",
                 "is_video": "0",
                 "personalized_template": "1",
@@ -1394,7 +1394,7 @@ POST
             "network_id": 225,
             "adsource_name": "5234",
             "adsource_id": 19759,
-            "adsouce_token": {
+            "adsource_token": {
                 "slot_id": "fasfasf",
                 "is_video": "0",
                 "personalized_template": "1",
@@ -1416,7 +1416,7 @@ POST
         "network_id": 307,
         "adsource_id": 19743,
         "adsource_name": "23423423423",
-        "adsouce_token": {
+        "adsource_token": {
             "size": "sdsd",
             "unit_id": "xcxc"
         },
@@ -1427,7 +1427,7 @@ POST
     {
         "network_id": 307,
         "adsource_name": "asfdasdasd",
-        "adsouce_token": {
+        "adsource_token": {
             "size": "asfasd",
             "unit_id": "asdasdafsdddd"
         },
@@ -1471,7 +1471,7 @@ POST
 | nw_firm_id                             | Int    | N        | 广告平台ID              |
 | adsource_id                            | Int    | N        | 广告源ID         |
 | adsource_name                          | Int    | N        | 广告源名称       |
-| adsouce_token                          | Object | N        | 广告源配置参数 |
+| adsource_token                          | Object | N        | 广告源配置参数 |
 | app_id                                 | String | N        | TopOn的应用ID     |
 | app_name                               | String | N        | TopOn的应用名称   |
 | platform                               | Int    | N        | 平台 |
@@ -1512,7 +1512,7 @@ POST
         "network_name": "Default",
         "adsource_id": 19683,
         "adsource_name": "Unity Ads_int_2",
-        "adsouce_token": {
+        "adsource_token": {
             "game_id": "234234",
             "placement_id": "23434"
         },
@@ -1919,7 +1919,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 所有的Key和Value数据类型均为String
 
-| 广告平台ID | 广告平台名称 | auth_content | app_auth_content | 广告样式 | adsouce_token |  key-value对应值  |
+| 广告平台ID | 广告平台名称 | auth_content | app_auth_content | 广告样式 | adsource_token |  key-value对应值  |
 | --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
 | 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
 | 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |

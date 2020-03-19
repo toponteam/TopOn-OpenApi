@@ -1881,16 +1881,19 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 <h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
 
-| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  备注  |
+| 广告平台ID | 广告平台名称 | auth_content (string) | app_auth_content (string) | 广告样式 | adsouce_token (string) |  key-value对应值  |
 | --------- | ----------- | --------------------- | ------------------------- | -------- | ---------------------  | ------ |
-| 1         | Facebook    | -                     | app_id,app_token          | native、rewarded_video、interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID <br/> unit_id：AD Source Size <br/>         |
-| 1         | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size | 枚举值：320x50、320x90、320x250     |
-| 2         | Admob       | account_id,oauth_key  | app_id                    | native   | unit_id |     account_id：admobPublisherID <br/> oauth_key：admobAccessToken <br/> app_id：admobAppID <br/> unit_id：admobUnitID <br/> size：AD Source Size   |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | rewarded_video | app_id,unit_id |   -    |
-| 2          | Admob       | account_id,oauth_key  | app_id                    | interstitial | app_id,unit_id |     -    |           
-| 2          | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    -       |          |3          | Inmobi       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    username：inmobiEmailID </br> app_id：Account ID </br> password：inmobiPassword </br> apikey：API Key </br> unit_id：Placement ID </br> size：AD Source Size </br>       |  
-| 4          | Flurry       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name </br> size：AD Source Size </br>       |  
-| 5          | Applovin       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |   sdkkey：SDK Key </br> apikey：Report Key </br> zone_id：Zone ID </br> size：AD Source Size </br>      |  
+| 1         | Facebook    | -                     | app_id,app_token          | native,rewarded_video,interstitial | unit_id |   app_id：AppID <br/> app_token：AccessToken <br/> unit_id：PlacementID <br/> unit_id：AD Source Size <br/>         |
+| 1         | Facebook    | -                     | app_id,app_token          | bannner  | unit_id,size | 枚举值：320x50,320x90,320x250     |
+| 2         | Admob       | account_id,oauth_key  | app_id                    | native,rewarded_video,interstitial | unit_id |     account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID <br/> size：AD Source Size   |          
+| 2         | Admob       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size | 枚举值：320x50,320x100,320x250,468x60,728x90 |
+| 3         | Inmobi      | username,password,apikey,app_id | -               | native,rewarded_video,interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID </br> size：AD Source Size </br>     | 
+| 3         | Inmobi      | username,password,apikey,app_id | app_id          | bannner  | unit_id | 枚举值：320x50 |  
+| 4         | Flurry      | token  | sdk_key | native,rewarded_video,interstitial | ad_space |    token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name </br> size：AD Source Size </br>    |  
+| 4         | Flurry      | token  | sdk_key | banner | ad_space,size | 枚举值：320x50  |  
+| 5         | Applovin    | sdkkey,apikey  | -  | native | - | sdkkey：SDK Key </br> apikey：Report Key </br> zone_id：Zone ID </br> size：AD Source Size </br>  | 
+| 5         | Applovin    | sdkkey,apikey  | -  | rewarded_video,interstitial | zone_id | - |  
+| 5         | Applovin    | sdkkey,apikey  | -  | banner | zone_id,size | 枚举值：320x50,300x250  | 
 |6          | Mintegral       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    appkey：App Key </br> skey：Skey </br> secret：mtgSecret </br> appid：mtgAppID </br> unitid：mtgUnitID </br> is_video：Unit Type </br> size：AD Source Size </br>       |  
 |7          | Mopub       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID </br> size：AD Source Size </br>       |  
 | 8          | 广点通       | account_id,oauth_key  | app_id                    | bannner  | app_id,unit_id,size |    qq：gdtQQ </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：gdtAppID </br> unit_id：gdtUnitID </br> unit_version：Unit Version </br> unit_type：Unit Type </br> size：AD Source Size </br> video_muted：videoMuted </br> video_autoplay：videoAutoplay </br> video_duration_switch：videoDuration </br> video_duration：availableTime </br> is_fullscreen：gdtIsFullScreen </br>       |  

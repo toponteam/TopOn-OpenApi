@@ -1342,6 +1342,270 @@ return sample：
 ]
 ```
 
+<h2 id='Adsource_API'>9. Adsource API</h2>
+
+<h3 id='Batch_create_and_update_adsource'>9.1 Batch create and update adsource</h3>
+
+#### 9.1.1 Request URL
+
+<https://openapi.toponad.com/v1/set_units>
+
+#### 9.1.2 Request method 
+
+POST
+
+#### 9.1.3 Request params
+
+| params            | type   | required | notes                                                        |
+| ----------------- | ------ | -------- | ------------------------------------------------------------ |
+| count               | Int32  | Y        | adsource number                             |
+| units               | Array  | Y        | -                         |
+| units.network_id    | Int    | Y        | account id                       |
+| units.adsource_id   | Int    | N        | adsource id,it must be passed on when it is updated|
+| units.adsource_name | String | Y        | adsource name                 |
+| units.adsource_token | Object | Y        | network unit params,detail:[Appendix4：Detailed parameters of network](#Appendix4：Detailed_parameters_of_network) |
+| units.placement_id  | String | Y        | TopOn placemtne id                     |
+| units.default_ecpm  | String | Y        | adsource default ecpm                             |
+| units.header_bidding_switch  | String | Y        | 1：on,2：off |
+
+ 
+
+#### 9.1.4 Return data 
+
+| fields   | type   | required | notes                               |
+| -------- | ------ | -------- | ----------------------------------- |
+| network_id    | Int    | N        | account id                       |
+| adsource_id   | Int    | N        | adsource id               |
+| adsource_name | String | Y        | adsource name                  |
+| adsource_token | Object | Y        | network unit params |
+| placement_id  | String | Y        | TopOn placemtne id                    |
+| default_ecpm  | String | Y        | adsource default ecpm                       |
+
+ 
+
+#### 9.1.5 Sample
+
+request sample：
+```
+{
+    "count": 2,
+    "units": [
+        {
+            "network_id": 307,
+            "adsource_name": "5234",
+            "adsource_token": {
+                "unit_id": "fasfasf",
+                "is_video": "0",
+                "personalized_template": "1",
+                "size": "320x50",
+                "layout_type": "1"
+            },
+            "placement_id": "b5bc993ab0966a",
+            "default_ecpm": "69"
+        },
+        {
+            "network_id": 225,
+            "adsource_name": "5234",
+            "adsource_id": 19759,
+            "adsource_token": {
+                "slot_id": "fasfasf",
+                "is_video": "0",
+                "personalized_template": "1",
+                "size": "640x100",
+                "layout_type": "1"
+            },
+            "placement_id": "b5bc993ab0966a",
+            "default_ecpm": "69"
+        }
+    ]
+}
+```
+
+
+return sample：
+```
+[
+    {
+        "network_id": 307,
+        "adsource_id": 19743,
+        "adsource_name": "23423423423",
+        "adsource_token": {
+            "size": "sdsd",
+            "unit_id": "xcxc"
+        },
+        "placement_id": "12312312",
+        "default_ecpm": "",
+        "errors": "adsource_id error"
+    },
+    {
+        "network_id": 307,
+        "adsource_name": "asfdasdasd",
+        "adsource_token": {
+            "size": "asfasd",
+            "unit_id": "asdasdafsdddd"
+        },
+        "placement_id": "123123123",
+        "default_ecpm": "",
+        "errors": "ad_source_name repeated"
+    }
+]
+```
+
+<h3 id='Get_adsource_list'>9.2 Get adsource list</h3>
+
+#### 9.2.1 Request URL
+
+<https://openapi.toponad.com/v1/units>
+
+#### 9.2.2 Request method
+
+POST
+
+#### 9.2.3 Request params
+
+| params  | type        | required | notes                  |
+| ------- | ----------- | -------- | ---------------------- |
+| network_firm_ids | Array[int32]  | N        | multiple values are supported        |
+| app_ids          | Array[String] | N        | multiple values are supported        |
+| placement_ids    | Array[String] | N        | multiple values are supported        |
+| adsource_ids     | Array[int32]  | N        | multiple values are supported        |
+| start            | int32         | N        | default value: 0 (cannot be used with the above parameters)        |
+| limit            | int32         | N        | default value: 100, and the maximum is 100 at a time               |
+| metrics          | Array[String] | N        | specify the returned fields from the ad_source_list. If you do not pass, all of them will be returned |
+
+
+#### 9.2.4 Return data
+
+| fields       | type   | required | notes                               |
+| ------------ | ------ | -------- | ----------------------------------- |
+| network_id                             | String | N        | account id        |
+| network_name                           | String | N        | account name        |
+| nw_firm_id                             | Int    | N        | network firm id              |
+| adsource_id                            | Int    | N        | adsource id        |
+| adsource_name                          | Int    | N        | adsource name       |
+| adsource_token                          | Object | N        | adsource params |
+| app_id                                 | String | N        | TopOn app id     |
+| app_name                               | String | N        | TopOn app name   |
+| platform                               | Int    | N        | platform |
+| placement_id                           | String | N        | TopOn placement id              |
+| placement_name                         | Object | N        | TopOn placement name |
+| placement_format                       | String | N        | adformat                  |
+| waterfall_list                         |  Array |   N      | the waterfall of adsource is being used               |
+| waterfall_list.ecpm                    |   String     |      N    | adsource ecpm                   |
+| waterfall_list.auto_ecpm               |   String     |     N     | adsource auto ecpm                   |
+| waterfall_list.header_bidding_switch    |   Int     |     N     |  header bidding switch                |
+| waterfall_list.auto_switch             |    Int    |      N    |  auto ecpm switch                   |
+| waterfall_list.day_cap                 |   Int     |      N    |  daycap                   |
+| waterfall_list.hour_cap                |  Int      |     N     |   hour cap                  |
+| waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
+| waterfall_list.segment_name            |  String  |   N       |   segment name                  |
+| waterfall_list.segment_id              |  String      |   N       |  segment_id                  |
+| waterfall_list.priority                |   Int     |     N     |  segment priority                  |
+| waterfall_list.parallel_request_number |   Int     |     N     |  parallel request number                |
+
+ 
+
+#### 9.2.5 Sample
+
+request sample：
+```
+{
+	"adsource_ids":[19683]
+}
+```
+
+
+return sample：
+```
+[
+    {
+        "nw_firm_id": 12,
+        "network_name": "Default",
+        "adsource_id": 19683,
+        "adsource_name": "Unity Ads_int_2",
+        "adsource_token": {
+            "game_id": "234234",
+            "placement_id": "23434"
+        },
+        "app_id": "232323",
+        "app_name": "234234",
+        "platform": 2,
+        "placement_id": "234234234234",
+        "placement_name": "234234234",
+        "placement_format": "3",
+        "waterfall_list": [
+            {
+                "ecpm": "1",
+                "auto_ecpm": "",
+                "header_bidding_switch": 1,
+                "auto_switch": 1,
+                "day_cap": 0,
+                "hour_cap": 0,
+                "pacing": 0,
+                "name": "日韩",
+                "segment_id": "2324234",
+                "priority": 3,
+                "parallel_request_number": 2
+            },
+            {
+                "ecpm": "2",
+                "auto_ecpm": "",
+                "header_bidding_switch": 1,
+                "auto_switch": 1,
+                "day_cap": -1,
+                "hour_cap": -1,
+                "pacing": -1,
+                "name": "ipad",
+                "segment_id": "23423423423",
+                "priority": 2,
+                "parallel_request_number": 2
+            }
+        ]
+    }
+]
+```
+
+<h3 id='Batch_delete_adsource'>9.3 Batch delete adsource</h3>
+
+#### 9.3.1 Request URL
+
+<https://openapi.toponad.com/v1/del_units>
+
+#### 9.3.2 Request method
+
+POST
+
+#### 9.3.3 Request params
+
+| params  | type        | required | notes                  |
+| ------- | ----------- | -------- | ---------------------- |
+| adsource_ids | Array[Int32] | Y        | adsource_id |
+
+#### 9.3.4 Return data
+
+| params  | type        | required | notes                  |
+| ------- | ----------- | -------- | ---------------------- |
+| msg  | String | N        | result |
+
+#### 9.3.5 Sample
+
+request sample：
+
+```
+{
+	"adsource_ids":[19683]
+}
+```
+
+
+return sample：
+
+```
+{
+    "msg": "suc"
+}
+```
+
 <h2 id='Notices'>10. Notices</h2>
 
 Please control the frequency of requests:

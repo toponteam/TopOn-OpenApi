@@ -5,9 +5,9 @@
 
 | version | date  | notes                     |
 | :--------: | ------------- | -------------------------------- |
-| v 1.0    | 2019/7/17 | supports create and query apps and placements |
-| v 2.0    | 2019/11/4 | supports operate waterfall and segments |
-| v 2.1    | 2020/3/16 | supports network and adsource |
+| v 1.0    | 2019/7/17 | supports apps and placements |
+| v 2.0    | 2019/11/4 | supports waterfall and segments |
+| v 2.1    | 2020/3/16 | supports network and adsources |
 
 
 ## Contents
@@ -15,10 +15,10 @@
 [1. Introduction](#Introduction)</br> 
 [2. Authentication acquisition](#Authentication_acquisition)</br> 
 [3. Authentication check](#Authentication_check)</br> 
-[4. APP API](#APP_API)</br> 
-- [4.1 Batch create and update APPs](#Batch_create_and_update_APPs)</br>  
-- [4.2 Get APP list](#Get_APP_list)</br>
-- [4.3 Batch delete APPs](#Batch_delete_APPs)</br>
+[4. App API](#APP_API)</br> 
+- [4.1 Batch create and update apps](#Batch_create_and_update_apps)</br>  
+- [4.2 Get app list](#Get_app_list)</br>
+- [4.3 Batch delete apps](#Batch_delete_apps)</br>
 
 [5. Placement API](#Placement_API)</br>
 - [5.1 Batch create and update placements](#Batch_create_and_update_placements)</br>  
@@ -49,7 +49,7 @@
 [10. Notices](#Notices)</br>
 [11. Appendix1：Golang Demo](#Appendix1：golang_demo)</br>
 [12. Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum)</br>
-[13. Appendix3：Segment rule enum](#Appendix3：segment_rule_enum)
+[13. Appendix3：Segment rule enum](#Appendix3：segment_rule_enum)<br>
 [14. Appendix4：Detailed parameters of network](#Appendix4：detailed_parameters_of_network)
 
 <h2 id='Introduction'>1. Introduction</h2>

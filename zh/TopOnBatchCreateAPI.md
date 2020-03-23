@@ -1351,8 +1351,8 @@ POST
 
 | 字段                | 类型   | 是否必传 | 备注                             |
 | ------------------- | ------ | -------- | -------------------------------- |
-| count               | Int32  | Y        | 总数                             |
-| units               | Array  | Y        | 广告源总数                         |
+| count               | Int32  | Y        | 广告源总数                             |
+| units               | Array  | Y        | -                        |
 | units.network_id    | Int    | Y        | 广告平台账号ID                       |
 | units.adsource_id   | Int    | N        | 广告源ID，修改时必传|
 | units.adsource_name | String | Y        | 广告源名称                 |
@@ -1581,6 +1581,14 @@ POST
 | msg  | String | N        | 处理信息 |
 
 #### 9.3.5 样例
+
+请求样例：
+
+```
+{
+	"adsource_ids":[19683]
+}
+```
 
 
 返回样例：

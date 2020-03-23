@@ -38,8 +38,8 @@
 - [7.5 Set waterfall's adsources](#Set_waterfalls_adsources)</br>
 
 [8. Network API](#Network_API)</br>
-- [8.1 Create and update network publisher and app parameters](#create_and_update_network_publisher_and_app_parameters)</br>  
-- [8.2 Get network publisher and app parameters](#get_network_publisher_and_app_parameters)</br>
+- [8.1 Create and update network publisher or app parameters](#create_and_update_network_publisher_or_app_parameters)</br>  
+- [8.2 Get network publisher or app parameters](#get_network_publisher_or_app_parameters)</br>
 
 [9. Adsource API](#Adsource_API)</br>
 - [9.1 Batch create and update adsource](#Batch_create_and_update_adsource)</br>
@@ -1189,7 +1189,162 @@ return sample：
 }
 ```
 
+<h2 id='Network_API'>8. Network API</h2>
 
+<h3 id='Batch_create_and_update_placements'>8.1 Batch create and update placements</h3>
+
+#### 5.1.1 Request URL
+
+<https://openapi.toponad.com/v1/deal_placement>
+
+#### 5.1.2 Request method
+
+POST
+
+#### 5.1.3 Request params
+
+| params                                | type   | required | notes                                                        |
+| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| count                                 | Int    | Y        | Quantity of created placements                               |
+| app_id                                | String | Y        | APP ID of created placements                                 |
+| placements.placement_name             | String | Y        | placement name. max length 30                                |
+| placements.adformat                   | String | Y        | native,banner,rewarded_video,interstitial,splash             |
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard<br/>1：Native Banner<br/>2：Native Splash |
+| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
+| placements.template.ski_swt           | Int    | N        | template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
+ 
+
+#### 5.1.4 Return data
+
+| fields                                | type   | required | notes                                                        |
+| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| app_id                                | String | Y        | APP ID                                                       |
+| placement_name                        | String | Y        | placement name                                               |
+| placement_id                          | String | Y        | placement ID                                                 |
+| adformat                              | String | Y        | Native, banner, rewarded video, interstitial, splash         |
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
+| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
+| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
+ 
+
+#### 5.1.5 Sample
+
+request sample：
+```
+{
+    "count": 1,
+    "app_id": "a5c41a9ed1679c",
+    "placements": [
+        {
+            "placement_name": "6",
+            "adformat": "native",
+            "remark": "remark",
+            "template":2,
+            "template_extra":{
+            	"cdt":55,
+            	"ski_swt":1,
+            	"aut_swt":1
+            }
+            
+        }
+        
+    ]
+}
+```
+
+
+return sample：
+```
+[
+    {
+        "app_name": "test1",
+        "app_id": "a5c41a9ed1679c",
+        "platform": 2,
+        "placement_id": "b1bv57tielnlts",
+        "placement_name": "6",
+        "adformat": "native",
+        "remark": "remark",
+        "template": 2,
+        "template_extra": {
+            "cdt": 55,
+            "ski_swt": 1,
+            "aut_swt": 1
+        }
+    }
+]
+```
+
+<h3 id='Get_placement_list'>5.2 Get placement list</h3>
+
+#### 5.2.1 Request URL
+
+<https://openapi.toponad.com/v1/placements>
+
+#### 5.2.2 Request method 
+
+POST
+
+#### 5.2.3 Request params
+
+| params        | type        | required | notes              |
+| ------------- | ----------- | -------- | ------------------ |
+| app_ids       | Array[String] | N        | eg: ["abc", "acc"] |
+| placement_ids | Array[String] | N        | eg: ["abc", "acc"] |
+| start         | Int         | N        | Default 0          |
+| limit         | Int         | N        | Default 100        |
+
+ 
+
+#### 5.2.4 Return data
+
+| fields         | type   | required | notes                     |
+| -------------- | ------ | -------- | ------------------------- |
+| app_id         | String | Y        | app id                    |
+| app_name       | String | Y        | app name                  |
+| platform       | Int    | Y        | 1 or 2  (1:android,2:IOS) |
+| placement_id   | String | N        | -                         |
+| placement_name | String | N        | -                         |
+| adformat       | String | N        | -                         |
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
+| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
+| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
+ 
+
+#### 5.2.5 Sample
+
+request sample：
+```
+{
+	"placement_ids":["b5bc9bc2951216"]
+}
+```
+
+
+return sample：
+```
+[
+    {
+        "app_name": "topontest",
+        "app_id": "a5bc9921f7fdb4",
+        "platform": 2,
+        "placement_id": "b5bc9bc2951216",
+        "placement_name": "topontest_rewardvideo",
+        "adformat": "rewarded_video"
+    }
+]
+```
 
 <h2 id='Notices'>10. Notices</h2>
 

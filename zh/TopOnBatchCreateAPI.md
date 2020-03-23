@@ -419,6 +419,8 @@ POST
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
 | ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
 | app_id                                | String | Y        | 开发者后台的应用ID                                           |
+| app_name                              | String | Y        | 应用名称                              |
+| platform                              | Int    | Y        | 1 or 2  (1:android，2IOS)              |
 | placement_name                        | String | Y        | 广告位名称                                                   |
 | placement_id                          | String | Y        | 开发者后台的广告位ID                                         |
 | adformat                              | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
@@ -469,7 +471,7 @@ POST
 
 | 字段          | 类型  | 是否必传 | 备注                                         |
 | ------------- | ----- | -------- | -------------------------------------------- |
-| placement_ids | Array | Y        | 默认传Array，多个广告位ID是数组 默认可以为空 |
+| placement_ids | Array | Y        | 默认传Array，多个广告位ID是数组 |
 
  
 
@@ -1081,7 +1083,7 @@ POST
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
 | offer_switch                        | Int     | N        | 交叉推广开关                                                    |
-| unbind_adsource_list                | Array   | N        | 取消绑定的广告源，只传广告源ID                                           |
+| unbind_adsource_list                | Array   | N        | 取消绑定的广告源，只传广告源ID                                    |
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |

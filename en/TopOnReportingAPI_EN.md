@@ -4,8 +4,9 @@
 
 | version | date  | notes    |
 | :--------: | :------------ | -------------------- |
-| v 1.0    | 2019/7/17 | supports full reporting API |
-| v 2.0    | 2019/8/30 | supports LTV & retention reporting API |
+| v 1.0    | 2019/7/17 | supports full report |
+| v 2.0    | 2019/8/30 | supports LTV & retention report |
+| v 2.1    | 2020/3/17 | update full report metrics |
 
 ## Contents
 
@@ -24,6 +25,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication_check'>3. Authentication check</h2>
+
 ### 3.1 The process description of API request
 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
@@ -105,6 +107,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='Full_report'>4. Full report</h2>
+
 ### 4.1 Request URL
 
 <https://openapi.toponad.com/v1/fullreport>
@@ -215,6 +218,7 @@ return data sample：
 ```
 
 <h2 id='LTV_&_retention_report'>5. LTV & retention report</h2>
+
 ### 5.1 Request URL
 
 <https://openapi.toponad.com/v1/ltvreport>

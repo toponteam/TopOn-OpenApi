@@ -133,7 +133,6 @@ POST
 | network_firm_id_list | Array[int32]  | N        | 广告平台ID列表                                                   | ['xxxxx']         |
 | adsource_id_list     | Array[int32]  | N        | 广告源ID列表                                              | [121]                   |
 | area_list            | Array[String] | N        | 国家列表                                                     | ['xxxxx']           |
-| scenario_id_list     | Array[String] | N        | 场景列表                                                     | ['xxxxx']            |
 | group_by             | Array         | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource，network_firm_id | ["app","placement","area"]<br>network为广告平台账号层级，network_firm_id为广告平台层级  |
 | metric               | Array         | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
 | start                | Int           | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
@@ -168,8 +167,6 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | adsource.token   | String | N        | 广告源的三方ID信息，请求广告的appid，slotid等。group_by有选才有返回 |
 | time_zone        | String | N        | 枚举值：UTC+8、UTC+0、UTC-8                                  |
 | currency         | String | N        | 开发者账号币种，该字段与revenue字段组成的收益需与开发者后台报表的收益一致 |
-| scenario.id      | String | N        | 场景ID，group_by scenario时返回                              |
-| scenario.name    | String | N        | 场景名称，group_by scenario时返回                            |
 | new_users        | String | N        | 新增用户                                                     |
 | new_user_rate    | String | N        | 新增用户占比                                                 |
 | day2_retention   | String | N        | 次日留存                                                     |

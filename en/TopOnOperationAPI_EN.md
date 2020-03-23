@@ -7,6 +7,7 @@
 | :--------: | ------------- | -------------------------------- |
 | v 1.0    | 2019/7/17 | supports create and query apps and placements |
 | v 2.0    | 2019/11/4 | supports operate waterfall and segments |
+| v 2.1    | 2020/3/16 | supports network and adsource |
 
 
 ## Contents
@@ -15,15 +16,17 @@
 [2. Authentication acquisition](#Authentication_acquisition)</br> 
 [3. Authentication check](#Authentication_check)</br> 
 [4. APP API](#APP_API)</br> 
-- [4.1 Batch create APPs](#Batch_create_APPs)</br>  
+- [4.1 Batch create and update APPs](#Batch_create_and_update_APPs)</br>  
 - [4.2 Get APP list](#Get_APP_list)</br>
+- [4.3 Batch delete APPs](#Batch_delete_APPs)</br>
 
 [5. Placement API](#Placement_API)</br>
-- [5.1 Batch create placements](#Batch_create_placements)</br>  
+- [5.1 Batch create and update placements](#Batch_create_and_update_placements)</br>  
 - [5.2 Get placement list](#Get_placement_list)</br>  
+- [5.3 Batch delete placemens](#Batch_delete_placemens)</br>
 
 [6. Segment API](#Segment_API)</br>
-- [6.1 Create and update segments](#Create_and_update_segments)</br>
+- [6.1 Batch create and update segments](#Batch_create_and_update_segments)</br>
 - [6.2 Get segment list](#Get_segment_list)</br>
 - [6.3 Batch delete segments](#Batch_delete_segments)</br>
 
@@ -34,10 +37,20 @@
 - [7.4 Get waterfall's adsources](#Get_waterfalls_adsources)</br>  
 - [7.5 Set waterfall's adsources](#Set_waterfalls_adsources)</br>
 
-[8. Notices](#Notices)</br>
-[9. Appendix1：golang demo](#Appendix1：golang_demo)</br>
-[10. Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum)</br>
-[11. Appendix3：segment rule enum](#Appendix3：segment_rule_enum)
+[8. Network API](#Network_API)</br>
+- [8.1 Create and update network publisher and app parameters](#create_and_update_network_publisher_and_app_parameters)</br>  
+- [8.2 Get network publisher and app parameters](#get_network_publisher_and_app_parameters)</br>
+
+[9. Adsource API](#Adsource_API)</br>
+- [9.1 Batch create and update adsource](#Batch_create_and_update_adsource)</br>
+- [9.2 Get adsource list](#Get_adsource_list)</br>
+- [9.3 Batch delete adsource](#Batch_delete_adsource)</br>
+
+[10. Notices](#Notices)</br>
+[11. Appendix1：Golang Demo](#Appendix1：golang_demo)</br>
+[12. Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum)</br>
+[13. Appendix3：Segment rule enum](#Appendix3：segment_rule_enum)
+[14. Appendix4：Detailed parameters of network](#Appendix4：detailed_parameters_of_network)
 
 <h2 id='Introduction'>1. Introduction</h2>
 

@@ -110,7 +110,7 @@ Server will create sign and campare the sign with X-Up-Signature
 
 ### 4.1 Request URL
 
-<https://openapi.toponad.com/v1/fullreport>
+<https://openapi.toponad.com/v2/fullreport>
 
 ### 4.2 Request Method
 
@@ -221,7 +221,7 @@ return data sample：
 
 ### 5.1 Request URL
 
-<https://openapi.toponad.com/v1/ltvreport>
+<https://openapi.toponad.com/v2/ltvreport>
 
 ### 5.2 Request method
 

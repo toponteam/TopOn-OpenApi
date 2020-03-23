@@ -245,7 +245,7 @@ POST
 | appid_list | Array[String]    | N        | 开发者后台的应用ID                                     | a5c41a9ed1679c                    |
 | time_zone | String | N | 枚举值：UTC+8、UTC+0、UTC-8 |  |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
-| order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |[["date_time","asc"],["app_id","asc"]]                             |
+| order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |[{"order":["date_time","asc"]},{"order":["app_id","asc"]}]]                             |
 | group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
 | start    | Int    | N        |     偏移数，代表从第几条数据开始，默认为0                                 |                               0|
 | limit    | Int    | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]                                   | 1000               |

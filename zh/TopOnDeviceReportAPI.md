@@ -152,7 +152,7 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | click   | String      | 点击数 |
 | revenue              | decimal(18,6)       | 收益，货币单位同开发者后台配置一致                                     |
 | ecpm             | decimal(18,6)       | 千次展示收益，货币单位同开发者后台配置一致                                          |
-| timezone | String | 时区（8，-8，0）仅支持这几种 |
+| timezone | Int | 时区（8，-8，0）仅支持这几种 |
 | currency | String | 开发者账号币种 |
 
 <h2 id='注意事项'>5. 注意事项</h2>

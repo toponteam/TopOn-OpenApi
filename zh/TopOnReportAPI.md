@@ -226,7 +226,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 
 ### 5.1 请求URL
 
-<https://openapi.toponad.com/v1/ltvreport>
+<https://openapi.toponad.com/v2/ltvreport>
 
 ### 5.2 请求方式
 

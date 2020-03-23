@@ -129,7 +129,7 @@ POST
 | adsource_id_list     | Array[int32]  | N        | adsource id list                     | [121]                                      |
 | area_list            | Array[String] | N        | area list                            | ['xxxxx']                                  |
 | placement_id | String              | N        | Placement ID(single)                     | xxxxx       |
-| group_by     | Array               | N        | maximum three：date（default），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
+| group_by     | Array               | N        | maximum three：date（default），app，placement，adformat，area，network，adsource，network firm id | ["app","placement","area"]                 |
 | metric       | Array               | N        | return metrics. default（default values），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
 | start        | Int                 | N        | offset                                                       | 0                    |
 | limit        | Int                 | N        | limit row number. default 1000.  [1,1000]                    | 1000                 |
@@ -155,7 +155,10 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | placement.name   | String | N        | Placement name                                               |
 | adformat         | String | N        | rewarded_video/interstitial/banner/native/splash.        Return if in param 'group_by' |
 | area             | String | N        | country code.Return if in param 'group_by'                   |
-| network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……        Return if in param 'group_by' |
+| network_firm_id  | String | N        | network firm id.Return if in param 'group_by' |
+| network_firm     | String | N        | network firm name.Return if in param 'group_by' |
+| network          | String | N        | account id.Return if in param 'group_by' |
+| network_name     | String | N        | account name.Return if in param 'group_by' |
 | adsource.network | String | N        | adsource network name                                        |
 | adsource.token   | String | N        | adsource token.adsource's appid,slotid and so on.Return if in param 'group_by' |
 | time_zone        | String | N        | UTC+8、UTC+0、UTC-8                                  |

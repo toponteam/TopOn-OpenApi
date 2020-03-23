@@ -38,8 +38,8 @@
 - [7.5 Set waterfall's adsources](#Set_waterfalls_adsources)</br>
 
 [8. Network API](#Network_API)</br>
-- [8.1 Create and update network publisher and app parameters](#create_and_update_network_publisher_or_app_parameters)</br>  
-- [8.2 Get network publisher and app parameters](#get_network_publisher_or_app_parameters)</br>
+- [8.1 Create and update network publisher and app parameters](#create_and_update_network_publisher_and_app_parameters)</br>  
+- [8.2 Get network publisher and app parameters](#get_network_publisher_and_app_parameters)</br>
 
 [9. Adsource API](#Adsource_API)</br>
 - [9.1 Batch create and update adsource](#Batch_create_and_update_adsource)</br>

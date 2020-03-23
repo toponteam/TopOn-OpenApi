@@ -1932,3 +1932,62 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 6    | custom rule（custom）          | bb=1&c!=3&p=3                              |
 | 7    | Greater than（value）          | int,float or string 124                    |
 | 8    | Less than（value）             | int,float or string 222.36                 |
+
+<h2 id='Appendix4：Detailed_parameters_of_network'>14. Appendix4：Detailed parameters of network数</h2>
+
+All Key and Value data types are String
+
+| network firm id | network firm name | auth_content | app_auth_content | adformat | adsource_token |  key-value  |
+| --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
+| 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
+| 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size：320x50,320x90,320x250 |
+| 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |          
+| 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size：320x50,320x100,320x250,468x60,728x90 |
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID | 
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size：320x50 |  
+| 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |  
+| 4         | Flurry      | token | sdk_key | banner | ad_space<br>size | size：320x50 |  
+| 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
+| 5         | Applovin    | sdkkey<br>apikey | -  | rewarded_video<br>interstitial | zone_id | zone_id：Zone ID |  
+| 5         | Applovin    | sdkkey<br>apikey | -  | banner | zone_id<br>size | size：320x50,300x250  | 
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | native<br>rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID | 
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | bannner | unit_id<br>size | size：320x50,300x250,320x90,smart  | 
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | interstitial | unit_id<br>is_video | is_video：0,1 | 
+| 7         | Mopub       | repkey<br>apikey | - | native<br>rewarded_video<br>interstitial | unit_id | repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID  |
+| 7         | Mopub       | repkey<br>apikey | -  | bannner | unit_id<br>size | size：320x50,300x250,728x90  | 
+| 8         | Tencent Ads     | agid<br>publisher_id<br>app_key<br>qq | app_id | native | unit_id<br>unit_version<br>unit_type | qq：MemberID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：Media ID </br> unit_id：UnitID</br>unit_version：1,2</br>unit_type：1,2 |
+| 8         | Tencent Ads     | agid<br>publisher_id<br>app_key<br>qq | app_id | rewarded_video,splash | unit_id | - |
+| 8         | Tencent Ads     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | unit_version：2</br> size：320x50 | 
+| 8         | Tencent Ads     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version：2</br> video_muted：0,1 </br>video_autoplay：0,1</br> video_duration：optional</br>is_fullscreen：0，1 |
+| 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |  
+| 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |  
+| 11        | Ironsource  | username<br>secret_key | app_key | rewarded_video<br>interstitial | instance_id |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID |  
+| 12        | UnityAds    | apikey | game_id | rewarded_video<br>interstitial | placement_id | apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID |  
+| 13        | Vungle      | apikey | app_id | rewarded_video<br>interstitial | placement_id | apikey：Reporting API Key </br> app_id：App ID </br> placement_id：PlacementID |  
+| 14        | AdColony    | user_credentials | app_id | rewarded_video<br>interstitial | zone_id | user_credentials：Read-Only API key </br> app_id：App ID </br> zone_id：Zone ID |  
+| 15        | Pangle(Tiktok Ads)       | user_id<br>secure_key | app_id | native | slot_id<br>is_video<br>layout_type<br>media_size | user_id：UserID </br> secure_key：Secure Key </br> app_id：AppID </br> slot_id：SlotID </br> is_video：0,1,2,3 <br> layout_type：0,1 </br> media_size（when layout_type = 1 required）：1,2 |  
+| 15        | Pangle(Tiktok Ads)       | user_id<br>secure_key | app_id | rewarded_video | slot_id<br>personalized_template | personalized_template：0,1 |  
+| 15        | Pangle(Tiktok Ads)      | user_id<br>secure_key | app_id | banner | slot_id<br>layout_type<br>size | layout_type：1 </br> size：640x100,600x90,600x150,600x500,600x400,600x300,600x260,690x388 |  
+| 15        | Pangle(Tiktok Ads)       | user_id<br>secure_key | app_id | interstitial | slot_id<br>is_video<br>layout_type<br>size<br>personalized_template | when is_video=0 required<br>layout_type：1 <br> size：1:1,3:2,2:3 </br> when is_video=1 required<br>personalized_template：0,1 | 
+| 15        | Pangle(Tiktok Ads)       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template：0,1 | 
+| 16        | Joomob     | - | - | rewarded_video<br>interstitial | app_id | app_id：App ID |  
+| 16        | Joomob     | - | - | banner | app_id<br>size | size：320x50,480x75,640x100,960x150,728x90 |
+| 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |  
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |  
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size：320x50 |  
+| 19        | Kingsoft       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |  
+| 21        | AppNext     | email<br>password<br>key  | - | native<br>rewarded_video<br>interstitial | placement_id | email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID |  
+| 21        | AppNext     | email<br>password<br>key  | - | banner | placement_id<br>size | size：320x50,320x100,300x250 | 
+| 22        | Baidu       | access_key | app_id | native<br>rewarded_video<br>interstitial<br>splash | ad_place_id | access_key：Access Key </br> app_id：AppID </br> ad_place_id：ADPlaceID |  
+| 22        | Baidu       | access_key | app_id | banner | ad_place_id<br>size | size：375x56,200x30,375x250,200x133,375x160,200x85,375x187,200x100 | 
+| 23        | Nend        | api_key | - | naitve | spot_id<br>api_key<br>is_video | api_key：APIKey </br> spot_id：spotID </br> is_video：0,1 |  
+| 23        | Nend        | api_key | - | rewarded_video | spot_id<br>api_key | - | 
+| 23        | Nend        | api_key | - | banner | spot_id<br>api_key<br>size | size：320x50,320x100,300x100,300x250,728x90 | 
+| 23        | Nend        | api_key | - | interstitial | spot_id<br>api_key<br>is_video | is_video：0,1,2 | 
+| 24        | Maio        | api_id<br>api_key | media_id | rewarded_video<br>interstitial | zone_id | api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID |  
+| 25        | StartAPP    | partner_id<br>token  | app_id | rewarded_video<br>interstitial | ad_tag | partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag |  
+| 26        | SuperAwesome | - | property_id | rewarded_video | placement_id | property_id：Property ID </br> placement_id：Placement ID |  
+| 28        | Kuaishou Ads        | access_key<br>security_key | app_id<br>app_name | native | position_id<br>layout_type<br>video_sound<br>is_video<br>unit_type | access_key：Access Key </br> security_key：Security Key </br> app_id：AppID </br> app_name：AppName </br> position_id：PosID </br> unit_type：0,1<br>when unit_type=1 required<br>layout_type：0<br>is_video：0,1<br>video_sound：0,1 |  
+| 28        | Kuaishou Ads        | access_key<br>security_key | app_id<br>app_name | rewarded_video<br>interstitial | orientation | orientation：1,2 | 
+| 29        | Sigmob      | public_key<br>secret_key  | app_id<br>app_key | rewarded_video<br>interstitial<br>splash | placement_id |    public_key：Public Key </br> secret_key：Secret Key </br> app_id：AppID </br> app_key：App Key </br> placement_id：PlacementID |  
+| 36        | Ogury       | api_key<br>api_secret | key | rewarded_video<br>interstitial | unit_id | api_key：API KEY </br> api_secret：API SECRET </br> key：KEY </br> unit_id：AD Unit ID |  

@@ -130,11 +130,11 @@ POST
 | app_id_list          | Array[String] | N        | 开发者后台的应用ID，多选                                     | ['xxxxx']                                  |
 | placement_id_list    | Array[String] | N        | 开发者后台的广告位ID，多选                                   | ['xxxxx']                                  |
 | time_zone            | String        | N        | 时区                                                         | UTC-8,UTC+8,UTC+0                          |
-| network_firm_id_list | Array[int32]  | N        | 广告平台ID列表                                                   |                                            |
-| adsource_id_list     | Array[int32]  | N        | 广告源ID列表                                              | [121]                                      |
-| area_list            | Array[String] | N        | 国家列表                                                     | ['xxxxx']                                  |
-| scenario_id_list     | Array[String] | N        | 场景列表                                                     | ['xxxxx']                                  |
-| group_by             | Array         | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource | ["app","placement","area"]                 |
+| network_firm_id_list | Array[int32]  | N        | 广告平台ID列表                                                   | ['xxxxx']         |
+| adsource_id_list     | Array[int32]  | N        | 广告源ID列表                                              | [121]                   |
+| area_list            | Array[String] | N        | 国家列表                                                     | ['xxxxx']           |
+| scenario_id_list     | Array[String] | N        | 场景列表                                                     | ['xxxxx']            |
+| group_by             | Array         | N        | 可选，最多选三个：date（默认值），app，placement，adformat，area，network，adsource，network_firm_id | ["app","placement","area"]<br>network为广告平台账号层级，network_firm_id为广告平台层级  |
 | metric               | Array         | N        | 可选，当同时选了all和其他指标时即返回全部指标：default（默认值），all，dau，arpu，request，fillrate，impression，click，ctr，ecpm，revenue，request_api，fillrate_api，impression_api，click_api，ctr_api，ecpm_api | ["dau","arpu","request","click","ctr_api"] |
 | start                | Int           | N        | 偏移数，代表从第几条数据开始，默认为0                        | 0                                          |
 | limit                | Int           | N        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]             | 1000                                       |
@@ -160,7 +160,10 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | placement.name   | String | N        | 广告位名称                                                   |
 | adformat         | String | N        | rewarded_video/interstitial/banner/native/splash。group_by有选才有返回 |
 | area             | String | N        | 国家码。group_by有选才有返回                                 |
-| network          | String | N        | facebook/admob/toutiao/gdt/baidu/mintegral……。group_by有选才有返回 |
+| network_firm_id  | String | N        | 广告平台ID。group_by有选network_firm_id才有返回 |
+| network_firm     | String | N        | 广告平台名称。group_by有选network_firm_id才有返回 |
+| network          | String | N        | 广告平台账号ID。group_by有选network才有返回 |
+| network_name     | String | N        | 广告平台账号名称。group_by有选network才有返回 |
 | adsource.network | String | N        | 广告源所属的广告平台名称                                     |
 | adsource.token   | String | N        | 广告源的三方ID信息，请求广告的appid，slotid等。group_by有选才有返回 |
 | time_zone        | String | N        | 枚举值：UTC+8、UTC+0、UTC-8                                  |

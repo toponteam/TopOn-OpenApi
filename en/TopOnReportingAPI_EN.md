@@ -233,7 +233,7 @@ POST
 | appid_list | String    | N        | 开发者后台的应用ID，单选                                     | a5c41a9ed1679c                                   |
 | time_zone | String |  | 枚举值：UTC+8、UTC+0、UTC-8 |  |
 | metric      | array    | N        | default：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] all: all metrics | [“ltv_day_1”， “retention_day_2”]                                   |
-| order_by      | array    | N        | order by. default：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”] |["date_time", “asc”, “app_id”, “desc”]                             |
+| order_by      | array    | N        | order by. default：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”] |[{"order":["date_time","asc"]},{"order":["app_id","asc"]}]]                             |
 | group_by    | array    | N        | defaults：["app_id”, "date_time", "area", "channel"]                             | ["area", "channel"]                                   |
 | start    | Int    | N        |     offset                           |                                    0|
 | limit    | Int    | N        | limit row number. default 1000.  [1,1000] | 1000                                 |

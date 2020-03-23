@@ -311,11 +311,11 @@ None. If it is an error, errors will be returned.
 
 <h2 id='Placement_API'>5. Placement API</h2>
 
-<h3 id='Batch_create_placements'>5.1 Batch create placements</h3>
+<h3 id='Batch_create_and_update_placements'>5.1 Batch create and update placements</h3>
 
 #### 5.1.1 Request URL
 
-<https://openapi.toponad.com/v1/create_placement>
+<https://openapi.toponad.com/v1/deal_placement>
 
 #### 5.1.2 Request method
 
@@ -331,10 +331,11 @@ POST
 | placements.adformat                   | String | Y        | native,banner,rewarded_video,interstitial,splash             |
 | placements.template                   | Int    | N        | Configurations for native ads: 0：standard<br/>1：Native Banner<br/>2：Native Splash |
 | placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
-| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.ski_swt           | Int    | N        | template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
 | placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
-
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
  
 
 #### 5.1.4 Return data
@@ -350,7 +351,8 @@ POST
 | placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
 | placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
 | placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
-
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
  
 
 #### 5.1.5 Sample
@@ -358,13 +360,22 @@ POST
 request sample：
 ```
 {
-    "count": 1, 
-    "app_id": "a5bc9921f7fdb4",
+    "count": 1,
+    "app_id": "a5c41a9ed1679c",
     "placements": [
         {
-            "placement_name": "xxx",
-            "adformat": "native"
+            "placement_name": "6",
+            "adformat": "native",
+            "remark": "remark",
+            "template":2,
+            "template_extra":{
+            	"cdt":55,
+            	"ski_swt":1,
+            	"aut_swt":1
+            }
+            
         }
+        
     ]
 }
 ```
@@ -374,11 +385,19 @@ return sample：
 ```
 [
     {
-        "app_name": "",
-        "app_id": "a5bc9921f7fdb4",
-        "platform": 0,
-        "placement_name": "xxx", 
-        "adformat": "native"   
+        "app_name": "test1",
+        "app_id": "a5c41a9ed1679c",
+        "platform": 2,
+        "placement_id": "b1bv57tielnlts",
+        "placement_name": "6",
+        "adformat": "native",
+        "remark": "remark",
+        "template": 2,
+        "template_extra": {
+            "cdt": 55,
+            "ski_swt": 1,
+            "aut_swt": 1
+        }
     }
 ]
 ```
@@ -397,8 +416,8 @@ POST
 
 | params        | type        | required | notes              |
 | ------------- | ----------- | -------- | ------------------ |
-| app_ids       | string List | N        | eg: ["abc", "acc"] |
-| placement_ids | string List | N        | eg: ["abc", "acc"] |
+| app_ids       | Array[String] | N        | eg: ["abc", "acc"] |
+| placement_ids | Array[String] | N        | eg: ["abc", "acc"] |
 | start         | Int         | N        | Default 0          |
 | limit         | Int         | N        | Default 100        |
 
@@ -408,14 +427,19 @@ POST
 
 | fields         | type   | required | notes                     |
 | -------------- | ------ | -------- | ------------------------- |
-| app_id         | String | Y        | APP ID                    |
+| app_id         | String | Y        | app id                    |
 | app_name       | String | Y        | app name                  |
-| platform       | Int    | Y        | 1 or 2  (1:android，2IOS) |
-| placements     | String | Y        | -                         |
+| platform       | Int    | Y        | 1 or 2  (1:android,2:IOS) |
 | placement_id   | String | N        | -                         |
 | placement_name | String | N        | -                         |
 | adformat       | String | N        | -                         |
-
+| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
+| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
+| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
+| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
+| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
+| remark                                | String | N        | remarks information                                          |
+| status                                | Int    | N        | placement's status                                           |
  
 
 #### 5.2.5 Sample
@@ -440,6 +464,45 @@ return sample：
         "adformat": "rewarded_video"
     }
 ]
+```
+
+<h3 id='Batch_delete_placemens'>5.3 Batch delete placemens</h3>
+
+#### 5.3.1 Request URL
+
+<https://openapi.toponad.com/v1/del_placements>
+
+#### 5.3.2 Request method 
+
+POST
+
+#### 5.3.3 Request params
+
+| params        | type        | required | notes              |
+| ------------- | ----------- | -------- | ------------------ |
+| placement_ids | Array[String] | Y        | eg: ["abc", "acc"] |
+
+#### 5.3.4 Return data
+
+| fields         | type   | required | notes                     |
+| -------------- | ------ | -------- | ------------------------- |
+| msg | String | N        | -         |
+ 
+
+#### 5.3.5 Sample
+request sample：
+```
+{
+	"placement_ids":["b5bc9bc2951216"]
+}
+```
+
+
+return sample：
+```
+{
+    "msg": "suc"
+}
 ```
 
 <h2 id='Segment_API'>6. Segment API</h2>

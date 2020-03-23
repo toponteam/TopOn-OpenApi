@@ -48,7 +48,7 @@
 
 [10. Notices](#Notices)</br>
 [11. Appendix1：Golang Demo](#Appendix1：golang_demo)</br>
-[12. Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum)</br>
+[12. Appendix2：App category and sub category enum](#Appendix2：App_category_and_sub_category_enum)</br>
 [13. Appendix3：Segment rule enum](#Appendix3：segment_rule_enum)<br>
 [14. Appendix4：Detailed parameters of network](#Appendix4：detailed_parameters_of_network)
 
@@ -144,13 +144,13 @@ Server will create sign and campare the sign with X-Up-Signature
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
-<h2 id='APP_API'>4. APP API</h2>
+<h2 id='App_API'>4. App API</h2>
 
-<h3 id='Batch_create_APPs'>4.1 Batch create APPs</h3>
+<h3 id='Batch_create_and_update_apps'>4.1 Batch create and update apps</h3>
 
 #### 4.1.1 Request URL
 
-<https://openapi.toponad.com/v1/create_app>
+<https://openapi.toponad.com/v1/deal_app>
 
 #### 4.1.2 Request method 
 
@@ -160,13 +160,15 @@ POST
 
 | params            | type   | required | notes                                                        |
 | ----------------- | ------ | -------- | ------------------------------------------------------------ |
-| count             | Int    | Y        | Quantity of created APPs                                     |
-| apps.app_name     | String | Y        | APP name                                                     |
+| count             | Int    | Y        | Quantity of created apps                                     |
+| apps.app_id       | String | N        | app id                                                       |
+| apps.app_name     | String | Y        | app name                                                     |
 | apps.platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS)                          |
 | apps.market_url   | String | N        | Need to be in compliance with requirements of app store links |
-| apps.package_name | String | N        | Need to be in compliance with requirements of APP package name.  com.xxx |
-| apps.category     | String | N        | category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum) |
-| apps.sub_category | String | N        | sub category.[Appendix2：APP category and sub category enum](#Appendix2：APP_category_and_sub_category_enum) |
+| apps.screen_orientation | Int    | Y        | 1:portrait <br>2:landscape <br>3:both                  |
+| apps.package_name | String | N        | Need to be in compliance with requirements of app package name.  com.xxx |
+| apps.category     | String | N        | category.[Appendix2：App category and sub category enum](#Appendix2：App_category_and_sub_category_enum),app that is not in the store at the time of creation must be passed. |
+| apps.sub_category | String | N        | sub category.[Appendix2：App category and sub category enum](#Appendix2：App_category_and_sub_category_enum),app that is not in the store at the time of creation must be passed. |
 
  
 
@@ -174,10 +176,11 @@ POST
 
 | fields   | type   | required | notes                               |
 | -------- | ------ | -------- | ----------------------------------- |
-| app_id   | String | Y        | APP ID                              |
-| app_name | String | Y        | APP name                            |
+| app_id   | String | Y        | app id                              |
+| app_name | String | Y        | app name                            |
 | errors   | String | N        | error messages                      |
 | platform | Int    | Y        | platform 1 or 2  (1:android，2:iOS) |
+| screen_orientation | Int    | Y        | 1:portrait <br>2:landscape <br>3:both                  |
 
  
 
@@ -189,9 +192,10 @@ request sample：
     "count": 1,
     "apps": [
         {
-            "app_name": "111",
+            "app_name": "oddman",
             "platform": 1,
-            "market_url": ""
+            "screen_orientation":1,
+            "market_url": "https://play.google.com/store/apps/details?id=com.hunantv.imgo.activity.inter"
         }
     ]
 }
@@ -202,13 +206,16 @@ return sample：
 ```
 [
     {
-        "app_name": "111",
-        "errors": "app package name is required"  
+        "app_name": "oddman",
+        "app_id": "",
+        "platform": 1,
+        "screen_orientation": 1,
+        "errors": "repeat app name error"
     }
 ]
 ```
 
-<h3 id='Get_APP_list'>4.2 Get APP list</h3>
+<h3 id='Get_app_list'>4.2 Get app list</h3>
 
 #### 4.2.1 Request URL
 
@@ -222,7 +229,7 @@ POST
 
 | params  | type        | required | notes                  |
 | ------- | ----------- | -------- | ---------------------- |
-| app_ids | string List | N        | ["abc", "acc"]         |
+| app_ids | Array[String] | N        | ["abc", "acc"]         |
 | start   | Int         | N        | Default 0              |
 | limit   | Int         | N        | Default 100 , [0, 100] |
 
@@ -232,10 +239,11 @@ POST
 
 | fields       | type   | required | notes                               |
 | ------------ | ------ | -------- | ----------------------------------- |
-| app_id       | String | Y        | APP ID                              |
-| app_name     | String | Y        | APP name                            |
+| app_id       | String | Y        | app id                              |
+| app_name     | String | Y        | app name                            |
 | platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS) |
 | market_url   | String | N        | -                                   |
+| screen_orientation | Int  | Y    | 1:portrait <br>2:landscape <br>3:both   |
 | package_name | String | N        | -                                   |
 | category     | String | N        | -                                   |
 | sub-category | String | N        | -                                   |
@@ -256,15 +264,50 @@ return sample：
 ```
 [
     {
-        "app_name": "topontest",
+        "app_name": "uparputest",
         "app_id": "a5bc9921f7fdb4",
         "platform": 2,
         "market_url": "https://itunes.apple.com/cn/app/%E7%A5%9E%E5%9B%9E%E9%81%BF/id1435756371?mt=8",
         "category": "Game",
-        "sub_category": "Action"
+        "sub_category": "Action",
+        "screen_orientation": 3
     }
 ]
 ```
+
+<h3 id='Batch_delete_apps'>4.3 Batch delete apps</h3>
+
+#### 4.3.1 Request URL
+
+<https://openapi.toponad.com/v1/del_apps>
+
+#### 4.3.2 Request method
+
+POST
+
+#### 4.3.3 Request params
+
+| params  | type        | required | notes                  |
+| ------- | ----------- | -------- | ---------------------- |
+| app_ids | Array[String] | Y        | ["abc", "acc"]         |
+
+#### 4.3.4 Return data
+
+None. If it is an error, errors will be returned.
+
+#### 4.3.5 Sample
+
+request sample：
+```
+{
+	"app_ids": ["a1bu2thutsq3mn"]
+}
+```
+
+
+return sample：
+
+None. If it is an error, errors will be returned.
 
 <h2 id='Placement_API'>5. Placement API</h2>
 

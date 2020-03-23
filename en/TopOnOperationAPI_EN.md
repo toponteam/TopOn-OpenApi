@@ -1933,7 +1933,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 7    | Greater than（value）          | int,float or string 124                    |
 | 8    | Less than（value）             | int,float or string 222.36                 |
 
-<h2 id='Appendix4：Detailed_parameters_of_network'>14. Appendix4：Detailed parameters of network数</h2>
+<h2 id='Appendix4：Detailed_parameters_of_network'>14. Appendix4：Detailed parameters of network</h2>
 
 All Key and Value data types are String
 

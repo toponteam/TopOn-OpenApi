@@ -1012,7 +1012,6 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement ID |
 | segment_id   | String | Y        | Segment ID      |
-| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
 
 #### 7.4.4 Return data
 
@@ -1021,15 +1020,20 @@ GET
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
-| ad_source_list                      | Array   | Y        | empty means has no adsource                                  |
+| ad_source_list                      | Array   | Y        | adsource list in used                                        |
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | N        | eCPM                                                         |
+| ad_source_list.auto_ecpm            | float64 | N        | auto eCPM                                                  |
 | ad_source_list.pirority             | Int     | N        | adsource pirority                                            |
-| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />0：not support，<br />1：support |
-| ad_source_list.auto_switch          | Int     | N        | 0：not open auto eCPM sort switch，<br />1：open auto eCPM sort switch |
+| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
+| ad_source_list.auto_switch          | Int     | N        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
+| free_ad_source_list                 | Array   | N        | adsource list not in used                                    |
+| offer_list                          | Array   | N        | my offer list in used                                        |
+| offer_list.offer_id                 | String  | N        | offer id                                                     |
+| offer_list.offer_name               | String  | N        | offer name                                                   |
 
 #### 7.4.5 Sample
 
@@ -1088,13 +1092,15 @@ POST
 | params                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
-| segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
+| segment_id                          | String  | Y        | segment ID                                                   |
+| parallel_request_number             | Int     | Y        | parallel request number                                      |
+| offer_switch                        | Int     | N        | my offer switch                                              |
+| unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
-| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />0：not support，<br />1：support |
-| ad_source_list.auto_switch          | Int     | Y        | 0：not open auto eCPM sort switch，<br />1：open auto eCPM sort switch |
+| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
+| ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
@@ -1106,12 +1112,15 @@ POST
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
+| parallel_request_number             | Int     | Y        | parallel request number                                      |
+| offer_switch                        | Int     | N        | my offer switch                                              |
+| unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.pirority             | Int     | N        | adsource pirority                                            |
-| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />0：not support，<br />1：support |
-| ad_source_list.auto_switch          | Int     | Y        | 0：not open auto eCPM sort switch，<br />1：open auto eCPM sort switch |
+| ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
+| ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
@@ -1130,7 +1139,7 @@ request sample：
             "auto_switch": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1139,7 +1148,7 @@ request sample：
             "auto_switch": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
-            "header_bidding_witch": 0,
+            "header_bidding_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1160,8 +1169,8 @@ return sample：
             "priority": 1,
             "ad_source_id": "ad_source_id1",
             "ecpm": "ecpm1",
-            "header_bidding_witch": 0,
-            "auto_switch": 0,
+            "header_bidding_switch": 1,
+            "auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1170,8 +1179,8 @@ return sample：
             "priority": 2,
             "ad_source_id": "ad_source_id2",
             "ecpm": "ecpm2",
-            "header_bidding_witch": 0,
-            "auto_switch": 0,
+            "header_bidding_switch": 1,
+            "auto_switch": 1,
             "day_cap": -1,
             "hour_cap": -1,
             "pacing": -1
@@ -1180,7 +1189,9 @@ return sample：
 }
 ```
 
-<h2 id='Notices'>8. Notices</h2>
+
+
+<h2 id='Notices'>10. Notices</h2>
 
 Please control the frequency of requests:
 
@@ -1188,7 +1199,7 @@ Please control the frequency of requests:
 
 •  10000 per day
 
-<h2 id='Appendix1：golang_demo'>9. Appendix1：golang demo</h2>
+<h2 id='Appendix1：golang_demo'>11. Appendix1：golang demo</h2>
 
  Java,PHP,Python demos are in the Git path /demo
 
@@ -1386,7 +1397,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 
 }
 ```
-<h2 id='Appendix2：APP_category_and_sub_category_enum'>10. Appendix2：APP category and sub category enum</h2>
+<h2 id='Appendix2：APP_category_and_sub_category_enum'>12. Appendix2：APP category and sub category enum</h2>
 
 | Platform | ategory | Sub Category            |
 | -------- | ------- | ----------------------- |
@@ -1493,7 +1504,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS      | App     | Utilities               |
 | iOS      | App     | Weather                 |
 
-<h2 id='Appendix3：segment_rule_enum'>11. Appendix3：segment rule enum</h2>
+<h2 id='Appendix3：segment_rule_enum'>13. Appendix3：segment rule enum</h2>
 
 | rule | type                           | sample                                     |
 | :--- | :----------------------------- | :----------------------------------------- |

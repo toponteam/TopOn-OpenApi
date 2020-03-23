@@ -38,8 +38,8 @@
 - [7.5 Set waterfall's adsources](#Set_waterfalls_adsources)</br>
 
 [8. Network API](#Network_API)</br>
-- [8.1 Create and update network publisher or app parameters](#create_and_update_network_publisher_or_app_parameters)</br>  
-- [8.2 Get network publisher or app parameters](#get_network_publisher_or_app_parameters)</br>
+- [8.1 Create and update network publisher and app parameters](#create_and_update_network_publisher_or_app_parameters)</br>  
+- [8.2 Get network publisher and app parameters](#get_network_publisher_or_app_parameters)</br>
 
 [9. Adsource API](#Adsource_API)</br>
 - [9.1 Batch create and update adsource](#Batch_create_and_update_adsource)</br>
@@ -1191,157 +1191,153 @@ return sample：
 
 <h2 id='Network_API'>8. Network API</h2>
 
-<h3 id='Batch_create_and_update_placements'>8.1 Batch create and update placements</h3>
+<h3 id='Create_and_update_network_publisher_and_app_parameters'>8.1 Create and update network publisher and app parameters</h3>
 
-#### 5.1.1 Request URL
+#### 8.1.1 Request URL
 
-<https://openapi.toponad.com/v1/deal_placement>
+<https://openapi.toponad.com/v1/set_networks>
 
-#### 5.1.2 Request method
+#### 8.1.2 Request method
 
 POST
 
-#### 5.1.3 Request params
+#### 8.1.3 Request params
 
-| params                                | type   | required | notes                                                        |
-| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| count                                 | Int    | Y        | Quantity of created placements                               |
-| app_id                                | String | Y        | APP ID of created placements                                 |
-| placements.placement_name             | String | Y        | placement name. max length 30                                |
-| placements.adformat                   | String | Y        | native,banner,rewarded_video,interstitial,splash             |
-| placements.template                   | Int    | N        | Configurations for native ads: 0：standard<br/>1：Native Banner<br/>2：Native Splash |
-| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
-| placements.template.aut_swt           | Int    | N        | template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
-| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
-| remark                                | String | N        | remarks information                                          |
-| status                                | Int    | N        | placement's status                                           |
+| params                            | type   | required | notes                                                        |
+| --------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| network_name                      | String | N        | the account name of network, which must be passed when opening multiple accounts     |
+| nw_firm_id                        | Int    | Y        | network id              |
+| network_id                        | Int    | N        | account id          |
+| is_open_report                    | Int    | N        | whether to activate Report API  |
+| auth_content                      | Object | N        | network publisher params    |
+| network_app_info                  | Array  | N        | -     |
+| network_app_info.app_id           | String | N        | TopOn app id              |
+| network_app_info.app_auth_content | Object | N        | network app params,detail:[Appendix4：Detailed parameters of network](#Appendix4：Detailed_parameters_of_network)  |
  
 
-#### 5.1.4 Return data
+#### 8.1.4 Return data
 
-| fields                                | type   | required | notes                                                        |
-| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
-| app_id                                | String | Y        | APP ID                                                       |
-| placement_name                        | String | Y        | placement name                                               |
-| placement_id                          | String | Y        | placement ID                                                 |
-| adformat                              | String | Y        | Native, banner, rewarded video, interstitial, splash         |
-| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
-| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
-| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
-| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
-| remark                                | String | N        | remarks information                                          |
-| status                                | Int    | N        | placement's status                                           |
+| fields                            | type   | required | notes                                                        |
+| --------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| network_name                      | String | Y        | account name                   |
+| nw_firm_id                        | Int    | Y        | network id                          |
+| network_id                        | Int    | N        | account id                     |
+| is_open_report                    | Int    | N        | whether to activate Report API             |
+| auth_content                      | Object | N        | network publisher params    |
+| network_app_info                  | Array  | N        | -                |
+| network_app_info.app_id           | String | N        | TopOn app id                         |
+| network_app_info.app_auth_content | Object | N        | network app params |
  
 
-#### 5.1.5 Sample
+#### 8.1.5 Sample
 
 request sample：
 ```
-{
-    "count": 1,
-    "app_id": "a5c41a9ed1679c",
-    "placements": [
-        {
-            "placement_name": "6",
-            "adformat": "native",
-            "remark": "remark",
-            "template":2,
-            "template_extra":{
-            	"cdt":55,
-            	"ski_swt":1,
-            	"aut_swt":1
+   {
+        "network_name": "Default",
+        "nw_firm_id": 2,
+        "network_id": 226,
+        "is_open_report": 2,
+        "auth_content": {
+            "account_id": "pub-1310074477383748",
+            "oauth_key": "1/CW8VoZRbc5UCscXs3ddTXzwT9LQ71uFUMSE6iEwcRlk"
+        },
+        "network_app_info": [
+            {
+                "app_id": "a5bc9921f7fdb4",
+                "app_auth_content": {
+                    "app_id": "ca-app-pub-1310074477383748~6985182465"
+                }
             }
-            
+        ]
+    }
+```
+
+
+return sample：
+```
+{
+    "network_name": "Default",
+    "nw_firm_id": 2,
+    "network_id": 226,
+    "is_open_report": 2,
+    "auth_content": {
+        "account_id": "pub-1310074477383748",
+        "oauth_key": "1/CW8VoZRbc5UCscXs3ddTXzwT9LQ71uFUMSE6iEwcRlk"
+    },
+    "network_app_info": [
+        {
+            "app_id": "a5bc9921f7fdb4",
+            "app_auth_content": {
+                "app_id": "ca-app-pub-1310074477383748~6985182465"
+            }
         }
-        
     ]
 }
 ```
 
+<h3 id='Get_network_publisher_and_app_parameters'>8.2 Get network publisher and app parameters</h3>
 
-return sample：
-```
-[
-    {
-        "app_name": "test1",
-        "app_id": "a5c41a9ed1679c",
-        "platform": 2,
-        "placement_id": "b1bv57tielnlts",
-        "placement_name": "6",
-        "adformat": "native",
-        "remark": "remark",
-        "template": 2,
-        "template_extra": {
-            "cdt": 55,
-            "ski_swt": 1,
-            "aut_swt": 1
-        }
-    }
-]
-```
+#### 8.2.1 Request URL
 
-<h3 id='Get_placement_list'>5.2 Get placement list</h3>
+<https://openapi.toponad.com/v1/networks>
 
-#### 5.2.1 Request URL
-
-<https://openapi.toponad.com/v1/placements>
-
-#### 5.2.2 Request method 
+#### 8.2.2 Request method 
 
 POST
 
-#### 5.2.3 Request params
+#### 8.2.3 Request params
 
-| params        | type        | required | notes              |
-| ------------- | ----------- | -------- | ------------------ |
-| app_ids       | Array[String] | N        | eg: ["abc", "acc"] |
-| placement_ids | Array[String] | N        | eg: ["abc", "acc"] |
-| start         | Int         | N        | Default 0          |
-| limit         | Int         | N        | Default 100        |
+None
 
- 
-
-#### 5.2.4 Return data
+#### 8.2.4 Return data
 
 | fields         | type   | required | notes                     |
 | -------------- | ------ | -------- | ------------------------- |
-| app_id         | String | Y        | app id                    |
-| app_name       | String | Y        | app name                  |
-| platform       | Int    | Y        | 1 or 2  (1:android,2:IOS) |
-| placement_id   | String | N        | -                         |
-| placement_name | String | N        | -                         |
-| adformat       | String | N        | -                         |
-| placements.template                   | Int    | N        | Configurations for native ads: 0：standard 1：Native Banner 2：Native Splash |
-| placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
-| placements.template.ski_swt           | Int    | N        | Template is Native Splash：it can skipped or not, it could be skipped by default.<br/>0：No<br/>1：Yes |
-| placements.template.aut_swt           | Int    | N        | Template is Native Splash：it can be auto closed or not, it could be auto closed by default.<br/>0：No<br/>1：Yes |
-| placements.template.auto_refresh_time | Int    | N        | template is Native Banner：it can be auto refreshed or not, it could not be auto refreshed by default<br/>-1 no auto refresh<br/>0-n auto refresh time (s) |
-| remark                                | String | N        | remarks information                                          |
-| status                                | Int    | N        | placement's status                                           |
- 
+| network_name                      | String | Y        | account name                   |
+| nw_firm_id                        | Int    | Y        | network id                          |
+| network_id                        | Int    | N        | account id                     |
+| is_open_report                    | Int    | N        | whether to activate Report API             |
+| auth_content                      | Object | N        | network publisher params    |
+| network_app_info                  | Array  | N        | -                |
+| network_app_info.app_id           | String | N        | TopOn app id                         |
+| network_app_info.app_auth_content | Object | N        | network app params |
 
-#### 5.2.5 Sample
 
-request sample：
-```
-{
-	"placement_ids":["b5bc9bc2951216"]
-}
-```
-
+#### 8.2.5 Sample
 
 return sample：
 ```
 [
     {
-        "app_name": "topontest",
-        "app_id": "a5bc9921f7fdb4",
-        "platform": 2,
-        "placement_id": "b5bc9bc2951216",
-        "placement_name": "topontest_rewardvideo",
-        "adformat": "rewarded_video"
+        "network_name": "Default",
+        "nw_firm_id": 1,
+        "network_id": 307,
+        "is_open_report": 2,
+        "network_app_info": [
+            {
+                "app_id": "appid1",
+                "app_auth_content": {
+                    "app_id": "24234234",
+                    "app_token": "1"
+                }
+            }
+        ]
+    },
+    {
+        "network_name": "24523423",
+        "nw_firm_id": 1,
+        "network_id": 1418,
+        "is_open_report": 2,
+        "network_app_info": [
+            {
+                "app_id": "appid2",
+                "app_auth_content": {
+                    "app_id": "232323",
+                    "app_token": "1"
+                }
+            }
+        ]
     }
 ]
 ```

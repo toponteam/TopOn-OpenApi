@@ -4,7 +4,8 @@
 
 | version | date  | notes        |
 | :-------: | ------------- | -------------------- |
-| v 1.0    | 2019/8/29 | supports device reporting |
+| v 1.0    | 2019/8/29 | supports device report |
+| v 1.1    | 2020/3/17 | supports currency and timezone |
 
 
 ## Contents
@@ -23,6 +24,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 <h2 id='Authentication_check'>3. Authentication check</h2>
+
 ### 3.1 The process description of API request
 
 - The client generates a key based on the content of the API request, including the HTTP headers and bodies.
@@ -105,6 +107,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 606       | StatusRequestRepeatError | duplicated requests         |
 
 <h2 id='Device_report'>4. Device report</h2>
+
 ### 4.1 Request URL
 
 <https://openapi.toponad.com/v1/devicereport>
@@ -118,7 +121,7 @@ GET
 | params   | type | required | notes                                                     | sample                                  |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | day    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501,Earliest date is the day before yesterday |
-| app_id       | String | N        | APP ID(single)                        | xxxxx                                                                            |
+| app_id       | String | N        | APP ID(single)                        | xxxxx                                                     |
 | timezone | Int | N | Time Zone | -8 or 8 or 0, default 8 |
 
 notes: Your device reporting data will create in the date which open authentication 
@@ -136,7 +139,7 @@ Fields detail:
 | ---------------- | ------  | ------------------------------------------------------------ |
 | placement_id            | String      | Placement ID                                          |
 | placement_name             | String      | Placement name    |
-| placement_format          | String     | adformat 0: native,1: rewarded_video,2: banner,3: interstitial,4: splash                            |
+| placement_format          | String     | adformat 0: native,1: rewarded_video,2: banner,3: interstitial,4: splash                    |
 | unit_id         | String      | TopOn's adsource id                                                  |
 | unit_network     | String       | TopOn's network name                                        |
 | unit_token     | String       | TopOn's adsource token                  |
@@ -148,6 +151,8 @@ Fields detail:
 | click   | String      | click number |
 | revenue              | decimal(18,6)       | revenue                              |
 | ecpm             | decimal(18,6)       | ecpm                                      |
+| timezone | Int |  -8 or 8 or 0, default 8 |
+| currency | String | currency |
 
 <h2 id='Notices'>5. Notices</h2>
 Please control the frequency of requests:

@@ -507,7 +507,7 @@ return sample：
 
 <h2 id='Segment_API'>6. Segment API</h2>
 
-<h3 id='Create_and_update_segments'>6.1 Create and update segments</h3>
+<h3 id='Batch_create_and_update_segments'>6.1 Batch create and update segments</h3>
 
 #### 6.1.1 Request URL
 
@@ -521,12 +521,14 @@ POST
 
 | params        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
-| name          | String | Y        | Segment name                                                 |
-| segment_id    | String | N        | Must reture Segment ID when updating Segment                 |
-| rules         | Array  | Y        | Segment rules                                                |
-| rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
-| rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
+| count         | Int    | Y        | segment number                                               |
+| segments      | Array  | Y        | -                                                            |
+| segments.name          | String | Y        | segment name                                                 |
+| segments.segment_id    | String | N        | must reture segment id when updating segment                 |
+| segments.rules         | Array  | Y        | segment rules                                                |
+| segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
+| segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
+| segments.rules.content | string | Y        | [Appendix3：segment rule enum](#Appendix3：segment_rule_enum) |
 
 #### 6.1.4 Return data
 
@@ -547,12 +549,45 @@ request sample：
 
 ```
 {
-    "name": "segment1",
-    "rules": [
+    "count": 2,
+    "segments": [
         {
-            "type": 1,
-            "rule": 1,
-            "content": "sdsd"
+            "name": "2123123",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "2123123434"
         }
     ]
 }
@@ -563,17 +598,49 @@ request sample：
 return sample：
 
 ```
-{
-    "name": "segment1",
-    "segment_id": "asasdsdsd",
-    "rules": [
-        {
-            "type": 1,
-            "rule": 1,
-            "content": "sdsd"
-        }
-    ]
-}
+[
+    {
+        "name": "2123123",
+        "segment_id": "c1boq7f7apetou",
+        "rules": [
+            {
+                "type": 3,
+                "rule": 0,
+                "content": [
+                    "4g",
+                    "3g",
+                    "2g"
+                ]
+            },
+            {
+                "type": 17,
+                "rule": 0,
+                "content": [
+                    "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                    "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                    "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                ]
+            },
+            {
+                "type": 10,
+                "rule": 0,
+                "content": [
+                    "iphone"
+                ]
+            },
+            {
+                "type": 9,
+                "rule": 7,
+                "content": "5.0.0"
+            }
+        ]
+    },
+    {
+        "name": "2123123434",
+        "segment_id": "",
+        "errors": "segment rule length must 1"
+    }
+]
 ```
 
 <h3 id='Get_segment_list'>6.2 Get segment list</h3>

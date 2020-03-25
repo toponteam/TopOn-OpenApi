@@ -1024,7 +1024,6 @@ GET
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | N        | eCPM                                                         |
 | ad_source_list.auto_ecpm            | float64 | N        | auto eCPM                                                  |
-| ad_source_list.pirority             | Int     | N        | adsource pirority                                            |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | N        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
@@ -1118,7 +1117,6 @@ POST
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
-| ad_source_list.pirority             | Int     | N        | adsource pirority                                            |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |

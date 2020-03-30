@@ -6,9 +6,9 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 ## 3. API List
-- [Operation API](/en/TopOnOperationAPI_EN.md)</br>
-- [Reporting API](/en/TopOnReportingAPI_EN.md)</br>
-- [Device Reporting API](/en/TopOnDeviceReportingAPI_EN.md) (additional permission is required)</br>
+- [Operation API](/doc/英文/management_api_en.md)</br>
+- [Reporting API](/doc/英文/report_api_en.md)</br>
+- [Device Reporting API](/doc/英文/device_report_api_en.md) (additional permission is required)</br>
 
 ===============================================================================
 
@@ -21,6 +21,6 @@ Before using the batch creation API of TopOn, publishers shall apply  for publis
 
 ## 3. 支持接口列表
 目前TopOn平台对外API接口包括：</br>
-- [开发者后台操作API](/zh/TopOnBatchCreateAPI.md)</br>
-- [报表数据查询API](/zh/TopOnReportAPI.md)</br>
-- [设备维度数据报告API](/zh/TopOnDeviceReportAPI.md)（需另外申请权限）</br>
+- [开发者后台操作API](/doc/中文/management_api_cn.md)</br>
+- [报表数据查询API](/doc/中文/report_api_cn.md)</br>
+- [设备维度数据报告API](/doc/中文/device_report_api_cn.md)（需另外申请权限）</br>

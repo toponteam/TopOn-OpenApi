@@ -114,8 +114,8 @@ POST
 
 | 字段                 | 类型          | 是否必传 | 备注                                                         | 样例                                       |
 | -------------------- | ------------- | -------- | ------------------------------------------------------------ | ------------------------------------------ |
-| start_date            | Int           | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
-| end_date              | Int           | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
+| startdate            | Int           | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                                   |
+| enddate              | Int           | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                                   |
 | app_id_list          | Array[String] | N        | 开发者后台的应用ID，多选                                     | ['xxxxx']                                  |
 | placement_id_list    | Array[String] | N        | 开发者后台的广告位ID，多选                                   | ['xxxxx']                                  |
 | time_zone            | String        | N        | 时区                                                         | UTC-8,UTC+8,UTC+0                          |
@@ -185,8 +185,8 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 请求样例：
 ```
 {
-​    "start_date": 20190706,
-​    "end_date": 201907010,
+​    "startdate": 20190706,
+​    "enddate": 201907010,
 ​     "limit":120,  
 ​    "group_by":["adsource"],
 ​    "metric":["all"],
@@ -224,10 +224,9 @@ POST
 
 | 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ---------------------------------- |
-| start_date    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                            |
-| end_date      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                            |
+| startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                            |
+| enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                            |
 | area_list | Array[String] | N | 国家列表 | ["xxx"] |
-| channel_list | Array[String] | N | channel列表 | ["xxx"] |
 | appid_list | Array[String]    | N        | 开发者后台的应用ID                                     | a5c41a9ed1679c                    |
 | time_zone | String | N | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |                        |

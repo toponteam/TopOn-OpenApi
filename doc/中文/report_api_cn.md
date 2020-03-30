@@ -1,6 +1,4 @@
-# TopOn平台报表数据查询API对接文档
-
-## 修订历史
+# 修订历史
 
 | 文档版本 | 发布时间      | 修订说明             |
 | :--------: | ------------- | -------------------- |
@@ -8,23 +6,14 @@
 | v 2.0    | 2019年8月30日 | 支持用户价值&留存报表数据查询 |
 | v 2.1    | 2020年3月17日 | 综合报表支持新增用户、渗透率等指标查询 |
 
-## 目录
 
-[1. 关于文档](#关于文档)</br>
-[2. 申请开通权限](#申请开通权限)</br>
-[3. 接口校验](#接口校验)</br>
-[4. 综合报表](#综合报表)</br>
-[5. 用户价值&留存报表](#用户价值&留存报表)</br>
-[6. 注意事项](#注意事项)</br>
-[7. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
+## 1. 关于文档
+为提高合作伙伴的变现效率，TopOn平台专门提供了数据报表查询的API接口，可查询综合报表、LTV&留存报表等数据。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
-<h2 id='关于文档'>1. 关于文档</h2>
-为提高合作伙伴的变现效率，TopOn平台专门提供了报表查询的API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
-
-<h2 id='申请开通权限'>2. 申请开通权限</h2>
+## 2. 申请开通权限
 在使用TopOn平台的批量创建 API 前，合作伙伴需向TopOn申请 publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
-<h2 id='接口校验'>3. 接口校验</h2>
+## 3. 接口校验
 
 ### 3.1 接口请求流程说明
 
@@ -43,8 +32,8 @@
 | 参数           | 说明                                                         | 样例                                       |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------ |
 | X-Up-Key       | publisher_key                                                | X-Up-Key: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql |
-| X-Up-Timestamp | API 调用者传递时间戳，值为当前时间的毫秒数，也就是从1970年1月1日起至今的时间转换为毫秒，时间戳有效时间为15分钟。 |                                            |
-| X-Up-Signature | 签名字符串                                                   |                                            |
+| X-Up-Timestamp | API 调用者传递时间戳，值为当前时间的毫秒数，也就是从1970年1月1日起至今的时间转换为毫秒，时间戳有效时间为15分钟。 |   -                                         |
+| X-Up-Signature | 签名字符串                                                   |                                            |-
 
  
 
@@ -54,7 +43,7 @@
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
 | Content-MD5  | HTTP 请求中 Body 部分的 MD5 值（必须为大写字符串）     | 875264590688CA6171F6228AF5BBB3D2                             |
 | Content-Type | HTTP 请求中 Body 部分的类型                            | application/json                                             |
-| Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp:1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
+| Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
 | HTTPMethod   | HTTP 请求的方法名称，全部大写                          | PUT、GET、POST 等                                            |
 | Resource     | 由 HTTP 请求资源构造的字符串(如果有querystring要加上） | /v1/fullreport?key1=val1&key2=val2                           |
 
@@ -63,27 +52,27 @@
 ### 3.4 签名方式
 
 参与签名计算的字符串：
-
+```
      SignString = HTTPMethod + "\n" 
                         \+ Content-MD5 + "\n" 
                         \+ Content-Type + "\n"  
                         \+ Headers + "\n"
                         \+ Resource 
-
-如果无body，如下：
-    
+```
+如果无body，如下： 
+```  
     SignString = HTTPMethod + "\n" 
                         \+ "\n" 
                         \+ "\n" 
                         \+ Headers + "\n"
                         \+ Resource 
-
+```
 Resource:
-
+```
     URL的Path         
-
+```
 Headers：
-
+```
     X-Up-Key + X-Up-Timestamp 按字典序升序
     
     X-Up-Signature不参与签名计算
@@ -91,7 +80,7 @@ Headers：
     Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2   
         
     Sign = MD5(HTTPMethod + Content-MD5+ Content-Type + Header + Resource)
-
+```
 服务端会比对计算Sign和X-Up-Signature
 
  
@@ -111,7 +100,7 @@ Headers：
 | 606    | StatusRequestRepeatError | 重复请求           |
 
 
-<h2 id='综合报表'>4. 综合报表</h2>
+## 4. 综合报表
 
 ### 4.1 请求URL
 
@@ -222,7 +211,7 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 }
 ```
 
-<h2 id='用户价值&留存报表'>5. 用户价值&留存报表</h2>
+## 5. 用户价值&留存报表
 
 ### 5.1 请求URL
 
@@ -237,10 +226,10 @@ POST
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ---------------------------------- |
 | startdate    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                            |
 | enddate      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                            |
-| area_list | Array[String] | N | 国家列表：["xxx"] |  |
-| channel_list | Array[String] | N | channel列表：["xxx"] |  |
+| area_list | Array[String] | N | 国家列表 | ["xxx"] |
+| channel_list | Array[String] | N | channel列表 | ["xxx"] |
 | appid_list | Array[String]    | N        | 开发者后台的应用ID                                     | a5c41a9ed1679c                    |
-| time_zone | String | N | 枚举值：UTC+8、UTC+0、UTC-8 |  |
+| time_zone | String | N | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |
 | metric      | array    | N        | 可选，默认值：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] 表示所有指标  | [“ltv_day_1”， “retention_day_2”]                                   |
 | order_by      | array    | N        | 可选，默认值：[“date_time”, “desc”, “revenue”, “desc”, “dau”, “desc”, “new_user”, “desc”, “app_id”, “desc”]  |[{"order":["date_time","asc"]},{"order":["app_id","asc"]}]]                             |
 | group_by    | array    | N        | 可选，默认值：["app_id”, "date_time", "area", "channel"]                                     | ["area", "channel"]                                   |
@@ -270,27 +259,27 @@ POST
 | revenue          | string | group_by channel时不返回 |
 | arpu             | string | 跟随revenue指标          |
 | ltv\_day\_1        | string | 默认返回                 |
-| ltv\_day\_2        | string |                          |
-| ltv\_day\_3        | string |                          |
-| ltv\_day\_4        | string |                          |
-| ltv\_day\_5        | string |                          |
-| ltv\_day\_6        | string |                          |
+| ltv\_day\_2        | string | -                         |
+| ltv\_day\_3        | string | -                         |
+| ltv\_day\_4        | string | -                         |
+| ltv\_day\_5        | string | -                         |
+| ltv\_day\_6        | string | -                         |
 | ltv\_day\_7        | string | 默认返回                 |
-| ltv\_day\_14       | string |                          |
-| ltv\_day\_30       | string |                          |
-| ltv\_day\_60       | string |                          |
+| ltv\_day\_14       | string | -                        |
+| ltv\_day\_30       | string | -                         |
+| ltv\_day\_60       | string | -                         |
 | retention\_day\_2  | string | 默认返回                 |
-| retention\_day\_3  | string |                          |
-| retention\_day\_4  | string |                          |
-| retention\_day\_5  | string |                          |
-| retention\_day\_6  | string |                          |
+| retention\_day\_3  | string | -                         |
+| retention\_day\_4  | string | -                         |
+| retention\_day\_5  | string | -                         |
+| retention\_day\_6  | string | -                         |
 | retention\_day\_7  | string | 默认返回                 |
-| retention\_day\_14 | string |                          |
-| retention\_day\_30 | string |                          |
-| retention\_day\_60 | string |                          |
-| time_zone | string | |
-| arpu | string | |
-| currency | string | |
+| retention\_day\_14 | string | -                         |
+| retention\_day\_30 | string | -                        |
+| retention\_day\_60 | string | -                         |
+| time_zone | string | - | 
+| arpu | string | - |
+| currency | string | - |
 
 > 备注
 > 1. 只能查询今天往前推2天的数据
@@ -298,7 +287,7 @@ POST
 
 ### 5.5 样例
 
-``` javascript
+```
 {
     "count": 5,
     "records": [
@@ -322,7 +311,7 @@ POST
 
 ```
 
-<h2 id='注意事项'>6. 注意事项</h2>
+## 6. 注意事项
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵
 
 守。
@@ -330,201 +319,3 @@ POST
 • 每小时最多请求 1000 次
 
 • 每天请求 10000 次
-
-<h2 id='附录1：go语言示例代码'>7. 附录1：go语言示例代码</h2>
-• java、php、python等语言示例代码请参考demo目录
-
-```
-package main
-
-import (
-
-	"bytes"
-	
-	"crypto/md5"
-	
-	"encoding/hex"
-	
-	"fmt"
-	
-	"io/ioutil"
-	
-	"net/http"
-	
-	"net/url"
-	
-	"sort"
-	
-	"strconv"
-	
-	"strings"
-	
-	"time"
-
-)
-
-func main() {
-
-	//openapi的地址
-	
-	demoUrl := "请求URL"
-	
-	//提交的body数据
-	
-	body := "{}"
-	
-	//您申请的publisherKey
-	
-	publisherKey := "请填写您的publisherKey"
-	
-	//请求方式
-	
-	httpMethod := "POST"
-	
-	contentType := "application/json"
-	
-	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-	
-	headers := map[string]string{
-	
-		"X-Up-Timestamp": publisherTimestamp,
-	
-		"X-Up-Key":       publisherKey,
-	
-	}
-	
-	//处理queryPath
-	
-	urlParsed, err := url.Parse(demoUrl)
-	
-	if err != nil {
-	
-		fmt.Println(err)
-	
-		return
-	
-	}
-	
-	//处理resource
-	
-	resource := urlParsed.Path
-	
-	_, err = url.ParseQuery(urlParsed.RawQuery)
-	
-	if err != nil {
-	
-		fmt.Println(err)
-	
-		return
-	
-	}
-
-	//处理body
-	
-	h := md5.New()
-	
-	h.Write([]byte(body))
-	
-	contentMD5 := hex.EncodeToString(h.Sum(nil))
-	
-	contentMD5 = strings.ToUpper(contentMD5)
-
-	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
-
-	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
-	
-	if err != nil {
-	
-		fmt.Println("Fatal error", err.Error())
-	
-		return
-	
-	}
-	
-	client := &http.Client{}
-	
-	request.Header.Set("Content-Type", contentType)
-	
-	request.Header.Set("X-Up-Key", publisherKey)
-	
-	request.Header.Set("X-Up-Signature", publisherSignature)
-	
-	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
-	
-	resp, err := client.Do(request)
-	
-	defer resp.Body.Close()
-	
-	content, err := ioutil.ReadAll(resp.Body)
-	
-	if err != nil {
-	
-		fmt.Println("Fatal error", err.Error())
-	
-		return
-	
-	}
-
-	//返回数据
-	
-	fmt.Println(string(content))
-
-}
-
-func headerJoin(headers map[string]string) string {
-
-	headerKeys := []string{
-	
-		"X-Up-Timestamp",
-	
-		"X-Up-Key",
-	
-	}
-	
-	sort.Strings(headerKeys)
-	
-	ret := make([]string, 0)
-	
-	for _, k := range headerKeys {
-	
-		v := headers[k]
-	
-		ret = append(ret, k+":"+v)
-	
-	}
-	
-	return strings.Join(ret, "\n")
-
-}
-
-
-func signature(httpMethod, contentMD5, contentType, headerString, resource string) string {
-
-	stringSection := []string{
-	
-		httpMethod,
-	
-		contentMD5,
-	
-		contentType,
-	
-		headerString,
-	
-		resource,
-	
-	}
-	
-	stringToSign := strings.Join(stringSection, "\n")
-
-	h := md5.New()
-	
-	h.Write([]byte(stringToSign))
-	
-	resultMD5 := hex.EncodeToString(h.Sum(nil))
-	
-	fmt.Println(stringToSign)
-	
-	return strings.ToUpper(resultMD5)
-
-}
-```

@@ -1,7 +1,5 @@
-# TopOn开发者后台操作API对接文档
 
-## 修订历史
-
+# 修订历史
 
 | 文档版本 | 发布时间      | 修订说明                          |
 | :--------: | ----------- | -------------------------------- |
@@ -10,55 +8,15 @@
 | v 2.1    | 2020年3月16日 | 新增广告平台、广告源管理接口      |
 
 
-## 目录
+## 1. 关于文档
 
-[1. 关于文档](#关于文档)</br>
-[2. 申请开通权限](#申请开通权限)</br>
-[3. 接口校验](#接口校验)</br>
-[4. 应用管理](#应用管理)</br> 
-- [4.1 批量创建和修改应用](#批量创建和修改应用)</br>  
-- [4.2 获取应用列表](#获取应用列表)</br>
-- [4.3 批量删除应用](#批量删除应用)</br>
+为提高合作伙伴的变现效率，TopOn平台专门提供了对接开发者后台相关操作的API接口，如创建应用和广告位、调整Waterfall优先级等。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
 
-[5. 广告位管理](#广告位管理)</br>
-- [5.1 批量创建和修改广告位](#批量创建和修改广告位)</br>  
-- [5.2 获取广告位列表](#获取广告位列表)</br>
-- [5.3 批量删除广告位](#批量删除广告位)</br>
+## 2. 申请开通权限
 
-[6. 流量分组管理](#流量分组管理)</br>
-- [6.1 批量创建和修改流量分组](#批量创建和修改流量分组)</br>  
-- [6.2 获取流量分组列表](#获取流量分组列表)</br>
-- [6.3 批量删除流量分组](#批量删除流量分组)</br>
-
-[7. 聚合管理基本操作](#聚合管理基本操作)</br>
-- [7.1 查询广告位已启用的流量分组列表](#查询广告位已启用的流量分组列表)</br>  
-- [7.2 为广告位启用新流量分组或调整流量分组优先级](#为广告位启用新流量分组或调整流量分组优先级)</br>
-- [7.3 为广告位批量移除流量分组](#为广告位批量移除流量分组)</br>
-- [7.4 查询Waterfall的广告源列表](#查询Waterfall的广告源列表)</br>  
-- [7.5 批量修改广告源在Waterfall的属性](#批量修改广告源在Waterfall的属性)</br>
-
-[8. 广告平台管理](#广告平台管理)</br>
-- [8.1 创建和修改广告平台Publisher、App维度参数](#创建和修改广告平台Publisher、App维度参数)</br>  
-- [8.2 获取广告平台Publisher、App维度参数](#获取广告平台Publisher、App维度参数)</br>
-
-[9. 广告源管理](#广告源管理)</br>
-- [9.1 批量创建和修改广告源](#批量创建和修改广告源)</br>  
-- [9.2 获取广告源列表](#获取广告源列表)</br>
-- [9.3 批量删除广告源](#批量删除广告源)</br>
-
-[10. 注意事项](#注意事项)</br>
-[11. 附录1：go语言示例代码](#附录1：go语言示例代码)</br>
-[12. 附录2：应用一级和二级分类列表](#附录2：应用一级和二级分类列表)</br>
-[13. 附录3：流量分组规则数据格式](#附录3：流量分组规则数据格式)</br>
-[14. 附录4：广告平台详细参数](#附录4：广告平台详细参数)
-
-<h2 id='关于文档'>1. 关于文档</h2>
-为提高合作伙伴的变现效率，TopOn平台专门提供了批量创建及查询API接口。该文档详细描述了API的使用方法，如需要帮助，请及时与我们联系，谢谢！
-
-<h2 id='申请开通权限'>2. 申请开通权限</h2>
 在使用TopOn平台的批量创建API前，合作伙伴需向TopOn申请publisher_key，用于识别来自合作伙伴的请求，申请方法请咨询与您对接的商务经理。
 
-<h2 id='接口校验'>3. 接口校验</h2>
+## 3. 接口校验
 
 ### 3.1 接口请求流程说明
 
@@ -77,8 +35,8 @@
 | 参数           | 说明                                                         | 样例                                       |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------ |
 | X-Up-Key       | publisher_key                                                | X-Up-Key: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql |
-| X-Up-Timestamp | API 调用者传递时间戳，值为当前时间的毫秒数，也就是从1970年1月1日起至今的时间转换为毫秒，时间戳有效时间为15分钟。 |                                            |
-| X-Up-Signature | 签名字符串                                                   |                                            |
+| X-Up-Timestamp | API 调用者传递时间戳，值为当前时间的毫秒数，也就是从1970年1月1日起至今的时间转换为毫秒，时间戳有效时间为15分钟。 |  -                                          |
+| X-Up-Signature | 签名字符串                                                   |                                            |-
 
 ### 3.3 签名字段
 
@@ -86,34 +44,34 @@
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
 | Content-MD5  | HTTP 请求中 Body 部分的 MD5 值（必须为大写字符串）     | 875264590688CA6171F6228AF5BBB3D2                             |
 | Content-Type | HTTP 请求中 Body 部分的类型                            | application/json                                             |
-| Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp:1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
+| Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
 | HTTPMethod   | HTTP 请求的方法名称，全部大写                          | PUT、GET、POST 等                                            |
 | Resource     | 由 HTTP 请求资源构造的字符串(如果有querystring要加上） | /v1/fullreport?key1=val1&key2=val2                           |
 
 ### 3.4 签名方式
 
 参与签名计算的字符串：
-
+```
      SignString = HTTPMethod + "\n" 
                         \+ Content-MD5 + "\n" 
                         \+ Content-Type + "\n"  
                         \+ Headers + "\n"
                         \+ Resource 
-
+```
 如果无body，如下：
-    
+```
     SignString = HTTPMethod + "\n" 
                         \+ "\n" 
                         \+ "\n" 
                         \+ Headers + "\n"
                         \+ Resource 
-
+````
 Resource:
-
+```
     URL的Path      
-
+```
 Headers：
-
+```
     X-Up-Key + X-Up-Timestamp 按字典序升序
     
     X-Up-Signature不参与签名计算
@@ -121,7 +79,7 @@ Headers：
     Key1 + ":" + Value1 + '\n' + Key2 + ":" + Value2   
         
     Sign = MD5(HTTPMethod + Content-MD5+ Content-Type + Header + Resource)
-
+```
 服务端会比对计算Sign和X-Up-Signature
 
 ### 3.5 Http状态码和业务状态码
@@ -138,8 +96,9 @@ Headers：
 | 605    | StatusRpcParamError      | 中间服务异常       |
 | 606    | StatusRequestRepeatError | 重复请求           |
 
-<h2 id='应用管理'>4. 应用管理</h2>
-<h3 id='批量创建和修改应用'>4.1 批量创建和修改应用</h3>
+## 4. 应用管理
+
+### 4.1 批量创建和修改应用
 
 #### 4.1.1 请求URL
 
@@ -160,8 +119,8 @@ POST
 | apps.market_url         | String | N        | 需符合商店链接规范                                          |
 | apps.screen_orientation | Int    | Y        | 1：竖屏 <br />2：横屏 <br />3：所有                         |
 | apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx，创建时必传                   |
-| apps.category           | String | N        | 一级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
-| apps.sub_category       | String | N        | 二级分类，需符合[附录2规范](#附录2：应用一级和二级分类列表)，创建时未上架的应用必传 |
+| apps.category           | String | N        | 一级分类，需符合附录1规范，创建时未上架的应用必传 |
+| apps.sub_category       | String | N        | 二级分类，需符合附录1规范，创建时未上架的应用必传 |
 
  
 
@@ -208,7 +167,7 @@ POST
 ]
 ```
 
-<h3 id='获取应用列表'>4.2 获取应用列表</h3>
+### 4.2 获取应用列表
 
 #### 4.2.1 请求URL
 
@@ -240,7 +199,7 @@ POST
 | package_name            | String | N        | -                                   |
 | category                | String | N        | -                                   |
 | sub-category            | String | N        | -                                   |
- 
+
 
 #### 4.2.5 样例
 
@@ -267,7 +226,7 @@ POST
 ]
 ```
 
-<h3 id='批量删除应用'>4.3 批量删除应用</h3>
+### 4.3 批量删除应用
 
 #### 4.3.1 请求URL
 
@@ -302,8 +261,9 @@ POST
 返回状态码或者错误码
 
 
-<h2 id='广告位管理'>5. 广告位管理</h2>
-<h3 id='批量创建和修改广告位'>5.1 批量创建和修改广告位</h3>
+## 5. 广告位管理
+
+### 5.1 批量创建和修改广告位
 
 #### 5.1.1 请求URL
 
@@ -316,7 +276,7 @@ POST
 #### 5.1.3 请求参数
 
 | 字段                                  | 类型   | 是否必传 | 备注                                                         |
-| ------------------------------------- | ------ | -------- | ------------------------------------------------------------ |
+| ------------------------------------- | ------ | -------- |---------------------------------------------- |
 | count                                 | Int    | Y        | 创建的广告位数量                                             |
 | app_id                                | String | Y        | 创建广告位的应用ID                                           |
 | placements.placement_name             | String | Y        | 广告位名称，30个汉字或字符以内                               |
@@ -328,7 +288,7 @@ POST
 | placements.template_extra.auto_refresh_time | Int    | N        | template为原生Banner时：是否自动刷新，默认不启动<br />-1表示不启动<br />0-n表示刷新时间  |
 | remark                                 | String    | N        | 备注                                             |
 | status                                 | Int   | N        | 广告位状态                                             |
- 
+
 
 #### 5.1.4 返回参数
 
@@ -393,7 +353,7 @@ POST
 ]
 ```
 
-<h3 id='获取广告位列表'>5.2 获取广告位列表</h3>
+### 5.2 获取广告位列表
 
 #### 5.2.1 请求URL
 
@@ -432,7 +392,7 @@ POST
 | remark                                 | String    | N        | 备注                                             |
 | status                                 | Int   | N        | 广告位状态                                             |
 
- 
+
 #### 5.2.5 样例
 
 请求样例：
@@ -457,7 +417,7 @@ POST
 ]
 ```
 
-<h3 id='批量删除广告位'>5.3 批量删除广告位</h3>
+### 5.3 批量删除广告位
 
 #### 5.3.1 请求URL
 
@@ -500,8 +460,9 @@ POST
 ```
 
 
-<h2 id='流量分组管理'>6. 流量分组管理</h2>
-<h3 id='批量创建和修改流量分组'>6.1 批量创建和修改流量分组</h3>
+## 6. 流量分组管理
+
+### 6.1 批量创建和修改流量分组
 
 #### 6.1.1 请求URL
 
@@ -522,7 +483,7 @@ POST
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)            |
+| segments.rules.content | string | Y        | 规则详见附录2规范           |
 
 #### 6.1.4 返回参数
 
@@ -533,7 +494,7 @@ POST
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)            |
+| rules.content | string | Y        | 规则详见附录2规范            |
 
 
 
@@ -637,7 +598,7 @@ POST
 ]
 ```
 
-<h3 id='获取流量分组列表'>6.2 获取流量分组列表</h3>
+### 6.2 获取流量分组列表
 
 #### 6.2.1 请求URL
 
@@ -666,7 +627,7 @@ POST
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)     |
+| rules.content | string | Y        | 规则详见附录2规范     |
 
 
 
@@ -709,7 +670,7 @@ POST
 ]
 ```
 
-<h3 id='批量删除流量分组'>6.3 批量删除流量分组</h3>
+### 6.3 批量删除流量分组
 
 #### 6.3.1 请求URL
 
@@ -745,8 +706,9 @@ POST
 
 成功只返回状态码200，失败则返回数据
 
-<h2 id='聚合管理基本操作'>7. 聚合管理基本操作</h2>
-<h3 id='查询广告位已启用的流量分组列表'>7.1 查询广告位已启用的流量分组列表</h3>
+## 7. 聚合管理基本操作
+
+### 7.1 查询广告位已启用的流量分组列表
 
 #### 7.1.1 请求URL
 
@@ -772,7 +734,7 @@ GET
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)                       |
+| rules.content | string | Y        | 规则详见附录2规范                       |
 
 #### 7.1.5 样例
 
@@ -816,7 +778,7 @@ GET
 ]
 ```
 
-<h3 id='为广告位启用新流量分组或调整流量分组优先级'>7.2 为广告位启用新流量分组或调整流量分组优先级</h3>
+### 7.2 为广告位启用新流量分组或调整流量分组优先级
 
 #### 7.2.1 请求URL
 
@@ -847,7 +809,7 @@ POST
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)                       |
+| segments.rules.content | string | Y        | 规则详见附录2规范                       |
 
 #### 7.2.5 样例
 
@@ -905,7 +867,7 @@ POST
 }
 ```
 
-<h3 id='为广告位批量移除流量分组'>7.3 为广告位批量移除流量分组</h3>
+### 7.3 为广告位批量移除流量分组
 
 #### 7.3.1 请求URL
 
@@ -934,7 +896,7 @@ POST
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则详见[附录3规范](#附录3：流量分组规则数据格式)            |
+| segments.rules.content | string | Y        | 规则详见附录2规范            |
 
 #### 7.3.5 样例
 
@@ -986,7 +948,7 @@ POST
 }
 ```
 
-<h3 id='查询Waterfall的广告源列表'>7.4 查询Waterfall的广告源列表</h3>
+### 7.4 查询Waterfall的广告源列表
 
 #### 7.4.1 请求URL
 
@@ -1064,7 +1026,7 @@ GET
 }
 ```
 
-<h3 id='批量修改广告源在Waterfall的属性'>7.5 批量修改广告源在Waterfall的属性</h3>
+### 7.5 批量修改广告源在Waterfall的属性
 
 #### 7.5.1 请求URL
 
@@ -1177,8 +1139,9 @@ POST
 
 
 
-<h2 id='广告平台管理'>8. 广告平台管理</h2>
-<h3 id='创建和修改广告平台Publisher、App维度参数'>8.1 创建和修改广告平台Publisher、App维度参数</h3>
+## 8. 广告平台管理
+
+### 8.1 创建和修改广告平台Publisher、App维度参数
 
 #### 8.1.1 请求URL
 
@@ -1199,9 +1162,9 @@ POST
 | auth_content                      | Object | N        | 广告平台Publisher维度参数    |
 | network_app_info                  | Array  | N        | -     |
 | network_app_info.app_id           | String | N        | TopOn的应用ID              |
-| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数，详见[附录4规范](#附录4：广告平台详细参数)  |
+| network_app_info.app_auth_content | Object | N        | 广告平台App维度参数，详见附录3规范 |
 
- 
+
 #### 8.1.4 返回参数
 
 | 字段                              | 类型   | 是否必传 | 备注                            |
@@ -1265,7 +1228,7 @@ POST
 }
 ```
 
-<h3 id='获取广告平台Publisher、App维度参数'>8.2 获取广告平台Publisher、App维度参数</h3>
+### 8.2 获取广告平台Publisher、App维度参数
 
 #### 8.2.1 请求URL
 
@@ -1334,8 +1297,9 @@ POST
 ]
 ```
 
-<h2 id='广告源管理'>9. 广告源管理</h2>
-<h3 id='批量创建和修改广告源'>9.1 批量创建和修改广告源</h3>
+## 9. 广告源管理
+
+### 9.1 批量创建和修改广告源
 
 #### 9.1.1 请求URL
 
@@ -1354,7 +1318,7 @@ POST
 | units.network_id    | Int    | Y        | 广告平台账号ID                       |
 | units.adsource_id   | Int    | N        | 广告源ID，修改时必传|
 | units.adsource_name | String | Y        | 广告源名称                 |
-| units.adsource_token | Object | Y        | 广告平台Unit维度参数，详见[附录4规范](#附录4：广告平台详细参数) |
+| units.adsource_token | Object | Y        | 广告平台Unit维度参数，详见附录3规范 |
 | units.placement_id  | String | Y        | TopOn的广告位ID                     |
 | units.default_ecpm  | String | Y        | 广告源默认价格                             |
 | units.header_bidding_switch  | String | Y        | 1：表示不支持<br>2：表示支持 |
@@ -1439,7 +1403,7 @@ POST
 ```
 
 
-<h3 id='获取广告源列表'>9.2 获取广告源列表</h3>
+### 9.2 获取广告源列表
 
 #### 9.2.1 请求URL
 
@@ -1556,7 +1520,7 @@ POST
 
 
 
-<h3 id='批量删除广告源'>9.3 批量删除广告源</h3>
+### 9.3 批量删除广告源
 
 #### 9.3.1 请求URL
 
@@ -1598,211 +1562,16 @@ POST
 ```
 
 
-<h2 id='注意事项'>10. 注意事项</h2>
+## 10. 注意事项
+
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵守。
 
 • 每小时最多请求 1000 次
 
 • 每天请求 10000 次
 
-<h2 id='附录1：go语言示例代码'>11. 附录1：go语言示例代码</h2>
-• java、php、python等语言示例代码请参考demo目录
 
-```
-package main
-
-import (
-
-	"bytes"
-	
-	"crypto/md5"
-	
-	"encoding/hex"
-	
-	"fmt"
-	
-	"io/ioutil"
-	
-	"net/http"
-	
-	"net/url"
-	
-	"sort"
-	
-	"strconv"
-	
-	"strings"
-	
-	"time"
-
-)
-
-func main() {
-
-	//openapi的地址
-	
-	demoUrl := "请求URL"
-	
-	//提交的body数据
-	
-	body := "{}"
-	
-	//您申请的publisherKey
-	
-	publisherKey := "请填写您的publisherKey"
-	
-	//请求方式
-	
-	httpMethod := "POST"
-	
-	contentType := "application/json"
-	
-	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-	
-	headers := map[string]string{
-	
-		"X-Up-Timestamp": publisherTimestamp,
-	
-		"X-Up-Key":       publisherKey,
-	
-	}
-	
-	//处理queryPath
-	
-	urlParsed, err := url.Parse(demoUrl)
-	
-	if err != nil {
-	
-		fmt.Println(err)
-	
-		return
-	
-	}
-	
-	//处理resource
-	
-	resource := urlParsed.Path
-	
-	_, err = url.ParseQuery(urlParsed.RawQuery)
-	
-	if err != nil {
-	
-		fmt.Println(err)
-	
-		return
-	
-	}
-
-	//处理body
-	
-	h := md5.New()
-	
-	h.Write([]byte(body))
-	
-	contentMD5 := hex.EncodeToString(h.Sum(nil))
-	
-	contentMD5 = strings.ToUpper(contentMD5)
-
-	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
-
-	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
-	
-	if err != nil {
-	
-		fmt.Println("Fatal error", err.Error())
-	
-		return
-	
-	}
-	
-	client := &http.Client{}
-	
-	request.Header.Set("Content-Type", contentType)
-	
-	request.Header.Set("X-Up-Key", publisherKey)
-	
-	request.Header.Set("X-Up-Signature", publisherSignature)
-	
-	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
-	
-	resp, err := client.Do(request)
-	
-	defer resp.Body.Close()
-	
-	content, err := ioutil.ReadAll(resp.Body)
-	
-	if err != nil {
-	
-		fmt.Println("Fatal error", err.Error())
-	
-		return
-	
-	}
-
-	//返回数据
-	
-	fmt.Println(string(content))
-
-}
-
-func headerJoin(headers map[string]string) string {
-
-	headerKeys := []string{
-	
-		"X-Up-Timestamp",
-	
-		"X-Up-Key",
-	
-	}
-	
-	sort.Strings(headerKeys)
-	
-	ret := make([]string, 0)
-	
-	for _, k := range headerKeys {
-	
-		v := headers[k]
-	
-		ret = append(ret, k+":"+v)
-	
-	}
-	
-	return strings.Join(ret, "\n")
-
-}
-
-
-func signature(httpMethod, contentMD5, contentType, headerString, resource string) string {
-
-	stringSection := []string{
-	
-		httpMethod,
-	
-		contentMD5,
-	
-		contentType,
-	
-		headerString,
-	
-		resource,
-	
-	}
-	
-	stringToSign := strings.Join(stringSection, "\n")
-
-	h := md5.New()
-	
-	h.Write([]byte(stringToSign))
-	
-	resultMD5 := hex.EncodeToString(h.Sum(nil))
-	
-	fmt.Println(stringToSign)
-	
-	return strings.ToUpper(resultMD5)
-
-}
-```
-<h2 id='附录12：应用一级和二级分类列表'>12. 附录2：应用一级和二级分类列表</h2>
+## 附录1：应用一级和二级分类列表
 
 | 应用    | 一级分类 | 二级分类                |
 | ------- | -------- | ----------------------- |
@@ -1909,7 +1678,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | iOS     | App      | Utilities               |
 | iOS     | App      | Weather                 |
 
-<h2 id='附录3：流量分组规则数据格式'>13. 附录3：流量分组规则数据格式</h2>
+## 附录2：流量分组规则数据格式
 
 | rule | 描述                 | 示例                                 |
 | :--- | :------------------- | :----------------------------------- |
@@ -1923,7 +1692,7 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | 7    | 大于（值）           | 整形、浮点或字符串 124               |
 | 8    | 小于（值）           | 整形、浮点或字符串 222.36            |
 
-<h2 id='附录4：广告平台详细参数'>14. 附录4：广告平台详细参数</h2>
+## 附录3：广告平台详细参数
 
 所有的Key和Value数据类型均为String
 
@@ -1931,53 +1700,53 @@ func signature(httpMethod, contentMD5, contentType, headerString, resource strin
 | --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
 | 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
 | 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |
-| 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |          
+| 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |
 | 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size枚举值：320x50,320x100,320x250,468x60,728x90 |
-| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID | 
-| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size枚举值：320x50 |  
-| 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |  
-| 4         | Flurry      | token | sdk_key | banner | ad_space<br>size | size枚举值：320x50 |  
-| 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  | 
-| 5         | Applovin    | sdkkey<br>apikey | -  | rewarded_video<br>interstitial | zone_id | zone_id：Zone ID |  
-| 5         | Applovin    | sdkkey<br>apikey | -  | banner | zone_id<br>size | size枚举值：320x50,300x250  | 
-| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | native<br>rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID | 
-| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | bannner | unit_id<br>size | size枚举值：320x50,300x250,320x90,smart  | 
-| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | interstitial | unit_id<br>is_video | is_video枚举值：0,1 | 
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID |
+| 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size枚举值：320x50 |
+| 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |
+| 4         | Flurry      | token | sdk_key | banner | ad_space<br>size | size枚举值：320x50 |
+| 5         | Applovin    | sdkkey<br>apikey | - | native | - | sdkkey：SDK Key </br> apikey：Report Key  |
+| 5         | Applovin    | sdkkey<br>apikey | -  | rewarded_video<br>interstitial | zone_id | zone_id：Zone ID |
+| 5         | Applovin    | sdkkey<br>apikey | -  | banner | zone_id<br>size | size枚举值：320x50,300x250  |
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | native<br>rewarded_video  | unit_id | appkey：App Key </br> skey：Skey </br> secret：Secret </br> appid：AppID </br> unitid：UnitID |
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | bannner | unit_id<br>size | size枚举值：320x50,300x250,320x90,smart  |
+| 6         | Mintegral   | skey<br>secret<br>appkey | app_id | interstitial | unit_id<br>is_video | is_video枚举值：0,1 |
 | 7         | Mopub       | repkey<br>apikey | - | native<br>rewarded_video<br>interstitial | unit_id | repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID  |
-| 7         | Mopub       | repkey<br>apikey | -  | bannner | unit_id<br>size | size枚举值：320x50,300x250,728x90  | 
+| 7         | Mopub       | repkey<br>apikey | -  | bannner | unit_id<br>size | size枚举值：320x50,300x250,728x90  |
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | native | unit_id<br>unit_version<br>unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：媒体ID </br> unit_id：UnitID</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | rewarded_video,splash | unit_id | - |
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | unit_version枚举值：2</br> size枚举值：320x50 | 
+| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | unit_version枚举值：2</br> size枚举值：320x50 |
 | 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version枚举值：2</br> video_muted枚举值：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
-| 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |  
-| 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |  
-| 11        | Ironsource  | username<br>secret_key | app_key | rewarded_video<br>interstitial | instance_id |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID |  
-| 12        | UnityAds    | apikey | game_id | rewarded_video<br>interstitial | placement_id | apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID |  
-| 13        | Vungle      | apikey | app_id | rewarded_video<br>interstitial | placement_id | apikey：Reporting API Key </br> app_id：App ID </br> placement_id：PlacementID |  
-| 14        | AdColony    | user_credentials | app_id | rewarded_video<br>interstitial | zone_id | user_credentials：Read-Only API key </br> app_id：App ID </br> zone_id：Zone ID |  
-| 15        | 穿山甲       | user_id<br>secure_key | app_id | native | slot_id<br>is_video<br>layout_type<br>media_size | user_id：UserID </br> secure_key：Secure Key </br> app_id：AppID </br> slot_id：SlotID </br> is_video枚举值：0,1,2,3 <br> layout_type枚举值：0,1 </br> media_size枚举值（layout_type = 1必填）：1,2 |  
-| 15        | 穿山甲       | user_id<br>secure_key | app_id | rewarded_video | slot_id<br>personalized_template | personalized_template枚举值：0,1 |  
-| 15        | 穿山甲       | user_id<br>secure_key | app_id | banner | slot_id<br>layout_type<br>size | layout_type枚举值：1 </br> size枚举值：640x100,600x90,600x150,600x500,600x400,600x300,600x260,690x388 |  
-| 15        | 穿山甲       | user_id<br>secure_key | app_id | interstitial | slot_id<br>is_video<br>layout_type<br>size<br>personalized_template | is_video为0时，以下两个参数必填<br>layout_type枚举值：1 <br> size枚举值：1:1,3:2,2:3 </br> is_video为1时，以下参数必填<br>personalized_template枚举值：0,1 | 
-| 15        | 穿山甲       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template枚举值：0,1 | 
-| 16        | 聚量传媒     | - | - | rewarded_video<br>interstitial | app_id | app_id：App ID |  
+| 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |
+| 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |
+| 11        | Ironsource  | username<br>secret_key | app_key | rewarded_video<br>interstitial | instance_id |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID |
+| 12        | UnityAds    | apikey | game_id | rewarded_video<br>interstitial | placement_id | apikey：API Key </br> organization_core_id：Organization core ID </br> game_id：Game ID </br> placement_id：Placement ID |
+| 13        | Vungle      | apikey | app_id | rewarded_video<br>interstitial | placement_id | apikey：Reporting API Key </br> app_id：App ID </br> placement_id：PlacementID |
+| 14        | AdColony    | user_credentials | app_id | rewarded_video<br>interstitial | zone_id | user_credentials：Read-Only API key </br> app_id：App ID </br> zone_id：Zone ID |
+| 15        | 穿山甲       | user_id<br>secure_key | app_id | native | slot_id<br>is_video<br>layout_type<br>media_size | user_id：UserID </br> secure_key：Secure Key </br> app_id：AppID </br> slot_id：SlotID </br> is_video枚举值：0,1,2,3 <br> layout_type枚举值：0,1 </br> media_size枚举值（layout_type = 1必填）：1,2 |
+| 15        | 穿山甲       | user_id<br>secure_key | app_id | rewarded_video | slot_id<br>personalized_template | personalized_template枚举值：0,1 |
+| 15        | 穿山甲       | user_id<br>secure_key | app_id | banner | slot_id<br>layout_type<br>size | layout_type枚举值：1 </br> size枚举值：640x100,600x90,600x150,600x500,600x400,600x300,600x260,690x388 |
+| 15        | 穿山甲       | user_id<br>secure_key | app_id | interstitial | slot_id<br>is_video<br>layout_type<br>size<br>personalized_template | is_video为0时，以下两个参数必填<br>layout_type枚举值：1 <br> size枚举值：1:1,3:2,2:3 </br> is_video为1时，以下参数必填<br>personalized_template枚举值：0,1 |
+| 15        | 穿山甲       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template枚举值：0,1 |
+| 16        | 聚量传媒     | - | - | rewarded_video<br>interstitial | app_id | app_id：App ID |
 | 16        | 聚量传媒     | - | - | banner | app_id<br>size | size枚举值：320x50,480x75,640x100,960x150,728x90 |
-| 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |  
-| 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |  
-| 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size枚举值：320x50 |  
-| 19        | 金山云       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |  
-| 21        | AppNext     | email<br>password<br>key  | - | native<br>rewarded_video<br>interstitial | placement_id | email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID |  
-| 21        | AppNext     | email<br>password<br>key  | - | banner | placement_id<br>size | size枚举值：320x50,320x100,300x250 | 
-| 22        | Baidu       | access_key | app_id | native<br>rewarded_video<br>interstitial<br>splash | ad_place_id | access_key：Access Key </br> app_id：AppID </br> ad_place_id：ADPlaceID |  
-| 22        | Baidu       | access_key | app_id | banner | ad_place_id<br>size | size枚举值：375x56,200x30,375x250,200x133,375x160,200x85,375x187,200x100 | 
-| 23        | Nend        | api_key | - | naitve | spot_id<br>api_key<br>is_video | api_key：APIKey </br> spot_id：spotID </br> is_video枚举值：0,1 |  
-| 23        | Nend        | api_key | - | rewarded_video | spot_id<br>api_key | - | 
-| 23        | Nend        | api_key | - | banner | spot_id<br>api_key<br>size | size枚举值：320x50,320x100,300x100,300x250,728x90 | 
-| 23        | Nend        | api_key | - | interstitial | spot_id<br>api_key<br>is_video | is_video枚举值：0,1,2 | 
-| 24        | Maio        | api_id<br>api_key | media_id | rewarded_video<br>interstitial | zone_id | api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID |  
-| 25        | StartAPP    | partner_id<br>token  | app_id | rewarded_video<br>interstitial | ad_tag | partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag |  
-| 26        | SuperAwesome | - | property_id | rewarded_video | placement_id | property_id：Property ID </br> placement_id：Placement ID |  
-| 28        | 快手        | access_key<br>security_key | app_id<br>app_name | native | position_id<br>layout_type<br>video_sound<br>is_video<br>unit_type | access_key：Access Key </br> security_key：Security Key </br> app_id：AppID </br> app_name：AppName </br> position_id：PosID </br> unit_type枚举值：0,1<br>unit_type为1时，以下三个参数必填<br>layout_type枚举值：0<br>is_video枚举值：0,1<br>video_sound枚举值：0,1 |  
-| 28        | 快手        | access_key<br>security_key | app_id<br>app_name | rewarded_video<br>interstitial | orientation | orientation枚举值：1,2 | 
-| 29        | Sigmob      | public_key<br>secret_key  | app_id<br>app_key | rewarded_video<br>interstitial<br>splash | placement_id |    public_key：Public Key </br> secret_key：Secret Key </br> app_id：AppID </br> app_key：App Key </br> placement_id：PlacementID |  
-| 36        | Ogury       | api_key<br>api_secret | key | rewarded_video<br>interstitial | unit_id | api_key：API KEY </br> api_secret：API SECRET </br> key：KEY </br> unit_id：AD Unit ID |  
+| 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |
+| 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size枚举值：320x50 |
+| 19        | 金山云       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |
+| 21        | AppNext     | email<br>password<br>key  | - | native<br>rewarded_video<br>interstitial | placement_id | email：Email </br> password：Password </br> key：Key </br> placement_id：Placement ID |
+| 21        | AppNext     | email<br>password<br>key  | - | banner | placement_id<br>size | size枚举值：320x50,320x100,300x250 |
+| 22        | Baidu       | access_key | app_id | native<br>rewarded_video<br>interstitial<br>splash | ad_place_id | access_key：Access Key </br> app_id：AppID </br> ad_place_id：ADPlaceID |
+| 22        | Baidu       | access_key | app_id | banner | ad_place_id<br>size | size枚举值：375x56,200x30,375x250,200x133,375x160,200x85,375x187,200x100 |
+| 23        | Nend        | api_key | - | naitve | spot_id<br>api_key<br>is_video | api_key：APIKey </br> spot_id：spotID </br> is_video枚举值：0,1 |
+| 23        | Nend        | api_key | - | rewarded_video | spot_id<br>api_key | - |
+| 23        | Nend        | api_key | - | banner | spot_id<br>api_key<br>size | size枚举值：320x50,320x100,300x100,300x250,728x90 |
+| 23        | Nend        | api_key | - | interstitial | spot_id<br>api_key<br>is_video | is_video枚举值：0,1,2 |
+| 24        | Maio        | api_id<br>api_key | media_id | rewarded_video<br>interstitial | zone_id | api_id：API ID </br> api_key：API Key </br> media_id：Media ID </br> zone_id：Zone ID |
+| 25        | StartAPP    | partner_id<br>token  | app_id | rewarded_video<br>interstitial | ad_tag | partner_id：Partner ID </br> token：Token </br> app_id：APP ID </br> ad_tag：AD Tag |
+| 26        | SuperAwesome | - | property_id | rewarded_video | placement_id | property_id：Property ID </br> placement_id：Placement ID |
+| 28        | 快手        | access_key<br>security_key | app_id<br>app_name | native | position_id<br>layout_type<br>video_sound<br>is_video<br>unit_type | access_key：Access Key </br> security_key：Security Key </br> app_id：AppID </br> app_name：AppName </br> position_id：PosID </br> unit_type枚举值：0,1<br>unit_type为1时，以下三个参数必填<br>layout_type枚举值：0<br>is_video枚举值：0,1<br>video_sound枚举值：0,1 |
+| 28        | 快手        | access_key<br>security_key | app_id<br>app_name | rewarded_video<br>interstitial | orientation | orientation枚举值：1,2 |
+| 29        | Sigmob      | public_key<br>secret_key  | app_id<br>app_key | rewarded_video<br>interstitial<br>splash | placement_id |    public_key：Public Key </br> secret_key：Secret Key </br> app_id：AppID </br> app_key：App Key </br> placement_id：PlacementID |
+| 36        | Ogury       | api_key<br>api_secret | key | rewarded_video<br>interstitial | unit_id | api_key：API KEY </br> api_secret：API SECRET </br> key：KEY </br> unit_id：AD Unit ID |

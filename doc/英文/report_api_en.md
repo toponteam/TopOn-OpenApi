@@ -110,8 +110,8 @@ POST
 
 | params       | type                | required | notes                                | sample                                     |
 | ------------ | ------------------- | -------- | ----------------------------------- | ------------------------------------------ |
-| start_date    | Int                 | Y        | start date，format：YYYYmmdd                                 | 20190501        |
-| end_date      | Int                 | Y        | end date，format：YYYYmmdd                                   | 20190506          |
+| startdate    | Int                 | Y        | start date，format：YYYYmmdd                                 | 20190501        |
+| enddate      | Int                 | Y        | end date，format：YYYYmmdd                                   | 20190506          |
 | app_id_list          | Array[String] | N        | app id                               | ['xxxxx']                                  |
 | placement_id_list    | Array[String] | N        | placement id                         | ['xxxxx']                                  |
 | time_zone            | String        | N        | report time zone                     | UTC-8,UTC+8,UTC+0                          |
@@ -181,8 +181,8 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 
 ```
 {
-​    "start_date": 20190706,
-​    "end_date": 201907010,
+​    "startdate": 20190706,
+​    "enddate": 201907010,
 ​     "limit":120,  
 ​    "group_by":["adsource"],
 ​    "metric":["all"],
@@ -220,10 +220,9 @@ POST
 
 | params  | type | required | notes                                                    | 样例                                       |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
-| start_date    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501                                   |
-| end_date      | Int    | Y        | end date, format：YYYYmmdd                     | 20190506                                   |
+| startdate    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501                                   |
+| enddate      | Int    | Y        | end date, format：YYYYmmdd                     | 20190506                                   |
 | area_list | Array[String] | N | area list| ["xxx"] |
-| channel_list | Array[String] | N | channel list | ["xxx"] |
 | appid_list | String    | N        | app id                                    | a5c41a9ed1679c                                   |
 | time_zone | String | Y | timezone | UTC+8、UTC+0、UTC-8 |
 | metric      | array    | N        | default：[“ltv_day_1”、”ltv_day_7”、”retention_day_2”、”retention_day_7”][“all”] all: all metrics | [“ltv_day_1”， “retention_day_2”]                                   |                         |

@@ -185,8 +185,8 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 请求样例：
 ```
 {
-​    "startdate": 20190706,
-​    "enddate": 201907010,
+​    "start_date": 20190706,
+​    "end_date": 201907010,
 ​     "limit":120,  
 ​    "group_by":["adsource"],
 ​    "metric":["all"],

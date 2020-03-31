@@ -23,8 +23,6 @@ func main() {
 func request(demoUrl string, body string, httpMethod string) {
 	//your publisherKey
 	publisherKey := ""
-	//request method
-	//httpMethod := "POST"
 	contentType := "application/json"
 	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
 	headers := map[string]string{

@@ -15,14 +15,16 @@ import (
 )
 
 func main() {
-	//openapi的address
-	demoUrl := "https://openapi.toponad.com/v1/fullreport"
-	//request body
-	body := "{}"
+	body1 := ""
+	request("https://openapi.toponad.com/v1/waterfall/units?placement_id=xxxxxx", body1, "GET")
+
+}
+
+func request(demoUrl string, body string, httpMethod string) {
 	//your publisherKey
-	publisherKey := "xxxx"
+	publisherKey := ""
 	//request method
-	httpMethod := "POST"
+	//httpMethod := "POST"
 	contentType := "application/json"
 	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
 	headers := map[string]string{
@@ -37,15 +39,6 @@ func main() {
 	}
 	//resource
 	resource := urlParsed.Path
-	m, err := url.ParseQuery(urlParsed.RawQuery)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	queryString := m.Encode()
-	if queryString != "" {
-		resource += "?" + queryString
-	}
 
 	//body
 	h := md5.New()
@@ -66,6 +59,10 @@ func main() {
 	request.Header.Set("X-Up-Signature", publisherSignature)
 	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
 	resp, err := client.Do(request)
+	if err != nil {
+		fmt.Println("Fatal error", err.Error())
+		return
+	}
 	defer resp.Body.Close()
 	content, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -73,9 +70,8 @@ func main() {
 		return
 	}
 
-	//return data
+	//return
 	fmt.Println(string(content))
-
 }
 
 func headerJoin(headers map[string]string) string {

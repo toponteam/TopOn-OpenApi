@@ -43,7 +43,7 @@ Before using the batch creation API of TopOn, publishers shall apply  for publis
 | Content-Type | type of HTTP Body                          | application/json                                             |
 | Headers      | Headers except X-Up-Signature              | X-Up-Timestamp:1562813567000 X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2 |
 | HTTPMethod   | HTTP method(upper letters)                 | PUT、GET、POST                                               |
-| Resource     | strings from HTTP path and query params    | /v1/fullreport?key1=val1&key2=val2                           |
+| Resource Path     | strings from HTTP path    | /v1/fullreport                          |
 
  
 

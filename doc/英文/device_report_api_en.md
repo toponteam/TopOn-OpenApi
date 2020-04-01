@@ -142,8 +142,6 @@ Fields detail:
 | click   | String      | click number |
 | revenue              | decimal(18,6)       | revenue                              |
 | ecpm             | decimal(18,6)       | ecpm                                      |
-| timezone | Int |  -8 or 8 or 0, default 8 |
-| currency | String | currency |
 
 ## 5. Notices
 

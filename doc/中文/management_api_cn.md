@@ -181,7 +181,7 @@ POST
 
 | 字段    | 类型   | 是否必传 | 备注                           |
 | ------- | ------ | -------- | ------------------------------ |
-| app_ids | Array[String] | N  | 多个应用ID是数组 |
+| app_ids | Array[String] | N  | 多个应用ID是数组 （和下面两参数不能一起使用） |
 | start   | Int    | N        | Default 0                      |
 | limit   | Int    | N        | Default 100 最大一次性获取100  |
 

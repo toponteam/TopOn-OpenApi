@@ -1423,7 +1423,7 @@ POST
 | placement_ids    | Array[String] | N        | multiple values are supported        |
 | adsource_ids     | Array[int32]  | N        | multiple values are supported        |
 | start            | int32         | N        | default value: 0 (cannot be used with the above parameters)        |
-| limit            | int32         | N        | default value: 100, and the maximum is 100 at a time               |
+| limit            | int32         | N        | default value: 100, and the maximum is 100 at a time  (cannot be used with the above parameters)               |
 | metrics          | Array[String] | N        | specify the returned fields from the ad_source_list. If you do not pass, all of them will be returned |
 
 

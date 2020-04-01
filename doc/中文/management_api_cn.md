@@ -1422,7 +1422,7 @@ POST
 | placement_ids    | Array[String] | N        | 支持传入多个广告位ID                             |
 | adsource_ids     | Array[int32]  | N        | 支持传入多个广告源ID                             |
 | start            | int32         | N        | 默认值：0 (和上面参数不能一起使用)               |
-| limit            | int32         | N        | 默认值：100，最大一次性获取100                   |
+| limit            | int32         | N        | 默认值：100，最大一次性获取100 (和上面参数不能一起使用)    |
 | metrics          | Array[String] | N        | 从ad_source_list中指定返回的字段，不传则全部返回 |
 
 

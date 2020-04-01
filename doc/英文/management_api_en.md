@@ -184,7 +184,7 @@ POST
 
 | params  | type        | required | notes                  |
 | ------- | ----------- | -------- | ---------------------- |
-| app_ids | Array[String] | N        | ["abc", "acc"]         |
+| app_ids | Array[String] | N        | ["abc", "acc"]   （Cannot be used with the following parameters）      |
 | start   | Int         | N        | Default 0              |
 | limit   | Int         | N        | Default 100 , [0, 100] |
 
@@ -373,8 +373,8 @@ POST
 | ------------- | ----------- | -------- | ------------------ |
 | app_ids       | Array[String] | N        | eg: ["abc", "acc"] |
 | placement_ids | Array[String] | N        | eg: ["abc", "acc"] |
-| start         | Int         | N        | Default 0          |
-| limit         | Int         | N        | Default 100        |
+| start         | Int         | N        | Default 0   (Not required when both app and ad slot are specified)       |
+| limit         | Int         | N        | Default 100  (Not required when both app and ad slot are specified)           |
 
  
 
@@ -613,8 +613,8 @@ POST
 | params  | type | required | notes                                                     |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
 | segment_ids | string List | N        | ["uuid1","uuid2"]          |
-| start       | Int    | N        | Default 0                   |
-| limit       | Int    | N        | Default 100 |
+| start       | Int    | N        | Default 0     (No need to fill in when the Segment ID is specified)              |
+| limit       | Int    | N        | Default 100  (No need to fill in when the Segment ID is specified)    |
 
  
 

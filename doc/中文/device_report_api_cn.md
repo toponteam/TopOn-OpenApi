@@ -43,7 +43,7 @@
 | Content-Type | HTTP 请求中 Body 部分的类型                            | application/json                                             |
 | Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
 | HTTPMethod   | HTTP 请求的方法名称，全部大写                          | PUT、GET、POST 等                                            |
-| Resource     | 由 HTTP 请求资源构造的字符串(如果有querystring要加上） | /v1/fullreport?key1=val1&key2=val2                           |
+| Resource.Path     | 由 HTTP 请求资源构造的字符串(如果有querystring不要加上） | /v1/fullreport                           |
 
 
 ### 3.4 签名方式
@@ -141,8 +141,6 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | click   | String      | 点击数 |
 | revenue              | decimal(18,6)       | 收益，货币单位同开发者后台配置一致                                     |
 | ecpm             | decimal(18,6)       | 千次展示收益，货币单位同开发者后台配置一致                                          |
-| timezone | Int | 时区（8，-8，0）仅支持这几种 |
-| currency | String | 开发者账号币种 |
 
 ## 5. 注意事项
 

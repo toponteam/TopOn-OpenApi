@@ -43,7 +43,7 @@ Before using the batch creation API of TopOn, publishers shall apply  for publis
 | Content-Type | type of HTTP Body                          | application/json                                             |
 | Headers      | Headers except X-Up-Signature              | X-Up-Timestamp:1562813567000 X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2 |
 | HTTPMethod   | HTTP method(upper letters)                 | PUT、GET、POST                                               |
-| Resource     | strings from HTTP path and query params    | /v1/fullreport?key1=val1&key2=val2                           |
+| Resource Path     | strings from HTTP path    | /v1/fullreport                          |
 
  
 
@@ -184,7 +184,7 @@ POST
 
 | params  | type        | required | notes                  |
 | ------- | ----------- | -------- | ---------------------- |
-| app_ids | Array[String] | N        | ["abc", "acc"]         |
+| app_ids | Array[String] | N        | ["abc", "acc"]   （Cannot be used with the following parameters）      |
 | start   | Int         | N        | Default 0              |
 | limit   | Int         | N        | Default 100 , [0, 100] |
 
@@ -373,8 +373,8 @@ POST
 | ------------- | ----------- | -------- | ------------------ |
 | app_ids       | Array[String] | N        | eg: ["abc", "acc"] |
 | placement_ids | Array[String] | N        | eg: ["abc", "acc"] |
-| start         | Int         | N        | Default 0          |
-| limit         | Int         | N        | Default 100        |
+| start         | Int         | N        | Default 0   (Not required when both app and ad slot are specified)       |
+| limit         | Int         | N        | Default 100  (Not required when both app and ad slot are specified)           |
 
  
 
@@ -613,8 +613,8 @@ POST
 | params  | type | required | notes                                                     |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
 | segment_ids | string List | N        | ["uuid1","uuid2"]          |
-| start       | Int    | N        | Default 0                   |
-| limit       | Int    | N        | Default 100 |
+| start       | Int    | N        | Default 0     (No need to fill in when the Segment ID is specified)              |
+| limit       | Int    | N        | Default 100  (No need to fill in when the Segment ID is specified)    |
 
  
 
@@ -1423,7 +1423,7 @@ POST
 | placement_ids    | Array[String] | N        | multiple values are supported        |
 | adsource_ids     | Array[int32]  | N        | multiple values are supported        |
 | start            | int32         | N        | default value: 0 (cannot be used with the above parameters)        |
-| limit            | int32         | N        | default value: 100, and the maximum is 100 at a time               |
+| limit            | int32         | N        | default value: 100, and the maximum is 100 at a time  (cannot be used with the above parameters)               |
 | metrics          | Array[String] | N        | specify the returned fields from the ad_source_list. If you do not pass, all of them will be returned |
 
 

@@ -46,7 +46,7 @@
 | Content-Type | HTTP 请求中 Body 部分的类型                            | application/json                                             |
 | Headers      | 除X-Up-Signature的其它header                           | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
 | HTTPMethod   | HTTP 请求的方法名称，全部大写                          | PUT、GET、POST 等                                            |
-| Resource     | 由 HTTP 请求资源构造的字符串(如果有querystring要加上） | /v1/fullreport?key1=val1&key2=val2                           |
+| Resource.Path     | 由 HTTP 请求资源构造的字符串(如果有querystring不要加上） | /v1/fullreport                           |
 
 ### 3.4 签名方式
 
@@ -181,7 +181,7 @@ POST
 
 | 字段    | 类型   | 是否必传 | 备注                           |
 | ------- | ------ | -------- | ------------------------------ |
-| app_ids | Array[String] | N  | 多个应用ID是数组 |
+| app_ids | Array[String] | N  | 多个应用ID是数组 （和下面两参数不能一起使用） |
 | start   | Int    | N        | Default 0                      |
 | limit   | Int    | N        | Default 100 最大一次性获取100  |
 
@@ -1422,7 +1422,7 @@ POST
 | placement_ids    | Array[String] | N        | 支持传入多个广告位ID                             |
 | adsource_ids     | Array[int32]  | N        | 支持传入多个广告源ID                             |
 | start            | int32         | N        | 默认值：0 (和上面参数不能一起使用)               |
-| limit            | int32         | N        | 默认值：100，最大一次性获取100                   |
+| limit            | int32         | N        | 默认值：100，最大一次性获取100 (和上面参数不能一起使用)    |
 | metrics          | Array[String] | N        | 从ad_source_list中指定返回的字段，不传则全部返回 |
 
 

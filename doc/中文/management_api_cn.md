@@ -465,7 +465,7 @@ POST
 ```
 
 
-## 6. 流量分组管理
+## 6. 广告位维度的流量分组管理
 
 ### 6.1 批量创建和修改流量分组
 
@@ -603,11 +603,11 @@ POST
 ]
 ```
 
-### 6.2 获取流量分组列表
+### 6.2 获取已启用的流量分组列表
 
 #### 6.2.1 请求URL
 
-<https://openapi.toponad.com/v1/segment_list>
+<https://openapi.toponad.com/v2/waterfall/get_segment>
 
 #### 6.2.2 请求方式 
 
@@ -710,6 +710,47 @@ POST
 返回样例：
 
 成功只返回状态码200，失败则返回数据
+
+
+### 6.4 调整流量分组优先级
+
+#### 6.4.1 请求URL
+
+<https://openapi.toponad.com/v2/waterfall/set_segment_rank>
+
+#### 6.4.2 请求方式 
+
+POST
+
+#### 6.4.3 请求参数
+
+| 字段        | 类型   | 是否必传 | 备注                            |
+| ----------- | ------ | -------- | ------------------------------- |
+| segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
+| placement_id | int32 | Y        | placement_id |
+| is_abtest | int32 | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组 |
+| app_id | int32 | Y        | app_id |
+
+ 
+
+#### 6.4.4 返回参数
+
+成功只返回状态码200，失败则返回数据。如果其中一个Segment正在Waterfall中使用，则不允许删除，本次请求的Segment列表都会删除失败
+
+#### 6.4.5 样例
+
+请求样例：
+
+```
+{
+   "segment_ids":["uuid1","uuid2"]
+}
+```
+
+返回样例：
+
+成功只返回状态码200，失败则返回数据
+
 
 ## 7. 聚合管理基本操作
 

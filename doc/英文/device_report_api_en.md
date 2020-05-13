@@ -142,7 +142,7 @@ Fields detail:
 | click   | String      | click number |
 | revenue              | decimal(18,6)       | revenue                              |
 | ecpm             | decimal(18,6)       | ecpm                                      |
-| is_abtest             | String       | control group or test group 0 <br> means the control group or the A / B test is not activated 1 means the test group                      |
+| is_abtest             | String       | control group or test group <br> 0 means the control group or the A / B test is not activated 1 means the test group                      |
 | traffic_group_id             | String      | control or test group id |
 | segment_id             | String       | segment id                                          |
 | segment_name             | String      | segment name                                         |

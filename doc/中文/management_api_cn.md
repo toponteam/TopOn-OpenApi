@@ -740,7 +740,18 @@ POST
  
 
 #### 6.3.4 返回参数
-
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| segments               | Array  | Y        | -                                                             |
+| segments.name          | String | Y        | Segment名称                                                  |
+| segments.priority      | Int | Y        | 优先级排序                                                  |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.rules         | Array  | Y        | Segment的规则                                                |
+| segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| segments.rules.content | string | Y        | 规则详见附录2规范           |
 
 
 #### 6.3.5 样例
@@ -749,13 +760,66 @@ POST
 
 ```
 {
-   "segment_ids":["uuid1","uuid2"]
+    "placement_id": "111111",
+    "is_abtest": 1,
+    "segment_ids": [
+        "22222"
+    ]
 }
 ```
 
 返回样例：
 
-成功只返回状态码200，失败则返回数据
+```
+{
+    "placement_id": "b5bc9bbfb0f913",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "priority": 1,
+            "name": "解决为",
+            "segment_id": "c1c3eo1tahts80",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "priority": 2,
+            "name": "Default Segment",
+            "segment_id": ""
+        }
+    ]
+}
+```
 
 
 ### 6.4 调整流量分组优先级
@@ -780,6 +844,25 @@ POST
  
 
 #### 6.4.4 返回参数
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| segments               | Array  | Y        | -                                                             |
+| segments.name          | String | Y        | Segment名称                                                  |
+| segments.priority      | Int | Y        | 优先级排序                                                  |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.parallel_request_number    | Int | Y        | 并发请求数                             |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开
+                              |
+| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| segments.priority    | Int | Y        | Default -1 ：表示关                             |
+| segments.rules         | Array  | Y        | Segment的规则                                                |
+| segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| segments.rules.content | string | Y        | 规则详见附录2规范           |
+
 
 
 
@@ -923,6 +1006,7 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | 广告位ID        |
 | segment_id   | String | Y        | Segment ID      |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
 #### 7.1.4 返回参数
 
@@ -1000,6 +1084,7 @@ POST
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | 广告位ID                                                     |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
 | offer_switch                        | Int     | N        | 交叉推广开关                                                    |
@@ -1413,6 +1498,7 @@ POST
 | waterfall_list.segment_id              |  String      |   N       |   关联的segment_id                  |
 | waterfall_list.priority                |   Int     |     N     |  关联的segment优先级排序                   |
 | waterfall_list.parallel_request_number |   Int     |     N     |    关联的segment的并发请求数                 |
+| waterfall_list.is_abtest |   Int     |     N     |    0 表示对照组或未开通A/B测试<br/>1 表示测试组                 |
 
 
 #### 9.2.5 样例

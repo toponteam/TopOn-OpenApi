@@ -141,8 +141,8 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | click   | String      | 点击数 |
 | revenue              | decimal(18,6)       | 收益，货币单位同开发者后台配置一致                                     |
 | ecpm             | decimal(18,6)       | 千次展示收益，货币单位同开发者后台配置一致                                          |
-| is_abtest             | String       | 对照组或测试组                                          |
-| traffic_group_id             | String      | 对照组或测试组id 	<br/>0 表示对照组或未开通A/B测试 <br/> 1 表示测试组|
+| is_abtest             | String       | 对照组或测试组  	<br/>0 表示对照组或未开通A/B测试 <br/> 1 表示测试组             |
+| traffic_group_id             | String      | 对照组或测试组id |
 | segment_id             | String       | 流量分组ID                                          |
 | segment_name             | String      | 流量分组名称                                          |
 ## 5. 注意事项

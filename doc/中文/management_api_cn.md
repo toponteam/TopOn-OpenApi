@@ -471,7 +471,7 @@ POST
 
 #### 6.1.1 请求URL
 
-<https://openapi.toponad.com/v1/deal_segment>
+<https://openapi.toponad.com/v2/deal_segment>
 
 #### 6.1.2 请求方式 
 
@@ -611,30 +611,25 @@ POST
 
 #### 6.2.2 请求方式 
 
-POST
+GET
 
 #### 6.2.3 请求参数
 
-| 字段        | 类型   | 是否必传 | 备注                                                         |
-| ----------- | ------ | -------- | ------------------------------------------------------------ |
-| segment_ids | Array | N        | 默认传Array，多个Segment ID是数组                           |
-| start       | Int    | N        | Default 0。当Segment ID都指定时不需要填写                   |
-| limit       | Int    | N        | Default 100 最大一次性获取100。当Segment ID都指定时不需要填写 |
-
- 
+| 字段         | 类型   | 是否必传 | 备注                              |
+| ------------ | ------ | -------- | --------------------------------- |
+| placement_id | String | Y        | 广告位ID                          |
 
 #### 6.2.4 返回参数
 
 | 字段          | 类型   | 是否必传 | 备注                                                         |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
-| name          | String | Y        | Segment名称                                                |
+| priority      | Int    | Y        | 优先级参数                                                   |
+| name          | String | Y        | Segment名称                                               |
 | segment_id    | String | Y        | Segment ID                                                   |
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见附录2规范     |
-
-
+| rules.content | string | Y        | 规则详见附录2规范                       |
 
 #### 6.2.5 样例
 
@@ -642,7 +637,8 @@ POST
 
 ```
 {
-   "segment_ids":["uuid1","uuid2"]
+    "placement_id": "placementid1",
+    "is_abtest": 1
 }
 ```
 
@@ -652,7 +648,8 @@ POST
 [
     {
         "name": "segment1",
-        "segment_id": "asasdsdsd",
+        "segment_id": "segment_id1",
+        "priority": 1,
         "rules": [
             {
                 "type": 1,
@@ -663,7 +660,8 @@ POST
     },
     {
         "name": "segment2",
-        "segment_id": "uuid2",
+        "segment_id": "segment_id2",
+        "priority": 2,
         "rules": [
             {
                 "type": 1,
@@ -754,11 +752,11 @@ POST
 
 ## 7. 聚合管理基本操作
 
-### 7.1 查询广告位已启用的流量分组列表
+### 7.1 查询Waterfall的广告源列表
 
 #### 7.1.1 请求URL
 
-<https://openapi.toponad.com/v1/waterfall/segment>
+<https://openapi.toponad.com/v1/waterfall/units>
 
 #### 7.1.2 请求方式 
 
@@ -766,252 +764,12 @@ GET
 
 #### 7.1.3 请求参数
 
-| 字段         | 类型   | 是否必传 | 备注                              |
-| ------------ | ------ | -------- | --------------------------------- |
-| placement_id | String | Y        | 广告位ID                          |
-
-#### 7.1.4 返回参数
-
-| 字段          | 类型   | 是否必传 | 备注                                                         |
-| ------------- | ------ | -------- | ------------------------------------------------------------ |
-| priority      | Int    | Y        | 优先级参数                                                   |
-| name          | String | Y        | Segment名称                                               |
-| segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment的规则                                                |
-| rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
-| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见附录2规范                       |
-
-#### 7.1.5 样例
-
-请求样例：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1
-}
-```
-
-返回样例：
-
-```
-[
-    {
-        "name": "segment1",
-        "segment_id": "segment_id1",
-        "priority": 1,
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
-    },
-    {
-        "name": "segment2",
-        "segment_id": "segment_id2",
-        "priority": 2,
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
-    }
-]
-```
-
-### 7.2 为广告位启用新流量分组或调整流量分组优先级
-
-#### 7.2.1 请求URL
-
-<https://openapi.toponad.com/v1/waterfall/set_segment>
-
-#### 7.2.2 请求方式 
-
-POST
-
-#### 7.2.3 请求参数
-
-| 字段                | 类型   | 是否必传 | 备注                         |
-| ------------------- | ------ | -------- | ---------------------------- |
-| placement_id        | String | Y        | 广告位ID                     |
-| segments            | Array  | Y        | Segment排序的完整列表           |
-| segments.priority   | Int    | Y        | Segment优先级               |
-| segments.segment_id | String | Y        | Segment ID                   |
-
-#### 7.2.4 返回参数
-
-| 字段                   | 类型   | 是否必传 | 备注                                                         |
-| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
-| placement_id           | String | Y        | 广告位ID                                                     |
-| is_abtest              | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                |
-| segments.priority      | Int    | Y        | 优先级参数                                                   |
-| segments.name          | String | Y        | Segment的名字                                                |
-| segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment的规则                                                |
-| segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
-| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则详见附录2规范                       |
-
-#### 7.2.5 样例
-
-请求样例：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1"
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2"
-        }
-    ]
-}
-```
-
-返回样例：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1",
-            "name": "name1",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2",
-            "name": "name2",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        }
-    ]
-}
-```
-
-### 7.3 为广告位批量移除流量分组
-
-#### 7.3.1 请求URL
-
-<https://openapi.toponad.com/v1/waterfall/del_segment>
-
-#### 7.3.2 请求方式 
-
-POST
-
-#### 7.3.3 请求参数
-
-| 字段         | 类型   | 是否必传 | 备注                         |
-| ------------ | ------ | -------- | ---------------------------- |
-| placement_id | String | Y        | 广告位ID                     |
-| segment_ids  | Array  | Y        | 要移除的Segment列表          |
-
-#### 7.3.4 返回参数
-
-| 字段                   | 类型   | 是否必传 | 备注                                                         |
-| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
-| placement_id           | String | Y        | 广告位ID                                                     |
-| is_abtest              | Int    | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组                |
-| segments.priority      | Int    | Y        | 优先级参数                                                   |
-| segments.name          | String | Y        | Segment的名字                                                |
-| segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment的规则                                                |
-| segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
-| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| segments.rules.content | string | Y        | 规则详见附录2规范            |
-
-#### 7.3.5 样例
-
-请求样例：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segment_ids": [
-        "segment_id1",
-        "segment_id2"
-    ]
-}
-```
-
-返回样例：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1",
-            "name": "name1",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2",
-            "name": "name2",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        }
-    ]
-}
-```
-
-### 7.4 查询Waterfall的广告源列表
-
-#### 7.4.1 请求URL
-
-<https://openapi.toponad.com/v1/waterfall/units>
-
-#### 7.4.2 请求方式 
-
-GET
-
-#### 7.4.3 请求参数
-
 | 字段         | 类型   | 是否必传 | 备注            |
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | 广告位ID        |
 | segment_id   | String | Y        | Segment ID      |
 
-#### 7.4.4 返回参数
+#### 7.1.4 返回参数
 
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -1032,7 +790,7 @@ GET
 | offer_list.offer_id                 | String  | N        | offer_id                                                     |
 | offer_list.offer_name               | String  | N        | offer名称                                                    |
 
-#### 7.4.5 样例
+#### 7.1.5 样例
 
 请求样例：
 
@@ -1072,17 +830,17 @@ GET
 }
 ```
 
-### 7.5 批量修改广告源在Waterfall的属性
+### 7.2 批量修改广告源在Waterfall的属性
 
-#### 7.5.1 请求URL
+#### 7.2.1 请求URL
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
 
-#### 7.5.2 请求方式 
+#### 7.2.2 请求方式 
 
 POST
 
-#### 7.5.3 请求参数
+#### 7.2.3 请求参数
 
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -1100,7 +858,7 @@ POST
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
 
-#### 7.5.4 返回参数
+#### 7.2.4 返回参数
 
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -1119,7 +877,7 @@ POST
 | ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
 | ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
 
-#### 7.5.5 样例
+#### 7.2.5 样例
 
 请求样例：
 

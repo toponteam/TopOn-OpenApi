@@ -481,8 +481,11 @@ POST
 
 | 字段                   | 类型   | 是否必传 | 备注                                                         |
 | ---------------------- | ------ | -------- | ------------------------------------------------------------ |
-| count                  | Int    | Y        | 请求条数                                                     |
-| segments               | Array  | Y        | -                                      |
+| count                  | Int    | Y        | 请求条数                                                      |
+| app_id                  | String    | Y        | app_id                                                    |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称                                                  |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
@@ -509,10 +512,50 @@ POST
 
 ```
 {
-    "count": 2,
+    "count": 3,
+    "app_id":"a5bc9921f7fdb4",
+    "placement_id":"b5bc9bbfb0f913",
+    "is_abtest":0,
     "segments": [
         {
-            "name": "2123123",
+            "name": "999",
+            "segment_id": "c1c3femr2h7smb",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "5555",
+            "segment_id": "c5ea52b0e79baf",
             "rules": [
                 {
                     "type": 3,
@@ -618,6 +661,9 @@ GET
 | 字段         | 类型   | 是否必传 | 备注                              |
 | ------------ | ------ | -------- | --------------------------------- |
 | placement_id | String | Y        | 广告位ID                          |
+| app_id                  | String    | Y        | app_id                                                    |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
 #### 6.2.4 返回参数
 
@@ -677,7 +723,7 @@ GET
 
 #### 6.3.1 请求URL
 
-<https://openapi.toponad.com/v1/del_segment>
+<https://openapi.toponad.com/v1/waterfall/del_segment>
 
 #### 6.3.2 请求方式 
 
@@ -688,12 +734,14 @@ POST
 | 字段        | 类型   | 是否必传 | 备注                            |
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
  
 
 #### 6.3.4 返回参数
 
-成功只返回状态码200，失败则返回数据。如果其中一个Segment正在Waterfall中使用，则不允许删除，本次请求的Segment列表都会删除失败
+
 
 #### 6.3.5 样例
 
@@ -733,7 +781,7 @@ POST
 
 #### 6.4.4 返回参数
 
-成功只返回状态码200，失败则返回数据。如果其中一个Segment正在Waterfall中使用，则不允许删除，本次请求的Segment列表都会删除失败
+
 
 #### 6.4.5 样例
 
@@ -741,13 +789,120 @@ POST
 
 ```
 {
-   "segment_ids":["uuid1","uuid2"]
+    "app_id":"a5bc9921f7fdb4",
+    "placement_id":"b5bc9bbfb0f913",
+    "is_abtest": 1,
+    "segment_ids": [
+    	"c1c3eo129ou5v9",
+    	"c1c3eo1tahts80",
+        "c5ea52b0e79baf"
+    ]
 }
 ```
 
 返回样例：
-
-成功只返回状态码200，失败则返回数据
+```
+{
+    "placement_id": "b5bc9bbfb0f913",
+    "is_abtest": 1,
+    "segments": [
+        {
+            "name": "解决",
+            "segment_id": "c1c3eo129ou5v9",
+            "parallel_request_number": 0,
+            "auto_load": 0,
+            "day_cap": 0,
+            "hour_cap": 0,
+            "pacing": 0,
+            "priority": 0,
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                },
+                {
+                    "type": 0,
+                    "rule": 0,
+                    "content": []
+                }
+            ]
+        },
+        {
+            "name": "解决为",
+            "segment_id": "c1c3eo1tahts80",
+            "parallel_request_number": 0,
+            "auto_load": 0,
+            "day_cap": 0,
+            "hour_cap": 0,
+            "pacing": 0,
+            "priority": 1,
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                },
+                {
+                    "type": 0,
+                    "rule": 0,
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
+```
 
 
 ## 7. 聚合管理基本操作

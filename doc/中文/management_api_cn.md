@@ -484,7 +484,7 @@ POST
 | count                  | Int    | Y        | 请求条数                                                      |
 | app_id                  | String    | Y        | app_id                                                    |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称                                                  |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
@@ -662,8 +662,7 @@ GET
 | ------------ | ------ | -------- | --------------------------------- |
 | placement_id | String | Y        | 广告位ID                          |
 | app_id                  | String    | Y        | app_id                                                    |
-| placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
 #### 6.2.4 返回参数
 
@@ -672,6 +671,12 @@ GET
 | priority      | Int    | Y        | 优先级参数                                                   |
 | name          | String | Y        | Segment名称                                               |
 | segment_id    | String | Y        | Segment ID                                                   |
+| segments.parallel_request_number    | Int | Y        | 并发请求数                             |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开
+                              |
+| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| segments.priority    | Int | Y        | Default -1 ：表示关                             |
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
@@ -682,10 +687,7 @@ GET
 请求样例：
 
 ```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1
-}
+/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
 ```
 
 返回样例：
@@ -693,29 +695,58 @@ GET
 ```
 [
     {
-        "name": "segment1",
-        "segment_id": "segment_id1",
+        "name": "解决为",
+        "segment_id": "c1c3eo1tahts80",
+        "parallel_request_number": 1,
+        "auto_load": 0,
+        "day_cap": -1,
+        "hour_cap": -1,
+        "pacing": -1,
         "priority": 1,
         "rules": [
             {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
+                "type": 3,
+                "rule": 0,
+                "content": [
+                    "4g",
+                    "3g",
+                    "2g"
+                ]
+            },
+            {
+                "type": 17,
+                "rule": 0,
+                "content": [
+                    "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                    "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                    "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                ]
+            },
+            {
+                "type": 10,
+                "rule": 0,
+                "content": [
+                    "iphone"
+                ]
+            },
+            {
+                "type": 9,
+                "rule": 7,
+                "content": "5.0.0"
             }
         ]
     },
     {
-        "name": "segment2",
-        "segment_id": "segment_id2",
-        "priority": 2,
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
+        "name": "Default Segment",
+        "segment_id": "",
+        "parallel_request_number": 1,
+        "auto_load": 0,
+        "day_cap": 0,
+        "hour_cap": 0,
+        "pacing": 0,
+        "priority": 2
     }
+]
 ]
 ```
 
@@ -735,7 +766,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    |N       | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
  
 
@@ -1005,8 +1036,8 @@ GET
 | 字段         | 类型   | 是否必传 | 备注            |
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | 广告位ID        |
-| segment_id   | String | Y        | Segment ID      |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| segment_id   | String | N        | Segment ID,默认是default segment      |
+| is_abtest             | Int    | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
 
 #### 7.1.4 返回参数
 

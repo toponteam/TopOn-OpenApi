@@ -176,6 +176,8 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | click_api        | String | N        | network data:click numbers                                   |
 | ctr_api          | String | N        | network data:ctr                                             |
 | ecpm_api         | String | N        | network data:ecpm                                            |
+| adsource.adsource_id      | String | N        | ad source ID, returned when group_by adsource                            |
+| adsource.adsource_name    | String | N        | ad source name, returned when group_by adsource                       |
 
 ### 4.5 Sample
 

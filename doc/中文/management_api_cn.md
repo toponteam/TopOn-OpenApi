@@ -121,7 +121,8 @@ POST
 | apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx，创建时必传                   |
 | apps.category           | String | N        | 一级分类，需符合附录1规范，创建时未上架的应用必传 |
 | apps.sub_category       | String | N        | 二级分类，需符合附录1规范，创建时未上架的应用必传 |
-
+| apps.coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
+| apps.ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
  
 
 #### 4.1.4 返回参数
@@ -133,6 +134,8 @@ POST
 | errors             | String | N        | 错误信息（错误时返回）           |
 | platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 | screen_orientation | Int    | Y        | 1：竖屏<br />2：横屏<br />3：所有  |
+| coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
+| ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
 
  
 
@@ -199,6 +202,8 @@ POST
 | package_name            | String | N        | -                                   |
 | category                | String | N        | -                                   |
 | sub-category            | String | N        | -                                   |
+| coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
+| ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
 
 
 #### 4.2.5 样例

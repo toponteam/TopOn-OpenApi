@@ -178,8 +178,8 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | ecpm_api         | String | N        | 三方广告平台的点击数                                         |
 | click_api        | String | N        | 三方广告平台的点击率                                         |
 | ecpm_api         | String | N        | 三方广告平台的eCPM                                           |
-| adsource.id      | String | N        | 广告源ID，group_by adsource时返回                            |
-| adsource.name    | String | N        | 广告源名称，group_by adsource时返回                          |
+| adsource.adsource_id      | String | N        | 广告源ID，group_by adsource时返回                            |
+| adsource.adsource_name    | String | N        | 广告源名称，group_by adsource时返回                          |
 
 ### 4.5 样例
 

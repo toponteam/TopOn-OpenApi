@@ -486,7 +486,7 @@ POST
 | count         | Int    | Y        | segment number                                               |
 | app_id                  | String    | Y        | app_id                                                    |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group  |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | segments      | Array  | Y        | -                                                            |
 | segments.name          | String | Y        | segment name （The newly added segment priority is ranked in front of the existing group）                                               |
 | segments.segment_id    | String | N        | must reture segment id when updating segment                 |

@@ -721,9 +721,9 @@ GET
 | segment_id    | String | Y        | Segment ID                                                   |
 | parallel_request_number    | Int | Y        | 并发请求数                             |
 | auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开 |
-| day_cap    | Int | Y        | Default -1 ：表示关                            |
-| hour_cap    | Int | Y        | Default -1 ：表示关                             |
-| priority    | Int | Y        | Default -1 ：表示关                             |
+| day_cap    | Int | Y        |  -1 ：表示关                            |
+| hour_cap    | Int | Y        |  -1 ：表示关                             |
+| pacing    | Int | Y        |  -1 ：表示关                             |
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
@@ -932,10 +932,9 @@ POST
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |
 | segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
-| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
-| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
-| segments.priority    | Int | Y        | Default -1 ：表示关                             |
+| segments.day_cap    | Int | Y        | -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        |  -1 ：表示关                             |
+| segments.pacing    | Int | Y        |  -1 ：表示关                             |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
@@ -1087,9 +1086,9 @@ POST
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |
 | segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
-| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
-| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
+| segments.day_cap    | Int | Y        |  -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        |  -1 ：表示关                             |
+| segments.pacing    | Int | Y        |  -1 ：表示关                             |
 
  
 
@@ -1103,9 +1102,9 @@ POST
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |
 | segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
-| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
-| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
+| segments.day_cap    | Int | Y        |  -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        |  -1 ：表示关                             |
+| segments.pacing    | Int | Y        |  -1 ：表示关                             |
 
 
 
@@ -1199,9 +1198,9 @@ GET
 | ad_source_list.auto_ecpm            | float64 | N        | 自动eCPM价格                                                     |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
-| ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
-| ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
-| ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
+| ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | Y        |  -1 ：表示关                                          |
 | free_ad_source_list                 | Array   | N        | 未使用adsource_list（其他参数参照ad_source_list）            |
 | offer_list                          | Array   | N        | 正在使用的交叉推广列表                                        |
 | offer_list.offer_id                 | String  | N        | offer_id                                                     |
@@ -1272,9 +1271,9 @@ POST
 | ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
-| ad_source_list.day_cap              | Int     | N        | Default -1 ：表示关                                          |
-| ad_source_list.hour_cap             | Int     | N        | Default -1 ：表示关                                          |
-| ad_source_list.pacing               | Int     | N        | Default -1 ：表示关                                          |
+| ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | Y        |  -1 ：表示关                                          |
 
 #### 7.2.4 返回参数
 
@@ -1291,9 +1290,9 @@ POST
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
-| ad_source_list.day_cap              | Int     | N        | default -1 ：表示关                                          |
-| ad_source_list.hour_cap             | Int     | N        | default -1 ：表示关                                          |
-| ad_source_list.pacing               | Int     | N        | default -1 ：表示关                                          |
+| ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.hour_cap             | Int     | Y        |  -1 ：表示关                                          |
+| ad_source_list.pacing               | Int     | Y        |  -1 ：表示关                                          |
 
 #### 7.2.5 样例
 

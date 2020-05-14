@@ -117,7 +117,7 @@ POST
 | params            | type   | required | notes                                                        |
 | ----------------- | ------ | -------- | ------------------------------------------------------------ |
 | count             | Int    | Y        | Quantity of created apps                                     |
-| apps.app_id       | String | N        | app id                                                       |
+| apps.app_id       | String | N        | app id   (Incoming when modified)                                          |
 | apps.app_name     | String | Y        | app name                                                     |
 | apps.platform     | Int    | Y        | platform 1 or 2  (1:android，2:iOS)                          |
 | apps.market_url   | String | N        | Need to be in compliance with requirements of app store links |
@@ -290,6 +290,7 @@ POST
 | count                                 | Int    | Y        | Quantity of created placements                               |
 | app_id                                | String | Y        | APP ID of created placements                                 |
 | placements.placement_name             | String | Y        | placement name. max length 30                                |
+| placements.placement_id             | String | N        | placement id  (Incoming when modified)                                 |
 | placements.adformat                   | String | Y        | native,banner,rewarded_video,interstitial,splash             |
 | placements.template                   | Int    | N        | Configurations for native ads: 0：standard<br/>1：Native Banner<br/>2：Native Splash |
 | placements.template.cdt               | Int    | N        | template is Native Splash：countdown time, default 5s        |
@@ -831,7 +832,7 @@ POST
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment name                                                  |
 | segments.priority      | Int | Y        | Segment priority                                                  |
-| segments.segment_id    | String | N        | Segment ID                              |
+| segments.segment_id    | String | N        | Segment ID     (Incoming when modified)                            |
 | segments.rules         | Array  | Y        | Segment rules                                                 |
 | segments.rules.type    | Int    | Y        | Segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | Segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value |

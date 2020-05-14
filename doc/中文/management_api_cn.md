@@ -496,14 +496,20 @@ POST
 
 #### 6.1.4 返回参数
 
-| 字段          | 类型   | 是否必传 | 备注                                                         |
-| ------------- | ------ | -------- | ------------------------------------------------------------ |
-| name          | String | Y        | Segment名称                                              |
-| segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment的规则                                                |
-| rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
-| rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
-| rules.content | string | Y        | 规则详见附录2规范            |
+| 字段                   | 类型   | 是否必传 | 备注                                                         |
+| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
+| count                  | Int    | Y        | 请求条数                                                      |
+| app_id                  | String    | Y        | app_id                                                    |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | N        | 是否是测试组，默认：0<br>0：默认组，1：测试组                |
+| segments               | Array  | Y        | -                                                             |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.name          | String | Y        | Segment名称 (默认新增的segment优先级排在现有分组前面)                                                 |
+| segments.errors    | String | N        | Segment处理异常的错误                             |
+| segments.rules         | Array  | Y        | Segment的规则                                                |
+| segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
+| segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
+| segments.rules.content | string | Y        | 规则详见附录2规范           |       |
 
 
 
@@ -602,49 +608,90 @@ POST
 返回样例：
 
 ```
-[
-    {
-        "name": "2123123",
-        "segment_id": "c1boq7f7apetou",
-        "rules": [
-            {
-                "type": 3,
-                "rule": 0,
-                "content": [
-                    "4g",
-                    "3g",
-                    "2g"
-                ]
-            },
-            {
-                "type": 17,
-                "rule": 0,
-                "content": [
-                    "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
-                    "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
-                    "C093B2E8-849B-45AE-B11A-E862B1EE1025"
-                ]
-            },
-            {
-                "type": 10,
-                "rule": 0,
-                "content": [
-                    "iphone"
-                ]
-            },
-            {
-                "type": 9,
-                "rule": 7,
-                "content": "5.0.0"
-            }
-        ]
-    },
-    {
-        "name": "2123123434",
-        "segment_id": "",
-        "errors": "segment rule length must 1"
-    }
-]
+{
+    "count": 3,
+    "placement_id": "b5ebbb200f10af",
+    "app_id": "a5e68b165154d5",
+    "segments": [
+        {
+            "name": "999",
+            "segment_id": "c1c3kadvqpuffb",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "5555",
+            "segment_id": "c1c3kadvr7dkfu",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "2123123434",
+            "segment_id": "",
+            "errors": "segment rule length must 1"
+        }
+    ]
+}
 ```
 
 ### 6.2 获取已启用的流量分组列表

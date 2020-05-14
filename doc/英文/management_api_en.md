@@ -935,7 +935,7 @@ POST
 | segments               | Array  | Y        | -                                                             |
 | segments.name         | String | Y        | Segment name                                                 |
 | segments.priority      | Int | Y        | Segment priority                                                 |
-| segment_id    | String | Y        | Segment ID                                                   |
+| segments.segment_id    | String | Y        | Segment ID                                                   |
 | segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
 | segments.day_cap    | Int | Y        | Default -1: indicates off                            |

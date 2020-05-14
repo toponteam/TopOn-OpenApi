@@ -487,7 +487,7 @@ POST
 | placement_id            | String    | Y        | placement_id                                        |
 | is_abtest             | Int    | N        | 是否是测试组，默认：0<br>0：默认组，1：测试组                |
 | segments               | Array  | Y        | -                                                             |
-| segments.name          | String | Y        | Segment名称 (默认新增的segment排往现有的segment上排)                                                 |
+| segments.name          | String | Y        | Segment名称 (默认新增的segment优先级排在现有分组前面)                                                 |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |

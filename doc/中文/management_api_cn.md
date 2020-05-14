@@ -868,9 +868,9 @@ POST
 | 字段        | 类型   | 是否必传 | 备注                            |
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
-| placement_id | int32 | Y        | placement_id |
+| placement_id | string | Y        | placement_id |
 | is_abtest | int32 | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组 |
-| app_id | int32 | Y        | app_id |
+| app_id | string | Y        | app_id |
 
  
 
@@ -1035,6 +1035,7 @@ POST
 | segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
 | placement_id | int32 | Y        | placement_id |
 | is_abtest | int32 | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组 |
+| app_id | string | Y        | app_id |
 | segments               | Array  | Y        | -                                                             |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |

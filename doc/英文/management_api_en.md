@@ -724,9 +724,9 @@ POST
 | segment_id    | String | Y        | Segment ID                                                   |
 | parallel_request_number    | Int | Y        | Number of parallel requests                             |
 | auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
-| day_cap    | Int | Y        | Default -1: indicates off                            |
-| hour_cap    | Int | Y        | Default -1: indicates off                            |
-| priority    | Int | Y        | Default -1: indicates off                             |
+| day_cap    | Int | Y        |  -1: indicates off                            |
+| hour_cap    | Int | Y        |  -1: indicates off                            |
+| pacing    | Int | Y        |  -1: indicates off                             |
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -938,9 +938,9 @@ POST
 | segments.segment_id    | String | Y        | Segment ID                                                   |
 | segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
-| segments.day_cap    | Int | Y        | Default -1: indicates off                            |
-| segments.hour_cap    | Int | Y        | Default -1: indicates off                            |
-| segments.priority    | Int | Y        | Default -1: indicates off                             |
+| segments.day_cap    | Int | Y        |  -1: indicates off                            |
+| segments.hour_cap    | Int | Y        |  -1: indicates off                            |
+| segments.pacing    | Int | Y        |  -1: indicates off                             |
 | segments.rules         | Array  | Y        | Segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -1092,9 +1092,9 @@ POST
 | segments.segment_id    | String | N        | Segment id                              |
 | segments.parallel_request_number    | Int | Y        | parallel request number                            |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on.|
-| segments.day_cap    | Int | Y        | Default -1 ：off                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：off                             |
-| segments.pacing    | Int | Y        | Default -1 ：off                            |
+| segments.day_cap    | Int | Y        |  -1: indicates off                            |
+| segments.hour_cap    | Int | Y        |  -1: indicates off                            |
+| segments.pacing    | Int | Y        |  -1: indicates off                             |
 
 
 #### 6.5.4 Return data
@@ -1107,9 +1107,9 @@ POST
 | segments.segment_id    | String | N        | Segment id                              |
 | segments.parallel_request_number    | Int | Y        | parallel request number                            |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on.|
-| segments.day_cap    | Int | Y        | Default -1 ：off                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：off                             |
-| segments.pacing    | Int | Y        | Default -1 ：off                            |
+| segments.day_cap    | Int | Y        |  -1: indicates off                            |
+| segments.hour_cap    | Int | Y        |  -1: indicates off                            |
+| segments.pacing    | Int | Y        |  -1: indicates off                             |
 
 
 #### 6.5.5 Sample
@@ -1203,9 +1203,9 @@ GET
 | ad_source_list.auto_ecpm            | float64 | N        | auto eCPM                                                  |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | N        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
-| ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
+| ad_source_list.day_cap              | Int     | Y        |  -1 ：close                                           |
+| ad_source_list.hour_cap             | Int     | Y        |  -1 ：close                                           |
+| ad_source_list.pacing               | Int     | Y        |  -1 ：close                                           |
 | free_ad_source_list                 | Array   | N        | adsource list not in used                                    |
 | offer_list                          | Array   | N        | my offer list in used                                        |
 | offer_list.offer_id                 | String  | N        | offer id                                                     |
@@ -1278,9 +1278,9 @@ POST
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
-| ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
+| ad_source_list.day_cap              | Int     | N        |  -1 ：close                                           |
+| ad_source_list.hour_cap             | Int     | N        |  -1 ：close                                           |
+| ad_source_list.pacing               | Int     | N        |  -1 ：close                                           |
 
 #### 7.2.4 Return data
 
@@ -1297,9 +1297,9 @@ POST
 | ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
-| ad_source_list.day_cap              | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
-| ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
+| ad_source_list.day_cap              | Int     | N        |  -1 ：close                                           |
+| ad_source_list.hour_cap             | Int     | N        |  -1 ：close                                           |
+| ad_source_list.pacing               | Int     | N        |  -1 ：close                                           |
 
 #### 7.2.5 Sample
 

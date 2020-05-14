@@ -814,7 +814,7 @@ return sample：
     "segments": [
         {
             "priority": 1,
-            "name": "解决为",
+            "name": "segment1",
             "segment_id": "c1c3eo1tahts80",
             "rules": [
                 {
@@ -925,7 +925,7 @@ return sample：
     "is_abtest": 1,
     "segments": [
         {
-            "name": "解决",
+            "name": "segment1",
             "segment_id": "c1c3eo129ou5v9",
             "parallel_request_number": 0,
             "auto_load": 0,
@@ -972,7 +972,7 @@ return sample：
             ]
         },
         {
-            "name": "解决为",
+            "name": "segment2",
             "segment_id": "c1c3eo1tahts80",
             "parallel_request_number": 0,
             "auto_load": 0,
@@ -1017,6 +1017,106 @@ return sample：
                     "content": []
                 }
             ]
+        }
+    ]
+}
+```
+
+
+### 6.5 Set attributes of segments in Waterfall
+
+#### 6.5.1 Request URL
+
+<https://openapi.toponad.com/v2/waterfall/set_segment>
+
+#### 6.5.2 Request method 
+
+POST
+
+#### 6.5.3 Request params
+
+| params  | type | required | notes                         |
+| ----------- | ------ | -------- | ------------------------------- |
+| segment_ids | Array | Y        | segment_ids |
+| placement_id | String | Y        | placement_id |
+| is_abtest | int32 | N        | 0 indicates the control group or A br/ B test is not enabled. < test > 1 indicates the test group. |
+| app_id | String | Y        | app_id |
+| segments               | Array  | Y        | -                                                             |
+| segments.segment_id    | String | N        | Segment id                              |
+| segments.parallel_request_number    | Int | Y        | parallel request number                            |
+| segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on.|
+| segments.day_cap    | Int | Y        | Default -1 ：off                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：off                             |
+| segments.pacing    | Int | Y        | Default -1 ：off                            |
+
+
+#### 6.5.4 Return data
+
+| fields        | type   | required | notes                                                        |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 0 indicates the control group or A br/ B test is not enabled. < test > 1 indicates the test group.                |
+| segments               | Array  | Y        | -                                                             |
+| segments.segment_id    | String | N        | Segment id                              |
+| segments.parallel_request_number    | Int | Y        | parallel request number                            |
+| segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on.|
+| segments.day_cap    | Int | Y        | Default -1 ：off                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：off                             |
+| segments.pacing    | Int | Y        | Default -1 ：off                            |
+
+
+#### 6.5.5 Sample
+
+request sample：
+
+```
+{
+    "app_id": "a5e68b165154d5",
+    "placement_id": "b5ebbb200f10af",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "segment_id": "c1c3kadvqpuffb",
+            "auto_load": 3,
+            "day_cap": 1,
+            "hour_cap": 6,
+            "pacing": 7
+        },
+        {
+            "segment_id": "c5ebbb2823ada1",
+            "auto_load": 7,
+            "day_cap": 3,
+            "hour_cap": 4,
+            "parallel_request_number":24,
+            "pacing": 5
+        }
+    ]
+}
+```
+
+return sample：
+
+```
+{
+    "app_id": "a5e68b165154d5",
+    "placement_id": "b5ebbb200f10af",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "segment_id": "c1c3kadvqpuffb",
+            "parallel_request_number": 1,
+            "auto_load": 3,
+            "day_cap": 1,
+            "hour_cap": 6,
+            "pacing": 7
+        },
+        {
+            "segment_id": "c5ebbb2823ada1",
+            "parallel_request_number": 24,
+            "auto_load": 7,
+            "day_cap": 3,
+            "hour_cap": 4,
+            "pacing": 5
         }
     ]
 }

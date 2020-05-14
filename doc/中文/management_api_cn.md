@@ -6,6 +6,7 @@
 | v 1.0    | 2019年7月17日 | 支持批量创建和查询应用、广告位    |
 | v 2.0    | 2019年11月4日 | 支持Waterfall、流量分组等相关配置 |
 | v 2.1    | 2020年3月16日 | 新增广告平台、广告源管理接口      |
+| v 2.2    | 2020年5月14日 | 流量分组接口功能调整      |
 
 
 ## 1. 关于文档
@@ -121,8 +122,8 @@ POST
 | apps.package_name       | String | N        | 需符合包名规范，示例：com.xxx，创建时必传                   |
 | apps.category           | String | N        | 一级分类，需符合附录1规范，创建时未上架的应用必传 |
 | apps.sub_category       | String | N        | 二级分类，需符合附录1规范，创建时未上架的应用必传 |
-| apps.coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
-| apps.ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
+| apps.coppa       | String | N        | 是否遵守COPPA协议，默认：否<br>1：否，2：是 |
+| apps.ccpa       | String | N        | 是否遵守CCPA协议，默认：否<br>1：否，2：是  |
  
 
 #### 4.1.4 返回参数
@@ -134,8 +135,8 @@ POST
 | errors             | String | N        | 错误信息（错误时返回）           |
 | platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台) |
 | screen_orientation | Int    | Y        | 1：竖屏<br />2：横屏<br />3：所有  |
-| coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
-| ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
+| coppa       | String | N        | 是否遵守COPPA协议，默认：否<br>1：否，2：是 |
+| ccpa       | String | N        | 是否遵守CCPA协议，默认：否<br>1：否，2：是  |
 
  
 
@@ -202,8 +203,8 @@ POST
 | package_name            | String | N        | -                                   |
 | category                | String | N        | -                                   |
 | sub-category            | String | N        | -                                   |
-| coppa       | String | N        | 是否遵守COPPA 默认 否  1 否 2 是 |
-| ccpa       | String | N        | 是否遵守CCPA协议 默认 否  1 否 2 是  |
+| coppa       | String | N        | 是否遵守COPPA协议，默认：否<br>1：否，2：是 |
+| ccpa       | String | N        | 是否遵守CCPA协议，默认：否<br>1：否，2：是  |
 
 
 #### 4.2.5 样例
@@ -484,7 +485,7 @@ POST
 | count                  | Int    | Y        | 请求条数                                                      |
 | app_id                  | String    | Y        | app_id                                                    |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认：0<br>0：默认组，1：测试组                |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称                                                  |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |

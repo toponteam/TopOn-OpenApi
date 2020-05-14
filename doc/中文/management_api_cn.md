@@ -114,7 +114,7 @@ POST
 | 字段                    | 类型   | 是否必传 | 备注                                                        |
 | ----------------------- | ------ | -------- | ----------------------------------------------------------- |
 | count                   | Int    | Y        | 创建应用的数量                                              |
-| apps.app_id             | String | N        | 开发者后台的应用ID                  |
+| apps.app_id             | String | N        | 开发者后台的应用ID （修改时传入）                 |
 | apps.app_name           | String | Y        | 应用名称                                                    |
 | apps.platform           | Int    | Y        | 1或者2  (1:安卓平台，2是iOS平台)                            |
 | apps.market_url         | String | N        | 需符合商店链接规范                                          |
@@ -286,6 +286,7 @@ POST
 | count                                 | Int    | Y        | 创建的广告位数量                                             |
 | app_id                                | String | Y        | 创建广告位的应用ID                                           |
 | placements.placement_name             | String | Y        | 广告位名称，30个汉字或字符以内                               |
+| placements.placement_id             | String | Y        | 广告位id （修改时传入）                  |
 | placements.adformat                   | String | Y        | native、banner、rewarded_video、interstitial、splash （单选） |
 | placements.template                   | Int    | N        | 针对于native广告才有相关配置。<br />0：标准<br />1：原生Banner<br />2：原生开屏 |
 | placements.template_extra.cdt               | Int    | N        | template为原生开屏时：倒计时时间，默认5秒                    |
@@ -488,7 +489,7 @@ POST
 | is_abtest             | Int    | N        | 是否是测试组，默认：0<br/>0：默认组，1：测试组                |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称 (默认新增的segment优先级排在现有分组前面)                                                 |
-| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID （修改时传入）                        |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | segments.rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |

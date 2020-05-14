@@ -767,7 +767,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    |N       | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    |N       | 是否是测试组，默认：0 <br> 0：对照组，1：测试组                |
 
  
 
@@ -879,7 +879,7 @@ POST
 | 字段          | 类型   | 是否必传 | 备注                                                         |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | Y        | 是否是测试组，默认：0<br> 0：对照组，1：测试组                |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称                                                  |
 | segments.priority      | Int | Y        | 优先级排序                                                  |
@@ -1037,7 +1037,7 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | 广告位ID        |
 | segment_id   | String | N        | Segment ID,默认是default segment      |
-| is_abtest             | Int    | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认：0<br> 0：对照组，1：测试组                |
 
 #### 7.1.4 返回参数
 
@@ -1115,7 +1115,7 @@ POST
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | 广告位ID                                                     |
-| is_abtest             | Int    | Y        | 是否是测试组，默认是0 0表示默认组，1表示测试组                |
+| is_abtest             | Int    | Y        | 是否是测试组，默认：0<br> 0：对照组，1：测试组                |
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
 | offer_switch                        | Int     | N        | 交叉推广开关                                                    |

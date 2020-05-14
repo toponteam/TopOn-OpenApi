@@ -1268,7 +1268,7 @@ POST
 | params                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
-| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group   |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group   |
 | segment_id                          | String  | Y        | segment ID                                                   |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |

@@ -5,6 +5,7 @@
 | v 1.0    | 2019/7/17 | supports apps and placements |
 | v 2.0    | 2019/11/4 | supports waterfall and segments |
 | v 2.1    | 2020/3/16 | supports network and adsources |
+| v 2.2    | 2020/5/14 | segments function adjustment |
 
 
 ## 1. Introduction
@@ -124,6 +125,8 @@ POST
 | apps.package_name | String | N        | Need to be in compliance with requirements of app package name.  com.xxx |
 | apps.category     | String | N        | category.See:Appendix1_App category and sub category enum.App that is not in the store at the time of creation must be passed. |
 | apps.sub_category | String | N        | sub category.See:Appendix1_App category and sub category enum.App that is not in the store at the time of creation must be passed. |
+| apps.coppa       | String | N        | Whether to comply with COPPA protocol. Default: no < br > 1: no, 2: yes |
+| apps.ccpa       | String | N        | Whether to comply with CCPA protocol. Default: no < br > 1: no, 2: yes  |
 
  
 
@@ -136,6 +139,8 @@ POST
 | errors   | String | N        | error messages                      |
 | platform | Int    | Y        | platform 1 or 2  (1:android，2:iOS) |
 | screen_orientation | Int    | Y        | 1:portrait <br>2:landscape <br>3:both                  |
+| apps.coppa       | String | N        | Whether to comply with COPPA protocol. Default: no < br > 1: no, 2: yes |
+| apps.ccpa       | String | N        | Whether to comply with CCPA protocol. Default: no < br > 1: no, 2: yes  |
 
  
 
@@ -202,6 +207,8 @@ POST
 | package_name | String | N        | -                                   |
 | category     | String | N        | -                                   |
 | sub-category | String | N        | -                                   |
+| apps.coppa       | String | N        | Whether to comply with COPPA protocol. Default: no < br > 1: no, 2: yes |
+| apps.ccpa       | String | N        | Whether to comply with CCPA protocol. Default: no < br > 1: no, 2: yes  |
 
  
 
@@ -466,7 +473,7 @@ return sample：
 
 #### 6.1.1 Request URL
 
-<https://openapi.toponad.com/v1/deal_segment>
+<https://openapi.toponad.com/v2/deal_segment>
 
 #### 6.1.2 Request method 
 
@@ -477,6 +484,9 @@ POST
 | params        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | count         | Int    | Y        | segment number                                               |
+| app_id                  | String    | Y        | app_id                                                    |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group  |
 | segments      | Array  | Y        | -                                                            |
 | segments.name          | String | Y        | segment name                                                 |
 | segments.segment_id    | String | N        | must reture segment id when updating segment                 |
@@ -504,10 +514,50 @@ request sample：
 
 ```
 {
-    "count": 2,
+    "count": 3,
+    "app_id":"a5bc9921f7fdb4",
+    "placement_id":"b5bc9bbfb0f913",
+    "is_abtest":0,
     "segments": [
         {
-            "name": "2123123",
+            "name": "999",
+            "segment_id": "c1c3femr2h7smb",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "5555",
+            "segment_id": "c5ea52b0e79baf",
             "rules": [
                 {
                     "type": 3,
@@ -602,7 +652,7 @@ return sample：
 
 #### 6.2.1 Request URL
 
-<https://openapi.toponad.com/v1/segment_list>
+<https://openapi.toponad.com/v2/waterfall/get_segment>
 
 #### 6.2.2 Request method 
 
@@ -612,9 +662,9 @@ POST
 
 | params  | type | required | notes                                                     |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
-| segment_ids | string List | N        | ["uuid1","uuid2"]          |
-| start       | Int    | N        | Default 0     (No need to fill in when the Segment ID is specified)              |
-| limit       | Int    | N        | Default 100  (No need to fill in when the Segment ID is specified)    |
+| placement_id | String | Y        | placement_id                         |
+| app_id                  | String    | Y        | app_id                                                    |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group         |
 
  
 
@@ -622,8 +672,14 @@ POST
 
 | fields        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
+| priority      | Int    | Y        | Priority parameter                                           |
 | name          | String | Y        | Segment name                                                 |
 | segment_id    | String | Y        | Segment ID                                                   |
+| segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
+| segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
+| segments.day_cap    | Int | Y        | Default -1: indicates off                            |
+| segments.hour_cap    | Int | Y        | Default -1: indicates off                            |
+| segments.priority    | Int | Y        | Default -1: indicates off                             |
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -636,9 +692,7 @@ POST
 request sample：
 
 ```
-{
-   "segment_ids":["uuid1","uuid2"]
-}
+/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
 ```
 
 return sample：
@@ -647,26 +701,57 @@ return sample：
 [
     {
         "name": "segment1",
-        "segment_id": "asasdsdsd",
+        "segment_id": "c1c3eo1tahts80",
+        "parallel_request_number": 1,
+        "auto_load": 0,
+        "day_cap": -1,
+        "hour_cap": -1,
+        "pacing": -1,
+        "priority": 1,
         "rules": [
             {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
+                "type": 3,
+                "rule": 0,
+                "content": [
+                    "4g",
+                    "3g",
+                    "2g"
+                ]
+            },
+            {
+                "type": 17,
+                "rule": 0,
+                "content": [
+                    "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                    "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                    "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                ]
+            },
+            {
+                "type": 10,
+                "rule": 0,
+                "content": [
+                    "iphone"
+                ]
+            },
+            {
+                "type": 9,
+                "rule": 7,
+                "content": "5.0.0"
             }
         ]
     },
     {
-        "name": "segment2",
-        "segment_id": "uuid2",
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
+        "name": "Default Segment",
+        "segment_id": "",
+        "parallel_request_number": 1,
+        "auto_load": 0,
+        "day_cap": 0,
+        "hour_cap": 0,
+        "pacing": 0,
+        "priority": 2
     }
+]
 ]
 ```
 
@@ -674,7 +759,7 @@ return sample：
 
 #### 6.3.1 Request URL
 
-<https://openapi.toponad.com/v1/del_segment>
+<https://openapi.toponad.com/v1/waterfall/del_segment>
 
 #### 6.3.2 Request method 
 
@@ -684,13 +769,27 @@ POST
 
 | params  | type | required | notes                         |
 | ----------- | ------ | -------- | ------------------------------- |
-| segment_ids | string List | Y        | ["uuid1","uuid2"] |
+| segment_ids | Array | Y        | Multiple segment is an array |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    |N       | Whether it is a test group, default: 0 < br > 0: control group, 1: test group    |
 
  
 
 #### 6.3.4 Return data
 
-It will return HTTP code 200 when success Otherwise, it will return segments data. It could not be deleted if the segment has been used in the waterfall setting and all the segment list in this request will failed to be deleted.
+| params          | type   | required | notes                                                          |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group            |
+| segments               | Array  | Y        | -                                                             |
+| segments.name          | String | Y        | Segment name                                                  |
+| segments.priority      | Int | Y        | Segment priority                                                  |
+| segments.segment_id    | String | N        | Segment ID                              |
+| segments.rules         | Array  | Y        | Segment rules                                                 |
+| segments.rules.type    | Int    | Y        | Segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
+| segments.rules.rule    | Int    | Y        | Segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value |
+| segments.rules.content | string | Y        | See:Appendix2_segment rule enum           |
+
 
 #### 6.3.5 Sample
 
@@ -698,21 +797,239 @@ request sample：
 
 ```
 {
-   "segment_ids":["uuid1","uuid2"]
+    "placement_id": "111111",
+    "is_abtest": 1,
+    "segment_ids": [
+        "22222"
+    ]
 }
 ```
 
 return sample：
 
-HTTP code 200
+```
+{
+    "placement_id": "b5bc9bbfb0f913",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "priority": 1,
+            "name": "解决为",
+            "segment_id": "c1c3eo1tahts80",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "priority": 2,
+            "name": "Default Segment",
+            "segment_id": ""
+        }
+    ]
+}
+```
+
+### 6.4 Set Segment Priority
+
+#### 6.4.1 Request URL
+
+<https://openapi.toponad.com/v2/waterfall/set_segment_rank>
+
+#### 6.4.2 Request method 
+
+POST
+
+#### 6.4.3 Request params
+
+| params  | type | required | notes                         |
+| ----------- | ------ | -------- | ------------------------------- |
+| segment_ids | Array | Y        | Multiple segment is an array |
+| placement_id | int32 | Y        | placement_id |
+| is_abtest | int32 | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group |
+| app_id | int32 | Y        | app_id |
+
+
+#### 6.4.4 Return data
+
+| fields        | type   | required | notes                                                        |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group   |
+| priority      | Int    | Y        | Priority parameter                                           |
+| segments               | Array  | Y        | -                                                             |
+| segments.name         | String | Y        | Segment name                                                 |
+| segments.priority      | Int | Y        | Segment priority                                                 |
+| segment_id    | String | Y        | Segment ID                                                   |
+| segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
+| segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
+| segments.day_cap    | Int | Y        | Default -1: indicates off                            |
+| segments.hour_cap    | Int | Y        | Default -1: indicates off                            |
+| segments.priority    | Int | Y        | Default -1: indicates off                             |
+| segments.rules         | Array  | Y        | Segment rules                                                |
+| segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
+| segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
+| segments.rules.content | string | Y        | See:Appendix2_segment rule enum|
+
+
+#### 6.4.5 Sample
+
+request sample：
+
+```
+{
+    "app_id":"a5bc9921f7fdb4",
+    "placement_id":"b5bc9bbfb0f913",
+    "is_abtest": 1,
+    "segment_ids": [
+    	"c1c3eo129ou5v9",
+    	"c1c3eo1tahts80",
+        "c5ea52b0e79baf"
+    ]
+}
+```
+
+return sample：
+
+```
+{
+    "placement_id": "b5bc9bbfb0f913",
+    "is_abtest": 1,
+    "segments": [
+        {
+            "name": "解决",
+            "segment_id": "c1c3eo129ou5v9",
+            "parallel_request_number": 0,
+            "auto_load": 0,
+            "day_cap": 0,
+            "hour_cap": 0,
+            "pacing": 0,
+            "priority": 0,
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                },
+                {
+                    "type": 0,
+                    "rule": 0,
+                    "content": []
+                }
+            ]
+        },
+        {
+            "name": "解决为",
+            "segment_id": "c1c3eo1tahts80",
+            "parallel_request_number": 0,
+            "auto_load": 0,
+            "day_cap": 0,
+            "hour_cap": 0,
+            "pacing": 0,
+            "priority": 1,
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                },
+                {
+                    "type": 0,
+                    "rule": 0,
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
+```
+
 
 ## 7. Waterfall API
 
-### 7.1 Get placement's segment list
+### 7.1 Get waterfall's adsources
 
 #### 7.1.1 Request URL
 
-<https://openapi.toponad.com/v1/waterfall/segment>
+<https://openapi.toponad.com/v1/waterfall/units>
 
 #### 7.1.2 Request method 
 
@@ -720,255 +1037,13 @@ GET
 
 #### 7.1.3 Request params
 
-| params   | type | required | notes                           |
-| ------------ | ------ | -------- | --------------------------------- |
-| placement_id | String | Y        | placement ID                |
-| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
-
-#### 7.1.4 Return data
-
-| fields        | type   | required | notes                                                        |
-| ------------- | ------ | -------- | ------------------------------------------------------------ |
-| priority      | Int    | Y        | priority                                                     |
-| name          | String | Y        | Segment name                                                 |
-| segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment rules                                                |
-| rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
-| rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | See:Appendix2_segment rule enum |
-
-#### 7.1.5 Sample
-
-request sample：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1
-}
-```
-
-return sample：
-
-```
-[
-    {
-        "name": "segment1",
-        "segment_id": "segment_id1",
-        "priority": 1,
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
-    },
-    {
-        "name": "segment2",
-        "segment_id": "segment_id2",
-        "priority": 2,
-        "rules": [
-            {
-                "type": 1,
-                "rule": 1,
-                "content": "sdsd"
-            }
-        ]
-    }
-]
-```
-
-### 7.2 Set priorities or create segments for placements
-
-#### 7.2.1 Request URL
-
-<https://openapi.toponad.com/v1/waterfall/set_segment>
-
-#### 7.2.2 Request method 
-
-POST
-
-#### 7.2.3 Request params
-
-|                 | type | required | notes                      |
-| ------------------- | ------ | -------- | ---------------------------- |
-| placement_id        | String | Y        | placement ID           |
-| is_abtest           | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
-| segments            | Array  | Y        | Segment priority List |
-| segments.priority   | Int    | Y        | Segment priority     |
-| segments.segment_id | String | Y        | Segment ID                   |
-
-#### 7.2.4 Return data
-
-| fields                 | type   | required | notes                                                        |
-| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
-| placement_id           | String | Y        | placement ID                                                 |
-| is_abtest              | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
-| segments.priority      | Int    | Y        | priority                                                     |
-| segments.name          | String | Y        | Segment name                                                 |
-| segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment rules                                                |
-| segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
-| segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| segments.rules.content | string | Y        | See:Appendix2_segment rule enum |
-
-#### 7.2.5 Sample
-
-request sample：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1"
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2"
-        }
-    ]
-}
-```
-
-return sample：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1",
-            "name": "name1",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2",
-            "name": "name2",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        }
-    ]
-}
-```
-
-### 7.3 Batch delete placement's segments
-
-#### 7.3.1 Request URL
-
-<https://openapi.toponad.com/v1/waterfall/del_segment>
-
-#### 7.3.2 Request method 
-
-POST
-
-#### 7.3.3 Request params
-
-| params   | type | required | notes                      |
-| ------------ | ------ | -------- | ---------------------------- |
-| placement_id | String | Y        | placement ID           |
-| is_abtest    | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group |
-| segment_ids  | string List | Y        | delete Segment List |
-
-#### 7.3.4 Return data
-
-|                        | type   | required | notes                                                        |
-| ---------------------- | ------ | -------- | ------------------------------------------------------------ |
-| placement_id           | String | Y        | placement ID                                                 |
-| is_abtest              | Int    | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
-| segments.priority      | Int    | Y        | priority                                                     |
-| segments.name          | String | Y        | Segment name                                                 |
-| segments.segment_id    | String | Y        | Segment ID                                                   |
-| segments.rules         | Array  | Y        | Segment rules                                                |
-| segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
-| segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| segments.rules.content | string | Y        | See:Appendix2_segment rule enum |
-
-#### 7.3.5 Sample
-
-request sample：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segment_ids": [
-        "segment_id1",
-        "segment_id2"
-    ]
-}
-```
-
-return sample：
-
-```
-{
-    "placement_id": "placementid1",
-    "is_abtest": 1,
-    "segments": [
-        {
-            "priority": 1,
-            "segment_id": "segment_id1",
-            "name": "name1",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        },
-        {
-            "priority": 2,
-            "segment_id": "segment_id2",
-            "name": "name2",
-            "rules": [
-                {
-                    "type": 1,
-                    "rule": 1,
-                    "content": "sdsd"
-                }
-            ]
-        }
-    ]
-}
-```
-
-### 7.4 Get waterfall's adsources
-
-#### 7.4.1 Request URL
-
-<https://openapi.toponad.com/v1/waterfall/units>
-
-#### 7.4.2 Request method 
-
-GET
-
-#### 7.4.3 Request params
-
 | params   | type | required | notes         |
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement ID |
 | segment_id   | String | Y        | Segment ID      |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group     |
 
-#### 7.4.4 Return data
+#### 7.1.4 Return data
 
 | fields                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -989,7 +1064,7 @@ GET
 | offer_list.offer_id                 | String  | N        | offer id                                                     |
 | offer_list.offer_name               | String  | N        | offer name                                                   |
 
-#### 7.4.5 Sample
+#### 7.1.5 Sample
 
 request sample：
 
@@ -1031,21 +1106,22 @@ return sample：
 }
 ```
 
-### 7.5 Set waterfall's adsources
+### 7.2 Set waterfall's adsources
 
-#### 7.5.1 Request URL
+#### 7.2.1 Request URL
 
 <https://openapi.toponad.com/v1/waterfall/set_units>
 
-#### 7.5.2 Request method 
+#### 7.2.2 Request method 
 
 POST
 
-#### 7.5.3 Request params
+#### 7.2.3 Request params
 
 | params                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group   |
 | segment_id                          | String  | Y        | segment ID                                                   |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |
@@ -1059,7 +1135,7 @@ POST
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
 
-#### 7.5.4 Return data
+#### 7.2.4 Return data
 
 | fields                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -1078,7 +1154,7 @@ POST
 | ad_source_list.hour_cap             | Int     | N        | Default -1 ：close                                           |
 | ad_source_list.pacing               | Int     | N        | Default -1 ：close                                           |
 
-#### 7.5.5 Sample
+#### 7.2.5 Sample
 
 request sample：
 
@@ -1455,6 +1531,7 @@ POST
 | waterfall_list.segment_id              |  String      |   N       |  segment_id                  |
 | waterfall_list.priority                |   Int     |     N     |  segment priority                  |
 | waterfall_list.parallel_request_number |   Int     |     N     |  parallel request number                |
+| waterfall_list.is_abtest |   Int     |     N     |    0 indicates the control group or A br/ B test is not enabled. <br> 1 indicates the test group.                 |
 
  
 

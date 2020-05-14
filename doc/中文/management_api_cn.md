@@ -742,7 +742,7 @@ https://openapi.toponad.com/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913
 ```
 [
     {
-        "name": "解决为",
+        "name": "999",
         "segment_id": "c1c3eo1tahts80",
         "parallel_request_number": 1,
         "auto_load": 0,
@@ -855,7 +855,7 @@ POST
     "segments": [
         {
             "priority": 1,
-            "name": "解决为",
+            "name": "999",
             "segment_id": "c1c3eo1tahts80",
             "rules": [
                 {
@@ -967,7 +967,7 @@ POST
     "is_abtest": 1,
     "segments": [
         {
-            "name": "解决",
+            "name": "999",
             "segment_id": "c1c3eo129ou5v9",
             "parallel_request_number": 0,
             "auto_load": 0,
@@ -1014,7 +1014,7 @@ POST
             ]
         },
         {
-            "name": "解决为",
+            "name": "999",
             "segment_id": "c1c3eo1tahts80",
             "parallel_request_number": 0,
             "auto_load": 0,

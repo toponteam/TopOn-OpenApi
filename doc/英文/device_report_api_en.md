@@ -12,7 +12,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides th
 
 ## 2. Authentication acquisition
 
-Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
+Before using the device reporting API of TopOn, publishers shall apply that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
 
 ## 3. Authentication check
 

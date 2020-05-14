@@ -497,14 +497,20 @@ POST
 
 #### 6.1.4 Return data
 
-| fields        | type   | required | notes                                                        |
+|   fields      | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
-| name          | String | Y        | Segment name                                                 |
-| segment_id    | String | Y        | Segment ID                                                   |
-| rules         | Array  | Y        | Segment rules                                                |
-| rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
-| rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
-| rules.content | string | Y        | See:Appendix2_segment rule enum |
+| count         | Int    | Y        | segment number                                               |
+| app_id                  | String    | Y        | app_id                                                    |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group  |
+| segments      | Array  | Y        | -                                                            |
+| segments.name          | String | Y        | segment name （The newly added segment priority is ranked in front of the existing group）                                               |
+| segments.errors    | String | N        | segment error message                 |
+| segments.segment_id    | String | N        | must reture segment id when updating segment                 |
+| segments.rules         | Array  | Y        | segment rules                                                |
+| segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
+| segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
+| segments.rules.content | string | Y        | See:Appendix2_segment rule enum |
 
 
 
@@ -603,49 +609,90 @@ request sample：
 return sample：
 
 ```
-[
-    {
-        "name": "2123123",
-        "segment_id": "c1boq7f7apetou",
-        "rules": [
-            {
-                "type": 3,
-                "rule": 0,
-                "content": [
-                    "4g",
-                    "3g",
-                    "2g"
-                ]
-            },
-            {
-                "type": 17,
-                "rule": 0,
-                "content": [
-                    "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
-                    "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
-                    "C093B2E8-849B-45AE-B11A-E862B1EE1025"
-                ]
-            },
-            {
-                "type": 10,
-                "rule": 0,
-                "content": [
-                    "iphone"
-                ]
-            },
-            {
-                "type": 9,
-                "rule": 7,
-                "content": "5.0.0"
-            }
-        ]
-    },
-    {
-        "name": "2123123434",
-        "segment_id": "",
-        "errors": "segment rule length must 1"
-    }
-]
+{
+    "count": 3,
+    "placement_id": "b5ebbb200f10af",
+    "app_id": "a5e68b165154d5",
+    "segments": [
+        {
+            "name": "999",
+            "segment_id": "c1c3kadvqpuffb",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "5555",
+            "segment_id": "c1c3kadvr7dkfu",
+            "rules": [
+                {
+                    "type": 3,
+                    "rule": 0,
+                    "content": [
+                        "4g",
+                        "3g",
+                        "2g"
+                    ]
+                },
+                {
+                    "type": 17,
+                    "rule": 0,
+                    "content": [
+                        "591B0524-9BC6-4AFC-BE75-7DDD4937DBE1",
+                        "DA973F33-9A9D-4B47-82FB-4C6B9B19E09D",
+                        "C093B2E8-849B-45AE-B11A-E862B1EE1025"
+                    ]
+                },
+                {
+                    "type": 10,
+                    "rule": 0,
+                    "content": [
+                        "iphone"
+                    ]
+                },
+                {
+                    "type": 9,
+                    "rule": 7,
+                    "content": "5.0.0"
+                }
+            ]
+        },
+        {
+            "name": "2123123434",
+            "segment_id": "",
+            "errors": "segment rule length must 1"
+        }
+    ]
+}
 ```
 
 ### 6.2 Get segment list

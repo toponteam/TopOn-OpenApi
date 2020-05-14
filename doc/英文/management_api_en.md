@@ -13,7 +13,7 @@ In order to improve the monetization efficiency of publishers, TopOn provides AP
 
 ## 2. Authentication acquisition
 
-Before using the batch creation API of TopOn, publishers shall apply  for publisher_key that can identify the request from the publisher. For more details to apply the authority, please consult with the business manager contacted you.
+After the account has been successfully registered, the developer backend management API permission has been automatically activated. Log in to the developer backend account management page to view publisher_key.
 
 ## 3. Authentication check
 

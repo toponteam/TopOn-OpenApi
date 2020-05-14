@@ -502,7 +502,7 @@ POST
 | count         | Int    | Y        | segment number                                               |
 | app_id                  | String    | Y        | app_id                                                    |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group  |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | segments      | Array  | Y        | -                                                            |
 | segments.name          | String | Y        | segment name （The newly added segment priority is ranked in front of the existing group）                                               |
 | segments.errors    | String | N        | segment error message                 |
@@ -711,7 +711,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id | String | Y        | placement_id                         |
 | app_id                  | String    | Y        | app_id                                                    |
-| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group         |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group         |
 
  
 
@@ -818,7 +818,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | Multiple segment is an array |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    |N       | Whether it is a test group, default: 0 < br > 0: control group, 1: test group    |
+| is_abtest             | Int    |N       | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group    |
 
  
 
@@ -827,7 +827,7 @@ POST
 | params          | type   | required | notes                                                          |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group            |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group            |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment name                                                  |
 | segments.priority      | Int | Y        | Segment priority                                                  |
@@ -921,7 +921,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | Multiple segment is an array |
 | placement_id | int32 | Y        | placement_id |
-| is_abtest | int32 | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group |
+| is_abtest | int32 | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group |
 | app_id | int32 | Y        | app_id |
 
 
@@ -930,7 +930,7 @@ POST
 | fields        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group   |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group   |
 | priority      | Int    | Y        | Priority parameter                                           |
 | segments               | Array  | Y        | -                                                             |
 | segments.name         | String | Y        | Segment name                                                 |
@@ -1086,7 +1086,7 @@ POST
 | ----------- | ------ | -------- | ------------------------------- |
 | segment_ids | Array | Y        | segment_ids |
 | placement_id | String | Y        | placement_id |
-| is_abtest | int32 | N        | 0 indicates the control group or A br/ B test is not enabled. < test > 1 indicates the test group. |
+| is_abtest | int32 | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group |
 | app_id | String | Y        | app_id |
 | segments               | Array  | Y        | -                                                             |
 | segments.segment_id    | String | N        | Segment id                              |
@@ -1102,7 +1102,7 @@ POST
 | fields        | type   | required | notes                                                        |
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | Y        | 0 indicates the control group or A br/ B test is not enabled. < test > 1 indicates the test group.                |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group               |
 | segments               | Array  | Y        | -                                                             |
 | segments.segment_id    | String | N        | Segment id                              |
 | segments.parallel_request_number    | Int | Y        | parallel request number                            |
@@ -1188,7 +1188,7 @@ GET
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement ID |
 | segment_id   | String | Y        | Segment ID      |
-| is_abtest             | Int    | N        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group     |
+| is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group     |
 
 #### 7.1.4 Return data
 
@@ -1196,7 +1196,7 @@ GET
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
+| is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | ad_source_list                      | Array   | Y        | adsource list in used                                        |
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
 | ad_source_list.ecpm                 | float64 | N        | eCPM                                                         |
@@ -1268,7 +1268,7 @@ POST
 | params                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
-| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 < br > 0: control group, 1: test group   |
+| is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group   |
 | segment_id                          | String  | Y        | segment ID                                                   |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |
@@ -1288,7 +1288,7 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | segment_id                          | String  | Y        | Segment ID                                                   |
-| is_abtest                           | Int     | Y        | 0 : control group, or not activate ab test<br/>1 test group  |
+| is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
@@ -1678,7 +1678,7 @@ POST
 | waterfall_list.segment_id              |  String      |   N       |  segment_id                  |
 | waterfall_list.priority                |   Int     |     N     |  segment priority                  |
 | waterfall_list.parallel_request_number |   Int     |     N     |  parallel request number                |
-| waterfall_list.is_abtest |   Int     |     N     |    0 indicates the control group or A br/ B test is not enabled. <br> 1 indicates the test group.                 |
+| waterfall_list.is_abtest |   Int     |     N     |    Whether it is a test group, default: 0 <br/> 0: control group, 1: test group                |
 
  
 

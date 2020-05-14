@@ -485,7 +485,7 @@ POST
 | count                  | Int    | Y        | 请求条数                                                      |
 | app_id                  | String    | Y        | app_id                                                    |
 | placement_id            | String    | Y        | placement_id                                        |
-| is_abtest             | Int    | N        | 是否是测试组，默认：0<br>0：默认组，1：测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认：0<br/>0：默认组，1：测试组                |
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment名称 (默认新增的segment优先级排在现有分组前面)                                                 |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |

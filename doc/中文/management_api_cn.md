@@ -719,11 +719,11 @@ GET
 | priority      | Int    | Y        | 优先级参数                                                   |
 | name          | String | Y        | Segment名称                                               |
 | segment_id    | String | Y        | Segment ID                                                   |
-| segments.parallel_request_number    | Int | Y        | 并发请求数                             |
-| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开 |
-| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
-| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
-| segments.priority    | Int | Y        | Default -1 ：表示关                             |
+| parallel_request_number    | Int | Y        | 并发请求数                             |
+| auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开 |
+| day_cap    | Int | Y        | Default -1 ：表示关                            |
+| hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| priority    | Int | Y        | Default -1 ：表示关                             |
 | rules         | Array  | Y        | Segment的规则                                                |
 | rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
 | rules.rule    | Int    | Y        | Default 0<br />下面是各种数字对应的值<br />0 包含（集合）<br/>1 不包含（集合）<br/>2 大于等于（值）<br/>3 小于等于（值）<br/>4 区间内（区间）<br/>5 区间外（区间）<br/>6 自定义规则（custom）<br/>7 大于（值）<br/>8 小于（值） |
@@ -734,7 +734,7 @@ GET
 请求样例：
 
 ```
-/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
+https://openapi.toponad.com/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
 ```
 
 返回样例：

@@ -884,8 +884,7 @@ POST
 | segments.priority      | Int | Y        | 优先级排序                                                  |
 | segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |
-| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开
-                              |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
 | segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
 | segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
 | segments.priority    | Int | Y        | Default -1 ：表示关                             |

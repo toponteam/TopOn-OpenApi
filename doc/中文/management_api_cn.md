@@ -673,8 +673,7 @@ GET
 | name          | String | Y        | Segment名称                                               |
 | segment_id    | String | Y        | Segment ID                                                   |
 | segments.parallel_request_number    | Int | Y        | 并发请求数                             |
-| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开
-                              |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开 |
 | segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
 | segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
 | segments.priority    | Int | Y        | Default -1 ：表示关                             |
@@ -888,6 +887,7 @@ POST
 | segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
 | segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
 | segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
 | segments.priority    | Int | Y        | Default -1 ：表示关                             |
 | segments.rules         | Array  | Y        | Segment的规则                                                |
 | segments.rules.type    | Int    | Y        | Default 0 <br />下面是各种数字的对应的值。<br />0 地区（集合）<br/>1 时间（区间）<br/>2 天（星期）（集合）<br/>3 网络（集合）<br/>4 小时/1225/2203（区间）<br/>5 自定义规则（custom）<br/>8 app version （集合）<br/>9 sdk version （集合）<br/>10 device_type （集合）<br/>11 device brand（集合）<br/>12 os version （集合）<br/>16 timezone (值，特殊处理)<br/>17 Device ID （集合）<br/>19 城市 （集合） |
@@ -1013,6 +1013,105 @@ POST
                     "content": []
                 }
             ]
+        }
+    ]
+}
+```
+
+### 6.5 调整流量分组优先级
+
+#### 6.5.1 请求URL
+
+<https://openapi.toponad.com/v2/waterfall/set_segment>
+
+#### 6.5.2 请求方式 
+
+POST
+
+#### 6.5.3 请求参数
+
+| 字段        | 类型   | 是否必传 | 备注                            |
+| ----------- | ------ | -------- | ------------------------------- |
+| segment_ids | Array | Y        | 默认传Array，多个segment是数组 |
+| placement_id | int32 | Y        | placement_id |
+| is_abtest | int32 | N        | 是否是测试组，默认是0 0表示默认组，1表示测试组 |
+| segments               | Array  | Y        | -                                                             |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.parallel_request_number    | Int | Y        | 并发请求数                             |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
+| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
+
+ 
+
+#### 6.4.4 返回参数
+| 字段          | 类型   | 是否必传 | 备注                                                         |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| placement_id            | String    | Y        | placement_id                                        |
+| is_abtest             | Int    | Y        | 是否是测试组，默认：0<br> 0：对照组，1：测试组                |
+| segments               | Array  | Y        | -                                                             |
+| segments.name          | String | Y        | Segment名称                                                  |
+| segments.segment_id    | String | N        | Segment修改的时候必传Segment ID                              |
+| segments.parallel_request_number    | Int | Y        | 并发请求数                             |
+| segments.auto_load    | Int | Y        | Default 0：表示关，只能传0或正整数<br/>对于Banner，可以设置自动刷新时间，大于0表示自动刷新时间<br/>对于RV和插屏，仅控制自动请求的开关状态，非0表示开|
+| segments.day_cap    | Int | Y        | Default -1 ：表示关                            |
+| segments.hour_cap    | Int | Y        | Default -1 ：表示关                             |
+| segments.pacing    | Int | Y        | Default -1 ：表示关                             |
+
+
+
+#### 6.5.5 样例
+
+请求样例：
+
+```
+{
+    "app_id": "a5e68b165154d5",
+    "placement_id": "b5ebbb200f10af",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "segment_id": "c1c3kadvqpuffb",
+            "auto_load": 3,
+            "day_cap": 1,
+            "hour_cap": 6,
+            "pacing": 7
+        },
+        {
+            "segment_id": "c5ebbb2823ada1",
+            "auto_load": 7,
+            "day_cap": 3,
+            "hour_cap": 4,
+            "parallel_request_number":24,
+            "pacing": 5
+        }
+    ]
+}
+```
+
+返回样例：
+```
+{
+    "app_id": "a5e68b165154d5",
+    "placement_id": "b5ebbb200f10af",
+    "is_abtest": 0,
+    "segments": [
+        {
+            "segment_id": "c1c3kadvqpuffb",
+            "parallel_request_number": 1,
+            "auto_load": 3,
+            "day_cap": 1,
+            "hour_cap": 6,
+            "pacing": 7
+        },
+        {
+            "segment_id": "c5ebbb2823ada1",
+            "parallel_request_number": 24,
+            "auto_load": 7,
+            "day_cap": 3,
+            "hour_cap": 4,
+            "pacing": 5
         }
     ]
 }

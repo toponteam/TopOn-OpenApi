@@ -1262,7 +1262,7 @@ POST
 | 字段                                | 类型    | 是否必传 | 备注                                                         |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | 广告位ID                                                     |
-| is_abtest             | Int    | Y        | 是否是测试组，默认：0<br/>0：默认组，1：测试组                |
+| is_abtest             | Int    | N        | 是否是测试组，默认：0<br/>0：默认组，1：测试组                |
 | segment_id                          | String  | Y        | Segment ID                                                   |
 | parallel_request_number             | Int     | Y        | 并行请求数据                                                 |
 | offer_switch                        | Int     | N        | 交叉推广开关                                                    |

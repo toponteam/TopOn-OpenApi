@@ -722,11 +722,11 @@ POST
 | priority      | Int    | Y        | Priority parameter                                           |
 | name          | String | Y        | Segment name                                                 |
 | segment_id    | String | Y        | Segment ID                                                   |
-| segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
-| segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
-| segments.day_cap    | Int | Y        | Default -1: indicates off                            |
-| segments.hour_cap    | Int | Y        | Default -1: indicates off                            |
-| segments.priority    | Int | Y        | Default -1: indicates off                             |
+| parallel_request_number    | Int | Y        | Number of parallel requests                             |
+| auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
+| day_cap    | Int | Y        | Default -1: indicates off                            |
+| hour_cap    | Int | Y        | Default -1: indicates off                            |
+| priority    | Int | Y        | Default -1: indicates off                             |
 | rules         | Array  | Y        | Segment rules                                                |
 | rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -739,7 +739,7 @@ POST
 request sample：
 
 ```
-/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
+https://openapi.toponad.com/v2/waterfall/get_segment?placement_id=b5bc9bbfb0f913&app_id=a5bc9921f7fdb4&is_abtest=1
 ```
 
 return sample：

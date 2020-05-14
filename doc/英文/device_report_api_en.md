@@ -4,6 +4,7 @@
 | :-------: | ------------- | -------------------- |
 | v 1.0    | 2019/8/29 | supports device report |
 | v 1.1    | 2020/3/17 | supports currency and timezone |
+| v 1.2    | 2020/5/14 | supports abtest and segment dimension |
 
 
 ## 1. Introduction

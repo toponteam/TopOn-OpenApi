@@ -328,7 +328,7 @@ POST
 | end_date      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                            |
 | appid_list | string[] | N | 开发者后台的应用ID列表 | ["xxx"] |
 | area_list | string[]    | N        |     国家短码列表        | ["xxxxxx","ddddd"]                   |不传默认publisher 下全部app
-| currency | string | Y | 币种：USD |不传按用户自己配置来 |
+| currency | string | Y | 币种：USD |默认按照用户币种信息 |
 | time_zone | String | Y | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |不传默认UTC+8                    |                        |
 | group_by    | array    | Y        | 可选，默认值：["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     偏移数，代表从第几条数据开始，默认为0                                 |                               0|

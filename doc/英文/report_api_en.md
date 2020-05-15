@@ -5,6 +5,7 @@
 | v 1.0    | 2019/7/17 | supports full report |
 | v 2.0    | 2019/8/30 | supports LTV & retention report |
 | v 2.1    | 2020/3/17 | update full report metrics |
+| v 2.2    | 2020/5/15 | return ad source ID,LTV and retention support to return 1 to 60 days data |
 
 ## 1. Introduction
 

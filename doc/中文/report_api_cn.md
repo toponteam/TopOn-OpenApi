@@ -349,6 +349,7 @@ POST
 | 字段名           | 类型   | 备注                     |
 | ---------------- | ------ | ------------------------ |
 | app        | string | app维度信息  |
+| app.app_id             | string | app app_id                 |
 | app.name             | string | app name                 |
 | app.platform          | int32 | app 平台  |
 | date             | int32| 日期     |
@@ -479,6 +480,7 @@ POST
 | 字段名           | 类型   | 备注                     |
 | ---------------- | ------ | ------------------------ |
 | app        | string | app维度信息  |
+| app.app_id             | string | app app_id                 |
 | app.name             | string | app name                 |
 | app.platform          | int32 | app 平台  |
 | date             | int32| 日期     |

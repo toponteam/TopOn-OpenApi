@@ -320,7 +320,7 @@ POST
 | end_date      | Int    | Y        | end date，format：YYYYmmdd                                     | 20190506                            |
 | appid_list | string[] | N | app id list | ["xxx"] |
 | area_list | string[]    | N        |     area list        | ["xxxxxx","ddddd"]                   |['xxxxx']      |  
-| currency | string | Y | Currency：USD |Do not pass according to the user's own configuration |
+| currency | string | Y | Currency：USD |According to user currency information by default |
 | time_zone | String | Y | Time zone | UTC+8、UTC+0、UTC-8 default UTC+8                                    |
 | group_by    | array    | Y        | default["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     offset，default 0                                 |                               0|

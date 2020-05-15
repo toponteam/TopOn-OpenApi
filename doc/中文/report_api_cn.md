@@ -5,6 +5,7 @@
 | v 1.0    | 2019年7月17日 | 支持综合报表数据查询 |
 | v 2.0    | 2019年8月30日 | 支持用户价值&留存报表数据查询 |
 | v 2.1    | 2020年3月17日 | 综合报表支持新增用户、渗透率等指标查询 |
+| v 2.2    | 2020年5月15日 | 综合报表支持新增adsource.adsource_id,adsource.adsource_name，LTV1-60和留存1至60天数据接口 |
 
 
 ## 1. 关于文档
@@ -309,6 +310,137 @@ POST
 }
 
 ```
+
+## 6. 用户价值1-60天报表
+
+### 6.1 请求URL
+
+<https://openapi.toponad.com/v3/ltvreport>
+
+### 6.2 请求方式
+
+POST
+### 6.3 请求参数
+
+| 字段         | 类型   | 是否必传 | 备注                                                         | 样例                                |
+| ------------ | ------ | -------- | ------------------------------------------------------------ | ---------------------------------- |
+| start_date    | Int    | Y        | 开始日期，格式：YYYYmmdd                                     | 20190501                            |
+| end_date      | Int    | Y        | 结束日期，格式：YYYYmmdd                                     | 20190506                            |
+| appid_list | string[] | N | 开发者后台的应用ID列表 | ["xxx"] |
+| area_list | string[]    | N        |     国家短码列表        | ["xxxxxx","ddddd"]                   |不传默认publisher 下全部app
+| currency | string | Y | 币种：USD |不传按用户自己配置来 |
+| time_zone | String | Y | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |不传默认UTC+8                    |                        |
+| group_by    | array    | Y        | 可选，默认值：["app_id”, "date_time", "area"]    | ["area"]        |
+| start    | Int    | Y        |     偏移数，代表从第几条数据开始，默认为0                                 |                               0|
+| limit    | Int    | Y        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]                                   |         不传默认1000，最大1000       |
+| metric    | string[]    | Y        | 维度：["ltv_day_11","ltv_day_12","ltv_day_13"]                 | 只传一个["all"] 代表全部。 其中ltv_day_xx 代表完整的收益，不再是比例               |
+| group_by    | string[]    | Y        | group by 维度：["date","app","area"]                                   | date,app 固定存在，一直会有               |
+
+
+### 6.4 返回参数
+
+| 字段             | 类型    | 备注                                                         |
+| ---------------- | ------ | ------------------------------------------------------------ |
+| records             | array       | 记录                   |
+| count            | Int           | 总条数                                                       |
+
+**records元素结构如下：**
+
+| 字段名           | 类型   | 备注                     |
+| ---------------- | ------ | ------------------------ |
+| app        | string | app维度信息  |
+| app.name             | string | app name                 |
+| app.platform          | int32 | app 平台  |
+| date             | int32| 日期     |
+| time_zone | string | - | 
+| currency | string | - |
+| ltv1-60           | float64 | ltv1-60数字                 |
+
+
+
+> 备注
+> 1. 只能查询今天往前推2天的数据
+
+### 5.5 样例
+
+```
+{
+    "records": [
+        {
+            "app": {
+                "app_id": 67,
+                "name": "分手回避",
+                "platform": 2
+            },
+            "date": 20200424,
+            "ltv_day_1": 19.563598,
+            "ltv_day_10": 0,
+            "ltv_day_11": 0,
+            "ltv_day_12": 0,
+            "ltv_day_13": 0,
+            "ltv_day_14": 0,
+            "ltv_day_15": 0,
+            "ltv_day_16": 0,
+            "ltv_day_17": 0,
+            "ltv_day_18": 0,
+            "ltv_day_19": 0,
+            "ltv_day_2": 0,
+            "ltv_day_20": 0,
+            "ltv_day_21": 0,
+            "ltv_day_22": 0,
+            "ltv_day_23": 0,
+            "ltv_day_24": 0,
+            "ltv_day_25": 0,
+            "ltv_day_26": 0,
+            "ltv_day_27": 0,
+            "ltv_day_28": 0,
+            "ltv_day_29": 0,
+            "ltv_day_3": 0,
+            "ltv_day_30": 0,
+            "ltv_day_31": 0,
+            "ltv_day_32": 0,
+            "ltv_day_33": 0,
+            "ltv_day_34": 0,
+            "ltv_day_35": 0,
+            "ltv_day_36": 0,
+            "ltv_day_37": 0,
+            "ltv_day_38": 0,
+            "ltv_day_39": 0,
+            "ltv_day_4": 0,
+            "ltv_day_40": 0,
+            "ltv_day_41": 0,
+            "ltv_day_42": 0,
+            "ltv_day_43": 0,
+            "ltv_day_44": 0,
+            "ltv_day_45": 0,
+            "ltv_day_46": 0,
+            "ltv_day_47": 0,
+            "ltv_day_48": 0,
+            "ltv_day_49": 0,
+            "ltv_day_5": 0,
+            "ltv_day_50": 0,
+            "ltv_day_51": 0,
+            "ltv_day_52": 0,
+            "ltv_day_53": 0,
+            "ltv_day_54": 0,
+            "ltv_day_55": 0,
+            "ltv_day_56": 0,
+            "ltv_day_57": 0,
+            "ltv_day_58": 0,
+            "ltv_day_59": 0,
+            "ltv_day_6": 0,
+            "ltv_day_60": 0,
+            "ltv_day_7": 0,
+            "ltv_day_8": 0,
+            "ltv_day_9": 0
+        }
+    ],
+    "time_zone": "",
+    "count": 128
+}
+
+```
+
 
 ## 6. 注意事项
 为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵

@@ -303,7 +303,267 @@ POST
 
 ```
 
-## 6. Notices
+## 6. Ltv 1-60 days report
+
+### 6.1 Request URL
+
+<https://openapi.toponad.com/v3/ltvreport>
+
+### 6.2 Request Method
+
+POST
+### 6.3 Request params
+
+| params         | type   | required | notes                                                         | sample                                |
+| ------------ | ------ | -------- | ------------------------------------------------------------ | ---------------------------------- |
+| start_date    | Int    | Y        | start date，format：YYYYmmdd                                     | 20190501                            |
+| end_date      | Int    | Y        | end date，format：YYYYmmdd                                     | 20190506                            |
+| appid_list | string[] | N | app id list | ["xxx"] |
+| area_list | string[]    | N        |     area list        | ["xxxxxx","ddddd"]                   |['xxxxx']      |  
+| currency | string | Y | Currency：USD |Do not pass according to the user's own configuration |
+| time_zone | String | Y | Time zone | UTC+8、UTC+0、UTC-8 default UTC+8                                    |
+| group_by    | array    | Y        | default["app_id”, "date_time", "area"]    | ["area"]        |
+| start    | Int    | Y        |     offset，default 0                                 |                               0|
+| limit    | Int    | Y        | limit row number. default 1000. [1,1000]                                  |        default 1000      |
+| metric    | string[]    | Y        | ["ltv_day_11","ltv_day_12","ltv_day_13"]                 | default ["all"]              |
+| group_by    | string[]    | Y        | group by for ["date","app","area"]                                   | date,app required        |
+
+
+### 6.4 Return data
+
+| fileds             | type    | required                                                         |
+| ---------------- | ------ | ------------------------------------------------------------ |
+| records             | array       | -                   |
+| count            | Int           | count of the row numbers                                                      |
+
+**records：**
+
+| fields           | type   | required                     |
+| ---------------- | ------ | ------------------------ |
+| app        | string | app  |
+| app.app_id             | string | app app_id                 |
+| app.name             | string | app name                 |
+| app.platform          | int32 | app platform  |
+| date             | int32| date     |
+| time_zone | string | - | 
+| currency | string | - |
+| ltv_day_xx           | float64 | ltv_day_(num) （1-60）                |
+
+
+
+> notes
+> 1. Earliest date is the day before yesterday
+
+### 6.5 Sample
+
+```
+{
+    "records": [
+        {
+            "app": {
+                "app_id": 67,
+                "name": "分手回避",
+                "platform": 2
+            },
+            "date": 20200424,
+            "ltv_day_1": 19.563598,
+            "ltv_day_10": 0,
+            "ltv_day_11": 0,
+            "ltv_day_12": 0,
+            "ltv_day_13": 0,
+            "ltv_day_14": 0,
+            "ltv_day_15": 0,
+            "ltv_day_16": 0,
+            "ltv_day_17": 0,
+            "ltv_day_18": 0,
+            "ltv_day_19": 0,
+            "ltv_day_2": 0,
+            "ltv_day_20": 0,
+            "ltv_day_21": 0,
+            "ltv_day_22": 0,
+            "ltv_day_23": 0,
+            "ltv_day_24": 0,
+            "ltv_day_25": 0,
+            "ltv_day_26": 0,
+            "ltv_day_27": 0,
+            "ltv_day_28": 0,
+            "ltv_day_29": 0,
+            "ltv_day_3": 0,
+            "ltv_day_30": 0,
+            "ltv_day_31": 0,
+            "ltv_day_32": 0,
+            "ltv_day_33": 0,
+            "ltv_day_34": 0,
+            "ltv_day_35": 0,
+            "ltv_day_36": 0,
+            "ltv_day_37": 0,
+            "ltv_day_38": 0,
+            "ltv_day_39": 0,
+            "ltv_day_4": 0,
+            "ltv_day_40": 0,
+            "ltv_day_41": 0,
+            "ltv_day_42": 0,
+            "ltv_day_43": 0,
+            "ltv_day_44": 0,
+            "ltv_day_45": 0,
+            "ltv_day_46": 0,
+            "ltv_day_47": 0,
+            "ltv_day_48": 0,
+            "ltv_day_49": 0,
+            "ltv_day_5": 0,
+            "ltv_day_50": 0,
+            "ltv_day_51": 0,
+            "ltv_day_52": 0,
+            "ltv_day_53": 0,
+            "ltv_day_54": 0,
+            "ltv_day_55": 0,
+            "ltv_day_56": 0,
+            "ltv_day_57": 0,
+            "ltv_day_58": 0,
+            "ltv_day_59": 0,
+            "ltv_day_6": 0,
+            "ltv_day_60": 0,
+            "ltv_day_7": 0,
+            "ltv_day_8": 0,
+            "ltv_day_9": 0
+        }
+    ],
+    "time_zone": "",
+    "count": 128
+}
+
+```
+
+## 7. Retention 2-60 day report
+
+### 7.1 Request URL
+
+<https://openapi.toponad.com/v3/retentionreport>
+
+### 7.2 Request method
+
+POST
+### 7.3 Request params
+| params         | type   | required | notes                                                         | sample                                |
+| ------------ | ------ | -------- | ------------------------------------------------------------ | ---------------------------------- |
+| start_date    | Int    | Y        | start date，format：YYYYmmdd                                     | 20190501                            |
+| end_date      | Int    | Y        | end date，format：YYYYmmdd                                     | 20190506                            |
+| appid_list | string[] | N | app id list | ["xxx"] |
+| area_list | string[]    | N        |     area list        | ["xxxxxx","ddddd"]                   |['xxxxx']      |  
+| currency | string | Y | Currency：USD |Do not pass according to the user's own configuration |
+| time_zone | String | Y | Time zone | UTC+8、UTC+0、UTC-8 default UTC+8                                    |
+| group_by    | array    | Y        | default["app_id”, "date_time", "area"]    | ["area"]        |
+| start    | Int    | Y        |     offset，default 0                                 |                               0|
+| limit    | Int    | Y        | limit row number. default 1000. [1,1000]                                  |        default 1000      |
+| metric    | string[]    | Y        | ["retention_day_42","retention_day_43","retention_day_46"]                 | default ["all"]              |
+| group_by    | string[]    | Y        | group by for ["date","app","area"]                                   | date,app required        |
+
+
+### 7.4 Return data
+
+| fields             | type    | notes                                                         |
+| ---------------- | ------ | ------------------------------------------------------------ |
+| records             | array       |                    |
+| count            | Int           |count of the row numbers                                                       |
+
+**records：**
+
+| fields           | type   | notes                     |
+| ---------------- | ------ | ------------------------ |
+| app        | string | app  |
+| app.app_id             | string | app app_id                 |
+| app.name             | string | app name                 |
+| app.platform          | int32 | app 平台  |
+| date             | int32| 日期     |
+| time_zone | string | - | 
+| currency | string | - |
+| retention_day_xx          | int32 | retention_day_(num) （2-60）                |
+
+
+
+> notes
+> 1. Earliest date is the day before yesterday
+
+### 7.5 样例
+
+```
+{
+    "records": [
+        {
+            "app": {
+                "app_id": 388,
+                "name": "一群小辣鸡",
+                "platform": 1
+            },
+            "date": 20200424,
+            "retention_day_10": 32,
+            "retention_day_11": 20,
+            "retention_day_12": 21,
+            "retention_day_13": 19,
+            "retention_day_14": 0,
+            "retention_day_15": 0,
+            "retention_day_16": 0,
+            "retention_day_17": 0,
+            "retention_day_18": 0,
+            "retention_day_19": 0,
+            "retention_day_2": 297,
+            "retention_day_20": 0,
+            "retention_day_21": 0,
+            "retention_day_22": 0,
+            "retention_day_23": 0,
+            "retention_day_24": 0,
+            "retention_day_25": 0,
+            "retention_day_26": 0,
+            "retention_day_27": 0,
+            "retention_day_28": 0,
+            "retention_day_29": 0,
+            "retention_day_3": 169,
+            "retention_day_30": 0,
+            "retention_day_31": 0,
+            "retention_day_32": 0,
+            "retention_day_33": 0,
+            "retention_day_34": 0,
+            "retention_day_35": 0,
+            "retention_day_36": 0,
+            "retention_day_37": 0,
+            "retention_day_38": 0,
+            "retention_day_39": 0,
+            "retention_day_4": 104,
+            "retention_day_40": 0,
+            "retention_day_41": 0,
+            "retention_day_42": 0,
+            "retention_day_43": 0,
+            "retention_day_44": 0,
+            "retention_day_45": 0,
+            "retention_day_46": 0,
+            "retention_day_47": 0,
+            "retention_day_48": 0,
+            "retention_day_49": 0,
+            "retention_day_5": 75,
+            "retention_day_50": 0,
+            "retention_day_51": 0,
+            "retention_day_52": 0,
+            "retention_day_53": 0,
+            "retention_day_54": 0,
+            "retention_day_55": 0,
+            "retention_day_56": 0,
+            "retention_day_57": 0,
+            "retention_day_58": 0,
+            "retention_day_59": 0,
+            "retention_day_6": 50,
+            "retention_day_60": 0,
+            "retention_day_7": 45,
+            "retention_day_8": 35,
+            "retention_day_9": 32
+        }
+    ],
+    "time_zone": "",
+    "count": 128
+}
+
+```
+
+## 8. Notices
 Please control the frequency of requests:
 
 •  1000 per hour

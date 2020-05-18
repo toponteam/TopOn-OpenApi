@@ -343,6 +343,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       | 记录                   |
 | count            | Int           | 总条数                                                       |
+| time_zone | string | - | 
+| currency | string | - |
 
 **records元素结构如下：**
 
@@ -353,8 +355,6 @@ POST
 | app.name             | string | app name                 |
 | app.platform          | int32 | app 平台  |
 | date             | int32| 日期     |
-| time_zone | string | - | 
-| currency | string | - |
 | ltv_day_xx           | float64 | ltv_day_数字  数字（1-60）                |
 
 
@@ -474,6 +474,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       | 记录                   |
 | count            | Int           | 总条数                                                       |
+| time_zone | string | - | 
+| currency | string | - |
 
 **records元素结构如下：**
 
@@ -484,8 +486,6 @@ POST
 | app.name             | string | app name                 |
 | app.platform          | int32 | app 平台  |
 | date             | int32| 日期     |
-| time_zone | string | - | 
-| currency | string | - |
 | retention_day_xx          | int32 | retention_day_数字 （数字2-60）                |
 
 
@@ -577,6 +577,6 @@ POST
 
 守。
 
-• 每小时最多请求 1000 次
+• 单个用户每小时最多请求 1000 次
 
-• 每天请求 10000 次
+• 单个用户每天请求 10000 次

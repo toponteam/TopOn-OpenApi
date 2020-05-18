@@ -323,7 +323,6 @@ POST
 | area_list | string[]    | N        |     area list        | ["xxxxxx","ddddd"]                   |['xxxxx']      |  
 | currency | string | Y | Currency：USD |According to user currency information by default |
 | time_zone | String | Y | Time zone | UTC+8、UTC+0、UTC-8 default UTC+8                                    |
-| group_by    | array    | Y        | default["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     offset，default 0                                 |                               0|
 | limit    | Int    | Y        | limit row number. default 1000. [1,1000]                                  |        default 1000      |
 | metric    | string[]    | Y        | ["ltv_day_11","ltv_day_12","ltv_day_13"]                 | default ["all"]              |
@@ -453,7 +452,6 @@ POST
 | area_list | string[]    | N        |     area list        | ["xxxxxx","ddddd"]                   |['xxxxx']      |  
 | currency | string | Y | Currency：USD |Do not pass according to the user's own configuration |
 | time_zone | String | Y | Time zone | UTC+8、UTC+0、UTC-8 default UTC+8                                    |
-| group_by    | array    | Y        | default["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     offset，default 0                                 |                               0|
 | limit    | Int    | Y        | limit row number. default 1000. [1,1000]                                  |        default 1000      |
 | metric    | string[]    | Y        | ["retention_day_42","retention_day_43","retention_day_46"]                 | default ["all"]              |

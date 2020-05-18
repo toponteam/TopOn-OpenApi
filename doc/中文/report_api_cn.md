@@ -343,8 +343,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       | 记录                   |
 | count            | Int           | 总条数                                                       |
-| time_zone | string | - | 
-| currency | string | - |
+| time_zone | string | 时区 | 
+| currency | string | 币种 |
 
 **records元素结构如下：**
 
@@ -474,8 +474,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       | 记录                   |
 | count            | Int           | 总条数                                                       |
-| time_zone | string | - | 
-| currency | string | - |
+| time_zone | string | 时区 | 
+| currency | string | 币种 |
 
 **records元素结构如下：**
 

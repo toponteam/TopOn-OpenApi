@@ -336,6 +336,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       | -                   |
 | count            | Int           | count of the row numbers                                                      |
+| time_zone | string | - | 
+| currency | string | - |
 
 **records：**
 
@@ -346,8 +348,6 @@ POST
 | app.name             | string | app name                 |
 | app.platform          | int32 | app platform  |
 | date             | int32| date     |
-| time_zone | string | - | 
-| currency | string | - |
 | ltv_day_xx           | float64 | ltv_day_(num) （1-60）                |
 
 
@@ -466,6 +466,8 @@ POST
 | ---------------- | ------ | ------------------------------------------------------------ |
 | records             | array       |                    |
 | count            | Int           |count of the row numbers                                                       |
+| time_zone | string | - | 
+| currency | string | - |
 
 **records：**
 
@@ -476,8 +478,6 @@ POST
 | app.name             | string | app name                 |
 | app.platform          | int32 | app 平台  |
 | date             | int32| 日期     |
-| time_zone | string | - | 
-| currency | string | - |
 | retention_day_xx          | int32 | retention_day_(num) （2-60）                |
 
 
@@ -567,6 +567,6 @@ POST
 ## 8. Notices
 Please control the frequency of requests:
 
-•  1000 per hour
+• 1000 per hour for single user
 
-•  10000 per day
+• 10000 per day for single user

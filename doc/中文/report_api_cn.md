@@ -330,7 +330,6 @@ POST
 | area_list | string[]    | N        |     国家短码列表        | ["xxxxxx","ddddd"]                   |不传默认publisher 下全部app
 | currency | string | Y | 币种：USD |默认按照用户币种信息 |
 | time_zone | String | Y | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |不传默认UTC+8                    |                        |
-| group_by    | array    | Y        | 可选，默认值：["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     偏移数，代表从第几条数据开始，默认为0                                 |                               0|
 | limit    | Int    | Y        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]                                   |         不传默认1000，最大1000       |
 | metric    | string[]    | Y        | 维度：["ltv_day_11","ltv_day_12","ltv_day_13"]                 | 只传一个["all"] 代表全部。 其中ltv_day_xx 代表完整的收益，不再是比例               |
@@ -461,7 +460,6 @@ POST
 | area_list | string[]    | N        |     国家短码列表        | ["xxxxxx","ddddd"]                   |不传默认publisher 下全部app
 | currency | string | Y | 币种：USD |不传按用户自己配置来 |
 | time_zone | String | Y | 时区 | 枚举值：UTC+8、UTC+0、UTC-8 |不传默认UTC+8                    |                        |
-| group_by    | array    | Y        | 可选，默认值：["app_id”, "date_time", "area"]    | ["area"]        |
 | start    | Int    | Y        |     偏移数，代表从第几条数据开始，默认为0                                 |                               0|
 | limit    | Int    | Y        | 每次拉取数据的最大条数，默认是1000，可选[1,1000]                                   |         不传默认1000，最大1000       |
 | metric    | string[]    | Y        | 维度：["retention_day_42","retention_day_43","retention_day_46"]                 | 只传一个["all"] 代表全部。 其中retention_day_46 代表第46天的留存人数，不再是比例             |

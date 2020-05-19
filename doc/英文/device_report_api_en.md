@@ -156,6 +156,6 @@ Fields detail:
 
 Please control the frequency of requests:
 
-•  1000 per hour for one user
+•  1000 per hour for single user
 
-•  10000 per day for one user
+•  10000 per day for single user

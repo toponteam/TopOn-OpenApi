@@ -180,6 +180,12 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | adsource.adsource_id      | String | N        | ad source ID, returned when group_by adsource                            |
 | adsource.adsource_name    | String | N        | ad source name, returned when group_by adsource                       |
 
+> Skills<br/>
+> 1. get multiple app data: you can pass multiple app_id, and group by app.<br/>
+> 2. get multi-day data: startdate and enddate can be passed into a period of time, and group by date_time. since the data will not be  updated very frequently, and the historical data will not be updated, it is recommended to update the data for the last 2 days every day.<br/>
+> 3. data summary: group by the data to the smallest dimension, and then calculate the sum after you get the result.<br/>
+
+
 ### 4.5 Sample
 
 ```
@@ -274,9 +280,13 @@ POST
 | arpu | string | - |
 | currency | string | - |
 
-> notes:
-> 1. Earliest date is the day before yesterday
-> 2. ltv\_day\_N and retention\_day\_N reutrn '-', means the metrics are not exist.
+> notes:<br>
+> 1. Earliest date is the day before yesterday<br>
+> 2. ltv\_day\_N and retention\_day\_N reutrn '-', means the metrics are not exist.<br/>
+> 3. Skills<br>
+>>（1）get multiple app data: group by app directly.<br>
+>>（2）get multi-day data: startdate and enddate can be passed into a period of time, and group by date_time. Since the data will not be updated very frequently, and the historical data will not be updated, it is recommended to update the data for the last 3 days every day.<br>
+
 
 ### 5.5 Sample
 

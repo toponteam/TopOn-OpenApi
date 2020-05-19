@@ -4,7 +4,7 @@
 | :-------: | ------------- | -------------------- |
 | v 1.0    | 2019/8/29 | supports device report |
 | v 1.1    | 2020/3/17 | supports currency and timezone |
-| v 1.2    | 2020/5/14 | supports abtest and segment dimension |
+| v 1.2    | 2020/5/16 | supports abtest and segment dimension |
 
 
 ## 1. Introduction
@@ -116,7 +116,12 @@ GET
 | app_id       | String | N        | APP ID(single)                        | xxxxx                                                     |
 | timezone | Int | N | Time Zone | -8 or 8 or 0, default 8 |
 
-notes: Your device reporting data will create in the date which open authentication 
+- Your device reporting data will create in the date which open authentication. If the data is not obtained at the time, please try again the next day <br/>
+
+- the data update time point of each time zone : <br/>
+1. UTC + 8: delayed 2 days, update at 5 am (UTC + 8) <br/>
+2. UTC + 0: delayed by 2 days, updated at 10 am (UTC + 8) <br/>
+3. UTC - 8: delayed by 3 days, updated at 0 am (UTC + 8) <br/>
 
 ### 4.4 Return data
 
@@ -151,6 +156,6 @@ Fields detail:
 
 Please control the frequency of requests:
 
-•  1000 per hour
+•  1000 per hour for one user
 
-•  10000 per day
+•  10000 per day for one user

@@ -182,6 +182,11 @@ dau，arpu，request，fillrate，impression，click，ecpm，revenue，impressi
 | adsource.adsource_id      | String | N        | 广告源ID，group_by adsource时返回                            |
 | adsource.adsource_name    | String | N        | 广告源名称，group_by adsource时返回                          |
 
+> 使用技巧 <br>
+>1、获取多个App数据：批量传入多个app_id，group by app即可 <br>
+>2、获取多天数据：startdate和enddate传入一个时间段，group by date_time即可，由于数据更新不会很频繁，而且历史数据基本不会更新，建议每天更新最近2天数据就可以了 <br>
+>3、数据汇总：group by到最细维度，可以拿到结果后再作sum计算
+
 ### 4.5 样例
 
 请求样例：
@@ -281,9 +286,13 @@ POST
 | arpu | string | - |
 | currency | string | - |
 
-> 备注
-> 1. 只能查询今天往前推2天的数据
-> 2. ltv\_day\_N和retention\_day\_N指标若返回值为“－”，表示这一天该指标不存在，请开发者注意区分
+> 备注 <br>
+> 1、只能查询今天往前推2天的数据 <br>
+> 2、ltv\_day\_N和retention\_day\_N指标若返回值为“－”，表示这一天该指标不存在，请开发者注意区分 <br>
+> 3、使用技巧 <br>
+>>（1）获取多个App数据：直接group by app_id，appid_list不用传 <br>
+>>（2）获取多天数据：startdate和enddate传入一个时间段，group by date_time即可，由于数据更新不会很频繁，而且历史数据基本不会更新，建议每天更新最近3天数据就可以了
+
 
 ### 5.5 样例
 

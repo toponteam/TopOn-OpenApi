@@ -113,7 +113,7 @@ GET
 | params   | type | required | notes                                                     | sample                                  |
 | ------------ | ------ | -------- | ------------------------------------------------------------ | ------------------------------------------ |
 | day    | Int    | Y        | start date, format：YYYYmmdd                   | 20190501,Earliest date is the day before yesterday |
-| app_id       | String | N        | APP ID(single)                        | xxxxx                                                     |
+| app_id       | String | Y        | APP ID(single)                        | xxxxx                                                     |
 | timezone | Int | N | Time Zone | -8 or 8 or 0, default 8 |
 
 - Your device reporting data will create in the date which open authentication. If the data is not obtained at the time, please try again the next day <br/>

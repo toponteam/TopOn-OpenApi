@@ -96,6 +96,7 @@ Headers：
 | 604    | StatusAppLengthError     | App创建错误        |
 | 605    | StatusRpcParamError      | 中间服务异常       |
 | 606    | StatusRequestRepeatError | 重复请求           |
+| 607    | StatusEmptyError         | 没有数据           |
 
  
 

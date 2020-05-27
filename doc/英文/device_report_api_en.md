@@ -97,7 +97,7 @@ Server will create sign and campare the sign with X-Up-Signature
 | 604       | StatusAppLengthError     | App creation error          |
 | 605       | StatusRpcParamError      | base Server error           |
 | 606       | StatusRequestRepeatError | duplicated requests         |
-| 607       | StatusEmptyError         |            |
+| 607       | StatusEmptyError         |    no data error            |
 
 ## 4. Device report
 

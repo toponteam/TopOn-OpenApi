@@ -61,7 +61,7 @@
 ``` 
     SignString = HTTPMethod + "\n" 
                         \+ "\n" 
-                        \+ "\n" 
+                        \+ Content-Type + "\n"
                         \+ Headers + "\n"
                         \+ Resource 
 ```

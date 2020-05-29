@@ -59,7 +59,7 @@ If HTTP body is empty：
 ```   
     SignString = HTTPMethod + "\n" 
                         \+ "\n" 
-                        \+ "\n" 
+                        \+ Content-Type + "\n"
                         \+ Headers + "\n"
                         \+ Resource 
 ```

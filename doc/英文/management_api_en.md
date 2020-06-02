@@ -58,15 +58,6 @@ Create signature string：
                         \+ Headers + "\n"
                         \+ Resource 
 ```
-If HTTP body is empty：
-    
-```
-    SignString = HTTPMethod + "\n" 
-                        \+ "\n" 
-                        \+ Content-Type + "\n" 
-                        \+ Headers + "\n"
-                        \+ Resource 
-```
 Resource:
 ```
     URL Path and query params       

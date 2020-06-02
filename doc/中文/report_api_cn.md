@@ -59,14 +59,6 @@
                         \+ Headers + "\n"
                         \+ Resource 
 ```
-如果无body，如下： 
-```  
-    SignString = HTTPMethod + "\n" 
-                        \+ "\n" 
-                        \+ Content-Type + "\n" 
-                        \+ Headers + "\n"
-                        \+ Resource 
-```
 Resource:
 ```
     URL的Path         

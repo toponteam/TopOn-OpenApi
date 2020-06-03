@@ -144,11 +144,10 @@ https://topon-openapi.s3.amazonaws.com/topon_report_device/dt%3D2019-07-10/publi
 | traffic_group_id             | String      | 对照组或测试组id |
 | segment_id             | String       | 流量分组ID                                          |
 | segment_name             | String      | 流量分组名称                                          |
+
 ## 5. 注意事项
 
-为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵
-
-守。
+为防止频繁请求造成服务器故障，特对请求的频率进行控制，策略如下，请各位合作伙伴遵守。
 
 • 每个用户每小时最多请求 1000 次
 

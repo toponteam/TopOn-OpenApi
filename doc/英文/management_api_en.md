@@ -1900,7 +1900,7 @@ Please control the frequency of requests:
 | 3    | Less than or equal（value）    | int or float 222.36                        |
 | 4    | in interval（interval）        | two dimension JSON [[122,456],[888,12322]] |
 | 5    | not in interval（interval）    | two dimension JSON [[122,456],[888,12322]] |
-| 6    | custom rule（custom）          | bb=1&c!=3&p=3                              |
+| 6    | custom rule（custom）          | bb=1&c!=3&p=3&d=1,2,3                      |
 | 7    | Greater than（value）          | int,float or string 124                    |
 | 8    | Less than（value）             | int,float or string 222.36                 |
 

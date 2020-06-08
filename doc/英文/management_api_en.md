@@ -481,7 +481,7 @@ POST
 | is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | segments      | Array  | Y        | -                                                            |
 | segments.name          | String | Y        | segment name （The newly added segment priority is ranked in front of the existing group）                                               |
-| segments.segment_id    | String | N        | must reture segment id when updating segment                 |
+| segments.segment_id    | Int | N        | must reture segment id when updating segment                 |
 | segments.rules         | Array  | Y        | segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -498,7 +498,7 @@ POST
 | segments      | Array  | Y        | -                                                            |
 | segments.name          | String | Y        | segment name （The newly added segment priority is ranked in front of the existing group）                                               |
 | segments.errors    | String | N        | segment error message                 |
-| segments.segment_id    | String | N        | must reture segment id when updating segment                 |
+| segments.segment_id    | Int | N        | must reture segment id when updating segment                 |
 | segments.rules         | Array  | Y        | segment rules                                                |
 | segments.rules.type    | Int    | Y        | segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value） |
@@ -519,7 +519,7 @@ request sample：
     "segments": [
         {
             "name": "999",
-            "segment_id": "c1c3femr2h7smb",
+            "segment_id": 123,
             "rules": [
                 {
                     "type": 3,
@@ -555,7 +555,7 @@ request sample：
         },
         {
             "name": "5555",
-            "segment_id": "c5ea52b0e79baf",
+            "segment_id": 456,
             "rules": [
                 {
                     "type": 3,
@@ -608,7 +608,7 @@ return sample：
     "segments": [
         {
             "name": "999",
-            "segment_id": "c1c3kadvqpuffb",
+            "segment_id": 123,
             "rules": [
                 {
                     "type": 3,
@@ -644,7 +644,7 @@ return sample：
         },
         {
             "name": "5555",
-            "segment_id": "c1c3kadvr7dkfu",
+            "segment_id": 456,
             "rules": [
                 {
                     "type": 3,
@@ -713,7 +713,7 @@ POST
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | priority      | Int    | Y        | Priority parameter                                           |
 | name          | String | Y        | Segment name                                                 |
-| segment_id    | String | Y        | Segment ID                                                   |
+| segment_id    | Int | Y        | Segment ID                                                   |
 | parallel_request_number    | Int | Y        | Number of parallel requests                             |
 | auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
 | day_cap    | Int | Y        |  -1: indicates off                            |
@@ -740,7 +740,7 @@ return sample：
 [
     {
         "name": "segment1",
-        "segment_id": "c1c3eo1tahts80",
+        "segment_id": 123,
         "parallel_request_number": 1,
         "auto_load": 0,
         "day_cap": -1,
@@ -782,7 +782,7 @@ return sample：
     },
     {
         "name": "Default Segment",
-        "segment_id": "",
+        "segment_id": 0,
         "parallel_request_number": 1,
         "auto_load": 0,
         "day_cap": 0,
@@ -823,7 +823,7 @@ POST
 | segments               | Array  | Y        | -                                                             |
 | segments.name          | String | Y        | Segment name                                                  |
 | segments.priority      | Int | Y        | Segment priority                                                  |
-| segments.segment_id    | String | N        | Segment ID     (Incoming when modified)                            |
+| segments.segment_id    | Int | N        | Segment ID     (Incoming when modified)                            |
 | segments.rules         | Array  | Y        | Segment rules                                                 |
 | segments.rules.type    | Int    | Y        | Segment rule type.Default 0 <br />0 country code（set）<br/>1 time（interval）<br/>2 weekday（set）<br/>3 network_type（set）<br/>4 hour/1225/2203（interval）<br/>5 custom rule（custom）<br/>8 app version （set）<br/>9 sdk version （set）<br/>10 device_type （set）<br/>11 device brand（set）<br/>12 os version （set）<br/>16 timezone (value)<br/>17 Device ID （set）<br/>19 city code （set） |
 | segments.rules.rule    | Int    | Y        | Segment rule action.Default 0<br />0 include（set）<br/>1 exclude（set）<br/>2 Greater than or equal（value）<br/>3 Less than or equal（value）<br/>4 in interval（interval）<br/>5 not in interval（interval）<br/>6 custom rule（custom）<br/>7 Greater than（value）<br/>8 Less than（value |
@@ -839,7 +839,7 @@ request sample：
     "placement_id": "111111",
     "is_abtest": 1,
     "segment_ids": [
-        "22222"
+        123
     ]
 }
 ```
@@ -854,7 +854,7 @@ return sample：
         {
             "priority": 1,
             "name": "segment1",
-            "segment_id": "c1c3eo1tahts80",
+            "segment_id": 123,
             "rules": [
                 {
                     "type": 3,
@@ -891,7 +891,7 @@ return sample：
         {
             "priority": 2,
             "name": "Default Segment",
-            "segment_id": ""
+            "segment_id": 0
         }
     ]
 }
@@ -927,7 +927,7 @@ POST
 | segments               | Array  | Y        | -                                                             |
 | segments.name         | String | Y        | Segment name                                                 |
 | segments.priority      | Int | Y        | Segment priority                                                 |
-| segments.segment_id    | String | Y        | Segment ID                                                   |
+| segments.segment_id    | Int | Y        | Segment ID                                                   |
 | segments.parallel_request_number    | Int | Y        | Number of parallel requests                             |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on |
 | segments.day_cap    | Int | Y        |  -1: indicates off                            |
@@ -949,9 +949,9 @@ request sample：
     "placement_id":"b5bc9bbfb0f913",
     "is_abtest": 1,
     "segment_ids": [
-    	"c1c3eo129ou5v9",
-    	"c1c3eo1tahts80",
-        "c5ea52b0e79baf"
+    	123,
+    	456,
+        789
     ]
 }
 ```
@@ -965,7 +965,7 @@ return sample：
     "segments": [
         {
             "name": "segment1",
-            "segment_id": "c1c3eo129ou5v9",
+            "segment_id": 123,
             "parallel_request_number": 0,
             "auto_load": 0,
             "day_cap": 0,
@@ -1012,7 +1012,7 @@ return sample：
         },
         {
             "name": "segment2",
-            "segment_id": "c1c3eo1tahts80",
+            "segment_id": 456,
             "parallel_request_number": 0,
             "auto_load": 0,
             "day_cap": 0,
@@ -1096,7 +1096,7 @@ POST
 | placement_id            | String    | Y        | placement_id                                        |
 | is_abtest             | Int    | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group               |
 | segments               | Array  | Y        | -                                                             |
-| segments.segment_id    | String | N        | Segment id                              |
+| segments.segment_id    | Int | N        | Segment id                              |
 | segments.parallel_request_number    | Int | Y        | parallel request number                            |
 | segments.auto_load    | Int | Y        | Default 0: off, only 0 or positive integer < br/ > for Banner, automatic refresh time can be set, and greater than 0 means automatic refresh time < br/ > for RV and plug-in screen, only the switch status of automatic request is controlled, and non-zero means on.|
 | segments.day_cap    | Int | Y        |  -1: indicates off                            |
@@ -1115,14 +1115,14 @@ request sample：
     "is_abtest": 0,
     "segments": [
         {
-            "segment_id": "c1c3kadvqpuffb",
+            "segment_id": 123,
             "auto_load": 3,
             "day_cap": 1,
             "hour_cap": 6,
             "pacing": 7
         },
         {
-            "segment_id": "c5ebbb2823ada1",
+            "segment_id": 456,
             "auto_load": 7,
             "day_cap": 3,
             "hour_cap": 4,
@@ -1142,7 +1142,7 @@ return sample：
     "is_abtest": 0,
     "segments": [
         {
-            "segment_id": "c1c3kadvqpuffb",
+            "segment_id": 123,
             "parallel_request_number": 1,
             "auto_load": 3,
             "day_cap": 1,
@@ -1150,7 +1150,7 @@ return sample：
             "pacing": 7
         },
         {
-            "segment_id": "c5ebbb2823ada1",
+            "segment_id": 456,
             "parallel_request_number": 24,
             "auto_load": 7,
             "day_cap": 3,
@@ -1179,7 +1179,7 @@ GET
 | params   | type | required | notes         |
 | ------------ | ------ | -------- | --------------- |
 | placement_id | String | Y        | placement ID |
-| segment_id   | String | Y        | Segment ID      |
+| segment_id   | Int | Y        | Segment ID      |
 | is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group     |
 
 #### 7.1.4 Return data
@@ -1187,7 +1187,7 @@ GET
 | fields                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
-| segment_id                          | String  | Y        | Segment ID                                                   |
+| segment_id                          | Int  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | ad_source_list                      | Array   | Y        | adsource list in used                                        |
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
@@ -1211,7 +1211,7 @@ request sample：
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
-    "segment_id": "segment_id1"
+    "segment_id": 123
 }
 ```
 
@@ -1221,7 +1221,7 @@ return sample：
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
-    "segment_id": "segment_id1",
+    "segment_id": 123,
     "ad_source_list": [
         {
             "priority": 1,
@@ -1261,7 +1261,7 @@ POST
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
 | is_abtest             | Int    | N        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group   |
-| segment_id                          | String  | Y        | segment ID                                                   |
+| segment_id                          | Int  | Y        | segment ID                                                   |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
@@ -1279,7 +1279,7 @@ POST
 | fields                              | type    | required | notes                                                        |
 | ----------------------------------- | ------- | -------- | ------------------------------------------------------------ |
 | placement_id                        | String  | Y        | placement ID                                                 |
-| segment_id                          | String  | Y        | Segment ID                                                   |
+| segment_id                          | Int  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | parallel_request_number             | Int     | Y        | parallel request number                                      |
 | offer_switch                        | Int     | N        | my offer switch                                              |
@@ -1301,7 +1301,7 @@ request sample：
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
-    "segment_id": "segment_id1",
+    "segment_id": 123,
     "ad_source_list": [
         {
             "auto_switch": 1,
@@ -1331,7 +1331,7 @@ return sample：
 {
     "placement_id": "placementid1",
     "is_abtest": 1,
-    "segment_id": "segment_id1",
+    "segment_id": 123,
     "ad_source_list": [
         {
             "priority": 1,
@@ -1667,7 +1667,7 @@ POST
 | waterfall_list.hour_cap                |  Int      |     N     |   hour cap                  |
 | waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
 | waterfall_list.segment_name            |  String  |   N       |   segment name                  |
-| waterfall_list.segment_id              |  String      |   N       |  segment_id                  |
+| waterfall_list.segment_id              |  Int      |   N       |  segment_id                  |
 | waterfall_list.priority                |   Int     |     N     |  segment priority                  |
 | waterfall_list.parallel_request_number |   Int     |     N     |  parallel request number                |
 | waterfall_list.is_abtest |   Int     |     N     |    Whether it is a test group, default: 0 <br/> 0: control group, 1: test group                |
@@ -1712,7 +1712,7 @@ return sample：
                 "hour_cap": 0,
                 "pacing": 0,
                 "name": "日韩",
-                "segment_id": "2324234",
+                "segment_id": 123,
                 "priority": 3,
                 "parallel_request_number": 2
             },
@@ -1725,7 +1725,7 @@ return sample：
                 "hour_cap": -1,
                 "pacing": -1,
                 "name": "ipad",
-                "segment_id": "23423423423",
+                "segment_id": 456,
                 "priority": 2,
                 "parallel_request_number": 2
             }

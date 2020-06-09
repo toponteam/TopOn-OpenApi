@@ -1668,7 +1668,6 @@ POST
 | waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
 | waterfall_list.segment_name            |  String  |   N       |   segment name                  |
 | waterfall_list.segment_id              |  Int      |   N       |  segment_id                  |
-| waterfall_list.priority                |   Int     |     N     |  segment priority                  |
 | waterfall_list.parallel_request_number |   Int     |     N     |  parallel request number                |
 | waterfall_list.is_abtest |   Int     |     N     |    Whether it is a test group, default: 0 <br/> 0: control group, 1: test group                |
 

@@ -1666,7 +1666,6 @@ POST
 | waterfall_list.pacing                  |   Int     |    N      |    pacing                 |
 | waterfall_list.segment_name            |  String  |   N       |   segment名称                  |
 | waterfall_list.segment_id              |  Int      |   N       |   关联的segment_id                  |
-| waterfall_list.priority                |   Int     |     N     |  关联的segment优先级排序                   |
 | waterfall_list.parallel_request_number |   Int     |     N     |    关联的segment的并发请求数                 |
 | waterfall_list.is_abtest |   Int     |     N     |    是否是测试组，默认：0<br/>0：默认组，1：测试组                 |
 

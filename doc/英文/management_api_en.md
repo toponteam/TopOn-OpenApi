@@ -1191,8 +1191,8 @@ GET
 | is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | ad_source_list                      | Array   | Y        | adsource list in used                                        |
 | ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
-| ad_source_list.ecpm                 | float64 | N        | eCPM                                                         |
-| ad_source_list.auto_ecpm            | float64 | N        | auto eCPM                                                  |
+| ad_source_list.ecpm                 | String | N        | eCPM                                                         |
+| ad_source_list.auto_ecpm            | String | N        | auto eCPM                                                  |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | N        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | Y        |  -1 ：close                                           |
@@ -1267,7 +1267,7 @@ POST
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
-| ad_source_list.ecpm                 | string | Y        | eCPM                                                         |
+| ad_source_list.ecpm                 | String | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        |  -1 ：close                                           |
@@ -1286,7 +1286,7 @@ POST
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
 | ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
-| ad_source_list.ecpm                 | float64 | Y        | eCPM                                                         |
+| ad_source_list.ecpm                 | String | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
 | ad_source_list.day_cap              | Int     | N        |  -1 ：close                                           |

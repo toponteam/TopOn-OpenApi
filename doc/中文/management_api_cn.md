@@ -1280,7 +1280,7 @@ POST
 | unbind_adsource_list                | Array   | N        | 取消绑定的adsource                                           |
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
-| ad_source_list.ecpm                 | string | Y        | eCPM                                                         |
+| ad_source_list.ecpm                 | String | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |

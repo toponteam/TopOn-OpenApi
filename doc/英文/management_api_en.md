@@ -1190,7 +1190,7 @@ GET
 | segment_id                          | Int  | Y        | Segment ID                                                   |
 | is_abtest                           | Int     | Y        | Whether it is a test group, default: 0 <br/> 0: control group, 1: test group  |
 | ad_source_list                      | Array   | Y        | adsource list in used                                        |
-| ad_source_list.ad_source_id         | Int     | N        | adsource ID                                                  |
+| ad_source_list.adsource_id         | Int     | N        | adsource ID                                                  |
 | ad_source_list.ecpm                 | String | N        | eCPM                                                         |
 | ad_source_list.auto_ecpm            | String | N        | auto eCPM                                                  |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
@@ -1225,7 +1225,7 @@ return sample：
     "ad_source_list": [
         {
             "priority": 1,
-            "ad_source_id": "ad_source_id1",
+            "adsource_id": "adsource_id1",
             "ecpm": "ecpm1",
             "header_bidding_witch": 0,
             "day_cap": -1,
@@ -1234,7 +1234,7 @@ return sample：
         },
         {
             "priority": 2,
-            "ad_source_id": "ad_source_id2",
+            "adsource_id": "adsource_id3",
             "ecpm": "ecpm2",
             "header_bidding_witch": 0,
             "day_cap": -1,
@@ -1266,7 +1266,7 @@ POST
 | offer_switch                        | Int     | N        | my offer switch                                              |
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
-| ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
+| ad_source_list.adsource_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | String | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
@@ -1285,7 +1285,7 @@ POST
 | offer_switch                        | Int     | N        | my offer switch                                              |
 | unbind_adsource_list                | Array   | N        | unbind the adsource and send only the adsource id            |
 | ad_source_list                      | Array   | Y        | adsources need to binding                                    |
-| ad_source_list.ad_source_id         | Int     | Y        | adsource ID                                                  |
+| ad_source_list.adsource_id         | Int     | Y        | adsource ID                                                  |
 | ad_source_list.ecpm                 | String | Y        | eCPM                                                         |
 | ad_source_list.header_bidding_witch | Int     | N        | if support Header Bidding<br />1：not support，<br />2：support |
 | ad_source_list.auto_switch          | Int     | Y        | 1：not open auto eCPM sort switch，<br />2：open auto eCPM sort switch |
@@ -1305,7 +1305,7 @@ request sample：
     "ad_source_list": [
         {
             "auto_switch": 1,
-            "ad_source_id": "ad_source_id1",
+            "adsource_id": "adsource_id1",
             "ecpm": "ecpm1",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1314,7 +1314,7 @@ request sample：
         },
         {
             "auto_switch": 2,
-            "ad_source_id": "ad_source_id2",
+            "adsource_id": "adsource_id11",
             "ecpm": "ecpm2",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1335,7 +1335,7 @@ return sample：
     "ad_source_list": [
         {
             "priority": 1,
-            "ad_source_id": "ad_source_id1",
+            "adsource_id": "adsource_id2",
             "ecpm": "ecpm1",
             "header_bidding_switch": 1,
             "auto_switch": 1,
@@ -1345,7 +1345,7 @@ return sample：
         },
         {
             "priority": 2,
-            "ad_source_id": "ad_source_id2",
+            "adsource_id": "adsource_id1",
             "ecpm": "ecpm2",
             "header_bidding_switch": 1,
             "auto_switch": 1,

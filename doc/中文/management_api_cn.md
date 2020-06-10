@@ -1187,8 +1187,8 @@ GET
 | is_abtest                           | Int     | Y        | 0 表示对照组或未开通A/B测试 <br />1 表示测试组               |
 | ad_source_list                      | Array   | Y        | 如果为空，则当前没有启用广告源                               |
 | ad_source_list.ad_source_id         | Int     | N        | 广告源ID                                                     |
-| ad_source_list.ecpm                 | float64 | N        | eCPM价格                                                     |
-| ad_source_list.auto_ecpm            | float64 | N        | 自动eCPM价格                                                     |
+| ad_source_list.ecpm                 | String | N        | eCPM价格                                                     |
+| ad_source_list.auto_ecpm            | String | N        | 自动eCPM价格                                                     |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |
@@ -1261,7 +1261,7 @@ POST
 | unbind_adsource_list                | Array   | N        | 取消绑定的广告源，只传广告源ID                                    |
 | ad_source_list                      | Array   | Y        | 要绑定的广告源配置信息                                       |
 | ad_source_list.ad_source_id         | Int     | Y        | 广告源ID                                                     |
-| ad_source_list.ecpm                 | float64 | Y        | eCPM价格                                                     |
+| ad_source_list.ecpm                 | String | Y        | eCPM价格                                                     |
 | ad_source_list.header_bidding_switch | Int     | N        | 是否支持Header Bidding，广告源创建时已确定<br />1：表示不支持，<br />2：表示支持 |
 | ad_source_list.auto_switch          | Int     | N        | 1：表示不开启自动优化，<br />2：表示开启自动优化             |
 | ad_source_list.day_cap              | Int     | Y        |  -1 ：表示关                                          |

@@ -1220,7 +1220,7 @@ GET
     "segment_id": 123,
     "ad_source_list": [
         {
-            "adsource_id": "adsource_id",
+            "adsource_id": 123,
             "ecpm": "ecpm1",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1228,7 +1228,7 @@ GET
             "pacing": -1
         },
         {
-            "adsource_id": "adsource_id1",
+            "adsource_id": 456,
             "ecpm": "ecpm2",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1299,7 +1299,7 @@ POST
     "ad_source_list": [
         {
             "auto_switch": 1,
-            "adsource_id": "adsource_id2",
+            "adsource_id": 123,
             "ecpm": "ecpm1",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1308,7 +1308,7 @@ POST
         },
         {
             "auto_switch": 2,
-            "adsource_id": "adsource_id3",
+            "adsource_id": 456,
             "ecpm": "ecpm2",
             "header_bidding_switch": 1,
             "day_cap": -1,
@@ -1914,8 +1914,9 @@ POST
 | --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
 | 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
 | 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |
-| 2         | Admob       | account_id<br>oauth_key | app_id | native<br>rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |
+| 2         | Admob       | account_id<br>oauth_key | app_id | rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |
 | 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size枚举值：320x50,320x100,320x250,468x60,728x90 |
+| 2         | Admob       | account_id<br>oauth_key | app_id | native | unit_id<br>media_ratio（可选） | media_ratio枚举值：0-未指定,1-任意尺寸,2-横屏,3-竖屏,4-正方形 |
 | 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | native<br>rewarded_video<br>interstitial | unit_id |    username：EmailID </br> app_id：Account ID </br> password：Password </br> apikey：API Key </br> unit_id：Placement ID |
 | 3         | Inmobi      | username<br>password<br>apikey<br>app_id | - | bannner | unit_id<br>size | size枚举值：320x50 |
 | 4         | Flurry      | token | sdk_key | native<br>rewarded_video<br>interstitial | ad_space | token：Token </br> sdk_key：API Key </br> ad_space：AD Unit Name |
@@ -1945,7 +1946,8 @@ POST
 | 15        | 穿山甲       | user_id<br>secure_key | app_id | splash | slot_id<br>personalized_template | personalized_template枚举值：0,1 |
 | 16        | 聚量传媒     | - | - | rewarded_video<br>interstitial | app_id | app_id：App ID |
 | 16        | 聚量传媒     | - | - | banner | app_id<br>size | size枚举值：320x50,480x75,640x100,960x150,728x90 |
-| 17        | OneWay      | access_key | publisher_id | rewarded_video<br>interstitial | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |
+| 17        | OneWay      | access_key | publisher_id | rewarded_video | slot_id | access_key：Access Key </br> publisher_id：Publisher ID </br> slot_id：Placement ID |
+| 17        | OneWay      | access_key | publisher_id | interstitial | slot_id,is_video | is_video枚举值：0-Interstitial Image,1-Interstitial Video |
 | 18        | MobPower    | publisher_id<br>api_key  | app_id | native<br>rewarded_video<br>interstitial | placement_id | api_key：API Key </br> publisher_id：Publisher ID </br> app_id：App ID </br> placement_id：Placement ID |
 | 18        | MobPower    | publisher_id<br>api_key  | app_id | banner | placement_id<br>size | size枚举值：320x50 |
 | 19        | 金山云       | - | media_id | rewarded_video | slot_id | media_id：Media ID </br> slot_id：Slot ID |
@@ -1966,3 +1968,6 @@ POST
 | 36        | Ogury       | api_key<br>api_secret | key | rewarded_video<br>interstitial | unit_id | api_key：API KEY </br> api_secret：API SECRET </br> key：KEY </br> unit_id：AD Unit ID |
 | 37        | Fyber       | publisher_id<br>consumer_key<br>consumer_secret | app_id | rewarded_video<br>Banner | spot_id | publisher_id：Publisher ID </br> consumer_key：Consumer Key </br> consumer_secret：Consumer Secret </br> app_id：App ID </br> spot_id：Ad spot ID |
 | 37        | Fyber       | publisher_id<br>consumer_key<br>consumer_secret | app_id | interstitial | spot_id<br/>video_muted | publisher_id：Publisher ID </br> consumer_key：Consumer Key </br> consumer_secret：Consumer Secret </br> app_id：App ID </br> spot_id：Ad spot ID |
+| 38        | Vplay       | publisher_id<br>api_key | app_id | native<br>rewarded_video | placement_id | - |
+| 38        | Vplay       | publisher_id<br>api_key | app_id | banner | placement_id<br>size | size：320x50 |
+| 38        | Vplay       | publisher_id<br>api_key | app_id | interstitial | is_video | is_video：0-Interstitial Image,1-Interstitial Video|

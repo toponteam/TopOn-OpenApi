@@ -40,7 +40,7 @@ Before using the device reporting API of TopOn, publishers shall apply that can 
 | ------------ | ------------------------------------------ | ------------------------------------------------------------ |
 | Content-MD5  | MD5 from HTTP Body string（upper letters） | 875264590688CA6171F6228AF5BBB3D2                             |
 | Content-Type | type of HTTP Body                          | application/json                                             |
-| Headers      | Headers except X-Up-Signature              | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2\n |
+| Headers      | Headers except X-Up-Signature              | X-Up-Timestamp: 1562813567000X-Up-Key:aac6880633f102bce2174ec9d99322f55e69a8a2 |
 | HTTPMethod   | HTTP method(upper letters)                 | PUT、GET、POST                                               |
 | Resource Path     | strings from HTTP path    | /v1/fullreport                          |
 

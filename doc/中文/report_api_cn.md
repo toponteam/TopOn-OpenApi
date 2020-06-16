@@ -246,36 +246,34 @@ POST
 | ---------------- | ------ | ------------------------ |
 | time_zone        | string | 枚举值：UTC+8、UTC+0、UTC-8  |
 | date             | string | 默认返回                 |
-| channel          | string | group_by channel时返回   |
 | area             | string | group_by area时返回      |
 | app.id           | string | 默认返回                 |
 | app.name         | string | 默认返回                 |
 | new_user         | string | metric下添加new_user返回                 |
 | dau              | string |  metric下添加dau返回                 |
 | currency         | string | 开发者账号币种           |
-| revenue          | string | group_by channel时不返回 |
-| arpu             | string | 跟随revenue指标          |
+| revenue          | string |  metric下添加返回 |
+| arpu             | string | metric下添加返回          |
 | ltv\_day\_1        | string | 默认返回                 |
 | ltv\_day\_2        | string | -                         |
 | ltv\_day\_3        | string | -                         |
 | ltv\_day\_4        | string | -                         |
 | ltv\_day\_5        | string | -                         |
 | ltv\_day\_6        | string | -                         |
-| ltv\_day\_7        | string | 默认返回                 |
+| ltv\_day\_7        | string | -                 |
 | ltv\_day\_14       | string | -                        |
 | ltv\_day\_30       | string | -                         |
 | ltv\_day\_60       | string | -                         |
-| retention\_day\_2  | string | 默认返回                 |
+| retention\_day\_2  | string | -                 |
 | retention\_day\_3  | string | -                         |
 | retention\_day\_4  | string | -                         |
 | retention\_day\_5  | string | -                         |
 | retention\_day\_6  | string | -                         |
-| retention\_day\_7  | string | 默认返回                 |
+| retention\_day\_7  | string | -                 |
 | retention\_day\_14 | string | -                         |
 | retention\_day\_30 | string | -                        |
 | retention\_day\_60 | string | -                         |
 | time_zone | string | - | 
-| arpu | string | - |
 | currency | string | - |
 
 > 备注 <br>

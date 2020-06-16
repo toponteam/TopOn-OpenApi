@@ -249,11 +249,11 @@ POST
 | area             | string | group_by area时返回      |
 | app.id           | string | 默认返回                 |
 | app.name         | string | 默认返回                 |
-| new_user         | string | metric下添加new_user返回                 |
-| dau              | string |  metric下添加dau返回                 |
+| new_user         | string | 默认返回                 |
+| dau              | string |  默认返回                 |
 | currency         | string | 开发者账号币种           |
-| revenue          | string |  metric下添加返回 |
-| arpu             | string | metric下添加返回          |
+| revenue          | string |  默认返回 |
+| arpu             | string | 默认返回          |
 | ltv\_day\_1        | string | 默认返回                 |
 | ltv\_day\_2        | string | -                         |
 | ltv\_day\_3        | string | -                         |

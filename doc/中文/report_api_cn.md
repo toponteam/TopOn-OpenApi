@@ -273,8 +273,6 @@ POST
 | retention\_day\_14 | string | -                         |
 | retention\_day\_30 | string | -                        |
 | retention\_day\_60 | string | -                         |
-| time_zone | string | - | 
-| currency | string | - |
 
 > 备注 <br>
 > 1、只能查询今天往前推2天的数据 <br>

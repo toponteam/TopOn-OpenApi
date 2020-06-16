@@ -245,10 +245,10 @@ POST
 | date             | string | default return  |
 | app.id           | string    | default return   |
 | app.name         | string | default return   |
-| new_user         | string | when return in the metric  |
-| dau              | string | when return in the metric   |
-| revenue          | string | when return in the metric |
-| arpu             | string | when return in the metric     |
+| new_user         | string | default return  |
+| dau              | string | default return   |
+| revenue          | string | default return |
+| arpu             | string | default return     |
 | ltv\_day\_1        | string | default return   |
 | ltv\_day\_2        | string | -                         |
 | ltv\_day\_3        | string | -                         |

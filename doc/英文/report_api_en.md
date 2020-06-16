@@ -245,8 +245,8 @@ POST
 | date             | string | default return  |
 | app.id           | string    | default return   |
 | app.name         | string | default return   |
-| new_user         | string | default return   |
-| dau              | string | default return   |
+| new_user         | string | when return in the metric  |
+| dau              | string | when return in the metric   |
 | revenue          | string | don't return if group by channel |
 | arpu             | string | with revenue     |
 | ltv\_day\_1        | string | default return   |

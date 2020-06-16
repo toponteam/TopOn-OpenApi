@@ -250,8 +250,8 @@ POST
 | area             | string | group_by area时返回      |
 | app.id           | string | 默认返回                 |
 | app.name         | string | 默认返回                 |
-| new_user         | string | 默认返回                 |
-| dau              | string | 默认返回                 |
+| new_user         | string | metric下添加new_user返回                 |
+| dau              | string |  metric下添加dau返回                 |
 | currency         | string | 开发者账号币种           |
 | revenue          | string | group_by channel时不返回 |
 | arpu             | string | 跟随revenue指标          |

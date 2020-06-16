@@ -247,8 +247,8 @@ POST
 | app.name         | string | default return   |
 | new_user         | string | when return in the metric  |
 | dau              | string | when return in the metric   |
-| revenue          | string | don't return if group by channel |
-| arpu             | string | with revenue     |
+| revenue          | string | when return in the metric |
+| arpu             | string | when return in the metric     |
 | ltv\_day\_1        | string | default return   |
 | ltv\_day\_2        | string | -                         |
 | ltv\_day\_3        | string | -                         |
@@ -269,7 +269,6 @@ POST
 | retention\_day\_30 | string | -                         |
 | retention\_day\_60 | string | -                         |
 | time_zone | string | - |
-| arpu | string | - |
 | currency | string | - |
 
 > notes:<br>

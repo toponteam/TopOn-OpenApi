@@ -1452,7 +1452,7 @@ return sample：
 
 #### 8.2.2 Request method 
 
-POST
+GET
 
 #### 8.2.3 Request params
 
@@ -1650,7 +1650,7 @@ POST
 | network_name                           | String | N        | account name        |
 | nw_firm_id                             | Int    | N        | network firm id              |
 | adsource_id                            | Int    | N        | adsource id        |
-| adsource_name                          | Int    | N        | adsource name       |
+| adsource_name                          | String    | N        | adsource name       |
 | adsource_token                          | Object | N        | adsource params |
 | app_id                                 | String | N        | TopOn app id     |
 | app_name                               | String | N        | TopOn app name   |

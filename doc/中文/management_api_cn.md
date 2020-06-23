@@ -1912,8 +1912,8 @@ POST
 
 | 广告平台ID | 广告平台名称 | auth_content | app_auth_content | 广告样式 | adsource_token |  key-value对应值  |
 | --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
-| 1         | Facebook    | - | app_id<br>app_token | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
-| 1         | Facebook    | - | app_id<br>app_token | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |
+| 1         | Facebook    | - | app_id<br>app_token<br/>property_id  | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
+| 1         | Facebook    | - | app_id<br>app_token<br/>property_id | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |
 | 2         | Admob       | account_id<br>oauth_key | app_id | rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |
 | 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size枚举值：320x50,320x100,320x250,468x60,728x90 |
 | 2         | Admob       | account_id<br>oauth_key | app_id | native | unit_id<br>media_ratio（可选） | media_ratio枚举值：0-未指定,1-任意尺寸,2-横屏,3-竖屏,4-正方形 |

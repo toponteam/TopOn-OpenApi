@@ -1912,8 +1912,9 @@ POST
 
 | 广告平台ID | 广告平台名称 | auth_content | app_auth_content | 广告样式 | adsource_token |  key-value对应值  |
 | --------- | ----------- | ------------ | ---------------- | ------- | -------------  | ---------------- |
-| 1         | Facebook    | - | app_id<br>app_token<br/>property_id  | native<br>rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
+| 1         | Facebook    | - | app_id<br>app_token<br/>property_id  | rewarded_video<br>interstitial | unit_id | app_id：AppID <br> app_token：AccessToken <br> unit_id：PlacementID |
 | 1         | Facebook    | - | app_id<br>app_token<br/>property_id | bannner | unit_id<br>size | size枚举值：320x50,320x90,320x250 |
+| 1         | Facebook    | - | app_id<br>app_token<br/>property_id  | native | unit_id<br>unit_type<br>height | unit_type枚举值：0-native，1-native banner；height枚举值：50，100，120（unit_type=1时） |
 | 2         | Admob       | account_id<br>oauth_key | app_id | rewarded_video<br>interstitial | unit_id | account_id：PublisherID <br/> oauth_key：AccessToken <br/> app_id：AppID <br/> unit_id：UnitID |
 | 2         | Admob       | account_id<br>oauth_key | app_id | bannner | unit_id<br>size | size枚举值：320x50,320x100,320x250,468x60,728x90 |
 | 2         | Admob       | account_id<br>oauth_key | app_id | native | unit_id<br>media_ratio（可选） | media_ratio枚举值：0-未指定,1-任意尺寸,2-横屏,3-竖屏,4-正方形 |
@@ -1929,10 +1930,10 @@ POST
 | 6         | Mintegral   | skey<br>secret<br>appkey | app_id | interstitial | unit_id<br>is_video | is_video枚举值：0,1 |
 | 7         | Mopub       | repkey<br>apikey | - | native<br>rewarded_video<br>interstitial | unit_id | repkey：Inventory Report ID </br> apikey：API Key </br> unitid：Unit ID  |
 | 7         | Mopub       | repkey<br>apikey | -  | bannner | unit_id<br>size | size枚举值：320x50,300x250,728x90  |
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | native | unit_id<br>unit_version<br>unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key </br> app_id：媒体ID </br> unit_id：UnitID</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | rewarded_video,splash | unit_id | - |
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | bannner| unit_id<br>unit_version<br>size | unit_version枚举值：2</br> size枚举值：320x50 |
-| 8         | 腾讯广告     | agid<br>publisher_id<br>app_key<br>qq | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version枚举值：2</br> video_muted枚举值：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
+| 8         | 腾讯广告     | 当api_version=1时<br>agid<br>publisher_id<br>app_key<br>qq<br>当api_version=2时<br>account_id<br>secret_key | app_id | native | unit_id<br>unit_version<br>unit_type | qq：账号ID </br> agid：AGID </br> publisher_id：App ID </br> app_key：App Key<br> account_id：账号ID</br> app_id：媒体ID </br> unit_id：UnitID</br>unit_version枚举值：1,2</br>unit_type枚举值：1,2 |
+| 8         | 腾讯广告     | 当api_version=1时<br>agid<br>publisher_id<br>app_key<br>qq<br>当api_version=2时<br>account_id<br>secret_key | app_id | rewarded_video,splash | unit_id | - |
+| 8         | 腾讯广告     | 当api_version=1时<br>agid<br>publisher_id<br>app_key<br>qq<br>当api_version=2时<br>account_id<br>secret_key | app_id | bannner| unit_id<br>unit_version<br>size | unit_version枚举值：2</br> size枚举值：320x50 |
+| 8         | 腾讯广告     | 当api_version=1时<br>agid<br>publisher_id<br>app_key<br>qq<br>当api_version=2时<br>account_id<br>secret_key | app_id | interstitial | unit_id<br>unit_version<br>video_muted<br>video_autoplay<br>video_duration<br>is_fullscreen | video_duration_switch：videoDuration</br>unit_version枚举值：2</br> video_muted枚举值：0,1 </br>video_autoplay枚举值：0,1</br> video_duration：时长可选</br>is_fullscreen枚举值：0，1 |
 | 9         | Chartboost  | user_id<br>user_signature | app_id<br>app_signature | rewarded_video<br>interstitial | location | user_id：UserID </br> user_signature：UserSignature </br> app_id：UserAppID </br> app_signature：AppSignature </br> location：Location |
 | 10        | Tapjoy      | apikey | sdk_key | rewarded_video<br>interstitial | placement_name | apikey：APIKey </br> sdk_key：SDKKey </br> placement_name：PlacementName |
 | 11        | Ironsource  | username<br>secret_key | app_key | rewarded_video<br>interstitial | instance_id |   username：Username </br> secret_key：Secret Key </br> app_key：App Key </br> instance_id：Instance ID |

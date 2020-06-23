@@ -1450,7 +1450,7 @@ POST
 
 #### 8.2.2 请求方式 
 
-POST
+GET
 
 #### 8.2.3 请求参数
 
@@ -1648,7 +1648,7 @@ POST
 | network_name                           | String | N        | 广告平台账号名称        |
 | nw_firm_id                             | Int    | N        | 广告平台ID              |
 | adsource_id                            | Int    | N        | 广告源ID         |
-| adsource_name                          | Int    | N        | 广告源名称       |
+| adsource_name                          | String    | N        | 广告源名称       |
 | adsource_token                          | Object | N        | 广告源配置参数 |
 | app_id                                 | String | N        | TopOn的应用ID     |
 | app_name                               | String | N        | TopOn的应用名称   |

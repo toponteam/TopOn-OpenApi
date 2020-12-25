@@ -60,7 +60,7 @@ public class ApplicationMain {
 
         String contentMD5 = ApplicationMain.md5Default(cintent).toUpperCase();
         System.out.println(cintent);
-        String url = "https://openapi.toponad.com/v1/fullreport";
+        String url = "https://openapi.toponad.com/v2/fullreport";
         String publisherTimestamp = "" + System.currentTimeMillis();
         String publisherKey = "Your publisherKey";
         String headerString = "X-Up-Key:" + publisherKey + "\n" + "X-Up-Timestamp:" + publisherTimestamp;

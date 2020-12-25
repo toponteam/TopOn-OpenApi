@@ -8,97 +8,73 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"sort"
 	"strconv"
 	"strings"
 	"time"
 )
 
-func main() {
-	body1 := ""
-	request("https://openapi.toponad.com/v1/waterfall/units?placement_id=xxxxxx", body1, "GET")
+const (
+	PublisherKey = "publisher key"
+	ContentType  = "application/json"
+)
 
+func main() {
+	reqUrl := `https://openapi.toponad.com/v1/apps`
+	reqContent := `` // request content
+
+	respData, err := dealFunc(http.MethodPost, reqUrl, reqContent)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(respData)
 }
 
-func request(demoUrl string, body string, httpMethod string) {
-	//your publisherKey
-	publisherKey := ""
-	contentType := "application/json"
-	publisherTimestamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
-	headers := map[string]string{
-		"X-Up-Timestamp": publisherTimestamp,
-		"X-Up-Key":       publisherKey,
-	}
-	//queryPath
-	urlParsed, err := url.Parse(demoUrl)
+// request and response content
+func dealFunc(reqMethod, reqUrl, reqContent string) (string, error) {
+	urlInfo, err := url.Parse(reqUrl)
 	if err != nil {
-		fmt.Println(err)
-		return
+		return "", err
 	}
-	//resource
-	resource := urlParsed.Path
 
-	//body
+	client := &http.Client{}
+	req, err := http.NewRequest(reqMethod, reqUrl, bytes.NewReader([]byte(reqContent)))
+	if err != nil {
+		return "", err
+	}
+
 	h := md5.New()
-	h.Write([]byte(body))
+	h.Write([]byte(reqContent))
 	contentMD5 := hex.EncodeToString(h.Sum(nil))
 	contentMD5 = strings.ToUpper(contentMD5)
+	timestamp := strconv.Itoa(int(time.Now().Unix() * 1000))
+	headerString := fmt.Sprintf("X-Up-Key:%s\nX-Up-Timestamp:%s", PublisherKey, timestamp)
 
-	publisherSignature := signature(httpMethod, contentMD5, contentType, headerJoin(headers), resource)
+	sign := signatureFunc(reqMethod, contentMD5, ContentType, headerString, urlInfo.Path)
+	req.Header.Set("Content-Type", ContentType)
+	req.Header.Set("X-Up-Key", PublisherKey)
+	req.Header.Set("X-Up-Timestamp", timestamp)
+	req.Header.Set("X-Up-Signature", sign)
 
-	request, err := http.NewRequest(httpMethod, demoUrl, bytes.NewReader([]byte(body)))
+	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("Fatal error", err.Error())
-		return
-	}
-	client := &http.Client{}
-	request.Header.Set("Content-Type", contentType)
-	request.Header.Set("X-Up-Key", publisherKey)
-	request.Header.Set("X-Up-Signature", publisherSignature)
-	request.Header.Set("X-Up-Timestamp", publisherTimestamp)
-	resp, err := client.Do(request)
-	if err != nil {
-		fmt.Println("Fatal error", err.Error())
-		return
+		return "", err
 	}
 	defer resp.Body.Close()
-	content, err := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp)
+
+	respByte, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Fatal error", err.Error())
-		return
+		return "", err
 	}
-
-	//return
-	fmt.Println(string(content))
+	return string(respByte), nil
 }
 
-func headerJoin(headers map[string]string) string {
-	headerKeys := []string{
-		"X-Up-Timestamp",
-		"X-Up-Key",
-	}
-	sort.Strings(headerKeys)
-	ret := make([]string, 0)
-	for _, k := range headerKeys {
-		v := headers[k]
-		ret = append(ret, k+":"+v)
-	}
-	return strings.Join(ret, "\n")
-}
-
-func signature(httpMethod, contentMD5, contentType, headerString, resource string) string {
-	stringSection := []string{
-		httpMethod,
-		contentMD5,
-		contentType,
-		headerString,
-		resource,
-	}
+func signatureFunc(httpMethod, contentMD5, contentType, headerString, urlPath string) string {
+	stringSection := []string{httpMethod, contentMD5, contentType, headerString, urlPath}
 	stringToSign := strings.Join(stringSection, "\n")
-
 	h := md5.New()
 	h.Write([]byte(stringToSign))
 	resultMD5 := hex.EncodeToString(h.Sum(nil))
-	fmt.Println(stringToSign)
 	return strings.ToUpper(resultMD5)
 }

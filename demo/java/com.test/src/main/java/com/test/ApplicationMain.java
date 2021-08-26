@@ -64,7 +64,7 @@ public class ApplicationMain {
         String publisherTimestamp = "" + System.currentTimeMillis();
         String publisherKey = "Your publisherKey";
         String headerString = "X-Up-Key:" + publisherKey + "\n" + "X-Up-Timestamp:" + publisherTimestamp;
-        String publisherSignature = ApplicationMain.signature("POST", contentMD5, "application/json", headerString, "/v1/fullreport");
+        String publisherSignature = ApplicationMain.signature("POST", contentMD5, "application/json", headerString, "/v2/fullreport");
 
         String s = ApplicationMain.doPost(url, cintent, publisherKey, publisherSignature, publisherTimestamp);
         System.out.println(s);

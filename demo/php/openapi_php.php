@@ -67,6 +67,6 @@ function headerJoin($headers = [])
 function signature($httpMethod, $contentMD5, $contentType, $headerString, $resource)
 {
     $stringSection = array($httpMethod, $contentMD5, $contentType, $headerString, $resource);
-    $stringSection = implode($stringSection, "\n");
+    $stringSection = implode("\n", $stringSection);
     return strtoupper(md5($stringSection));
 }

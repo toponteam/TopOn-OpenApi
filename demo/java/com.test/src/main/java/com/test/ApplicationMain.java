@@ -1,103 +1,92 @@
 package com.test;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import com.test.SSLClient;
-
-import java.security.MessageDigest;
+import org.apache.commons.codec.digest.DigestUtils;
+import java.net.URL;
 
 public class ApplicationMain {
 
-    public static String signature(String httpMethod, String contentMD5,
-                                   String contentType, String headerString, String resource) {
+    public final static String CONTENT_TYPE = "application/json";
+    public final static String PUBLISHER_KEY = "your publisher key";
 
-        String SignString = httpMethod + "\n" + contentMD5 + "\n" + contentType + "\n" + headerString + "\n" + resource;
+    public static void main(String[] args) {
 
-        System.out.println(SignString);
+        // POST example:
+        String reqBody = "{\"limit\":1}";
+        String url = "https://openapi.toponad.com/v1/apps";
+        String response = doRequest(HttpPost.METHOD_NAME, url, reqBody);
+        System.out.println("post response: " + response);
 
-        return ApplicationMain.md5Default(SignString).toUpperCase();
-
+        // GET example:
+        url="https://openapi.toponad.com/v1/waterfall/units?placement_id=xxx";
+        response = doRequest(HttpGet.METHOD_NAME, url, "");
+        System.out.println("get response: " + response);
     }
 
-
-    public static String doPost(String url, String cintent, String publisherKey, String publisherSignature,
-                                String publisherTimestamp) {
-        HttpClient httpClient = null;
-        HttpPost httpPost = null;
+    public static String doRequest(String httpMethod, String reqUrl, String reqBody) {
         String result = null;
         try {
-            httpClient = new SSLClient();
-            httpPost = new HttpPost(url);
-            httpPost.setHeader("Content-Type", "application/json");
-            httpPost.setHeader("X-Up-Timestamp", publisherTimestamp);
-            httpPost.setHeader("X-Up-Key", publisherKey);
-            httpPost.setHeader("X-Up-Signature", publisherSignature);
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpRequestBase httpRequest = null;
+            if (httpMethod.equals(HttpPost.METHOD_NAME)) {
+                HttpPost httpPost = new HttpPost(reqUrl);
+                httpPost.setEntity(new StringEntity(reqBody));
+                httpRequest = httpPost;
+            } else if (httpMethod.equals(HttpGet.METHOD_NAME)) {
+                httpRequest = new HttpGet(reqUrl);
+            } else {
+                // TODO
+            }
+            // create the final signature
+            String contentMD5 = DigestUtils.md5Hex(reqBody).toUpperCase();
+            String nowMillis = System.currentTimeMillis() + "";
+            String headerStr = "X-Up-Key:" + PUBLISHER_KEY + "\n" + "X-Up-Timestamp:" + nowMillis;
+            String relativePath = new URL(reqUrl).getPath();
+            String finalSign = genSignature(httpMethod, contentMD5, CONTENT_TYPE, headerStr, relativePath);
+            // set the headers
+            httpRequest.setHeader("Content-Type", CONTENT_TYPE);
+            httpRequest.setHeader("X-Up-Timestamp", nowMillis);
+            httpRequest.setHeader("X-Up-Key", PUBLISHER_KEY);
+            httpRequest.setHeader("X-Up-Signature", finalSign);
 
-            httpPost.setEntity(new StringEntity(cintent));
-            HttpResponse response = httpClient.execute(httpPost);
+            HttpResponse response = httpClient.execute(httpRequest);
             if (response != null) {
                 HttpEntity resEntity = response.getEntity();
-                if (resEntity != null) {
-                    result = EntityUtils.toString(resEntity, "utf-8");
-                }
+                result = resEntity != null ? EntityUtils.toString(resEntity, "utf-8") : "";
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return result;
     }
 
-    public static void main(String[] args) {
-
-
-        String cintent = "{}";
-
-        String contentMD5 = ApplicationMain.md5Default(cintent).toUpperCase();
-        System.out.println(cintent);
-        String url = "https://openapi.toponad.com/v2/fullreport";
-        String publisherTimestamp = "" + System.currentTimeMillis();
-        String publisherKey = "Your publisherKey";
-        String headerString = "X-Up-Key:" + publisherKey + "\n" + "X-Up-Timestamp:" + publisherTimestamp;
-        String publisherSignature = ApplicationMain.signature("POST", contentMD5, "application/json", headerString, "/v2/fullreport");
-
-        String s = ApplicationMain.doPost(url, cintent, publisherKey, publisherSignature, publisherTimestamp);
-        System.out.println(s);
+    /**
+     * create the final signature
+     *
+     * @param httpMethod   GET/POST
+     * @param contentMD5
+     * @param contentType
+     * @param headerStr
+     * @param relativePath the relative path of url, such as "/v1/apps"
+     * @return
+     */
+    public static String genSignature(String httpMethod, String contentMD5,
+                                      String contentType, String headerStr, String relativePath) {
+        StringBuffer buf = new StringBuffer();
+        buf.append(httpMethod).append('\n').
+                append(contentMD5).append('\n').
+                append(contentType).append('\n').
+                append(headerStr).append('\n').
+                append(relativePath);
+        return DigestUtils.md5Hex(buf.toString()).toUpperCase();
 
     }
-
-    public static String getMD5(String str) {
-        try {
-            return DigestUtils.md5Hex(str);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public final static String md5Default(String str) {
-        try {
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
-            md5.update(str.getBytes());
-            byte b[] = md5.digest();
-
-            StringBuffer sb = new StringBuffer("");
-            for (int n = 0; n < b.length; n++) {
-                int i = b[n];
-                if (i < 0) i += 256;
-                if (i < 16) sb.append("0");
-                sb.append(Integer.toHexString(i));
-            }
-            return sb.toString();
-        } catch (Exception e) {
-            // ignore
-        }
-        return null;
-    }
-
-
 }

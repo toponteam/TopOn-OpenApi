@@ -1,30 +1,49 @@
-# ~ /usr/bin/python
-
 import hashlib
 import json
+import urllib.parse
+
 import requests
 import time
 
-publisher_key = 'publisher key'
-host = 'https://openapi.toponad.com/v1/apps'
-path = '/v1/apps'
+PUBLISHER_KEY = 'your publisher key'
+CONTENT_TYPE = "application/json"
 
-request_content = {}
-timestamp = int(time.time() * 1e3)
-headers = {
-    'X-Up-Key': publisher_key,
-    'X-Up-Timestamp': str(timestamp),  # milliseconds
-}
 
-http_method = 'POST'
-content_md5 = hashlib.md5(json.dumps(request_content, sort_keys=False).encode()).hexdigest().upper()
-content_type = 'application/json'
-header_str = "X-Up-Key:" + publisher_key + "\n" + "X-Up-Timestamp:" + str(timestamp)
+def do_request(http_method, req_url, req_body):
+    now_millis = int(time.time() * 1e3)
 
-signature_str = '{}\n{}\n{}\n{}\n{}'.format(http_method, content_md5, content_type, header_str, path)
-signature = hashlib.md5(signature_str.encode()).hexdigest().upper()
-headers['X-Up-Signature'] = signature
-headers['Content-Type'] = content_type
+    # Create the final signature.
+    content_md5 = hashlib.md5(req_body.encode()).hexdigest().upper()
+    header_str = "X-Up-Key:{}\nX-Up-Timestamp:{}".format(PUBLISHER_KEY, str(now_millis))
+    relative_path = urllib.parse.urlsplit(req_url).path
+    sign_str = "{}\n{}\n{}\n{}\n{}".format(http_method, content_md5, CONTENT_TYPE, header_str, relative_path)
+    final_sign = hashlib.md5(sign_str.encode()).hexdigest().upper()
 
-r = requests.post(host, headers=headers, data=json.dumps(request_content))
-print(r.text)
+    # do the request
+    headers = {
+        "X-Up-Key": PUBLISHER_KEY,
+        "X-Up-Timestamp": str(now_millis),
+        "X-Up-Signature": final_sign,
+        "Content-Type": CONTENT_TYPE,
+    }
+    if http_method == "POST":
+        response = requests.post(req_url, headers=headers, data=req_body)
+    elif http_method == "GET":
+        response = requests.get(req_url, headers=headers)
+    else:
+        # TODO
+        response = "todo"
+    return response.text
+
+
+# POST example:
+req_url = 'https://openapi.toponad.com/v1/apps'
+req_body = {"limit": 1}
+req_body_str = json.dumps(req_body, sort_keys=False)
+response = do_request("POST", req_url, req_body=req_body_str)
+print("post response: ", response)
+
+# GET example:
+req_url = "https://openapi.toponad.com/v1/waterfall/units?placement_id=xxx&is_abtest=0"
+response = do_request("GET", req_url, req_body="")
+print("get response: ", response)

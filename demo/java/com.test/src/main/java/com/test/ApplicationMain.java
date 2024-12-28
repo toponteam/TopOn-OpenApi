@@ -38,7 +38,8 @@ public class ApplicationMain {
             HttpRequestBase httpRequest = null;
             if (httpMethod.equals(HttpPost.METHOD_NAME)) {
                 HttpPost httpPost = new HttpPost(reqUrl);
-                httpPost.setEntity(new StringEntity(reqBody));
+                httpPost.setEntity(new StringEntity(reqBody,"utf-8")); // 兼容中文
+//                httpPost.setEntity(new StringEntity(reqBody));
                 httpRequest = httpPost;
             } else if (httpMethod.equals(HttpGet.METHOD_NAME)) {
                 httpRequest = new HttpGet(reqUrl);
